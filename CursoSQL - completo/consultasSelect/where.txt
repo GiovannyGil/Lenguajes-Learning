@@ -1,0 +1,14 @@
+Consulas WHERE
+es un consulta de condicion, donde se hace una condicion para las consultas, para filtrar mejor la informacion que se quiere obtener.
+
+
+verifica que una conficion se cumpla para retornar la informacion correcta
+
+
+SELECT * FROM Products WHERE ProductName = "Tofu"
+mostrar toda la informacion del producto donde el nombre sea Tofu
+
+tambien permite hacer operaciones matematicas,logicas en la condicion WHERE
+
+SELECT * FROM Products WHERE Price > 40
+mostrar toda la informacion del producto donde el precio sea mayor a 40

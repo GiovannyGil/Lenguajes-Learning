@@ -1,0 +1,28 @@
+TYPESCRIPT 
+
+
+es un superSET de JAVASCRIPT, el cual aplica o genera entre algunas cosas mas, el tipado estatico, en lugar del tipado dinamico que manajea JAVASCRIPT
+
+Esto se aplica tanto a varibles, como a arrelglos/objetos e incluso a funciones
+
+VARIABLES:
+const nombre:strng = 'Gio';
+agrega el tipo de dato a la varible, así no se puede cambiar en el transcurso del código
+la inferencia en variables, es que no hay necesidad de poner el tipo de datos, por defecto ya asume de cual se trata.
+
+EN EL TIAPDO DE TYPESCRIPT, SE DEBE EVITAR EL ANY, UNDEFINED, FUNCTION
+
+FUNCIONES
+se pasa el tipado de datos en la seccion de parametros = :{name:string, age:number} <-- tipado
+
+así mismo, al usar un return en una funcion, el tipado se infiere, es decir, se da automaticamente, pero al usarse/llamarse afuera de la funcion, debe usarse en el mismo tipo de dato, de los contrario generará un error.
+
+tambien se puede pasar el tipo de dato que se quiere retornar
+f({name,age}:{name:string, age:number}):number{}
+
+Al tipar una funcion, que retorna un dato string, solo se pone como parametro el mismo, string, igualmente con los otros tipos de datos
+NomFunsion((name:string)=>{
+    clg(`hola ${name})
+})
+
+// (fn: (name:string)=>string) // una funcion de tipo string, recibe y devuelve un string, o void, si no retorna nada

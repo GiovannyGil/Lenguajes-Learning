@@ -1,0 +1,1 @@
+alert('Bienvenido'); // ALERTA, debe ser llamada en el documento

@@ -1,0 +1,14 @@
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\bin\Debug\net8.0\EjemplosPOO.exe
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\bin\Debug\net8.0\EjemplosPOO.deps.json
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\bin\Debug\net8.0\EjemplosPOO.runtimeconfig.json
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\bin\Debug\net8.0\EjemplosPOO.dll
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\bin\Debug\net8.0\EjemplosPOO.pdb
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\EjemplosPOO.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\EjemplosPOO.AssemblyInfoInputs.cache
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\EjemplosPOO.AssemblyInfo.cs
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\EjemplosPOO.csproj.CoreCompileInputs.cache
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\EjemplosPOO.dll
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\refint\EjemplosPOO.dll
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\EjemplosPOO.pdb
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\EjemplosPOO.genruntimeconfig.cache
+D:\Programacion\CONSOLA\C#\EjemplosPOO\EjemplosPOO\obj\Debug\net8.0\ref\EjemplosPOO.dll

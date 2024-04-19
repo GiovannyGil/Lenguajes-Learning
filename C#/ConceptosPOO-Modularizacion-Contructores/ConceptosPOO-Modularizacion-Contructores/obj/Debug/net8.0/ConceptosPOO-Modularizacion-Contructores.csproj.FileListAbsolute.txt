@@ -1,0 +1,14 @@
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.AssemblyInfoInputs.cache
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.AssemblyInfo.cs
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.csproj.CoreCompileInputs.cache
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\bin\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.exe
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\bin\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.deps.json
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\bin\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.runtimeconfig.json
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\bin\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.dll
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\bin\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.pdb
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.dll
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\refint\ConceptosPOO-Modularizacion-Contructores.dll
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.pdb
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\ConceptosPOO-Modularizacion-Contructores.genruntimeconfig.cache
+D:\Programacion\CONSOLA\C#\ConceptosPOO-Modularizacion-Contructores\ConceptosPOO-Modularizacion-Contructores\obj\Debug\net8.0\ref\ConceptosPOO-Modularizacion-Contructores.dll

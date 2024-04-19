@@ -1,0 +1,80 @@
+SUBCONSULTAS
+
+una subconsulta se refiere a una consulta que esta dentro de otra consulta
+
+SELECT * FROM tabla1 WHERE campo1 IN (SELECT campo1 FROM tabla2)
+
+solo se puede obtener una columna, para obtenerdos o mas, se deben hacer más subconsultas
+
+EJEMPLO:
+---------------------------------------------------
+SELECT ProductID, Quantity, 
+(SELECT ProductName FROM Products 
+where OrderDetails.ProductID = ProductID) AS NOMBRE
+from OrderDetails
+---------------------------------------------------
+SELECT ProductID, Quantity, 
+(SELECT Price FROM Products 
+where OrderDetails.ProductID = ProductID) AS PRECIO
+from OrderDetails
+---------------------------------------------------
+SELECT ProductID, Quantity, 
+(SELECT Price FROM Products 
+where OrderDetails.ProductID = ProductID) AS PRECIO,
+(SELECT ProductName FROM Products 
+where OrderDetails.ProductID = ProductID) AS NOMBRE
+from OrderDetails
+---------------------------------------------------
+
+
+EJEMPLO CON AGRUPACION ->
+
+select ProductID, sum(Quantity) as total_vendido,
+(select Price from Products where ProductID = OD.ProductID) as Precio
+from [OrderDetails] OD
+GROUP BY ProductID
+-------------------------------------------------------------------------
+select ProductID, sum(Quantity) as total_vendido,
+(select Price from Products where ProductID = OD.ProductID) as Precio,
+SUM(Quantity) * (SELECT Price from Products where ProductID = OD.ProductID) as total_recaudado
+from [OrderDetails] OD
+GROUP BY ProductID
+|----------------------------------------|
+|_ID_|_TOTAL_|_PRECIO_|_TOTAL_RECAUDADO__|
+|  1 |	159	 |    18  |	     2862        |
+|  2 |	341	 |    19  |	     6479        |
+|  3 |	80	 |    10  |	     800         |
+|  4 |	107	 |    22  |	     2354        |
+|  5 |	129	 |   21.35|	     2754.15     |
+|  6 |	36	 |    25  |	     900         |
+|  7 |	25	 |    30  |	     750         |
+|  8 |	140	 |    40  |	     5600        |
+|  9 |	20	 |    97  |	     1940        |
+| 10 |	85	 |    31  |	     2635        |
+|----------------------------------------|
+
+
+
+
+EJEMPLO EMPLEADOS
+
+obtener los empleados que lograron vender más unidades que el promedio
+
+select FirstName, LastName,
+(select sum(od.Quantity) from [orders] o, [OrderDetails] od
+ WHERE o.EmployeeID = e.EmployeeID AND o.OrderID = od.OrderID
+) as unidades_totales
+from [Employees] e
+where unidades_totales > (SELECT avg(unidades_totales)
+FROM (select (SELECT sum(od.Quantity) from [Orders] o,
+[OrderDetails] od
+WHERE o.EmployeeID = e2.EmployeeID AND od.OrderID = o.OrderID) as unidades_totales
+FROM [Employees] e2
+GROUP by e2.EmployeeID))
+
+|-----------------------------------------------|
+|_FirstName_|___LastName____|_unidades_totales__|
+|  Nancy	|   Davolio	    |      1924         |
+|  Janet	|   Leverling	|      1725         |
+|  Margaret |	Peacock	    |      3232         |
+|-----------------------------------------------|

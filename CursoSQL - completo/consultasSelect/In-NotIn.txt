@@ -1,0 +1,22 @@
+IN / NOT IN
+
+los operadores IN/NOT IN son operadores lógicos, que funcionan con las subconsultas en SQL
+
+
+IN : devuelve valores que coinciden con los valores de una lista
+es decir, si la subconsulta devuelve un valor que coincide con un valor de la lista, se devuelve ese valor
+
+ejem: SELECT * from Products WHERE SupplierID IN (3,4,5,6)
+Va a devolver los productos que tienen como clave foranea de proveedor 3,4,5 o 6
+
+NOT IN : devuelve valores que no coinciden con los valores de una lista
+
+ejem: SELECT * from Products WHERE SupplierID NOT IN (3,4,5,6)
+Va a devolver los productos que  tienen como clave foranea de proveedor diferente de la lista pasada => 3,4,5 o 6
+de volveria lo que tienen valor 1,2,7,8,9,10
+
+
+
+esto tambíén puede ser usado con cadena de texto, por ejemplo:
+SELECT * from Employees where LastName in ("Fuller","King")
+devolveria los empleados que tengan como apellido Fuller o King

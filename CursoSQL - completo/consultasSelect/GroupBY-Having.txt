@@ -1,0 +1,54 @@
+Group By / Having
+
+Group By: agrupa uno o varios registros segun uno o varios valores.
+funciona como una minitabla
+
+SELECT ProductName as nombre,avg(price) as precio_promedio from Products GROUP by ProductName ORDER BY precio_promedio
+______________________________________________
+|__________NOMBRE__________|_PRECIO_PROMEDIO_|
+| Alice Mutton             |	39.0         |
+| Aniseed Syrup            |	10.0         | 
+| Boston Crab Meat         |	18.4         |
+| Camembert Pierrot	       |    34.0         |
+| Carnarvon Tigers         |	62.5         |
+| Chais                    |	18.0         |
+| Chang                    |	19.0         |
+| Chartreuse verte         |	18.0         |
+|__________________________|_________________|
+
+select CategoryID as categoria, round(avg(price)) as promedio 
+from Products
+where CategoryID IS NOT NULL
+GROUP BY CategoryID
+_________________________
+|_CATEGORIA_|_PROMEDIO__|
+| 1         |	38.0    |
+| 2         |	23.0    |
+| 3         |	25.0    |
+| 4         |	29.0    |
+| 5         |	20.0    |
+| 6         |	54.0    |
+| 7         |	32.0    |
+| 8         |	21.0    |
+|___________|___________|
+
+Having: funciona como un condicional where pero para las funciones de agregación
+
+es un filtro de grupos, sirve para grupos resultado de una funcion de agregación
+
+se pueden usar operadores de comparacion, operadores logicos, funciones de agregacion
+
+no se puede combinar funciones de agregacion, o usar un alias de una funcion de agregacion en otra o su resultado
+
+select SupplierID, round(avg(price)) as promedio 
+where productID is not null
+from Products
+GROUP by SupplierID
+HAVING promedio > 40
+________________________
+|_SUPPLIER_|_PROMEDIO__|
+| 4        |	46.0   |
+| 12       |	45.0   |
+| 18       |	141.0  |
+| 28       |	45.0   |
+|__________|___________|

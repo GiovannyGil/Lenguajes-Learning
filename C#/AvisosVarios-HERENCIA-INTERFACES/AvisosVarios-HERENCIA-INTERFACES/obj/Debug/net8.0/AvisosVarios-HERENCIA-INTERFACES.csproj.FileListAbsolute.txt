@@ -1,0 +1,14 @@
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\bin\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.exe
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\bin\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.deps.json
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\bin\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.runtimeconfig.json
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\bin\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.dll
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\bin\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.pdb
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.AssemblyInfoInputs.cache
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.AssemblyInfo.cs
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.csproj.CoreCompileInputs.cache
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.dll
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\refint\AvisosVarios-HERENCIA-INTERFACES.dll
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.pdb
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\AvisosVarios-HERENCIA-INTERFACES.genruntimeconfig.cache
+D:\Programacion\CONSOLA\C#\AvisosVarios-HERENCIA-INTERFACES\AvisosVarios-HERENCIA-INTERFACES\obj\Debug\net8.0\ref\AvisosVarios-HERENCIA-INTERFACES.dll

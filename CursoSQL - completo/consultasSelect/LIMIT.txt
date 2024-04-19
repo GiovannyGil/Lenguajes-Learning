@@ -1,0 +1,14 @@
+LIMIT
+
+la consulta LIMIT establece un LIMITE de la cantidad de registros que queremos que retorne la consulta
+
+SELECT * FROM `tabla` LIMIT 10 -> un limite de 10 registros
+
+
+SELECT * FROM products
+WHERE NOT CategoryID = 6
+AND NOT SupplierID = 1
+AND Price <= 30
+ORDER By RANDOM()
+LIMIT 3
+

@@ -1,0 +1,47 @@
+SQL = Structured Query Lenguage / Lneguaje de Consultas Estructuradas
+
+permite trabajar con bases de datos relacionales
+SQL = lenguaje de programación -> para consultas estandarizadas
+
+
+permite crear y administrar bases de datos = CRUD
+
+permite agregar restriciones y reglas de seguridad, se usan para llevar un orden en las bases de datos, como que no se pueden valores o campos vacios, como configurar acceso a la base de datos, para los usuarios.
+
+también permite generar informes, analisis de datos
+
+usuarios y permisos = otorga la facilidad de saber o definir quien puede y no acceder a la información y/o manipularla
+
+permite tambien realizar transacciones, copias de seguridad, restaurar datos, integrar con otras aplicaciones, limpieza de datos, normalizacion de datos, calculos avanzados, combinacion de datos de multiples formas, optimizar el rendimiento etc ...
+
+
+
+FUNDAMENTOS 
+- ENTIDAD = es un objeto, o una representacion de algo, y al macenamos informacion sobre la entidad en la base de datos: ejemplo de una entidad es una persona = represenacion de una persona, en otras palabras, la entidad en lo que representa una tabla. tabla persona = entidad persona
+
+- ATRIBUTOS: es una parte de una entidad, sus atributos son su informacion que la componen: atributos comunes, atributos multivalor, atributos derivados, atributo identificador = KEY
+
+KEY: VALOR UNICO- atributo identificador
+
+
+
+TABLAS
+Estructuras de datos que se organizan en filas y columnas en ella se encuentran los campos, se guarda la informacion organizada
+
+CAMPO
+es el nombre de la  columna (de la tabla)
+
+
+REGISTRO 
+es una fila de una tabla (INFORMACION DE LOS CAMPOS DE UNA TABLA)
+
+VALOR DEL CAMPO
+es el valor de la celda que esta en la interseccion de un un campo(columna) y una registro(fila)
+
+
+CONSULA
+es una llamado o peticion a la base de datos, estas incluyen las más basicas como el 'insert', el 'select', el 'update' y el 'delete' que son las más comunes
+
+IDENTIFICADOR
+- primary key = llave primaria , identificador unico por registro, no se puede repetir
+- foreign key = llave foranea, identificador de relacion, se puede repetir, pero no se puede dejar vacio, es para conectar dos tablas o mas

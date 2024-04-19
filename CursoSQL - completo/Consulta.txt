@@ -1,0 +1,40 @@
+CONSULTA / QUERY
+
+Es preguntarle o buscar en una base de datos, sirven para obtener informacion de una base de datos
+
+
+SELECT - selecionar/obtener:
+
+select * from users
+
+selecionar, traer, obtener, buscar "TODO" de la tabla USERS 
+
+SELECT nombre,edad FROM users
+selecionar el nombre y la edad de la tabla users
+
+---------------------------------------------------------------------------
+INSERTAR / INSERT
+
+es agregar informacion a una base de datos
+
+INSERT: sirve para añadir informacion a una tabla de una base de datos
+
+insert into users (nombre,apellido,edad) values ('Gio','Chica',22)
+insertar en users(tabla) (nombre,apellido,edad)(CAMPOS)
+el valor ('Gio','Chica',22)
+---------------------------------------------------------------------------
+
+UPDATE - actualizar
+
+actualizar informacion de una base de datos selecionando un campo, registro, tabla o la base de datos completa
+
+Update turnos_medicos SET horario  = "11:30" WHERE id_turno = 2
+actualizar la tabla turnos_medicos, en el campo horario, donde el id_turno sea igual a 2
+
+---------------------------------------------------------------------------
+DELETE - eliminar
+
+permite eliminar informacion de una base de datos, eliminando la informacion de una campo, registro, tabla o la base de datos completa
+
+delete from users
+eliminar todo de la tabla users

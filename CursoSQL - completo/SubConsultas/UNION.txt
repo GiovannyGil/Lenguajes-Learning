@@ -1,0 +1,8 @@
+UNION / UNION ALL
+
+UNION: permite unir/combinar los datos de una o más tablas con los de otras tablas, eliminando los duplicados de los datos
+
+
+UNION ALL: permite unir los datos de una tabla con los de otra tabla, pero no elimina los duplicados de los datos
+
+union retorna la union de las dos consultas de las tablas, monstrando todos los datos, así se repitan seran mostrados

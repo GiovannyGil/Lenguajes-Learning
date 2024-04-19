@@ -1,0 +1,14 @@
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\UsuCoches-Contructores.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\UsuCoches-Contructores.AssemblyInfoInputs.cache
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\UsuCoches-Contructores.AssemblyInfo.cs
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\UsuCoches-Contructores.csproj.CoreCompileInputs.cache
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\bin\Debug\net8.0\UsuCoches-Contructores.exe
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\bin\Debug\net8.0\UsuCoches-Contructores.deps.json
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\bin\Debug\net8.0\UsuCoches-Contructores.runtimeconfig.json
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\bin\Debug\net8.0\UsuCoches-Contructores.dll
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\bin\Debug\net8.0\UsuCoches-Contructores.pdb
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\UsuCoches-Contructores.dll
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\refint\UsuCoches-Contructores.dll
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\UsuCoches-Contructores.pdb
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\UsuCoches-Contructores.genruntimeconfig.cache
+D:\Programacion\CONSOLA\C#\UsuCoches-Contructores\UsuCoches-Contructores\obj\Debug\net8.0\ref\UsuCoches-Contructores.dll

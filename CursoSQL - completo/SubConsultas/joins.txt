@@ -1,0 +1,71 @@
+JOINS
+
+son un operador para bases de datos, que nos permite combinar tablas y mostrar la informacion de las tablas en una sola tabla/respuesta
+
+inner join: -> join
+de vuelve la coincidencia entre las tablas
+
+select LastName, FirstName, OrderID from Employees e INNER JOIN Orders o 
+on o.EmployeeID = e.EmployeeID
+
+SELECT FirstName, Reward, Month from Employees e
+INNER JOIN Rewards r
+on e.EmployeeID = r.EmployeeID
+|---------------------------------|
+|_FirstName_|_Reward_|__Month_____|
+|Janet	    | 200	 |  Junuary   |
+|Andrew	    | 180	 |  February  | 
+|Steven	    | 250	 |  March     |
+|Nancy	    | 280	 |  April     |
+|Laura	    | 160	 |  May       |
+|---------------------------------|
+
+
+
+left join
+de vuelve la coincidencia entre las tablas y los datos de la tabla de la izquierda
+
+SELECT FirstName, Reward, Month from Employees e
+LEFT JOIN Rewards r
+on e.EmployeeID = r.EmployeeID
+
+|---------------------------------|
+|_FirstName_|_Reward_|__Month_____|
+|   Nancy	|   280	 |   April    | 
+|   Andrew	|   180	 |   February |
+|   Janet	|   200	 |   Junuary  |
+|   Margaret|   null |   null	  |
+|   Steven	|   250	 |   March    |
+|   Michael	|   null |   null	  |
+|   Robert	|   null |   null	  |
+|   Laura	|   160	 |   May      |
+|   Anne	|   null |   null	  |
+|   Adam    |   null |   null     |
+|---------------------------------|
+
+
+right join
+de vuelve la coincidencia entre las tablas y los datos de la tabla de la derecha
+
+SELECT FirstName, Reward, Month from Employees e
+RIGHT JOIN Rewards r
+on e.EmployeeID = r.EmployeeID
+
+|---------------------------------|
+|_FirstName_|_Reward_|__Month_____|
+|Janet	    |   200  |	 Junuary  |
+|Andrew	    |   180  |	 February |
+|Steven	    |   250  |   March    |
+|Nancy	    |   280  |   April    |
+|Laura	    |   160  |   May      |
+|null       |   null |   June     |
+|---------------------------------|
+
+
+full join
+de vuelve la coincidencia entre las tablas y los datos de ambas tablas
+
+
+
+
+cross join: regresa el cruce o combinacion entre ambas tablas

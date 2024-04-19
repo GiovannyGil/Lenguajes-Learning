@@ -1,0 +1,21 @@
+CONSULTA BETWEEN
+consulta de entre dos "condiciones", es un selecionador de comparacion, en un rango
+cabe aclarar que los valores designados al rango, tambien se incluyen en el resultado
+
+tambien el valor de rango 1 no puede ser mayor que el valor de rango 2
+ejemplo de consulta: BETWEEN 6 AND 3 : esto no es posible, ya que el valor de rango 1 es mayor que el valor de rango 2
+
+SELECT * FROM Products WHERE Price BETWEEN 20 AND 40 -> traer los productos que esten entre 20 y 40
+SELECT * FROM Products WHERE Price NOT BETWEEN 20 AND 40 -> traer los productos que no esten entre 20 y 40
+
+SELECT * FROM Products WHERE Price BETWEEN 20 AND 40 AND CategoryID = 6 -> traer los productos que esten entre 20 y 40 y que su categoria sea 6
+
+
+
+tambien se puede usar en un rango de fechas
+SELECT * FROM Employees WHERE BirthDate BETWEEN "1960-0-1" AND "1970-0-1"
+
+SELECT * FROM Employees WHERE BirthDate BETWEEN "1960-0-1" AND "1970-0-1" AND City = "London"
+
+
+tambien se puede usar en un rango de texto, o cadena de caracteres

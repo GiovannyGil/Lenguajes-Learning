@@ -1,0 +1,14 @@
+IS NULL / IS NOT NULL
+
+NULO ES UN CAMPO SIN NINGUN VALOR
+
+se puede mostrar lo que son nulos, como no mostrar los que tienen valores nulos
+
+IS NULL 
+ejem: SELECT * FROM `tabla` WHERE `campo` IS NULL
+me muestra todos los campos que tienen un valor nulo
+
+IS NOT NULL
+ejem: SELECT * FROM `tabla` WHERE `campo` IS NOT NULL
+me muestra todos los campos que tienen un valor no nulo
+

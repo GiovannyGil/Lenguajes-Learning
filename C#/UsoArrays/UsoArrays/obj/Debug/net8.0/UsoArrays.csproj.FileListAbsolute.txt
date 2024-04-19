@@ -1,0 +1,14 @@
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\bin\Debug\net8.0\UsoArrays.exe
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\bin\Debug\net8.0\UsoArrays.deps.json
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\bin\Debug\net8.0\UsoArrays.runtimeconfig.json
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\bin\Debug\net8.0\UsoArrays.dll
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\bin\Debug\net8.0\UsoArrays.pdb
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\UsoArrays.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\UsoArrays.AssemblyInfoInputs.cache
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\UsoArrays.AssemblyInfo.cs
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\UsoArrays.csproj.CoreCompileInputs.cache
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\UsoArrays.dll
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\refint\UsoArrays.dll
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\UsoArrays.pdb
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\UsoArrays.genruntimeconfig.cache
+D:\Programacion\CONSOLA\C#\UsoArrays\UsoArrays\obj\Debug\net8.0\ref\UsoArrays.dll

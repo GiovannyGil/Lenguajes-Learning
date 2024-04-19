@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AvisosVarios-HERENCIA-INTERFACES/1.0.0": {
+        "runtime": {
+          "AvisosVarios-HERENCIA-INTERFACES.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AvisosVarios-HERENCIA-INTERFACES/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

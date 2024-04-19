@@ -1,0 +1,32 @@
+LIKE
+
+es un operador de comparacion, que busca y filtrar los datos que cumplan con la condicion que se le pide, se usa para comparar valores, y se usa en el WHERE de una consulta.
+
+se usa para filtrar busquedas de texto parcial, usando comodines
+
+Ejem: SELECT * FROM tabla WHERE campo LIKE 'texto'
+retorna lo que esta entre comillas, si coincide con la tabla
+
+Ejem: SELECT * FROM tabla WHERE campo LIKE 'texto%'
+retorna lo que esta entre comillas, si coincide con la tabla, in importar que haya despues, mientras coincida la consulta, en otras palabras, que inicie con lo puesto entre comillas/%%
+
+Ejem: SELECT * FROM tabla WHERE campo LIKE '%texto'
+retorna lo que esta entre comillas, sin importar que haya antes, mientras coincida la consulta, en otras palabras, que termine con lo puesto entre comillas/%%
+
+Ejem: SELECT * FROM tabla WHERE campo LIKE '%texto%'
+retorna lo que esta entre comillas, sin importar que haya antes o despues, mientras coincida la consulta, en otras palabras, que contenga lo puesto entre comillas/%%
+
+
+esta el comodin "_" significa que debe haber un caracter en esa posicion, si no hay, no se mostrara
+
+es decir = buscar 'te_to', debe buscar lo que incie con te, haya algo en la posicion _ y termine con to, ni antes ni despues
+
+asi como puede ser una sola posicion, puede ser muchas más, incluso todos los caracteres menos uno
+
+Ejem: SELECT * FROM tabla WHERE campo LIKE 'te_to'
+
+----------------------
+
+ejemplo:
+SELECT * from Employees WHERE FirstName LIKE '_a%'
+retorna todos los nombres que tengan una a en la segunda posicion, y despues de la cualquier otro caracter y la cantidad que sea

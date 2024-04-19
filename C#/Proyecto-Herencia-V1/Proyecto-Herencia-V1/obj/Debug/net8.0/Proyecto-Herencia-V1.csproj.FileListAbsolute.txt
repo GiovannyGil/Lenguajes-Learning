@@ -1,0 +1,14 @@
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\bin\Debug\net8.0\Proyecto-Herencia-V1.exe
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\bin\Debug\net8.0\Proyecto-Herencia-V1.deps.json
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\bin\Debug\net8.0\Proyecto-Herencia-V1.runtimeconfig.json
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\bin\Debug\net8.0\Proyecto-Herencia-V1.dll
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\bin\Debug\net8.0\Proyecto-Herencia-V1.pdb
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\Proyecto-Herencia-V1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\Proyecto-Herencia-V1.AssemblyInfoInputs.cache
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\Proyecto-Herencia-V1.AssemblyInfo.cs
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\Proyecto-Herencia-V1.csproj.CoreCompileInputs.cache
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\Proyecto-Herencia-V1.dll
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\refint\Proyecto-Herencia-V1.dll
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\Proyecto-Herencia-V1.pdb
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\Proyecto-Herencia-V1.genruntimeconfig.cache
+D:\Programacion\CONSOLA\C#\Proyecto-Herencia-V1\Proyecto-Herencia-V1\obj\Debug\net8.0\ref\Proyecto-Herencia-V1.dll

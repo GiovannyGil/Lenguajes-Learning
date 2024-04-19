@@ -1,0 +1,16 @@
+Consulas Order by // ordenar por ###
+
+sirve para ordenar las consultas por un campo en especifico.
+
+ejemplo: select * from empleados order by city
+selecionar todos de empleados ordenado por la ciudad de origen
+
+
+SELECT * FROM Products order by Price ASC
+selecionar todos de productos ordenado por el precio de forma ascendente
+SELECT * FROM Products order by Price DESC
+selecionar todos de productos ordenado por el precio de forma descendente
+
+
+tambien se puede ordenar de forma aleatoria con la funcion RANDOM()
+ejemplo: select * from empleados order by RANDOM() --> genera un ordenado aleatorio cada vez que se sejecuta

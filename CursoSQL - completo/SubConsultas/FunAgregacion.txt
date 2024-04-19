@@ -1,0 +1,12 @@
+AGregacion 
+son funciones que sirven para hacer consultar matematicas, como sumas, promedios, etc. 
+
+
+## Funciones de agregacion
+- cantidad: ejemplo saber cuantos registros hay en una tabla -> count(*)
+- suma: ejemplo saber la suma de los salarios de una tabla -> sum(salario)
+- promedio: ejemplo saber el promedio de los salarios de una tabla -> avg(salario)
+- maximo: ejemplo saber el maximo de los salarios de una tabla -> max(salario)
+- minimo: ejemplo saber el minimo de los salarios de una tabla -> min(salario)
+- redodondeo: ejemplo saber el redondeo de los salarios de una tabla -> round(salario, 2)
+ 

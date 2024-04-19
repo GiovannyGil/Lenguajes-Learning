@@ -1,0 +1,14 @@
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\bin\Debug\net8.0\PropiedadesAcceso.exe
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\bin\Debug\net8.0\PropiedadesAcceso.deps.json
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\bin\Debug\net8.0\PropiedadesAcceso.runtimeconfig.json
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\bin\Debug\net8.0\PropiedadesAcceso.dll
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\bin\Debug\net8.0\PropiedadesAcceso.pdb
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\PropiedadesAcceso.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\PropiedadesAcceso.AssemblyInfoInputs.cache
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\PropiedadesAcceso.AssemblyInfo.cs
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\PropiedadesAcceso.csproj.CoreCompileInputs.cache
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\PropiedadesAcceso.dll
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\refint\PropiedadesAcceso.dll
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\PropiedadesAcceso.pdb
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\PropiedadesAcceso.genruntimeconfig.cache
+D:\Programacion\CONSOLA\C#\PropiedadesAcceso\PropiedadesAcceso\obj\Debug\net8.0\ref\PropiedadesAcceso.dll
