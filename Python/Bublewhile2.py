@@ -1,4 +1,4 @@
-I=0
-while I<10:
+I = 0
+while I < 10:
     print("Hola Mundo")
-    I=I+1
+    I = I + 1

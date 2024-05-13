@@ -2,7 +2,7 @@
 
 import math
 
-r=float(input("ingrese el valor del radio del circulo: "))
+r = float(input("ingrese el valor del radio del circulo: "))
 
 
 area = math.pi * r**2

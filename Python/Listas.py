@@ -2,7 +2,7 @@
 '''
 LAS LISTAS SE DEBEN PONER ENTRE CORCHETES
 '''
-lista=['Lunes', 'Martes','Miercoles', 'Jueves', 'Viernes']
+lista = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes']
 
 print(lista) # muestra toda la lista
 print(lista[2]) # solo muestra el elemento de la lista que está en el indice especificado
@@ -24,7 +24,7 @@ print(lista.count("valr a buscar")) indica cuantas veces esta el elemento buscad
 
 lista.pop() elimina el ultimo elemento de la lista
 lista.pop("indice del elemento") elimina el elemento que se encuentra en el indice ingresado
-lista.remove("elemento a eliminar") elimina el elemento ingresado, 
+lista.remove("elemento a eliminar") elimina el elemento ingresado,
 lista.clear() elimina todos los elementos de la lista
 
 lista.reverse voltea los elementos de la lista al contrario

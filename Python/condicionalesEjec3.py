@@ -1,8 +1,8 @@
-Letra=str(input("ingrese una latra: "))
+Letra = str(input("ingrese una latra: "))
 
+vocales = ['a', 'e', 'i', 'o', 'u']
 
-if Letra=="a" or Letra=="e" or Letra=="i" or Letra=="o" or Letra=="u":
+if Letra in vocales:
     print("la letra es una vocal")
 else:
     print("la letra no es una vocal")
-     

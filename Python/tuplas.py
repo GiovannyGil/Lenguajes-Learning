@@ -5,16 +5,16 @@
 from typing import List
 
 
-tupla=(1,2,"Hola",3.4,4,2)
+tupla = (1, 2, "Hola", 3.4, 4, 2)
 
-print(tupla[0]) # busqueda por indice
-print (3 in tupla) #busqueda por pregunta
-print(tupla.index(1)) # regresa el indice donde esta
-print(tupla.count(2)) # cuantas veces está el elemento
-print(len(tupla)) # cuantos elementos  tiene la tupla
+print(tupla[0])  # busqueda por indice
+print(3 in tupla)  # busqueda por pregunta
+print(tupla.index(1))  # regresa el indice donde esta
+print(tupla.count(2))  # cuantas veces está el elemento
+print(len(tupla))  # cuantos elementos  tiene la tupla
 
 # se puede transformar tuplas en listas y viceversa
 
-tupla=list(tupla) # de tupla a lista
-# tupla=tuple con este de lista a tupla 
+tupla = list(tupla)  # de tupla a lista
+# tupla=tuple con este de lista a tupla
 print(List)
