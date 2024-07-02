@@ -1,0 +1,9 @@
+-- Funciones de Fecha predefinidas en SQL Server
+
+
+getDate (Obtiene la fecha del sistema)
+dateadd (agrega o resta dias,meses, o años a una fecha), intervalo, numero, fecha
+datediff (retorna la diferencia en dias, meses o años, de una fecha) intervalo, fechaInicial, fechaFinal
+day (obtiene el dia de una fecha)
+month (obtiene el mes de una fecha)
+year (obtiene el año de una fecha)

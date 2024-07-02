@@ -1,0 +1,11 @@
+-- Funciones de Cadena predefinidas en SQL Server
+
+ltrim(borra espacios a la izquierda)
+rtrim(borra espacios a la derecha)
+trim(borra espacios a la izquierda y derecha)
+upper(convertir todo en Mayuscula)
+lower(convertir todo en minuscula)
+len(saber el numero de caracteres que tiene)
+substring(extraer una parte de la cadena) -> ('cadena', 0, 10)
+replace(reemplaza un caracter por otro) -> ('cadena', 'aaaaa', 'a')
+str

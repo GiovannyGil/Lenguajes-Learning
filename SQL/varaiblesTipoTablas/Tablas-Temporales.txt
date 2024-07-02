@@ -1,0 +1,21 @@
+## TABLAS TEMPORALES    
+
+es una tabla que se crea a nivel de momeria, de la conexion (cualquier consulta/archivo) mientras tenga conexion, de resto tienen el mismo comportamiento que una variable de tabla y una tabla normal
+almacena las tablas en el disco, de forma TEMPORAL
+
+
+declaracion
+
+create table #nombreTABLA(los campos) 
+create table ##nombreTABLA(los campos) con doble ## permite usar la tabla temporal con cualquier conexion
+
+create table ##asociados(
+    cedulaAsociado bigint,
+    seco char(1),
+    estadoCivil char(2),
+)
+
+se le puede trabajr como una tabla con (SELECT, WHERE, SUBCONSULTAS, FUNCIONES DE AGREGACION, ... INSERT, UPDATE, DELETE)
+No se le puede hacer el borrado (Drop table) ni el (truncate)
+
+SELECT * FROM #asociados

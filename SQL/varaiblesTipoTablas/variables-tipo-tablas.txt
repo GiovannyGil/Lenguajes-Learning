@@ -1,0 +1,22 @@
+## VARIABLES DE TIPO TABLA
+
+es una variable tipo memoria, que solo existe en la consula/archivo y al momento de la ejecucion
+al cerrar, desaparece/borra la variable tipo tabla
+
+se usa para trabjar con una tabla, pero sin todos los campos, solo con lo necesario
+
+declaracion de las variables tipo tabla:
+
+
+declare @nombreTABLA tipovariable (los campos)
+declare @asociados tabla (
+    cedulaAsociado bigint,
+    seco char(1),
+    estadoCivil char(2),
+
+) 
+
+se le puede trabajr como una tabla con (SELECT, WHERE, SUBCONSULTAS, FUNCIONES DE AGREGACION, ... INSERT, UPDATE, DELETE)
+No se le puede hacer el borrado (Drop table) ni el (truncate)
+
+SELECT * FROM @asociados

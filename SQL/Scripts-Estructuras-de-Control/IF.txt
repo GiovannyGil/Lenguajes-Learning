@@ -1,0 +1,47 @@
+## CONDICION IF
+
+if(si) condicion que toma una decision de entrar en ella o no
+if-else (si, sino/de lo contrario) condicion que toma una decision de entrar o si no entrar en la otra
+if-else-if (si, sino, si) condicion de toma de decisiones anidadas
+if-exists (si-existe) permite tomar una decision de apartir del resultado
+
+es para tomar una desicion u otra, pero siempre entra en una ruta/condicion
+
+estructuras:
+if:
+-----------------------------
+if (condicion) begin
+    instrucciones/sintaxis
+end
+-----------------------------
+
+if-else:
+-----------------------------
+if (condicion) begin
+    instrucciones/sintaxis
+end
+else begin
+    instrucciones/sintaxis
+end
+-----------------------------
+
+if-else-if
+-----------------------------
+if (condicion) begin
+    instrucciones/sintaxis
+end
+else if (condicion) begin
+    instrucciones/sintaxis
+end
+else begin
+    instrucciones/sintaxis
+end
+-----------------------------
+
+
+if-exists
+-----------------------------
+if exists ( consulta/resultado de una consulta ) begin
+    instrucciones/sintaxis
+end
+-----------------------------

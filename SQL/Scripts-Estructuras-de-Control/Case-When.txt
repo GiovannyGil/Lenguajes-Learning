@@ -1,0 +1,13 @@
+## Case - When
+
+cuando sea el caso, permite retornar o comparar valores dependiendo de una condicion
+
+Condicion Case-When
+
+case-when (cuando sea el caso)
+    case when (condicion)
+        then ..sintaxis/instrucciones
+        else ..sintaxis/instrucciones
+    end
+    (...)
+    end sintaxis 

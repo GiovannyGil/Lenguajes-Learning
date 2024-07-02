@@ -1,8 +1,31 @@
 UNION / UNION ALL
 
-UNION: permite unir/combinar los datos de una o más tablas con los de otras tablas, eliminando los duplicados de los datos
+UNION: permite unir/combinar los datos de una o más tablas con los de otras tablas, eliminando los duplicados de los datos (unifica los valores diferentes)
 
 
-UNION ALL: permite unir los datos de una tabla con los de otra tabla, pero no elimina los duplicados de los datos
+UNION ALL: permite unir los datos de una tabla con los de otra tabla, pero no elimina los duplicados de los datos (unifica todos los valores, no distingue de valores diferentes)
 
 union retorna la union de las dos consultas de las tablas, monstrando todos los datos, así se repitan seran mostrados
+
+
+las consultas, deben tener la misma cantidad de campos a retornar en el select,
+los campos deben ser en el mismo orden y deben ser del mismo tipo (int = int, str = str, ...)
+el "order by" va en la ultima consulta:
+
+select * from tabla
+union / union all
+select * from tabla2 order by valor/columna
+
+ejemplo 2
+select nombre, apellido, edad, estado from tabla
+union all
+select nombre, apellido, edad, estado from tabla2 order by edad
+
+
+las tablas no necesariamente deben tener relacion entre ellas, pueden ser de cosas complemante diferentes
+
+ejemplo 3
+select nombre, apellido, apodo, edad from usuarios
+union all
+select ciudad, departamento, pais, cantHabitantes from ubicacion order by cantHabitantes
+

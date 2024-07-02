@@ -1,0 +1,12 @@
+-- Funciones de Numeros predefinidas en SQL Server
+
+floor (Retorna el valor al entero más bajo)
+ceiling (Retorna el valor al entero mas arriba)
+round (Redondea al entero superior dependiendo del numero de decimales)
+avg: permite sacar el promedio
+sum: permite sumar todos los valores
+abs: muestra el valor absoluto, sin importar el signo
+sign: muestra el signo de un valor numerico
+count: cuenta los elementos
+max: busca el valor maximo
+min: busca el valor minimo

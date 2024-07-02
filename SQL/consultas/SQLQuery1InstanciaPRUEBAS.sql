@@ -1,6 +1,6 @@
 use northwind
 
--- sintaxys básica con operadores de diferencias
+-- sintaxys bï¿½sica con operadores de diferencias
 SELECT * from Products
 where CategoryID = 1 -- igual
 
@@ -25,7 +25,7 @@ where CategoryID !=3 -- Diferente
 -- + =suma, - =resta, * =multiplicacion, / =division, % =residuo de una divicion
 
 
--- Operadores Lógicos
+-- Operadores Lï¿½gicos
 
 -- AND
 SELECT * from Products
@@ -60,7 +60,7 @@ SELECT ProductName, CategoryID from Products -- el between establece un rango en
 where CategoryID between 2 and 4
 
 -- IN
-SELECT ProductName, CategoryID from Products -- Busca elmentos 'sueltos' sin ningún atributo en comun etc
+SELECT ProductName, CategoryID from Products -- Busca elmentos 'sueltos' sin ningï¿½n atributo en comun etc
 where CategoryID in (1,3,5)
 
 
@@ -79,21 +79,21 @@ where ProductName like '%c%'
 
 ----------- FUNCIONES DE AGRUPAMIENTO
 -- Count
-Select CategoryID Categoría, COUNT(CategoryID) Cantidad from products	-- cuenta los elementos en general o por clasificacion
+Select CategoryID Categorï¿½a, COUNT(CategoryID) Cantidad from products	-- cuenta los elementos en general o por clasificacion
 group by CategoryID
 
-Select CategoryID Categoría, COUNT(ProductID) Cantidad from products	
+Select CategoryID Categorï¿½a, COUNT(ProductID) Cantidad from products	
 group by CategoryID
 
 -- AVS
-Select avg(UnitPrice) Promedio, CategoryID Categoría from products	-- Permite sacar un promedio por los elementos buscados y clasificacion asiganda, como en general
+Select avg(UnitPrice) Promedio, CategoryID Categorï¿½a from products	-- Permite sacar un promedio por los elementos buscados y clasificacion asiganda, como en general
 group by CategoryID
 
 -- MAX , MIN
-Select CategoryID Categoría, MAX(UnitPrice) Maximo, min(UnitPrice) Minimo -- Permite buscar el valor maximo "Mayor,Grande" y el valor Minimo "bajo,pequeño"
+Select CategoryID Categorï¿½a, MAX(UnitPrice) Maximo, min(UnitPrice) Minimo -- Permite buscar el valor maximo "Mayor,Grande" y el valor Minimo "bajo,pequeï¿½o"
 from products
 group by CategoryID 
-having	MAX(UnitPrice)<200 and min(UnitPrice)>5 -- establece condiciones encapsuladas sobre la selección ---------HAVING---------------
+having	MAX(UnitPrice)<200 and min(UnitPrice)>5 -- establece condiciones encapsuladas sobre la selecciï¿½n ---------HAVING---------------
 
 -- Order by
 SELECT ProductName, CategoryID from Products -- Ordena los elementos buscados, por el atributo asignado
@@ -131,17 +131,19 @@ from Employees -- muestra, de la posicion num1, muestre los siguientes num2
 select FirstName, SUBSTRING(FirstName, 3, 3) 
 from Employees
 
+------ fnciones de numeros--------------------------------
+
 -- Floor
 select UnitPrice, FLOOR(UnitPrice) 
 from Products -- floor, la parte entera de un valor == aproxima al entero con tendencia hacia abajo = redondea hacia abajo
 
 -- Ceiling
 select UnitPrice, ceiling(UnitPrice) 
-from Products -- ceiling, la parte entera de un valor == aproxima al entero con tendencia hacia arriba = redondea hacía arriba
+from Products -- ceiling, la parte entera de un valor == aproxima al entero con tendencia hacia arriba = redondea hacï¿½a arriba
 
 -- Round
 select UnitPrice, round(UnitPrice, 0) 
-from Products  -- redondea hacia al más cercano, arriba o abajo, el numero es para declarar cual decial aproximar
+from Products  -- redondea hacia al mï¿½s cercano, arriba o abajo, el numero es para declarar cual decial aproximar
 
 -- ABS
 select UnitPrice, abs(UnitPrice-20) 
@@ -149,23 +151,27 @@ from products  -- abs es el vlor absoluto de un elementos, sin importar el signo
 
 -- ABS
 select UnitPrice-20, abs(UnitPrice-20),  sign(UnitPrice-20)
-from products  -- sign muestra el signo de un numero, con el número 1
+from products  -- sign muestra el signo de un numero, con el nï¿½mero 1
+
+------ fnciones de fechas--------------------------------
 
 -- GETDATE, DATEDIFF
 select firstname, lastname, hiredate 'Fecha de Contratacion', getdate() 'Fecha Actual', -- trae la fecha de contratacion de los empleados, - getdate trae la fecha y hora actual del sistema
-datediff(year,hiredate,getdate()) Diferencia -- establece una diferencia por 'año' entre fecha actual y de conratacion // (month,hiredate,getdate()) // (day,hiredate,getdate())
+datediff(year,hiredate,getdate()) Diferencia -- establece una diferencia por 'aï¿½o' entre fecha actual y de conratacion // (month,hiredate,getdate()) // (day,hiredate,getdate())
 from Employees 
 
 -- DATEADD
 select firstname, lastname, hiredate, DATEADD(YEAR, 3, HireDate) 'Fecha Aumentada' 
-from Employees -- Adddate = 'agregar fecha' = (agrefar 3 años a la fecha de contratacion), puede ser por año, mes, dia
+from Employees -- Adddate = 'agregar fecha' = (agrefar 3 aï¿½os a la fecha de contratacion), puede ser por aï¿½o, mes, dia
+
+------ fnciones de convertir--------------------------------
 
 -- CAST
-select ProductName,unitprice, CAST(Unitprice as int) Entero -- conierte un número e decimal a entero, asi mismo puede convertir en 'varchar = cadena'
+select ProductName,unitprice, CAST(Unitprice as int) Entero -- conierte un nï¿½mero e decimal a entero, asi mismo puede convertir en 'varchar = cadena'
 from Products
 
 -- convert
-select ProductName,unitprice, CONVERT(int, UnitPrice) Entero -- conierte un número e decimal a entero
+select ProductName,unitprice, CONVERT(int, UnitPrice) Entero -- conierte un nï¿½mero e decimal a entero
 from Products
 
 -- ISNULL

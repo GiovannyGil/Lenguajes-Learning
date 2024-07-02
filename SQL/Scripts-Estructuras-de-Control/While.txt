@@ -1,0 +1,14 @@
+## While
+
+permite hacer un ciclo mientras se cumpla una condicion
+
+while (condicion) begin
+    ...sintaxis
+    ...
+    ...
+    ...
+    ...
+    (etc)
+
+    (controlar la condicion "x=x+1")
+end

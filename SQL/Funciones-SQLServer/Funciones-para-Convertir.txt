@@ -1,0 +1,7 @@
+-- Funciones de Convertir predefinidas en SQL Server
+
+
+CAST () conierte un n�mero e decimal a entero, asi mismo puede convertir en 'varchar = cadena'
+convert () convierte un numero de decimal a entero
+convert-fechas
+ISNULL (valor, 'no hay valor') busca en la consulta si hay un valor nulo, y le pone el valor pasado como parametro

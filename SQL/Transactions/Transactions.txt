@@ -1,0 +1,37 @@
+## transacciones -> Transactions
+
+es un metodo para el manejo de consultas y manejo de datos que permite el control del flujo
+maneja todo un bloque como una unidad, y se debe cumplir todo o no se debe cumplir ninguna si ocurre algún error
+
+begin Transactions => inicio de la transacción y el bloque de flujo
+
+commit Transactions => permite aceptar/verificar los cambios hehcos
+
+rollback Transactions => permite retroceder los cambios hecho solo si no ha pasado por el commit
+
+ejemplo:
+
+begin transaction
+    update tabla set campo = valor where condicion
+    insert into ...
+    delete from tabla where estado = 'A'
+    select * from tabla
+commit transaction
+rollback transaction  
+
+
+nolock -> aceder a los datos de la tabla, aunque la tabla tenga un bloqueo por alguna transacción
+select * from tabla (nolock)
+
+
+manejo de excepciones
+(try-catch)
+
+begin try
+    begin transaction
+        sintaxis/instrucciones
+    end transaction
+end try
+begin catch
+    rollback transaction
+end catch

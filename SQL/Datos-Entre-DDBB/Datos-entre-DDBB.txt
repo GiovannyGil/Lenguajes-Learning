@@ -1,0 +1,35 @@
+## Datos entre BASES DE DATOS
+
+Compartir dato entre diferentes tablas de diferentes bases de datos que esten en el mismo servidor
+
+-- Origen : Cpio
+-- Destino: Coofisam
+
+sintaxis: [NombreDDBB].dbo.nombreTABLA(campos)
+sintaxis: [COOFISAM].dbo.tpmnits()
+
+
+insertar en una base de datos y leer en la otra
+
+insert into [COOFISAM].dbo.tpmnits(nit, nombreintegrado, direccion, tipoidentificacion)
+select nit, nombreintegrado, direccion, tipoidentificacion from tpmnits where tipoidentificacion='O'
+
+y con eso los datos estan en ambos
+
+otra forma de traslado:
+-- Origen : Coofisam
+-- Destino: Cpio
+
+insert into tpmnits(nit, nombreintegrado, direccion, tipoidentificacion)
+select nit, nombreintegrado, direccion, tipoidentificacion from [CPIO].dbo.tpmnits where tipoidentificacion='E'
+
+
+ACTUALIZACION
+update tm set tm.direccion= 'calle inventada # 34 - 65'
+from tmpnits tc 
+inner join CPIOXII.dbo.tmpnits tm on tc.nit = tm.nit
+
+ELIMINAR
+delete tm 
+from tmpnits tc
+inner join CPIOXII.dbo.tmpnits tm on tc.nit = tm.nit

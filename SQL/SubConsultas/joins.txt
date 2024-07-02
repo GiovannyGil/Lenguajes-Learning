@@ -69,3 +69,24 @@ de vuelve la coincidencia entre las tablas y los datos de ambas tablas
 
 
 cross join: regresa el cruce o combinacion entre ambas tablas
+
+
+
+
+Se puede utilizar los union para actualizar campos con una subconsulta y/o una relacion de tablas
+ejemplo:
+
+update set a.salario = i.salario
+from asociados a
+    inner join ingresosasociados i on a.cedulaasociado = i.cedulaasociado
+where a.estado = 'A' and i.sueldo!=a.salario
+
+con esto se actualiza todo, para que tengan los mismos valores
+
+
+se puede utilizar para eliminar los datos/registros de una tabla
+ejemplo:
+delete a 
+from tmpasociados a
+    inner join ingresosasociados i on a.cedulaasociado = i.cedulaasociado
+where a.estado = 'A' and i.sueldo!=a.salario

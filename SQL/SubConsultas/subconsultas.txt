@@ -1,6 +1,8 @@
 SUBCONSULTAS
 
-una subconsulta se refiere a una consulta que esta dentro de otra consulta
+una subconsulta se refiere a una consulta que esta dentro de otra consulta,
+sirven para evitar tener que hacer varias consultas diferentes, y hacer un filtrado de datos de direfentes tablas
+las subconsultas se pueden hacer tando para el select(consulta), como para el where(condicion)
 
 SELECT * FROM tabla1 WHERE campo1 IN (SELECT campo1 FROM tabla2)
 
