@@ -1,0 +1,104 @@
+* Modal -> No Independiente
+Local Otest
+Otest = CreateObject("Formulario")
+Otest.Show(1)
+
+DEFINE Class Formulario As Form
+    Height = 500
+    Width = 700
+    Caption = "Formulario"
+    
+   Procedure Init()
+    * Crear Etiqueta
+	This.AddObject("lblNombre", "Label")
+    This.lblNombre.Caption = "Nombre:"
+    This.lblNombre.Top = 20
+    This.lblNombre.Left = 20
+    This.lblNombre.visible = .T.
+   
+    * Crear Caja
+    This.AddObject("txtNombre", "Textbox")
+    This.txtNombre.Top = 17
+    This.txtNombre.Left = 80
+    This.txtNombre.visible = .T.
+   
+    * Crear un botón        
+    This.AddObject("btnAceptar", "CommandButton")
+    This.btnAceptar.Caption = "Aceptar"
+    This.btnAceptar.Top = 60
+    This.btnAceptar.Left = 100
+    This.btnAceptar.Width = 80
+    This.btnAceptar.visible = .T.
+    
+    * Crear una casilla de verificación        
+    This.AddObject("chkTerminos", "Checkbox")        
+    This.chkTerminos.Caption = "Acepto los términos y condiciones"        
+    This.chkTerminos.Top = 100        
+    This.chkTerminos.Left = 20
+    This.chkTerminos.visible = .T.               
+    
+    * Crear un grupo de opciones        
+    This.AddObject("grpOpciones", "OptionGroup")        
+    This.grpOpciones.Top = 140        
+    This.grpOpciones.Left = 20        
+    This.grpOpciones.Width = 200        
+    This.grpOpciones.Height = 50 
+    This.grpOpciones.visible = .T.               
+    
+    * Crear botones de opción dentro del grupo de opciones        
+    This.grpOpciones.AddObject("optOpcion1", "OptionButton")        
+    This.grpOpciones.optOpcion1.Caption = "Opción 1"        
+    This.grpOpciones.optOpcion1.Top = 0        
+    This.grpOpciones.optOpcion1.Left = 0   
+    This.grpOpciones.optOpcion1.visible = .T.
+
+    This.grpOpciones.AddObject("optOpcion2", "OptionButton")        
+    This.grpOpciones.optOpcion2.Caption = "Opción 2"        
+    This.grpOpciones.optOpcion2.Top = 20        
+    This.grpOpciones.optOpcion2.Left = 0
+   	This.grpOpciones.optOpcion2.visible = .T.
+   	
+   	* Definir el array
+   	LOCAL ARRAY aDatos[3, 5]
+   	aDatos[1, 1] = 1
+   	aDatos[1, 2] = "pendiente"
+   	aDatos[1, 3] = "artes"
+   	aDatos[1, 4] = "Historia del arte"
+   	aDatos[1, 5] = "historia del arte"
+   	aDatos[2, 1] = 2
+   	aDatos[2, 2] = "completado"
+   	aDatos[2, 3] = "ciencias"
+   	aDatos[2, 4] = "Biología"
+   	aDatos[2, 5] = "estudio de los seres vivos"
+   	aDatos[3, 1] = 3
+   	aDatos[3, 2] = "pendiente"
+   	aDatos[3, 3] = "matemáticas"
+   	aDatos[3, 4] = "Álgebra"
+   	aDatos[3, 5] = "estudio de estructuras algebraicas"
+   	
+   	* Crear un cursor temporal
+   	CREATE CURSOR tempCursor (IdTareas I, Grupo C(20), Dependencia C(20), Nombre C(50), Descripcion C(100))
+   	* Llenar el cursor con los datos del array
+   	FOR i = 1 TO ALEN(aDatos, 1)
+   		INSERT INTO tempCursor VALUES (aDatos[i, 1], aDatos[i, 2], aDatos[i, 3], aDatos[i, 4], aDatos[i, 5])
+   	NEXT
+   	
+   	* Crear un grid
+   	This.AddObject("grdTareas", "Grid")
+   	This.grdTareas.Left = 20
+   	This.grdTareas.Top = 200
+   	This.grdTareas.Width = 400
+   	This.grdTareas.Height = 170
+   	* Configurar el grid para usar el cursor temporal
+   	SELECT tempCursor
+   	This.grdTareas.RecordSource = "tempCursor"
+   	This.grdTareas.ColumnCount = 5
+   	This.grdTareas.Columns(1).Header1.Caption = "ID"
+   	This.grdTareas.Columns(2).Header1.Caption = "Grupo"
+   	This.grdTareas.Columns(3).Header1.Caption = "Dependencia"
+   	This.grdTareas.Columns(4).Header1.Caption = "Nombre"
+   	This.grdTareas.Columns(5).Header1.Caption = "Descripcion"
+   	This.grdTareas.visible = .T.
+   ENDPROC
+   
+ENDDEFINE

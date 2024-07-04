@@ -1,0 +1,17 @@
+- la visualizacion de las tareas debe realizarse mediante un GRID
+- Columnas del GRID
+    - IdTareas (debe ser autogenerado)
+    - Grupo (código del grupo al que pertenece)
+    - dependencia (código del sector o dependencia al que pertenece)
+    - Nombre (Nombre de la tarea)
+    - Descripcion (Breve descripcion de la tarea)
+
+
+
+array = [
+    IdTareas: '1' ,
+    Grupo: 'pendiente',
+    Dependencia: 'artes' ,
+    Nombre: 'Historia del arte' ,
+    Descripcion: 'hisotoria del arte',
+]
