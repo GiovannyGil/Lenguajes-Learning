@@ -2,7 +2,7 @@
 
 Local Otest
 Otest = CreateObject("Controlador")
-Otest = VisualizarELementoCredito(2) && ver el elemento dos de la colecion
+Otest.VisualizarELementoCredito(2) && ver el elemento dos de la colecion
 
 DEFINE class Controlador as Custom
     Procedure Init()

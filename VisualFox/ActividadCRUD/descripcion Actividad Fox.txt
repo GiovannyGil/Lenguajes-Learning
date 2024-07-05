@@ -13,14 +13,34 @@ Criterios de aceptacion:
     - la visualizacion de las tareas debe realizarse mediante un GRID
     - Columnas del GRID
         - IdTareas (debe ser autogenerado)
-        - Grupo (código del grupo al que pertenece)
-        - dependencia (código del sector o dependencia al que pertenece)
+        - Grupo (código del grupo al que pertenece) ---> ("FK" -> Usar una coleccion ya establecida con un Checkbox)
+        - dependencia (código del sector o dependencia al que pertenece) ---> ("FK" -> Usar una coleccion ya establecida con un Checkbox)
         - Nombre (Nombre de la tarea)
         - Descripcion (Breve descripcion de la tarea)
     - uso de transfer objects (DTOs)
-    - el grupo debe ser una coleccion de elementos predefinidos en las clases .prg
-    - la dependencia debe ser una coleccion de elementos predefinidos en las clases del .prg
+    - el grupo debe ser una coleccion de elementos predefinidos en las clases .prg ---> (Checkbox predefinido)
+    - la dependencia debe ser una coleccion de elementos predefinidos en las clases del .prg ---> (Checkbox predefinido)
     - debe poseer un controlador que administre la logica de los componentes visuales
     - los componentes deben poseer pruebas unitarias (archivo .prg de pruebas unitarias de los objectos)
     - la funcionalidad debe ser correcta (no debe generar errores en su usabilidad)
 
+
+-- datos de pruebas
+
+   	"ID" = 1
+   	"Nombre" = "Historia del arte"
+   	"Grupo" = "pendiente"
+   	"Dependencia" = "artes"
+   	"Descripcion" = "historia del arte"
+
+   	"ID" = 2
+   	"Nombre" = "Biologia"
+   	"Grupo" = "completado"
+   	"Dependencia" = "ciencias"
+   	"Descripcion" = "estudio de los seres vivos"
+
+   	"ID" = 3
+   	"Nombre" = "algebra"
+   	"Grupo" = "pendiente"
+   	"Dependencia" = "matematicas"
+   	 = "estudio de estructuras algebraicas"

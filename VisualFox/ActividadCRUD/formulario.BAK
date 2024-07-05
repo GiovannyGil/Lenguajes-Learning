@@ -84,7 +84,7 @@ DEFINE CLASS FormularioCRUD As Form
 		This.txtDescripcion.Top = 167
     	This.txtDescripcion.Left = 30
     	This.txtDescripcion.Height = 65
-    	This.txtDescripcion.Width = 330
+    	This.txtDescripcion.Width = 310
 
 
     	* Crear el label e input IDTarea para la solicitud de leer la tarea
