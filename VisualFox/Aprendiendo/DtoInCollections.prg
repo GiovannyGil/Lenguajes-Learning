@@ -24,8 +24,8 @@ DEFINE class Controlador as Custom
     EndProc
 
     Procedure VisualizarNombreAsociado(idElemento As Integer)
-    wait windows This.ColeccionCreditos[IdElemento].NombreAsociado && Mostrar elemento segun el "ID"
-EndProc
+        wait windows This.ColeccionCreditos[IdElemento].NombreAsociado && Mostrar elemento segun el "ID"
+    EndProc
 ENDDEFINE
 
 

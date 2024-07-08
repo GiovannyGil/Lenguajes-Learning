@@ -1,9 +1,0 @@
-DEFINE CLASS TareaDTO As Custom
-
-    ID = [] * int/number
-    Nombre = [] * String/Char
-    Grupo = [] * String/Char
-    Dependencia = [] * String/Char
-    Descripcion = [] * String/Char
-
-ENDDEFINE

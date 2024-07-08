@@ -1,6 +1,6 @@
 Local Otest
 Otest = CREATEOBJECT("Dependencias") && establecer/ccrear la clase
-Otest.MostrarDependencias() && hacer uso del metodo
+*Otest.MostrarDependencias() && hacer uso del metodo
 
 
 
@@ -8,21 +8,22 @@ DEFINE CLASS Dependencias As Custom
     PROCEDURE Init()
         This.CrearColecionDependencias()
         This.AgregarDependencia()
-        This.MostrarDependencias()
+        *This.MostrarDependencias()
     ENDPROC
 
     * crear la colección
     PROCEDURE CrearColecionDependencias()
         This.AddProperty("ColectionDependencias", CREATEOBJECT("Collection"))
+        This.AgregarDependencia()
     ENDPROC
 
     * Definir los elementos de la colección
     PROCEDURE AgregarDependencia()
-        This.ColectionDependencias.Add("Dependencia 1")
-        This.ColectionDependencias.Add("Dependencia 2")
-        This.ColectionDependencias.Add("Dependencia 3")
-        This.ColectionDependencias.Add("Dependencia 4")
-        This.ColectionDependencias.Add("Dependencia 5")
+        This.ColectionDependencias.Add("Lenguaje")
+        This.ColectionDependencias.Add("Artes 1")
+        This.ColectionDependencias.Add("Ingles")
+        This.ColectionDependencias.Add("Matematicas")
+        This.ColectionDependencias.Add("Historia")
     ENDPROC
 
     * Mostrar los elementos de la colección
@@ -30,7 +31,7 @@ DEFINE CLASS Dependencias As Custom
         LOCAL i
         * recorrer la colección y ver la lista impresa
         FOR i = 1 TO This.ColectionDependencias.Count
-            ? This.ColectionDependencias.Item(i)
+            ? This.ColectionDependencias.Item(i) && mostrar el elemento
         NEXT
     ENDPROC
 ENDDEFINE

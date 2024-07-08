@@ -1,3 +1,8 @@
+SET PROCEDURE TO controlador ADDITIVE
+SET PROCEDURE TO grupos ADDITIVE
+SET PROCEDURE TO Dependencias ADDITIVE
+SET PROCEDURE TO TareaDTO ADDITIVE
+
 Local oForm 
 oForm = CREATEOBJECT("FormularioCRUD")
 oForm.show(1)
@@ -8,11 +13,14 @@ DEFINE CLASS FormularioCRUD As Form
 	width = 476
 	Height = 450
 
-	* This.AddObject("lblNombre", "Label")
-
 	PROCEDURE Init()
-		this.Formulario()
-		This.GridTareas()
+		*!*	 añadir el controlador
+		This.AddObject("Controlador", "Controlador")
+        This.Controlador.Init()
+        This.Formulario()
+        This.GridTareas()
+        This.LlenarCombos()
+		This.BindeoEventos()
 	ENDPROC
 
 	PROCEDURE Formulario as Form
@@ -32,118 +40,158 @@ DEFINE CLASS FormularioCRUD As Form
 		*-------------------------------------------------------------------------------------
 
 		* Crear el label e input Nombre
-		This.AddObject("lblNombre", "Label")
-		This.lblNombre.visible = .T.
-		This.lblNombre.Top = 100
-    	This.lblNombre.Left = 30
-		This.lblNombre.Caption = "Nombre:"
+        THIS.AddObject("lblNombre", "Label")
+        WITH This.lblNombre
+            .Visible = .T.
+            .Top = 100
+            .Left = 30
+            .Caption = "Nombre:"
+        ENDWITH
 
-		This.AddObject("txtNombre", "Textbox")
-		This.txtNombre.visible = .T.
-		This.txtNombre.Top = 117
-    	This.txtNombre.Left = 30
+        THIS.AddObject("txtNombre", "Textbox")
+        WITH This.txtNombre
+            .Visible = .T.
+            .Top = 117
+            .Left = 30
+            .Width = 100
+        ENDWITH
 
-
-
+		* ---------------------------------------
 
     	* Crear el label e input Grupo
-		This.AddObject("lblGrupo", "Label")
-		This.lblGrupo.visible = .T.
-		This.lblGrupo.Top = 100
-    	This.lblGrupo.Left = 145
-		This.lblGrupo.Caption = "Grupo:"
+        THIS.AddObject("lblGrupo", "Label")
+        WITH This.lblGrupo
+            .Visible = .T.
+            .Top = 100
+            .Left = 145
+            .Caption = "Grupo:"
+        ENDWITH
 
-		This.AddObject("cbxGrupo", "ComboBox")
-		This.cbxGrupo.visible = .T.
-		This.cbxGrupo.Top = 117
-    	This.cbxGrupo.Left = 145
+        THIS.AddObject("cbxGrupo", "ComboBox")
+        WITH This.cbxGrupo
+            .Visible = .T.
+            .Top = 117
+            .Left = 145
+            .Width = 100
+        ENDWITH
 
+		* ---------------------------------------
 
 		* Crear el label e input Dependencia
-		This.AddObject("lblDependencia", "Label")
-		This.lblDependencia.visible = .T.
-		This.lblDependencia.Top = 100
-    	This.lblDependencia.Left = 260
-		This.lblDependencia.Caption = "Dependencia:"
+        THIS.AddObject("lblDependencia", "Label")
+        WITH This.lblDependencia
+            .Visible = .T.
+            .Top = 100
+            .Left = 260
+            .Caption = "Dependencia:"
+        ENDWITH
 
-		This.AddObject("cbxDependencia", "ComboBox")
-		This.cbxDependencia.visible = .T.
-		This.cbxDependencia.Top = 117
-    	This.cbxDependencia.Left = 260
+        THIS.AddObject("cbxDependencia", "ComboBox")
+        WITH This.cbxDependencia
+            .Visible = .T.
+            .Top = 117
+            .Left = 260
+            .Width = 100
+        ENDWITH
 
+		* ---------------------------------------
 
 		* Crear el label e input Descripcion
-		This.AddObject("lblDescripcion", "Label")
-		This.lblDescripcion.visible = .T.
-		This.lblDescripcion.Top = 150
-    	This.lblDescripcion.Left = 30
-		This.lblDescripcion.Caption = "Descripcion:"
+        THIS.AddObject("lblDescripcion", "Label")
+        WITH This.lblDescripcion
+            .Visible = .T.
+            .Top = 150
+            .Left = 30
+            .Caption = "Descripcion:"
+        ENDWITH
 
-		This.AddObject("txtDescripcion", "Textbox")
-		This.txtDescripcion.visible = .T.
-		This.txtDescripcion.Top = 167
-    	This.txtDescripcion.Left = 30
-    	This.txtDescripcion.Height = 65
-    	This.txtDescripcion.Width = 310
+        THIS.AddObject("txtDescripcion", "Textbox")
+        WITH This.txtDescripcion
+            .Visible = .T.
+            .Top = 167
+            .Left = 30
+            .Width = 330
+            .Height = 65
+        ENDWITH
 
+		* ---------------------------------------
 
     	* Crear el label e input IDTarea para la solicitud de leer la tarea
-		This.AddObject("lblID", "Label")
-		This.lblID.visible = .T.
-		This.lblID.Top = 248
-		This.lblID.Left = 30
-		This.lblID.Caption = "ID:"
-		This.lblID.width = 50
+        THIS.AddObject("lblID", "Label")
+        WITH This.lblID
+            .Visible = .T.
+            .Top = 248
+            .Left = 30
+            .Caption = "ID:"
+            .Width = 50
+        ENDWITH
 
-		This.AddObject("txtID", "Textbox")
-		This.txtID.visible = .T.
-		This.txtID.Top = 245
-		This.txtID.Left = 50
-    	This.txtID.width = 40
+        THIS.AddObject("txtID", "Textbox")
+        WITH This.txtID
+            .Visible = .T.
+            .Top = 245
+            .Left = 50
+            .Width = 40
+        ENDWITH
 
     	*-------------------------------------------------------------------------------------
 
 
     	* Botones
 
-    	*Guardar
-    	This.AddObject("btnGuardar", "CommandButton")
-    	This.btnGuardar.Caption = "Guardar"
-    	This.btnGuardar.Top = 120
-    	This.btnGuardar.Left = 390
-    	This.btnGuardar.Width = 60
-    	This.btnGuardar.Height = 30
-    	This.btnGuardar.visible = .T.
+		* ---------------------------------------
+        * Guardar
+        THIS.AddObject("btnGuardar", "CommandButton")
+        WITH This.btnGuardar
+            .Caption = "Guardar"
+            .Top = 120
+            .Left = 390
+            .Width = 60
+            .Height = 30
+            .Visible = .T.
+        ENDWITH
 
-    	*Leer
-    	This.AddObject("btnLeer", "CommandButton")
-    	This.btnLeer.Caption = "Leer"
-    	This.btnLeer.Top = 240
-    	This.btnLeer.Left = 390
-    	This.btnLeer.Width = 60
-    	This.btnLeer.Height = 30
-    	This.btnLeer.visible = .T.
+		* ---------------------------------------
 
+        * Leer
+        THIS.AddObject("btnLeer", "CommandButton")
+        WITH This.btnLeer
+            .Caption = "Leer"
+            .Top = 240
+            .Left = 390
+            .Width = 60
+            .Height = 30
+            .Visible = .T.
+        ENDWITH
 
-    	*Actualziar
-    	This.AddObject("btnActualziar", "CommandButton")
-    	This.btnActualziar.Caption = "Actualziar"
-    	This.btnActualziar.Top = 155
-    	This.btnActualziar.Left = 390
-    	This.btnActualziar.Width = 60
-    	This.btnActualziar.Height = 30
-    	This.btnActualziar.visible = .T.
+		* ---------------------------------------
 
+        * Actualizar
+        THIS.AddObject("btnActualizar", "CommandButton")
+        WITH This.btnActualizar
+            .Caption = "Actualizar"
+            .Top = 155
+            .Left = 390
+            .Width = 60
+            .Height = 30
+            .Visible = .T.            
+        ENDWITH
+ 
+		* ---------------------------------------
 
-    	*Eliminar
-    	This.AddObject("btnEliminar", "CommandButton")
-    	This.btnEliminar.Caption = "Eliminar"
-    	This.btnEliminar.Top = 190
-    	This.btnEliminar.Left = 390
-    	This.btnEliminar.Width = 60
-    	This.btnEliminar.Height = 30
-    	This.btnEliminar.visible = .T.
+        * Eliminar
+        THIS.AddObject("btnEliminar", "CommandButton")
+        WITH This.btnEliminar
+            .Caption = "Eliminar"
+            .Top = 190
+            .Left = 390
+            .Width = 60
+            .Height = 30
+            .Visible = .T.
+        ENDWITH
 
+		* ---------------------------------------
+		
     	* Linea divisora
     	This.AddObject("LineaDivisora", "Shape")
     	WITH thisform.LineaDivisora
@@ -161,22 +209,115 @@ DEFINE CLASS FormularioCRUD As Form
 	
 	*-------------------------------------------------------------------------------------
 	   
-	PROCEDURE GridTareas As Form
-		This.AddObject("grdTareas", "Grid")
-		This.grdTareas.Left = 30
-	   	This.grdTareas.Top = 275
-	   	This.grdTareas.Width = 418
-	   	This.grdTareas.Height = 164
-	   	This.grdTareas.visible = .T.
-	   	
-	   	* Configurar las columnas
-	   	This.grdTareas.ColumnCount = 5
-	   	This.grdTareas.Column1.Header1.Caption = "ID"
-	   	This.grdTareas.Column2.Header1.Caption = "Nombre"
-	   	This.grdTareas.Column3.Header1.Caption = "Grupo"
-	   	This.grdTareas.Column4.Header1.Caption = "Dependencia"
-	   	This.grdTareas.Column5.Header1.Caption = "Descripcion"
+    * Actualizar el grid con las tareas
+    PROCEDURE GridTareas
+        THIS.AddObject("grdTareas", "Grid")
+        WITH This.grdTareas
+            .Left = 30
+            .Top = 275
+            .Width = 418
+            .Height = 164
+            .Visible = .T.
+            .ColumnCount = 5
+            .Column1.Header1.Caption = "ID"
+			.Column1.Width = 30
+            .Column2.Header1.Caption = "Nombre"
+            .Column3.Header1.Caption = "Grupo"
+            .Column4.Header1.Caption = "Dependencia"
+            .Column5.Header1.Caption = "Descripción"
+			.Column5.Width = 115
+        ENDWITH
+    ENDPROC
+
+	*!*	 -----------------------------------------------------------------------
+	*!*	 funciones
+
+
+	*!*	 bindeo de eventos
+	HIDDEN PROCEDURE BindeoEventos()
+		*!*	 actualizar
+		BindEvent(This.btnGuardar, "Click", This, "Guardar", 0)
+		BindEvent(This.btnActualizar, "Click", This, "Actualizar", 0)
+		BindEvent(This.btnEliminar, "Click", This, "Eliminar", 0)
+
 	ENDPROC
+
+    * Llenar los comboboxes de Grupo y Dependencia
+    PROCEDURE LlenarCombos
+		LOCAL i
+		* Grupo
+		FOR i = 1 TO This.Controlador.Grupos.ColectionGrupos.Count
+			This.cbxGrupo.AddItem(This.Controlador.Grupos.ColectionGrupos.Item(i))
+		NEXT
+		* poner el primer item por defecto en el combo box
+		This.cbxGrupo.Value = This.Controlador.Grupos.ColectionGrupos.Item(1)
+
+
+		* Dependencia
+		FOR i = 1 TO This.Controlador.Dependencias.ColectionDependencias.Count
+			This.cbxDependencia.AddItem(This.Controlador.Dependencias.ColectionDependencias.Item(i))
+		NEXT
+		This.cbxDependencia.value = This.Controlador.Dependencias.ColectionDependencias.Item(1)
+    ENDPROC
+
+	* Guardar una nueva tarea
+    PROCEDURE Guardar
+		IF This.LimpiarCampos() THEN 
+			MESSAGEBOX("No se puede Guardar, no hay Datos", 0, "Aviso")
+		ELSE
+			* Lógica para actualizar la tarea
+			MESSAGEBOX("Se Guardo exitosamente", 0, "Aviso")
+		ENDIF
+    ENDPROC
+
+	* Leer una tarea por su ID
+    PROCEDURE Leer
+
+    ENDP	ROC
+
+	* Actualizar una tarea existente
+    PROCEDURE Actualizar
+		IF This.LimpiarCampos() THEN 
+			MESSAGEBOX("No se puede Actualizar", 0, "Aviso")
+		ELSE
+			* Lógica para actualizar la tarea
+			MESSAGEBOX("Actualización exitosa", 0, "Aviso")
+		ENDIF
+    ENDPROC
+
+	* Eliminar una tarea por su ID
+    PROCEDURE Eliminar
+		IF This.LimpiarCampos() THEN 
+			MESSAGEBOX("No se puede Eliminar", 0, "Aviso")
+		ELSE
+			* Lógica para actualizar la tarea
+			MESSAGEBOX("Eliminacion exitosa", 0, "Aviso")
+		ENDIF
+    ENDPROC
+
+	* Limpiar los campos del formulario
+    PROCEDURE LimpiarCampos
+        WITH Thisform
+            * .txtID.Value = ""
+            .txtNombre.Value = ""
+            *!*	 .cbxGrupo.Value = ""
+            *!*	 .cbxDependencia.Value = ""
+            .txtDescripcion.Value = ""
+			This.LlenarCombos()
+        ENDWITH
+    ENDPROC
+
+
+	PROCEDURE Err_Handler(oError)
+		LOCAL lcErrorMsg
+		lcErrorMsg = "Error #" + TRANSFORM(oError.ErrorNo) + CHR(13) + ;
+					"Message: " + oError.Message + CHR(13) + ;
+					"Line: " + TRANSFORM(oError.LineNo) + CHR(13) + ;
+					"Details: " + oError.Details + CHR(13) + ;
+					"Program: " + oError.Program + CHR(13) + ;
+					"Method: " + oError.Method
 	
+		MESSAGEBOX(lcErrorMsg, 16, "Error")
+	ENDPROC
 		
 ENDDEFINE

@@ -1,17 +1,18 @@
 Local Otest
-Otest = CREATEOBJECT("Grupos")
-Otest = MostrarGrupos()
+Otest = CREATEOBJECT("Grupos") && establecer/ccrear la clase
+Otest.MostrarGrupos() && hacer uso del metodo
 
 DEFINE CLASS Grupos As Custom
     PROCEDURE Init()
         This.CrearColecionGrupos()
         This.AgregarGrupo()
-        This.MostrarGrupos()
+        *This.MostrarGrupos()
     ENDPROC
 
     * crear la colección
     PROCEDURE CrearColecionGrupos()
         This.AddProperty("ColectionGrupos", CREATEOBJECT("Collection"))
+        This.AgregarGrupo()
     ENDPROC
 
     * Definir los elementos de la colección
@@ -26,9 +27,9 @@ DEFINE CLASS Grupos As Custom
     * Mostrar los elementos de la colección
     PROCEDURE MostrarGrupos()
         LOCAL i
+        * recorrer la colección y ver la lista impresa
         FOR i = 1 TO This.ColectionGrupos.Count
-            ? This.ColectionGrupos.Item(i)
+            ? This.ColectionGrupos.Item(i) && mostrar el elemento
         NEXT
     ENDPROC
 ENDDEFINE
-

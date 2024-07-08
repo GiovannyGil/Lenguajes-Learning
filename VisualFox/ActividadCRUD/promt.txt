@@ -1,0 +1,385 @@
+
+necesito que seas un experto en desarrollo de software, con avanzados conocimientos en el lenguaje y entorno "VISUAL FOXPRO 9"
+esto para que me ayudes en una práctica y explicandome, teniendo en cuenta que no tengo ningun tipo de conocimiento en este lenguaje, por lo que necesito que tengas las mejores respuestas posibles, bien explicadas, bien desarrolladas, y entendibles, con sus respectivos comentarios, si puedes ayudarme?
+
+si, puedes y tienes los recursos para esto, por favor informame para entregarte el contexto de la práctica, los criterios de aceptacion, y los códigos que ya poseo
+
+
+
+--
+la practica consiste en un formulario, el cual es para la "tabla" "Tareas" cumple con los campos (IDTarea, Nombre, Grupo, Dependencia, Descripcion) los cuales provienden de una clase DTO así:
+
+        IDTarea = sIDTarea
+        Nombre = sNombre
+        Grupo = sGrupo
+        Dependencia = sDependencia
+        Descripcion = sDescripcion
+
+(ya poseo el código del formulario, y de la tabla/grid en donde se va a mostrar la información)
+
+los campos (Grupos, Dependencia) son coleciones / collections
+ya que en el formulario van a aparecer en un bombobox
+
+así va la extructura:
+PROYECTO
+- coleciones
+    Dependencia.prg
+    Grupo.prg
+- Controlador
+    Controlador.prg
+- Dtos
+    TareaDTO.prg
+- Tests
+    Tests.prg
+formulario.prg
+
+
+así va el flujo o funcionmiento
+
+en el formulario.prg, va el código del formulario y la tabla/grid en la que se va a mostrar la información, claramente van los botones, (GUARDAR, ACTUALIZAR, ELIMINAR) el boton LEER tiene una peculiariada, hay un campo label e input/textBox en el que hay que poner el id que deseamos leer, al ponerlo en el input, y precionar leer, la informacion debe aparecer en los campos del formulario, y allí, si poder actualizar la informacion o en su defecto eliminarla
+(teniendo claro que esto funciona en una colecion/colecion con dto) no array o conexiones a bases de datos
+esto funcionari a nivel local, como si del localstorage de JS se hablara
+
+bueno, la capa de la lógica va en el Controlador/Controlador.prg
+allí leer el dto, las coleciones de Grupos y Dependencia y crear la colecion de las Tareas con las funciones/metodos de crear, leer, actualizar, y eliminar
+y que esta lógica sea leida por el formulario.prg y tenga funcionalidad correcta
+
+cabe aclarar que la lógica debe llevar manejo de errores corectamente
+
+Aqui estan los criterios de aceptacion
+
+Proyecto: Formulario
+
+Descripcion: Crear un Formulario en VFP que gestione una lista de tarea
+
+Objetivo: Desarrollar una aplicacion robusta y bien estructura que facilite la gestion de tareas mediante el uso de programacion orientada a objetos (POO), 
+manejo adecuado de errores, y pruebas unitarias para asegurar funcionalidad del sistema.
+
+Criterios de aceptacion:
+    - la aplicación debe permitir agregar, editar y eliminar tareas
+    - las tareas deben ser almacenadas en una coleccion de elementos o en un array
+    - todos los componentes deben ser construidos mediante còdigo (clases en archivos .prg)
+    - se debe manejar los errores de manera adecuada
+    - la visualizacion de las tareas debe realizarse mediante un GRID
+    - Columnas del GRID
+        - IdTareas (debe ser autogenerado)
+        - Grupo (código del grupo al que pertenece) ---> ("FK" -> Usar una coleccion ya establecida con un Checkbox)
+        - dependencia (código del sector o dependencia al que pertenece) ---> ("FK" -> Usar una coleccion ya establecida con un Checkbox)
+        - Nombre (Nombre de la tarea)
+        - Descripcion (Breve descripcion de la tarea)
+    - uso de transfer objects (DTOs)
+    - el grupo debe ser una coleccion de elementos predefinidos en las clases .prg ---> (Checkbox predefinido)
+    - la dependencia debe ser una coleccion de elementos predefinidos en las clases del .prg ---> (Checkbox predefinido)
+    - debe poseer un controlador que administre la logica de los componentes visuales
+    - los componentes deben poseer pruebas unitarias (archivo .prg de pruebas unitarias de los objectos)
+    - la funcionalidad debe ser correcta (no debe generar errores en su usabilidad)
+
+
+
+
+y también aqui tienes el código que ya llevo hecho:
+
+Dto:
+TareaDTO.prg:
+DEFINE CLASS TareaDTO As Custom
+
+    IDTarea = [] && int/number
+    Nombre = [] && String/Char
+    Grupo = [] && String/Char
+    Dependencia = [] && String/Char
+    Descripcion = [] && String/Char
+
+
+    PROCEDURE Init(sIDTarea As INTEGER, sNombre As String, sGrupo As String, sDependencia As String, sDescripcion As String)
+
+        IDTarea = sIDTarea
+        Nombre = sNombre
+        Grupo = sGrupo
+        Dependencia = sDependencia
+        Descripcion = sDescripcion
+
+    ENDPROC
+ENDDEFINE
+
+
+coleciones:
+grupos.prg:
+Local Otest
+Otest = CREATEOBJECT("Grupos") && establecer/ccrear la clase
+Otest.MostrarGrupos() && hacer uso del metodo
+
+DEFINE CLASS Grupos As Custom
+    PROCEDURE Init()
+        This.CrearColecionGrupos()
+        This.AgregarGrupo()
+        This.MostrarGrupos()
+    ENDPROC
+
+    * crear la colección
+    PROCEDURE CrearColecionGrupos()
+        This.AddProperty("ColectionGrupos", CREATEOBJECT("Collection"))
+    ENDPROC
+
+    * Definir los elementos de la colección
+    PROCEDURE AgregarGrupo()
+        This.ColectionGrupos.Add("Manuales")
+        This.ColectionGrupos.Add("Ejecutiva")
+        This.ColectionGrupos.Add("Artesana")
+        This.ColectionGrupos.Add("Digital")
+        This.ColectionGrupos.Add("Contable")
+    ENDPROC
+
+    * Mostrar los elementos de la colección
+    PROCEDURE MostrarGrupos()
+        LOCAL i
+        * recorrer la colección y ver la lista impresa
+        FOR i = 1 TO This.ColectionGrupos.Count
+            ? This.ColectionGrupos.Item(i)
+        NEXT
+    ENDPROC
+ENDDEFINE
+
+Dependencias.prg:
+Local Otest
+Otest = CREATEOBJECT("Dependencias") && establecer/ccrear la clase
+Otest.MostrarDependencias() && hacer uso del metodo
+
+
+
+DEFINE CLASS Dependencias As Custom
+    PROCEDURE Init()
+        This.CrearColecionDependencias()
+        This.AgregarDependencia()
+        This.MostrarDependencias()
+    ENDPROC
+
+    * crear la colección
+    PROCEDURE CrearColecionDependencias()
+        This.AddProperty("ColectionDependencias", CREATEOBJECT("Collection"))
+    ENDPROC
+
+    * Definir los elementos de la colección
+    PROCEDURE AgregarDependencia()
+        This.ColectionDependencias.Add("Dependencia 1")
+        This.ColectionDependencias.Add("Dependencia 2")
+        This.ColectionDependencias.Add("Dependencia 3")
+        This.ColectionDependencias.Add("Dependencia 4")
+        This.ColectionDependencias.Add("Dependencia 5")
+    ENDPROC
+
+    * Mostrar los elementos de la colección
+    PROCEDURE MostrarDependencias()
+        LOCAL i
+        * recorrer la colección y ver la lista impresa
+        FOR i = 1 TO This.ColectionDependencias.Count
+            ? This.ColectionDependencias.Item(i)
+        NEXT
+    ENDPROC
+ENDDEFINE
+
+controlador:
+controlador.prg:
+DEFINE class Controlador As Custom
+
+    PROCEDURE Init()
+    ENDPROC
+
+ENDDEFINE
+
+
+Tests:
+Tests.prg: vacio
+
+formulario.prg:
+Local oForm 
+oForm = CREATEOBJECT("FormularioCRUD")
+oForm.show(1)
+
+DEFINE CLASS FormularioCRUD As Form
+
+	Caption = "Actividad CRUD"
+	width = 476
+	Height = 450
+
+	* This.AddObject("lblNombre", "Label")
+
+	PROCEDURE Init()
+		this.Formulario()
+		This.GridTareas()
+	ENDPROC
+
+	PROCEDURE Formulario as Form
+
+		* Titulo
+		This.AddObject("Titulo", "Label")
+		WITH thisform.Titulo
+			.visible = .T.
+			.Caption = "FORMULARIO"
+			.left = 130
+			.top = 20
+			.fontsize = 24
+			.width = 300
+			.Height = 50
+		ENDWITH
+
+		*-------------------------------------------------------------------------------------
+
+		* Crear el label e input Nombre
+		This.AddObject("lblNombre", "Label")
+		This.lblNombre.visible = .T.
+		This.lblNombre.Top = 100
+    	This.lblNombre.Left = 30
+		This.lblNombre.Caption = "Nombre:"
+
+		This.AddObject("txtNombre", "Textbox")
+		This.txtNombre.visible = .T.
+		This.txtNombre.Top = 117
+    	This.txtNombre.Left = 30
+
+
+
+
+    	* Crear el label e input Grupo
+		This.AddObject("lblGrupo", "Label")
+		This.lblGrupo.visible = .T.
+		This.lblGrupo.Top = 100
+    	This.lblGrupo.Left = 145
+		This.lblGrupo.Caption = "Grupo:"
+
+		This.AddObject("cbxGrupo", "ComboBox")
+		This.cbxGrupo.visible = .T.
+		This.cbxGrupo.Top = 117
+    	This.cbxGrupo.Left = 145
+
+
+		* Crear el label e input Dependencia
+		This.AddObject("lblDependencia", "Label")
+		This.lblDependencia.visible = .T.
+		This.lblDependencia.Top = 100
+    	This.lblDependencia.Left = 260
+		This.lblDependencia.Caption = "Dependencia:"
+
+		This.AddObject("cbxDependencia", "ComboBox")
+		This.cbxDependencia.visible = .T.
+		This.cbxDependencia.Top = 117
+    	This.cbxDependencia.Left = 260
+
+
+		* Crear el label e input Descripcion
+		This.AddObject("lblDescripcion", "Label")
+		This.lblDescripcion.visible = .T.
+		This.lblDescripcion.Top = 150
+    	This.lblDescripcion.Left = 30
+		This.lblDescripcion.Caption = "Descripcion:"
+
+		This.AddObject("txtDescripcion", "Textbox")
+		This.txtDescripcion.visible = .T.
+		This.txtDescripcion.Top = 167
+    	This.txtDescripcion.Left = 30
+    	This.txtDescripcion.Height = 65
+    	This.txtDescripcion.Width = 330
+
+
+    	* Crear el label e input IDTarea para la solicitud de leer la tarea
+		This.AddObject("lblID", "Label")
+		This.lblID.visible = .T.
+		This.lblID.Top = 248
+		This.lblID.Left = 30
+		This.lblID.Caption = "ID:"
+		This.lblID.width = 50
+
+		This.AddObject("txtID", "Textbox")
+		This.txtID.visible = .T.
+		This.txtID.Top = 245
+		This.txtID.Left = 50
+    	This.txtID.width = 40
+
+    	*-------------------------------------------------------------------------------------
+
+
+    	* Botones
+
+    	*Guardar
+    	This.AddObject("btnGuardar", "CommandButton")
+    	This.btnGuardar.Caption = "Guardar"
+    	This.btnGuardar.Top = 120
+    	This.btnGuardar.Left = 390
+    	This.btnGuardar.Width = 60
+    	This.btnGuardar.Height = 30
+    	This.btnGuardar.visible = .T.
+
+    	*Leer
+    	This.AddObject("btnLeer", "CommandButton")
+    	This.btnLeer.Caption = "Leer"
+    	This.btnLeer.Top = 240
+    	This.btnLeer.Left = 390
+    	This.btnLeer.Width = 60
+    	This.btnLeer.Height = 30
+    	This.btnLeer.visible = .T.
+
+
+    	*Actualziar
+    	This.AddObject("btnActualziar", "CommandButton")
+    	This.btnActualziar.Caption = "Actualziar"
+    	This.btnActualziar.Top = 155
+    	This.btnActualziar.Left = 390
+    	This.btnActualziar.Width = 60
+    	This.btnActualziar.Height = 30
+    	This.btnActualziar.visible = .T.
+
+
+    	*Eliminar
+    	This.AddObject("btnEliminar", "CommandButton")
+    	This.btnEliminar.Caption = "Eliminar"
+    	This.btnEliminar.Top = 190
+    	This.btnEliminar.Left = 390
+    	This.btnEliminar.Width = 60
+    	This.btnEliminar.Height = 30
+    	This.btnEliminar.visible = .T.
+
+    	* Linea divisora
+    	This.AddObject("LineaDivisora", "Shape")
+    	WITH thisform.LineaDivisora
+    		.top = 235
+    		.visible = .T.
+    		.BackStyle = 1
+    		.BorderWidth = 1
+    		.Width = 419
+    		.Height = 1
+    		.Visible = .T.
+    		.Left = 30
+    	ENDWITH
+
+	ENDPROC
+	
+	*-------------------------------------------------------------------------------------
+	   
+	PROCEDURE GridTareas As Form
+		This.AddObject("grdTareas", "Grid")
+		This.grdTareas.Left = 30
+	   	This.grdTareas.Top = 275
+	   	This.grdTareas.Width = 418
+	   	This.grdTareas.Height = 164
+	   	This.grdTareas.visible = .T.
+	   	
+	   	* Configurar las columnas
+	   	This.grdTareas.ColumnCount = 5
+	   	This.grdTareas.Column1.Header1.Caption = "ID"
+	   	This.grdTareas.Column2.Header1.Caption = "Nombre"
+	   	This.grdTareas.Column3.Header1.Caption = "Grupo"
+	   	This.grdTareas.Column4.Header1.Caption = "Dependencia"
+	   	This.grdTareas.Column5.Header1.Caption = "Descripcion"
+	ENDPROC
+	
+		
+ENDDEFINE
+
+
+
+Espero hayas entendido lo que necesito y puedas ayudarme, si necesitas más informacion y contexto y/o explicación, no dudes en pedir y preguntar todo lo que necesites
+
+adicionalmente, hazme preguntas que consideres necesarias para llevar acabo este 
+
+--------------------------------------------------------------
+
+--------------------------------------------------------------
