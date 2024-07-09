@@ -34,7 +34,7 @@ DEFINE class Controlador As Custom
     ENDPROC
 
    * Agrega una nueva tarea a la colección
-   	Function AgregarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
+   Funcion AgregarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
         This.Tareas.ColeccionTareas.Add(CREATEOBJECT("TareaDTO", sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion))
     Endfunc
 
@@ -72,7 +72,7 @@ DEFINE class Controlador As Custom
     ENDPROC
 
 
-
+    
     * TODO: (MIGUEL DIAZ): Extender la funcionalidad de los 3 botones del crud para que contemplen la validacion desde su existencia, previo a su respectiva extension en el controlador.
 
 ENDDEFINE

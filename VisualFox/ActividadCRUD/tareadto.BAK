@@ -1,6 +1,3 @@
-Local Odto
-Odto = CreateObject("TareaDTO")
-
 DEFINE CLASS TareaDTO As Custom
 
     IDTarea = 0 && int/number
@@ -9,21 +6,15 @@ DEFINE CLASS TareaDTO As Custom
     Dependencia = "" && String/Char
     Descripcion = "" && String/Char
 
+
     PROCEDURE Init(sIDTarea As INTEGER, sNombre As String, sGrupo As String, sDependencia As String, sDescripcion As String)
+
         This.IDTarea = sIDTarea
         This.Nombre = sNombre
         This.Grupo = sGrupo
         This.Dependencia = sDependencia
         This.Descripcion = sDescripcion
-    ENDPROC
 
-    * Método para mostrar los detalles de la tarea
-    PROCEDURE MostrarDetalles()
-        ? "IDTarea: " + TRANSFORM(This.IDTarea)
-        ? "Nombre: " + This.Nombre
-        ? "Grupo: " + This.Grupo
-        ? "Dependencia: " + This.Dependencia
-        ? "Descripcion: " + This.Descripcion
     ENDPROC
-
 ENDDEFINE
+

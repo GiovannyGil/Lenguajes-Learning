@@ -2,6 +2,7 @@ SET PROCEDURE TO controlador ADDITIVE
 SET PROCEDURE TO grupos ADDITIVE
 SET PROCEDURE TO Dependencias ADDITIVE
 SET PROCEDURE TO TareaDTO ADDITIVE
+SET PROCEDURE TO Tareas ADDITIVE
 
 Local oForm 
 oForm = CREATEOBJECT("FormularioCRUD")
@@ -139,17 +140,6 @@ DEFINE CLASS FormularioCRUD As Form
 
     	* Botones
 
-		* ---------------------------------------
-        * Guardar
-        THIS.AddObject("btnGuardar", "CommandButton")
-        WITH This.btnGuardar
-            .Caption = "Guardar"
-            .Top = 120
-            .Left = 390
-            .Width = 60
-            .Height = 30
-            .Visible = .T.
-        ENDWITH
 
 		* ---------------------------------------
 
@@ -165,7 +155,18 @@ DEFINE CLASS FormularioCRUD As Form
         ENDWITH
 
 		* ---------------------------------------
+        * Guardar
+        THIS.AddObject("btnGuardar", "CommandButton")
+        WITH This.btnGuardar
+            .Caption = "Guardar"
+            .Top = 120
+            .Left = 390
+            .Width = 60
+            .Height = 30
+            .Visible = .T.
+        ENDWITH
 
+		* ---------------------------------------
         * Actualizar
         THIS.AddObject("btnActualizar", "CommandButton")
         WITH This.btnActualizar
@@ -219,16 +220,52 @@ DEFINE CLASS FormularioCRUD As Form
             .Height = 164
             .Visible = .T.
             .ColumnCount = 5
+            
+            * Llamar a la función ListarTareas para obtener los datos
+            Thisform.ListarTareas()
+
+                        
+            * Enlazar el cursor al grid
+            .RecordSource = "curTareas" && 
+            .RecordSourceType = 2  && 2 indica que RecordSource es un alias de tabla
+            
+            * Mover el cursor al primer registro
+            GO TOP IN curTareas
+            
+            * Refrescar el grid para asegurarse de que todos los registros se muestren
+            .Refresh()
+            
+            * Configurar las columnas del grid
             .Column1.Header1.Caption = "ID"
-			.Column1.Width = 30
+            .Column1.Width = 30
+            .Column1.Visible = .T.
+            .Column1.ReadOnly = .T.
+
             .Column2.Header1.Caption = "Nombre"
+            .Column2.Width = 70
+            .Column2.Visible = .T.
+            .Column2.ReadOnly = .T.
+
             .Column3.Header1.Caption = "Grupo"
+            .Column3.Width = 80
+            .Column3.Visible = .T.
+            .Column3.ReadOnly = .T.
+
             .Column4.Header1.Caption = "Dependencia"
+            .Column5.Width = 90
+            .Column4.Visible = .T.
+            .Column4.ReadOnly = .T.
+
             .Column5.Header1.Caption = "Descripción"
-			.Column5.Width = 115
+            .Column5.Width = 120
+            .Column5.Visible = .T.
+            .Column5.ReadOnly = .T.
+            
+            
         ENDWITH
     ENDPROC
-
+    
+    
 	*!*	 -----------------------------------------------------------------------
 	*!*	 funciones
 
@@ -239,8 +276,27 @@ DEFINE CLASS FormularioCRUD As Form
 		BindEvent(This.btnGuardar, "Click", This, "Guardar", 0)
 		BindEvent(This.btnActualizar, "Click", This, "Actualizar", 0)
 		BindEvent(This.btnEliminar, "Click", This, "Eliminar", 0)
+        BindEvent(This.btnLeer, "Click", This, "LeerTarea", 0)
+
 
 	ENDPROC
+
+    PROCEDURE ListarTareas
+        * Obtener la colección de tareas del controlador
+        LOCAL oControlador, i, oTarea
+        oControlador = CREATEOBJECT("Controlador")
+        oControlador.This.CrearColeccionTareas()
+            
+        * Crear un cursor temporal para enlazar con el grid
+        CREATE CURSOR curTareas (IDTarea I, Nombre C(50), Grupo C(50), Dependencia C(50), Descripcion C(100))
+            
+        * Recorrer la colección de tareas y agregarlas al cursor
+        FOR i = 1 TO oControlador.ColeccionTareas.Count
+            oTarea = oControlador.ColeccionTareas.Item(i)
+            INSERT INTO curTareas (IDTarea, Nombre, Grupo, Dependencia, Descripcion) ;
+                VALUES (oTarea.IDTarea, oTarea.Nombre, oTarea.Grupo, oTarea.Dependencia, oTarea.Descripcion)
+        NEXT
+    ENDPROC
 
     * Llenar los comboboxes de Grupo y Dependencia
     PROCEDURE LlenarCombos
@@ -260,20 +316,70 @@ DEFINE CLASS FormularioCRUD As Form
 		This.cbxDependencia.value = This.Controlador.Dependencias.ColectionDependencias.Item(1)
     ENDPROC
 
-	* Guardar una nueva tarea
-    PROCEDURE Guardar
-		IF This.LimpiarCampos() THEN 
-			MESSAGEBOX("No se puede Guardar, no hay Datos", 0, "Aviso")
-		ELSE
-			* Lógica para actualizar la tarea
-			MESSAGEBOX("Se Guardo exitosamente", 0, "Aviso")
-		ENDIF
+    PROCEDURE LlenarCampos(sIDTarea)
+        LOCAL oTarea
+    
+        * Llamar a la función LeerTarea para obtener la tarea
+        oTarea = This.LeerTarea(sIDTarea)
+    
+        * Verificar si se encontró la tarea
+        IF NOT ISNULL(oTarea)
+            Thisform.txtNombre.Value = oTarea.Nombre
+            Thisform.txtGrupo.Value = oTarea.Grupo
+            Thisform.txtDependencia.Value = oTarea.Dependencia
+            Thisform.txtDescripcion.Value = oTarea.Descripcion
+            RETURN .T.  && Llenado exitoso
+        ELSE
+            RETURN .F.  && No se encontró la tarea
+        ENDIF
+    ENDPROC
+    
+    PROCEDURE LeerTarea(sIDTarea)
+        LOCAL i, oTarea, sIDTareaStr
+    
+        * Verificar si sIDTarea es un número y convertirlo a cadena si es necesario
+        DO CASE
+            CASE VARTYPE(sIDTarea) == "I"
+                sIDTareaStr = ALLTRIM(STR(sIDTarea))
+            CASE VARTYPE(sIDTarea) == "N"
+                sIDTareaStr = ALLTRIM(STR(sIDTarea))
+            CASE VARTYPE(sIDTarea) == "C"
+                sIDTareaStr = ALLTRIM(sIDTarea)
+            OTHERWISE
+                RETURN .NULL.  && Si sIDTarea no es ni número ni cadena, retornar NULL
+        ENDCASE
+    
+        * Recorrer la colección de tareas
+        FOR i = 1 TO This.ColeccionTareas.Count
+            oTarea = This.ColeccionTareas.Item(i)
+            IF ALLTRIM(STR(oTarea.IDTarea)) = sIDTareaStr
+                RETURN oTarea
+            ENDIF
+        NEXT
+    
+        RETURN .NULL.  && Si no se encuentra la tarea
     ENDPROC
 
-	* Leer una tarea por su ID
-    PROCEDURE Leer
+    * Guardar una nueva tarea
+    PROCEDURE Guardar
+        *!*	 IF This.LimpiarCampos() THEN 
+        *!*	     MESSAGEBOX("No se puede Guardar, no hay Datos", 0, "Aviso")
+        *!*	 ELSE
+        *!*	     * Lógica para actualizar la tarea
+        *!*	     MESSAGEBOX("Se Guardo exitosamente", 0, "Aviso")
+        *!*	 ENDIF
 
-    ENDP	ROC
+        LOCAL sNombre, sGrupo, sDependencia, sDescripcion
+        sNombre = Thisform.txtNombre.Value
+        sGrupo = Thisform.cbxGrupo.Value
+        sDependencia = Thisform.cbxDependencia.Value
+        sDescripcion = Thisform.txtDescripcion.Value
+        This.Controlador.AgregarTarea(sNombre, sGrupo, sDependencia, sDescripcion)
+        This.ListarTareas()
+        This.LimpiarCampos()
+
+    ENDPROC
+    
 
 	* Actualizar una tarea existente
     PROCEDURE Actualizar
@@ -287,12 +393,26 @@ DEFINE CLASS FormularioCRUD As Form
 
 	* Eliminar una tarea por su ID
     PROCEDURE Eliminar
-		IF This.LimpiarCampos() THEN 
-			MESSAGEBOX("No se puede Eliminar", 0, "Aviso")
-		ELSE
-			* Lógica para actualizar la tarea
-			MESSAGEBOX("Eliminacion exitosa", 0, "Aviso")
-		ENDIF
+		*!*	 IF This.LimpiarCampos() THEN 
+		*!*	 	MESSAGEBOX("No se puede Eliminar", 0, "Aviso")
+		*!*	 ELSE
+		*!*	 	* Lógica para actualizar la tarea
+		*!*	 	MESSAGEBOX("Eliminacion exitosa", 0, "Aviso")
+		*!*	 ENDIF
+
+        LOCAL sIDTarea
+        sIDTarea = Thisform.txtID.Value
+        IF EMPTY(sIDTarea)
+            MESSAGEBOX("Ingrese un ID de tarea para eliminar.", 16, "Error")
+            RETURN
+        ENDIF
+        IF !Thisform.txtID.Value = ALLTRIM(STR(Thisform.txtID.Value))
+            MESSAGEBOX("El ID de tarea debe ser un número entero.", 16, "Error")
+            RETURN
+        ENDIF
+        This.Controlador.EliminarTarea(Thisform.txtID.Value)
+        This.ListarTareas()
+        This.LimpiarCampos()
     ENDPROC
 
 	* Limpiar los campos del formulario
