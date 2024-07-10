@@ -6,7 +6,7 @@ SET PROCEDURE TO Tareas ADDITIVE
 
 DEFINE class Controlador As Custom
     
-    Hidden ColeccionTareas
+    ColeccionTareas = NULL
 
     PROCEDURE Init()
         This.CrearColeccionTareas()
@@ -15,7 +15,7 @@ DEFINE class Controlador As Custom
     ENDPROC
 
     * Crear colección de tareas utilizando la instancia de Tareas y obtener/Listar las tareas
-    Protected PROCEDURE CrearColeccionTareas()
+    PROCEDURE CrearColeccionTareas()
         This.AddProperty("Tareas", CREATEOBJECT("Tareas"))
         This.Tareas.CrearColeccionTareas()
         This.Tareas.AgregarTareaDefecto()  && Agregar las tareas por defecto

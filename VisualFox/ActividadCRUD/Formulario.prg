@@ -222,8 +222,8 @@ DEFINE CLASS FormularioCRUD As Form
             .ColumnCount = 5
             
             * Llamar a la función ListarTareas para obtener los datos
-            Thisform.ListarTareas()
-
+            *!*	 Thisform.ListarTareas()
+            This.ListarTareas()
                         
             * Enlazar el cursor al grid
             .RecordSource = "curTareas" && 
@@ -260,8 +260,6 @@ DEFINE CLASS FormularioCRUD As Form
             .Column5.Width = 120
             .Column5.Visible = .T.
             .Column5.ReadOnly = .T.
-            
-            
         ENDWITH
     ENDPROC
     
@@ -269,16 +267,12 @@ DEFINE CLASS FormularioCRUD As Form
 	*!*	 -----------------------------------------------------------------------
 	*!*	 funciones
 
-
 	*!*	 bindeo de eventos
 	HIDDEN PROCEDURE BindeoEventos()
-		*!*	 actualizar
 		BindEvent(This.btnGuardar, "Click", This, "Guardar", 0)
 		BindEvent(This.btnActualizar, "Click", This, "Actualizar", 0)
 		BindEvent(This.btnEliminar, "Click", This, "Eliminar", 0)
-        BindEvent(This.btnLeer, "Click", This.controller, "LeerTarea", 0)
-
-
+        BindEvent(This.btnLeer, "Click", This.Controlador, "LeerTarea", 0)
 	ENDPROC
 
     PROCEDURE ListarTareas
@@ -295,7 +289,10 @@ DEFINE CLASS FormularioCRUD As Form
             oTarea = oControlador.ColeccionTareas.Item(i)
             INSERT INTO curTareas (IDTarea, Nombre, Grupo, Dependencia, Descripcion) ;
                 VALUES (oTarea.IDTarea, oTarea.Nombre, oTarea.Grupo, oTarea.Dependencia, oTarea.Descripcion)
-        NEXT
+        ENDFOR
+
+
+        RETURN oControlador.ColeccionTareas
     ENDPROC
 
     * Llenar los comboboxes de Grupo y Dependencia
@@ -304,7 +301,7 @@ DEFINE CLASS FormularioCRUD As Form
 		* Grupo
 		FOR i = 1 TO This.Controlador.Grupos.ColectionGrupos.Count
 			This.cbxGrupo.AddItem(This.Controlador.Grupos.ColectionGrupos.Item(i))
-		NEXT
+		ENDFOR
 		* poner el primer item por defecto en el combo box
 		This.cbxGrupo.Value = This.Controlador.Grupos.ColectionGrupos.Item(1)
 
@@ -312,7 +309,7 @@ DEFINE CLASS FormularioCRUD As Form
 		* Dependencia
 		FOR i = 1 TO This.Controlador.Dependencias.ColectionDependencias.Count
 			This.cbxDependencia.AddItem(This.Controlador.Dependencias.ColectionDependencias.Item(i))
-		NEXT
+		ENDFOR
 		This.cbxDependencia.value = This.Controlador.Dependencias.ColectionDependencias.Item(1)
     ENDPROC
 
@@ -324,10 +321,10 @@ DEFINE CLASS FormularioCRUD As Form
     
         * Verificar si se encontró la tarea
         IF NOT ISNULL(oTarea)
-            Thisform.txtNombre.Value = oTarea.Nombre
-            Thisform.txtGrupo.Value = oTarea.Grupo
-            Thisform.txtDependencia.Value = oTarea.Dependencia
-            Thisform.txtDescripcion.Value = oTarea.Descripcion
+            this.txtNombre.Value = oTarea.Nombre
+            this.txtGrupo.Value = oTarea.Grupo
+            this.txtDependencia.Value = oTarea.Dependencia
+            this.txtDescripcion.Value = oTarea.Descripcion
             RETURN .T.  && Llenado exitoso
         ELSE
             RETURN .F.  && No se encontró la tarea
@@ -336,24 +333,61 @@ DEFINE CLASS FormularioCRUD As Form
 
     * Guardar una nueva tarea
     PROCEDURE Guardar
-        *!*	 IF This.LimpiarCampos() THEN 
-        *!*	     MESSAGEBOX("No se puede Guardar, no hay Datos", 0, "Aviso")
-        *!*	 ELSE
-        *!*	     * Lógica para actualizar la tarea
-        *!*	     MESSAGEBOX("Se Guardo exitosamente", 0, "Aviso")
-        *!*	 ENDIF
+        LOCAL sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion
+        LOCAL oControlador, oColeccionTareas
 
-        LOCAL sNombre, sGrupo, sDependencia, sDescripcion
-        sNombre = Thisform.txtNombre.Value
-        sGrupo = Thisform.cbxGrupo.Value
-        sDependencia = Thisform.cbxDependencia.Value
-        sDescripcion = Thisform.txtDescripcion.Value
-        This.Controlador.AgregarTarea(sNombre, sGrupo, sDependencia, sDescripcion)
-        This.ListarTareas()
+        * Obtener la colección de tareas
+        oControlador = This.Controlador
+        oColeccionTareas = oControlador.ColeccionTareas
+        
+        IF VARTYPE(oColeccionTareas) = "O" AND !ISNULL(oColeccionTareas)
+            sIDTarea = oColeccionTareas.Count + 1
+        ELSE
+            MESSAGEBOX("Error: No se pudo obtener la colección de tareas.", 0, "Error")
+            RETURN
+        ENDIF
+
+        * Obtener los valores de los campos del formulario
+        sNombre = This.txtNombre.Value
+        sGrupo = This.cbxGrupo.Value
+        sDependencia = This.cbxDependencia.Value
+        sDescripcion = This.txtDescripcion.Value
+
+        * Agregar la tarea a la colección
+        oControlador.AgregarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
+
+        * Verificar si la tarea se agregó correctamente
+        IF oControlador.ColeccionTareas.Count = sIDTarea
+            MESSAGEBOX("Tarea agregada correctamente.", 0, "Éxito")
+        ELSE
+            MESSAGEBOX("Error: La tarea no se agregó a la colección.", 0, "Error")
+            RETURN
+        ENDIF
+
+        * Limpiar los campos del formulario
         This.LimpiarCampos()
 
+        * Actualizar el grid con la nueva colección de tareas
+        This.ActualizarGrid(oControlador)
     ENDPROC
     
+    PROCEDURE ActualizarGrid(oControlador)
+        LOCAL i, oTarea
+    
+        * Crear un cursor temporal para enlazar con el grid
+        CREATE CURSOR curTareas (IDTarea I, Nombre C(50), Grupo C(50), Dependencia C(50), Descripcion C(100))
+            
+        * Recorrer la colección de tareas y agregarlas al cursor
+        FOR i = 1 TO oControlador.ColeccionTareas.Count
+            oTarea = oControlador.ColeccionTareas.Item(i)
+            INSERT INTO curTareas (IDTarea, Nombre, Grupo, Dependencia, Descripcion) ;
+                VALUES (oTarea.IDTarea, oTarea.Nombre, oTarea.Grupo, oTarea.Dependencia, oTarea.Descripcion)
+        ENDFOR
+    
+        * Enlazar el cursor con el grid
+        This.grdTareas.RecordSource = "curTareas"
+        This.grdTareas.Refresh()
+    ENDPROC
 
 	* Actualizar una tarea existente
     PROCEDURE Actualizar
@@ -400,18 +434,5 @@ DEFINE CLASS FormularioCRUD As Form
 			This.LlenarCombos()
         ENDWITH
     ENDPROC
-
-
-	PROCEDURE Err_Handler(oError)
-		LOCAL lcErrorMsg
-		lcErrorMsg = "Error #" + TRANSFORM(oError.ErrorNo) + CHR(13) + ;
-					"Message: " + oError.Message + CHR(13) + ;
-					"Line: " + TRANSFORM(oError.LineNo) + CHR(13) + ;
-					"Details: " + oError.Details + CHR(13) + ;
-					"Program: " + oError.Program + CHR(13) + ;
-					"Method: " + oError.Method
-	
-		MESSAGEBOX(lcErrorMsg, 16, "Error")
-	ENDPROC
 		
 ENDDEFINE

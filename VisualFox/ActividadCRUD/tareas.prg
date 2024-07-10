@@ -11,7 +11,7 @@ DEFINE CLASS Tareas As Custom
     PROCEDURE Init()
         This.CrearColeccionTareas()
         This.AgregarTareaDefecto()
-        *This.MostrarTareas()  && Comentado para evitar imprimir detalles por defecto
+        * This.MostrarTareas()  && Comentado para evitar imprimir detalles por defecto
     ENDPROC
 
     * Crear la colección de las tareas, usando el TareaDTO

@@ -7,8 +7,8 @@ Otest = CREATEOBJECT("Dependencias") && establecer/ccrear la clase
 DEFINE CLASS Dependencias As Custom
     PROCEDURE Init()
         This.CrearColecionDependencias()
-        *This.AgregarDependencia()
-        * This.MostrarDependencias()
+        * This.AgregarDependencia()
+        *This.MostrarDependencias()
     ENDPROC
 
     * crear la colección
@@ -24,7 +24,6 @@ DEFINE CLASS Dependencias As Custom
         This.ColectionDependencias.Add("Ingles")
         This.ColectionDependencias.Add("Matematicas")
         This.ColectionDependencias.Add("Historia")
-        
     ENDPROC
 
     * Mostrar los elementos de la colección

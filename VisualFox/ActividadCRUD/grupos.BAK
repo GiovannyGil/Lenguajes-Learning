@@ -5,8 +5,8 @@ Otest = CREATEOBJECT("Grupos") && establecer/ccrear la clase
 DEFINE CLASS Grupos As Custom
     PROCEDURE Init()
         This.CrearColecionGrupos()
-        * This.AgregarGrupo()
-        * This.MostrarGrupos()
+        This.AgregarGrupo()
+        This.MostrarGrupos()
     ENDPROC
 
     * crear la colección
