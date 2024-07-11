@@ -22,6 +22,7 @@ DEFINE CLASS FormularioCRUD As Form
         This.GridTareas()
         This.LlenarCombos()
 		This.BindeoEventos()
+        *!*	 this.LeerTarea()
 	ENDPROC
 
 	PROCEDURE Formulario as Form
@@ -148,7 +149,7 @@ DEFINE CLASS FormularioCRUD As Form
         WITH This.btnLeer
             .Caption = "Leer"
             .Top = 240
-            .Left = 390
+            .Left = 320
             .Width = 60
             .Height = 30
             .Visible = .T.
@@ -180,11 +181,24 @@ DEFINE CLASS FormularioCRUD As Form
  
 		* ---------------------------------------
 
+        * Limpiar
+        THIS.AddObject("btnLimpiar", "CommandButton")
+        WITH This.btnLimpiar
+            .Caption = "Limpiar"
+            .Top = 190
+            .Left = 390
+            .Width = 60
+            .Height = 30
+            .Visible = .T.
+        ENDWITH
+
+		* ---------------------------------------
+
         * Eliminar
         THIS.AddObject("btnEliminar", "CommandButton")
         WITH This.btnEliminar
             .Caption = "Eliminar"
-            .Top = 190
+            .Top = 240
             .Left = 390
             .Width = 60
             .Height = 30
@@ -261,6 +275,7 @@ DEFINE CLASS FormularioCRUD As Form
             .Column5.Visible = .T.
             .Column5.ReadOnly = .T.
         ENDWITH
+        
     ENDPROC
     
     
@@ -271,8 +286,9 @@ DEFINE CLASS FormularioCRUD As Form
 	HIDDEN PROCEDURE BindeoEventos()
 		BindEvent(This.btnGuardar, "Click", This, "Guardar", 0)
 		BindEvent(This.btnActualizar, "Click", This, "Actualizar", 0)
-		BindEvent(This.btnEliminar, "Click", This, "Eliminar", 0)
-        BindEvent(This.btnLeer, "Click", This.Controlador, "LeerTarea", 0)
+		BindEvent(This.btnEliminar, "Click", This, "EliminarTarea", 0)
+        BindEvent(This.btnLeer, "Click", This, "LeerTarea", 0)
+        BindEvent(This.btnLimpiar, "Click", This, "LimpiarCampos", 0)
 	ENDPROC
 
     PROCEDURE ListarTareas
@@ -331,6 +347,27 @@ DEFINE CLASS FormularioCRUD As Form
         ENDIF
     ENDPROC
 
+    PROCEDURE LeerTarea(sIDTarea)
+        LOCAL sIDTarea, oTarea
+        sIDTarea = VAL(This.txtID.Value)  && Convertir el valor a numérico
+        
+        * Llamar al método LeerTarea del controlador
+        oTarea = This.Controlador.LeerTarea(sIDTarea)
+        
+        * Llenar los campos del formulario con los datos de la tarea
+        IF NOT ISNULL(oTarea)
+            This.txtNombre.Value = oTarea.Nombre
+            This.cbxGrupo.Value = oTarea.Grupo
+            This.cbxDependencia.Value = oTarea.Dependencia
+            This.txtDescripcion.Value = oTarea.Descripcion
+            WITH Thisform
+                .txtID.value=""
+            ENDWITH
+        ELSE
+            MESSAGEBOX("Error: No se encontró la tarea.", 16, "Error")
+        ENDIF
+    ENDPROC
+
     * Guardar una nueva tarea
     PROCEDURE Guardar
         LOCAL sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion
@@ -340,18 +377,24 @@ DEFINE CLASS FormularioCRUD As Form
         oControlador = This.Controlador
         oColeccionTareas = oControlador.ColeccionTareas
         
-        IF VARTYPE(oColeccionTareas) = "O" AND !ISNULL(oColeccionTareas)
-            sIDTarea = oColeccionTareas.Count + 1
-        ELSE
+        * validar que la colecion llegue correctamente
+        IF VARTYPE(oColeccionTareas) != "O" AND ISNULL(oColeccionTareas)
             MESSAGEBOX("Error: No se pudo obtener la colección de tareas.", 0, "Error")
             RETURN
         ENDIF
 
         * Obtener los valores de los campos del formulario
+        sIDTarea = oColeccionTareas.Count + 1
         sNombre = This.txtNombre.Value
         sGrupo = This.cbxGrupo.Value
         sDependencia = This.cbxDependencia.Value
         sDescripcion = This.txtDescripcion.Value
+
+        * Validar que los campos no estén vacíos
+        IF EMPTY(sNombre) OR EMPTY(sNombre) OR EMPTY(sGrupo) OR EMPTY(sDependencia) OR EMPTY(sDescripcion)
+            MESSAGEBOX("Por favor complete todos los campos.", 16, "Error")
+            RETURN
+        ENDIF
 
         * Agregar la tarea a la colección
         oControlador.AgregarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
@@ -386,53 +429,83 @@ DEFINE CLASS FormularioCRUD As Form
     
         * Enlazar el cursor con el grid
         This.grdTareas.RecordSource = "curTareas"
+        SELECT curTareas 
+        GO TOP
         This.grdTareas.Refresh()
+        
     ENDPROC
 
-	* Actualizar una tarea existente
+    * Actualizar una tarea existente
     PROCEDURE Actualizar
-		IF This.LimpiarCampos() THEN 
-			MESSAGEBOX("No se puede Actualizar", 0, "Aviso")
-		ELSE
-			* Lógica para actualizar la tarea
-			MESSAGEBOX("Actualización exitosa", 0, "Aviso")
-		ENDIF
+        LOCAL sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion
+        LOCAL oControlador
+        
+        * Obtener el ID de la tarea a actualizar
+        sIDTarea = VAL(This.txtID.Value)
+        
+        * Verificar que el ID no esté vacío
+        IF EMPTY(sIDTarea)
+            MESSAGEBOX("Por favor ingrese el ID de la tarea a actualizar.", 16, "Error")
+            RETURN
+        ENDIF
+        
+        * Obtener los valores de los campos del formulario
+        sNombre = This.txtNombre.Value
+        sGrupo = This.cbxGrupo.Value
+        sDependencia = This.cbxDependencia.Value
+        sDescripcion = This.txtDescripcion.Value
+        
+        * Obtener el controlador
+        oControlador = This.Controlador
+        
+        * Llamar al método ActualizarTarea del controlador
+        IF oControlador.ActualizarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
+            MESSAGEBOX("Tarea actualizada correctamente.", 0, "Éxito")
+            * Actualizar el grid para reflejar los cambios
+            This.ActualizarGrid(oControlador)
+        ELSE
+            MESSAGEBOX("Error: La tarea no se pudo actualizar.", 16, "Error")
+        ENDIF
     ENDPROC
+
 
 	* Eliminar una tarea por su ID
-    PROCEDURE Eliminar
-		*!*	 IF This.LimpiarCampos() THEN 
-		*!*	 	MESSAGEBOX("No se puede Eliminar", 0, "Aviso")
-		*!*	 ELSE
-		*!*	 	* Lógica para actualizar la tarea
-		*!*	 	MESSAGEBOX("Eliminacion exitosa", 0, "Aviso")
-		*!*	 ENDIF
+    PROCEDURE EliminarTarea
+        *!*	 LOCAL sIDTarea
+        *!*	 sIDTarea = This.txtID.Value
+        LOCAL lnIDTarea
+        lnIDTarea = VAL(ThisForm.txtID.Value)  && Convertir el valor a numérico
 
-        LOCAL sIDTarea
-        sIDTarea = Thisform.txtID.Value
-        IF EMPTY(sIDTarea)
-            MESSAGEBOX("Ingrese un ID de tarea para eliminar.", 16, "Error")
+
+        IF EMPTY(lnIDTarea)
+            MESSAGEBOX("Por favor ingrese el ID de la tarea a eliminar.", 16, "Error")
             RETURN
         ENDIF
-        IF !Thisform.txtID.Value = ALLTRIM(STR(Thisform.txtID.Value))
-            MESSAGEBOX("El ID de tarea debe ser un número entero.", 16, "Error")
-            RETURN
+
+        * Llamar a EliminarTarea pasando el ID convertido
+        IF This.Controlador.EliminarTarea(lnIDTarea)
+            MESSAGEBOX("Tarea eliminada correctamente.", 0, "Éxito")
+            ThisForm.LimpiarCampos()
+            ThisForm.ActualizarGrid(ThisForm.Controlador)  && Actualizar el grid en el formulario
+        ELSE
+            MESSAGEBOX("Error: La tarea no se pudo eliminar, o no existe", 16, "Error")
         ENDIF
-        This.Controlador.EliminarTarea(Thisform.txtID.Value)
-        This.ListarTareas()
-        This.LimpiarCampos()
     ENDPROC
 
 	* Limpiar los campos del formulario
     PROCEDURE LimpiarCampos
         WITH Thisform
-            * .txtID.Value = ""
             .txtNombre.Value = ""
-            *!*	 .cbxGrupo.Value = ""
-            *!*	 .cbxDependencia.Value = ""
             .txtDescripcion.Value = ""
+            .txtID.value=""
 			This.LlenarCombos()
         ENDWITH
+    ENDPROC
+
+
+    *Encapzulacion de error
+    PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
+        MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64"Visualizaciòn de Errores")
     ENDPROC
 		
 ENDDEFINE

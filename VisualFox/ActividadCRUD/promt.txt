@@ -113,3 +113,42 @@ bueno, como pudiste ver, en el controlador hay funciones para lo que llamamos un
 entiendes, necesitas el código de todo el formualrio o solo el grid?
 
 --
+
+
+
+
+necesito ayuda con un metodo
+el metodo de leerTarea, quiero hacerlo desde cero, ya que como lo tengo no funciona
+
+
+explico
+mediante el textBox -> txtID
+se pasa el id del registro(en el grid) que deseo leer
+
+al dar click en el boton leer, los datos de la tarea, se deben visualizar en los txtbox y combobox del formulario
+
+los datos son 
+IDTarea ID -> Numerico es el que se pasa como "parametro" para recibir la informacion, 
+Nombre es tipo string va en el textbox, 
+Grupo es tipo string pero va en un combobox que viene de una colecion (grupos), 
+Dependencia es tipo string pero va en un combobox que viene de una colecion (dependencias), 
+Descripcion es tipo string va en el textbox
+
+el metodo se divide en las dos vistas, el controlador.prg y el formulario.prg
+
+funciona mediante el evento click
+
+si necesitas más informacion por favor solicita lo que necesites
+
+
+
+
+ya que entiendes el código y el leer funciona, ¿me ayudas con el boton y lógica de actualizar?
+
+la idea es así
+con la funcion/boton leer, llevar los datos de un registro/tarea a los campos del formualrio == eso ya está listo
+
+lo que falta ahora, es que si yo modifico algun valor, al darle al boton actualizar, se actualice claramente, pero en el mismo registo, no creando uno nuevo, si no el que ya existe, reemplazando la información de ser necesario
+
+¿crees poder ayudame con eso?
+

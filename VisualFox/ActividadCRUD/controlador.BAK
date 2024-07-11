@@ -6,7 +6,7 @@ SET PROCEDURE TO Tareas ADDITIVE
 
 DEFINE class Controlador As Custom
     
-    Hidden ColeccionTareas
+    ColeccionTareas = NULL
 
     PROCEDURE Init()
         This.CrearColeccionTareas()
@@ -15,7 +15,7 @@ DEFINE class Controlador As Custom
     ENDPROC
 
     * Crear colección de tareas utilizando la instancia de Tareas y obtener/Listar las tareas
-    Protected PROCEDURE CrearColeccionTareas()
+    PROCEDURE CrearColeccionTareas()
         This.AddProperty("Tareas", CREATEOBJECT("Tareas"))
         This.Tareas.CrearColeccionTareas()
         This.Tareas.AgregarTareaDefecto()  && Agregar las tareas por defecto
@@ -34,10 +34,11 @@ DEFINE class Controlador As Custom
     ENDPROC
 
    * Agrega una nueva tarea a la colección
-   Funcion AgregarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
+   	Function AgregarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
         This.Tareas.ColeccionTareas.Add(CREATEOBJECT("TareaDTO", sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion))
     Endfunc
 
+    * Validar la existencia de una tarea por su ID
     Protected Procedure ValidarExistenciaTarea
         Parameters IdToEvaluated As Integer 
 
@@ -46,16 +47,32 @@ DEFINE class Controlador As Custom
 
     * Lee una tarea de la colección por su ID
     PROCEDURE LeerTarea(sIDTarea)
-        If This.ValidarExistenciaTarea(sIDTarea)
-            Return
+        * Verifica si la tarea existe
+        If Not This.ValidarExistenciaTarea(sIDTarea)
+            Return .f.
         Endif
 
-        This.Parent.txtID.Value = This.ColeccionTareas.Item(i).IDTarea
-        This.Parent.txtNombre.Value = This.ColeccionTareas.Item(i).Nombre
-        This.Parent.cboGrupo.Value = This.ColeccionTareas.Item(i).Grupo
-        This.Parent.cboDependencia.Value = This.ColeccionTareas.Item(i).Dependencia
-        This.Parent.txtDescripcion.Value = This.ColeccionTareas.Item(i).Descripcion
-    ENDPROC
+        * Obtiene la tarea de la colección usando el ID proporcionado
+        Local loTarea
+        loTarea = VAL(This.ColeccionTareas.Item(sIDTarea))
+        *!*	 lnIDTarea = VAL(ThisForm.txtID.Value)
+
+        * Asigna los valores de la tarea a los controles del formulario
+        This.Parent.txtID.Value = loTarea.IDTarea
+        This.Parent.txtNombre.Value = loTarea.Nombre
+        This.Parent.cboGrupo.Value = loTarea.Grupo
+        This.Parent.cboDependencia.Value = loTarea.Dependencia
+        This.Parent.txtDescripcion.Value = loTarea.Descripcion
+
+        Return .T.
+    Endproc
+
+        *!*	 This.Parent.txtID.Value = This.ColeccionTareas.Item(i).IDTarea
+        *!*	 This.Parent.txtNombre.Value = This.ColeccionTareas.Item(i).Nombre
+        *!*	 This.Parent.cboGrupo.Value = This.ColeccionTareas.Item(i).Grupo
+        *!*	 This.Parent.cboDependencia.Value = This.ColeccionTareas.Item(i).Dependencia
+        *!*	 This.Parent.txtDescripcion.Value = This.ColeccionTareas.Item(i).Descripcion
+     *Endproc
 
     * Actualiza una tarea existente en la colección
     PROCEDURE ActualizarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
@@ -66,13 +83,21 @@ DEFINE class Controlador As Custom
 
     * Elimina una tarea de la colección por su ID
     PROCEDURE EliminarTarea(sIDTarea)
-        If This.ValidarExistenciaTarea(sIDTarea)
-            Return
-        Endif
+        * Verificar que la tarea exista
+        IF Not This.ValidarExistenciaTarea(sIDTarea)
+            RETURN .F.
+        ENDIF
+
+        * Eliminar la tarea de la colección
+        This.ColeccionTareas.Remove(sIDTarea)
+        RETURN .T.
     ENDPROC
 
+        *Encapzulacion de error
+        *!*	 PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
+        *!*	     MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualizaciòn de Errores")
+        *!*	 ENDPROC
 
-    
+
     * TODO: (MIGUEL DIAZ): Extender la funcionalidad de los 3 botones del crud para que contemplen la validacion desde su existencia, previo a su respectiva extension en el controlador.
-
 ENDDEFINE

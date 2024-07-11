@@ -1,2 +1,2 @@
 MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64"Visualizaciòn de Errores")
-Error in line 508: Function name is missing ).
+Error in line 38: Function name is missing ).

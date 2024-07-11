@@ -1,0 +1,56 @@
+* test_classes.prg
+
+SET PROCEDURE TO TareaDTO ADDITIVE
+SET PROCEDURE TO Tareas ADDITIVE
+SET PROCEDURE TO Grupos ADDITIVE
+SET PROCEDURE TO Dependencias ADDITIVE
+SET PROCEDURE TO Controlador ADDITIVE
+
+* Crear un objeto de prueba para cada clase
+LOCAL oTareaDTO, oTareas, oGrupos, oDependencias, oControlador
+
+oTareaDTO = CREATEOBJECT("TareaDTO", 1, "Test Tarea", "Test Grupo", "Test Dependencia", "Test Descripcion")
+oTareas = CREATEOBJECT("Tareas")
+oGrupos = CREATEOBJECT("Grupos")
+oDependencias = CREATEOBJECT("Dependencias")
+oControlador = CREATEOBJECT("Controlador")
+
+* Pruebas para TareaDTO
+? "Pruebas para TareaDTO"
+oTareaDTO.MostrarDetalles()
+
+* Pruebas para Tareas
+? "Pruebas para Tareas"
+oTareas.CrearColeccionTareas()
+oTareas.AgregarTareaDefecto()
+oTareas.MostrarTareas()
+
+* Pruebas para Grupos
+? "Pruebas para Grupos"
+oGrupos.CrearColecionGrupos()
+oGrupos.MostrarGrupos()
+
+* Pruebas para Dependencias
+? "Pruebas para Dependencias"
+oDependencias.CrearColecionDependencias()
+oDependencias.MostrarDependencias()
+
+* Pruebas para Controlador
+? "Pruebas para Controlador"
+oControlador.CrearColeccionTareas()
+oControlador.CrearColecionGrupos()
+oControlador.CrearColecionDependencias()
+
+? "Agregar Tarea"
+oControlador.AgregarTarea(4, "Nueva Tarea", "Nuevo Grupo", "Nueva Dependencia", "Nueva Descripcion")
+? "Tareas después de agregar"
+oControlador.ColeccionTareas.Item(4).MostrarDetalles()
+
+? "Actualizar Tarea"
+oControlador.ActualizarTarea(4, "Tarea Actualizada", "Grupo Actualizado", "Dependencia Actualizada", "Descripcion Actualizada")
+? "Tareas después de actualizar"
+oControlador.ColeccionTareas.Item(4).MostrarDetalles()
+
+? "Eliminar Tarea"
+oControlador.EliminarTarea(4)
+? "Validación de existencia de tarea eliminada: ", oControlador.ValidarExistenciaTarea(4)

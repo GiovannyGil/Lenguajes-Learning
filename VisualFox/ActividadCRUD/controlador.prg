@@ -38,6 +38,7 @@ DEFINE class Controlador As Custom
         This.Tareas.ColeccionTareas.Add(CREATEOBJECT("TareaDTO", sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion))
     Endfunc
 
+    * Validar la existencia de una tarea por su ID
     Protected Procedure ValidarExistenciaTarea
         Parameters IdToEvaluated As Integer 
 
@@ -45,34 +46,54 @@ DEFINE class Controlador As Custom
     Endproc
 
     * Lee una tarea de la colección por su ID
-    PROCEDURE LeerTarea(sIDTarea)
-        If This.ValidarExistenciaTarea(sIDTarea)
-            Return
-        Endif
-
-        This.Parent.txtID.Value = This.ColeccionTareas.Item(i).IDTarea
-        This.Parent.txtNombre.Value = This.ColeccionTareas.Item(i).Nombre
-        This.Parent.cboGrupo.Value = This.ColeccionTareas.Item(i).Grupo
-        This.Parent.cboDependencia.Value = This.ColeccionTareas.Item(i).Dependencia
-        This.Parent.txtDescripcion.Value = This.ColeccionTareas.Item(i).Descripcion
+    PROCEDURE LeerTarea(IdToEvaluated)
+        LOCAL oTarea, i
+        FOR i = 1 TO This.ColeccionTareas.Count
+            oTarea = This.ColeccionTareas.Item(i)
+            IF oTarea.IDTarea = IdToEvaluated
+                RETURN oTarea
+            ENDIF
+        ENDFOR
+        RETURN .NULL.  && No se encontró la tarea
     ENDPROC
+    
 
     * Actualiza una tarea existente en la colección
     PROCEDURE ActualizarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
-        If This.ValidarExistenciaTarea(sIDTarea)
-            Return
-        Endif
+        * Verificar que la tarea exista
+        IF NOT This.ValidarExistenciaTarea(sIDTarea)
+            RETURN .F.
+        ENDIF
+        
+        * Actualizar la tarea con los nuevos valores
+        LOCAL oTarea
+        oTarea = This.ColeccionTareas.Item(sIDTarea)
+        oTarea.Nombre = sNombre
+        oTarea.Grupo = sGrupo
+        oTarea.Dependencia = sDependencia
+        oTarea.Descripcion = sDescripcion
+        
+        RETURN .T.
     ENDPROC
+
 
     * Elimina una tarea de la colección por su ID
     PROCEDURE EliminarTarea(sIDTarea)
-        If This.ValidarExistenciaTarea(sIDTarea)
-            Return
-        Endif
+        * Verificar que la tarea exista
+        IF Not This.ValidarExistenciaTarea(sIDTarea)
+            RETURN .F.
+        ENDIF
+
+        * Eliminar la tarea de la colección
+        This.ColeccionTareas.Remove(sIDTarea)
+        RETURN .T.
     ENDPROC
 
+        *Encapzulacion de error
+        PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
+            MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualizaciòn de Errores")
+        ENDPROC
 
 
     * TODO: (MIGUEL DIAZ): Extender la funcionalidad de los 3 botones del crud para que contemplen la validacion desde su existencia, previo a su respectiva extension en el controlador.
-
 ENDDEFINE

@@ -34,5 +34,9 @@ DEFINE CLASS Tareas As Custom
             This.ColeccionTareas.Item(i).MostrarDetalles() && Mostrar detalles del elemento
         NEXT
     ENDPROC
-
+    
+    *Encapzulacion de error
+    PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
+        MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64"Visualizaciòn de Errores")
+    ENDPROC
 ENDDEFINE
