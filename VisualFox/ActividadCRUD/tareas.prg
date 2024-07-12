@@ -11,7 +11,7 @@ DEFINE CLASS Tareas As Custom
     PROCEDURE Init()
         This.CrearColeccionTareas()
         This.AgregarTareaDefecto()
-        * This.MostrarTareas()  && Comentado para evitar imprimir detalles por defecto
+        *This.MostrarTareas()  && Comentado para evitar imprimir detalles por defecto
     ENDPROC
 
     * Crear la colección de las tareas, usando el TareaDTO
@@ -37,6 +37,6 @@ DEFINE CLASS Tareas As Custom
     
     *Encapzulacion de error
     PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
-        MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64"Visualizaciòn de Errores")
+        MESSAGEBOX("Código Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualización de Errores")
     ENDPROC
 ENDDEFINE

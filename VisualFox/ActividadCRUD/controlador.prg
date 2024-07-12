@@ -23,12 +23,12 @@ DEFINE class Controlador As Custom
     ENDPROC
 
     *!*	 obtener/traer la colecion de los grupos y dependencias
-    Protected PROCEDURE CrearColecionGrupos()
+    PROCEDURE CrearColecionGrupos()
         This.AddProperty("Grupos", CreateObject("Grupos"))
         This.Grupos.CrearColecionGrupos()
     ENDPROC
 
-    Protected PROCEDURE CrearColecionDependencias()
+    PROCEDURE CrearColecionDependencias()
         This.AddProperty("Dependencias", CreateObject("Dependencias"))
         This.Dependencias.CrearColecionDependencias()
     ENDPROC
@@ -39,10 +39,18 @@ DEFINE class Controlador As Custom
     Endfunc
 
     * Validar la existencia de una tarea por su ID
-    Protected Procedure ValidarExistenciaTarea
+    Procedure ValidarExistenciaTarea
         Parameters IdToEvaluated As Integer 
 
         Return Iif(Vartype(This.ColeccionTareas.Item(IdToEvaluated)) != [O], .f., .t.) 
+
+        *!*	 LOCAL lResult
+        *!*	 lResult = .F.
+        *!*	 IF THIS.ColeccionTareas.COUNT >= IdToEvaluated
+        *!*	     lResult = IIF(TYPE("THIS.ColeccionTareas.ITEM(IdToEvaluated)") == "O", .T., .F.)
+        *!*	 ENDIF
+        *!*	 RETURN lResult
+    
     Endproc
 
     * Lee una tarea de la colección por su ID
@@ -85,14 +93,15 @@ DEFINE class Controlador As Custom
         ENDIF
 
         * Eliminar la tarea de la colección
+        
         This.ColeccionTareas.Remove(sIDTarea)
         RETURN .T.
     ENDPROC
 
-        *Encapzulacion de error
-        PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
-            MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualizaciòn de Errores")
-        ENDPROC
+    *Encapzulacion de error
+    PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
+        MESSAGEBOX("Código Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualización de Errores")
+    ENDPROC
 
 
     * TODO: (MIGUEL DIAZ): Extender la funcionalidad de los 3 botones del crud para que contemplen la validacion desde su existencia, previo a su respectiva extension en el controlador.

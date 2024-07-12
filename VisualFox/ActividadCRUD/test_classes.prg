@@ -18,39 +18,53 @@ oControlador = CREATEOBJECT("Controlador")
 * Pruebas para TareaDTO
 ? "Pruebas para TareaDTO"
 oTareaDTO.MostrarDetalles()
-
+? ""
+? ""
+? ""
 * Pruebas para Tareas
 ? "Pruebas para Tareas"
 oTareas.CrearColeccionTareas()
 oTareas.AgregarTareaDefecto()
 oTareas.MostrarTareas()
-
+? ""
+? ""
+? ""
 * Pruebas para Grupos
 ? "Pruebas para Grupos"
 oGrupos.CrearColecionGrupos()
 oGrupos.MostrarGrupos()
-
+? ""
+? ""
+? ""
 * Pruebas para Dependencias
 ? "Pruebas para Dependencias"
 oDependencias.CrearColecionDependencias()
 oDependencias.MostrarDependencias()
-
+? ""
+? ""
+? ""
 * Pruebas para Controlador
 ? "Pruebas para Controlador"
 oControlador.CrearColeccionTareas()
 oControlador.CrearColecionGrupos()
 oControlador.CrearColecionDependencias()
-
+? ""
+? ""
+? ""
 ? "Agregar Tarea"
 oControlador.AgregarTarea(4, "Nueva Tarea", "Nuevo Grupo", "Nueva Dependencia", "Nueva Descripcion")
 ? "Tareas después de agregar"
 oControlador.ColeccionTareas.Item(4).MostrarDetalles()
-
+? ""
+? ""
+? ""
 ? "Actualizar Tarea"
 oControlador.ActualizarTarea(4, "Tarea Actualizada", "Grupo Actualizado", "Dependencia Actualizada", "Descripcion Actualizada")
 ? "Tareas después de actualizar"
 oControlador.ColeccionTareas.Item(4).MostrarDetalles()
-
+? ""
+? ""
+? ""
 ? "Eliminar Tarea"
-oControlador.EliminarTarea(4)
-? "Validación de existencia de tarea eliminada: ", oControlador.ValidarExistenciaTarea(4)
+oControlador.EliminarTarea(2)
+? "Validación de existencia de tarea ELIMINADA(1): ", oControlador.ValidarExistenciaTarea(2)

@@ -6,7 +6,7 @@ DEFINE CLASS Grupos As Custom
     PROCEDURE Init()
         This.CrearColecionGrupos()
         * This.AgregarGrupo()
-        * This.MostrarGrupos()
+        *This.MostrarGrupos()
     ENDPROC
 
     * crear la colección
@@ -35,6 +35,6 @@ DEFINE CLASS Grupos As Custom
 
     *Encapzulacion de error
     PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
-        MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64"Visualizaciòn de Errores")
+        MESSAGEBOX("Código Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualización de Errores")
     ENDPROC
 ENDDEFINE

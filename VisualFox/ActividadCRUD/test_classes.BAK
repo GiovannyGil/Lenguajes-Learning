@@ -1,10 +1,10 @@
 * test_classes.prg
 
-SET PROCEDURE TO tareadto ADDITIVE
-SET PROCEDURE TO tarea ADDITIVE
-SET PROCEDURE TO grupos ADDITIVE
-SET PROCEDURE TO dependencias ADDITIVE
-SET PROCEDURE TO controlador ADDITIVE
+SET PROCEDURE TO TareaDTO ADDITIVE
+SET PROCEDURE TO Tareas ADDITIVE
+SET PROCEDURE TO Grupos ADDITIVE
+SET PROCEDURE TO Dependencias ADDITIVE
+SET PROCEDURE TO Controlador ADDITIVE
 
 * Crear un objeto de prueba para cada clase
 LOCAL oTareaDTO, oTareas, oGrupos, oDependencias, oControlador
@@ -18,39 +18,59 @@ oControlador = CREATEOBJECT("Controlador")
 * Pruebas para TareaDTO
 ? "Pruebas para TareaDTO"
 oTareaDTO.MostrarDetalles()
-
+? ""
+? ""
+? ""
 * Pruebas para Tareas
 ? "Pruebas para Tareas"
 oTareas.CrearColeccionTareas()
 oTareas.AgregarTareaDefecto()
 oTareas.MostrarTareas()
-
+? ""
+? ""
+? ""
 * Pruebas para Grupos
 ? "Pruebas para Grupos"
 oGrupos.CrearColecionGrupos()
 oGrupos.MostrarGrupos()
-
+? ""
+? ""
+? ""
 * Pruebas para Dependencias
 ? "Pruebas para Dependencias"
 oDependencias.CrearColecionDependencias()
 oDependencias.MostrarDependencias()
-
+? ""
+? ""
+? ""
 * Pruebas para Controlador
 ? "Pruebas para Controlador"
 oControlador.CrearColeccionTareas()
 oControlador.CrearColecionGrupos()
 oControlador.CrearColecionDependencias()
-
+? ""
+? ""
+? ""
 ? "Agregar Tarea"
 oControlador.AgregarTarea(4, "Nueva Tarea", "Nuevo Grupo", "Nueva Dependencia", "Nueva Descripcion")
 ? "Tareas después de agregar"
 oControlador.ColeccionTareas.Item(4).MostrarDetalles()
-
+? ""
+? ""
+? ""
 ? "Actualizar Tarea"
 oControlador.ActualizarTarea(4, "Tarea Actualizada", "Grupo Actualizado", "Dependencia Actualizada", "Descripcion Actualizada")
 ? "Tareas después de actualizar"
 oControlador.ColeccionTareas.Item(4).MostrarDetalles()
-
+? ""
+? ""
+? ""
 ? "Eliminar Tarea"
-oControlador.EliminarTarea(4)
-? "Validación de existencia de tarea eliminada: ", oControlador.ValidarExistenciaTarea(4)
+oControlador.EliminarTarea(2)
+? "Validación de existencia de tarea ELIMINADA(1): ", oControlador.ValidarExistenciaTarea(2)
+
+
+*Encapzulacion de error
+PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
+    MESSAGEBOX("Código Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualización de Errores")
+ENDPROC

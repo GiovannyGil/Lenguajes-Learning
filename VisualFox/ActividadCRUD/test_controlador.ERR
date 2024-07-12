@@ -1,0 +1,10 @@
+Test_InitControlador()
+Error in line 80: Statement is not in a procedure.
+Test_AgregarTarea()
+Error in line 81: Statement is not in a procedure.
+Test_LeerTarea()
+Error in line 82: Statement is not in a procedure.
+Test_ActualizarTarea()
+Error in line 83: Statement is not in a procedure.
+Test_EliminarTarea()
+Error in line 84: Statement is not in a procedure.

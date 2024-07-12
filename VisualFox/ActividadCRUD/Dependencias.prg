@@ -8,7 +8,7 @@ DEFINE CLASS Dependencias As Custom
     PROCEDURE Init()
         This.CrearColecionDependencias()
         *This.AgregarDependencia()
-        * This.MostrarDependencias()
+        *This.MostrarDependencias()
     ENDPROC
 
     * crear la colección
@@ -24,7 +24,6 @@ DEFINE CLASS Dependencias As Custom
         This.ColectionDependencias.Add("Ingles")
         This.ColectionDependencias.Add("Matematicas")
         This.ColectionDependencias.Add("Historia")
-        
     ENDPROC
 
     * Mostrar los elementos de la colección
@@ -38,6 +37,6 @@ DEFINE CLASS Dependencias As Custom
 
     *Encapzulacion de error
     PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
-        MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64"Visualizaciòn de Errores")
+        MESSAGEBOX("Código Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualización de Errores")
     ENDPROC
 ENDDEFINE

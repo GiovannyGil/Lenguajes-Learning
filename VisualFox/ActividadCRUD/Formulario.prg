@@ -118,10 +118,30 @@ DEFINE CLASS FormularioCRUD As Form
 
 		* ---------------------------------------
 
+        * Crear el label e input ID -> OCULTO
+        THIS.AddObject("lblIDhidden", "Label")
+        WITH This.lblIDhidden
+            .Visible = .F.
+            .Top = 70
+            .Left = 300
+            .Caption = "ID:"
+            .Width = 50
+        ENDWITH
+        
+        THIS.AddObject("txtIDhidden", "Textbox")
+        WITH This.txtIDhidden
+            .Visible = .f.
+            .Top = 70
+            .Left = 320
+            .Width = 50
+        ENDWITH
+        
+        * ---------------------------------------
+
     	* Crear el label e input IDTarea para la solicitud de leer la tarea
         THIS.AddObject("lblID", "Label")
         WITH This.lblID
-            .Visible = .T.
+            .Visible = .F.
             .Top = 248
             .Left = 30
             .Caption = "ID:"
@@ -242,6 +262,7 @@ DEFINE CLASS FormularioCRUD As Form
             * Enlazar el cursor al grid
             .RecordSource = "curTareas" && 
             .RecordSourceType = 2  && 2 indica que RecordSource es un alias de tabla
+
             
             * Mover el cursor al primer registro
             GO TOP IN curTareas
@@ -307,7 +328,7 @@ DEFINE CLASS FormularioCRUD As Form
                 VALUES (oTarea.IDTarea, oTarea.Nombre, oTarea.Grupo, oTarea.Dependencia, oTarea.Descripcion)
         ENDFOR
 
-
+        
         RETURN oControlador.ColeccionTareas
     ENDPROC
 
@@ -337,6 +358,7 @@ DEFINE CLASS FormularioCRUD As Form
     
         * Verificar si se encontró la tarea
         IF NOT ISNULL(oTarea)
+            this.txtIDhidden.value = oTarea.IDTarea
             this.txtNombre.Value = oTarea.Nombre
             this.txtGrupo.Value = oTarea.Grupo
             this.txtDependencia.Value = oTarea.Dependencia
@@ -353,16 +375,23 @@ DEFINE CLASS FormularioCRUD As Form
         
         * Llamar al método LeerTarea del controlador
         oTarea = This.Controlador.LeerTarea(sIDTarea)
+
+        * comprobar que el campo no este vacio
+        IF EMPTY(sIDTarea)
+            MESSAGEBOX("Por favor ingrese el ID de la tarea a leer.", 16, "Error")
+            RETURN
+        ENDIF
         
         * Llenar los campos del formulario con los datos de la tarea
         IF NOT ISNULL(oTarea)
+            this.txtIDhidden.value = oTarea.IDTarea
             This.txtNombre.Value = oTarea.Nombre
             This.cbxGrupo.Value = oTarea.Grupo
             This.cbxDependencia.Value = oTarea.Dependencia
             This.txtDescripcion.Value = oTarea.Descripcion
-            WITH Thisform
-                .txtID.value=""
-            ENDWITH
+            *!*	 WITH Thisform
+            *!*	     .txtID.value=""
+            *!*	 ENDWITH
         ELSE
             MESSAGEBOX("Error: No se encontró la tarea.", 16, "Error")
         ENDIF
@@ -384,7 +413,7 @@ DEFINE CLASS FormularioCRUD As Form
         ENDIF
 
         * Obtener los valores de los campos del formulario
-        sIDTarea = oColeccionTareas.Count + 1
+        sIDTarea = o ColeccionTareas.Count + 1
         sNombre = This.txtNombre.Value
         sGrupo = This.cbxGrupo.Value
         sDependencia = This.cbxDependencia.Value
@@ -441,7 +470,7 @@ DEFINE CLASS FormularioCRUD As Form
         LOCAL oControlador
         
         * Obtener el ID de la tarea a actualizar
-        sIDTarea = VAL(This.txtID.Value)
+        sIDTarea =This.txtIDhidden.Value
         
         * Verificar que el ID no esté vacío
         IF EMPTY(sIDTarea)
@@ -462,6 +491,7 @@ DEFINE CLASS FormularioCRUD As Form
         IF oControlador.ActualizarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
             MESSAGEBOX("Tarea actualizada correctamente.", 0, "Éxito")
             * Actualizar el grid para reflejar los cambios
+            This.LimpiarCampos()
             This.ActualizarGrid(oControlador)
         ELSE
             MESSAGEBOX("Error: La tarea no se pudo actualizar.", 16, "Error")
@@ -471,30 +501,30 @@ DEFINE CLASS FormularioCRUD As Form
 
 	* Eliminar una tarea por su ID
     PROCEDURE EliminarTarea
-        *!*	 LOCAL sIDTarea
-        *!*	 sIDTarea = This.txtID.Value
-        LOCAL lnIDTarea
-        lnIDTarea = VAL(ThisForm.txtID.Value)  && Convertir el valor a numérico
+        LOCAL lnIDTarea, sIDTarea
+        lnIDTarea = VAL(ThisForm.txtID.Value) && Convertir el valor a numérico
 
-
-        IF EMPTY(lnIDTarea)
+        * Verificar que el ID no esté vacío
+        IF EMPTY(lnIDTarea) 
             MESSAGEBOX("Por favor ingrese el ID de la tarea a eliminar.", 16, "Error")
             RETURN
         ENDIF
 
         * Llamar a EliminarTarea pasando el ID convertido
-        IF This.Controlador.EliminarTarea(lnIDTarea)
-            MESSAGEBOX("Tarea eliminada correctamente.", 0, "Éxito")
-            ThisForm.LimpiarCampos()
-            ThisForm.ActualizarGrid(ThisForm.Controlador)  && Actualizar el grid en el formulario
-        ELSE
+        IF NOT This.Controlador.EliminarTarea(lnIDTarea)
             MESSAGEBOX("Error: La tarea no se pudo eliminar, o no existe", 16, "Error")
         ENDIF
+
+        *!*	 mensaje de confirmacion
+        MESSAGEBOX("Tarea eliminada correctamente.", 0, "Éxito")
+        ThisForm.LimpiarCampos() && limpiar los campos
+        ThisForm.ActualizarGrid(ThisForm.Controlador)  && Actualizar el grid en el formulario
     ENDPROC
 
 	* Limpiar los campos del formulario
     PROCEDURE LimpiarCampos
         WITH Thisform
+        	.txtIDhidden.value = ""
             .txtNombre.Value = ""
             .txtDescripcion.Value = ""
             .txtID.value=""
@@ -505,7 +535,8 @@ DEFINE CLASS FormularioCRUD As Form
 
     *Encapzulacion de error
     PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
-        MESSAGEBOX("Còdigo Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64"Visualizaciòn de Errores")
+        MESSAGEBOX("Código Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualización de Errores")
     ENDPROC
+
 		
 ENDDEFINE
