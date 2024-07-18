@@ -43,3 +43,13 @@ def Anagrama(palabra1, palabra2):
 ver = Anagrama(palabra1, palabra2)
 # inprimir la funcion
 print(ver)
+
+
+
+'''
+escritor = 'Fyodor Mikhailovich Dostoevsky'
+cadenaInvertida = escritor[::-1]
+print(cadenaInvertida)
+
+forma corta de revertir una cadena de texto
+'''
