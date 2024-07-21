@@ -23,5 +23,4 @@ def EsPrimo(numero):
         print(f'El numero {num} es primo')
         return True
 
-
 ver = EsPrimo(numero)

@@ -75,6 +75,7 @@ DEFINE CLASS FormularioCRUD As Form
             .Top = 117
             .Left = 145
             .Width = 100
+            .Style = 2
         ENDWITH
 
 		* ---------------------------------------
@@ -94,6 +95,7 @@ DEFINE CLASS FormularioCRUD As Form
             .Top = 117
             .Left = 260
             .Width = 100
+            .Style = 2
         ENDWITH
 
 		* ---------------------------------------
@@ -130,7 +132,7 @@ DEFINE CLASS FormularioCRUD As Form
         
         THIS.AddObject("txtIDhidden", "Textbox")
         WITH This.txtIDhidden
-            .Visible = .f.
+            .Visible = .F.
             .Top = 70
             .Left = 320
             .Width = 50
@@ -141,7 +143,7 @@ DEFINE CLASS FormularioCRUD As Form
     	* Crear el label e input IDTarea para la solicitud de leer la tarea
         THIS.AddObject("lblID", "Label")
         WITH This.lblID
-            .Visible = .F.
+            .Visible = .T.
             .Top = 248
             .Left = 30
             .Caption = "ID:"
@@ -287,7 +289,7 @@ DEFINE CLASS FormularioCRUD As Form
             .Column3.ReadOnly = .T.
 
             .Column4.Header1.Caption = "Dependencia"
-            .Column5.Width = 90
+            .Column4.Width = 90
             .Column4.Visible = .T.
             .Column4.ReadOnly = .T.
 
@@ -413,7 +415,8 @@ DEFINE CLASS FormularioCRUD As Form
         ENDIF
 
         * Obtener los valores de los campos del formulario
-        sIDTarea = o ColeccionTareas.Count + 1
+        *!*	 set step on 
+        sIDTarea = oColeccionTareas.item(oColeccionTareas.count).IDTarea + 1
         sNombre = This.txtNombre.Value
         sGrupo = This.cbxGrupo.Value
         sDependencia = This.cbxDependencia.Value
@@ -429,7 +432,7 @@ DEFINE CLASS FormularioCRUD As Form
         oControlador.AgregarTarea(sIDTarea, sNombre, sGrupo, sDependencia, sDescripcion)
 
         * Verificar si la tarea se agregó correctamente
-        IF oControlador.ColeccionTareas.Count = sIDTarea
+        IF  oColeccionTareas.item(oColeccionTareas.count).IDTarea = sIDTarea
             MESSAGEBOX("Tarea agregada correctamente.", 0, "Éxito")
         ELSE
             MESSAGEBOX("Error: La tarea no se agregó a la colección.", 0, "Error")
@@ -438,7 +441,6 @@ DEFINE CLASS FormularioCRUD As Form
 
         * Limpiar los campos del formulario
         This.LimpiarCampos()
-
         * Actualizar el grid con la nueva colección de tareas
         This.ActualizarGrid(oControlador)
     ENDPROC
@@ -448,7 +450,7 @@ DEFINE CLASS FormularioCRUD As Form
     
         * Crear un cursor temporal para enlazar con el grid
         CREATE CURSOR curTareas (IDTarea I, Nombre C(50), Grupo C(50), Dependencia C(50), Descripcion C(100))
-            
+            *!*	 set step on 
         * Recorrer la colección de tareas y agregarlas al cursor
         FOR i = 1 TO oControlador.ColeccionTareas.Count
             oTarea = oControlador.ColeccionTareas.Item(i)
@@ -461,7 +463,32 @@ DEFINE CLASS FormularioCRUD As Form
         SELECT curTareas 
         GO TOP
         This.grdTareas.Refresh()
-        
+        WITH This.grdTareas
+        .Column1.Header1.Caption = "ID"
+        .Column1.Width = 30
+        .Column1.Visible = .T.
+        .Column1.ReadOnly = .T.
+
+        .Column2.Header1.Caption = "Nombre"
+        .Column2.Width = 70
+        .Column2.Visible = .T.
+        .Column2.ReadOnly = .T.
+
+        .Column3.Header1.Caption = "Grupo"
+        .Column3.Width = 80
+        .Column3.Visible = .T.
+        .Column3.ReadOnly = .T.
+
+        .Column4.Header1.Caption = "Dependencia"
+        .Column4.Width = 90
+        .Column4.Visible = .T.
+        .Column4.ReadOnly = .T.
+
+        .Column5.Header1.Caption = "Descripción"
+        .Column5.Width = 120
+        .Column5.Visible = .T.
+        .Column5.ReadOnly = .T.
+        ENDWITH
     ENDPROC
 
     * Actualizar una tarea existente
@@ -470,7 +497,7 @@ DEFINE CLASS FormularioCRUD As Form
         LOCAL oControlador
         
         * Obtener el ID de la tarea a actualizar
-        sIDTarea =This.txtIDhidden.Value
+        sIDTarea = This.txtIDhidden.Value
         
         * Verificar que el ID no esté vacío
         IF EMPTY(sIDTarea)
@@ -494,9 +521,10 @@ DEFINE CLASS FormularioCRUD As Form
             This.LimpiarCampos()
             This.ActualizarGrid(oControlador)
         ELSE
-            MESSAGEBOX("Error: La tarea no se pudo actualizar.", 16, "Error")
+            MESSAGEBOX("No se encontró la tarea con el ID especificado.", 16, "Error")
         ENDIF
     ENDPROC
+
 
 
 	* Eliminar una tarea por su ID
@@ -512,8 +540,12 @@ DEFINE CLASS FormularioCRUD As Form
 
         * Llamar a EliminarTarea pasando el ID convertido
         IF NOT This.Controlador.EliminarTarea(lnIDTarea)
+
             MESSAGEBOX("Error: La tarea no se pudo eliminar, o no existe", 16, "Error")
+            RETURN
         ENDIF
+
+
 
         *!*	 mensaje de confirmacion
         MESSAGEBOX("Tarea eliminada correctamente.", 0, "Éxito")

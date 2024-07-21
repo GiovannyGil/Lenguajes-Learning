@@ -39,19 +39,20 @@ DEFINE class Controlador As Custom
     Endfunc
 
     * Validar la existencia de una tarea por su ID
-    Procedure ValidarExistenciaTarea
-        Parameters IdToEvaluated As Integer 
+    *!*	 Procedure ValidarExistenciaTarea
+    *!*	     Parameters IdToEvaluated As Integer 
 
-        Return Iif(Vartype(This.ColeccionTareas.Item(IdToEvaluated)) != [O], .f., .t.) 
+    *!*	     Return Iif(type(This.ColeccionTareas.Item(IdToEvaluated)) != [O], .f., .t.) 
 
-        *!*	 LOCAL lResult
-        *!*	 lResult = .F.
-        *!*	 IF THIS.ColeccionTareas.COUNT >= IdToEvaluated
-        *!*	     lResult = IIF(TYPE("THIS.ColeccionTareas.ITEM(IdToEvaluated)") == "O", .T., .F.)
-        *!*	 ENDIF
-        *!*	 RETURN lResult
     
-    Endproc
+    *!*	 Endproc
+
+        * Validar la existencia de una tarea por su ID
+        FUNCTION ValidarExistenciaTarea(IdToEvaluated As Integer) AS Logical
+            LOCAL oTarea
+            oTarea = This.LeerTarea(IdToEvaluated)
+            RETURN NOT ISNULL(oTarea)
+        ENDFUNC
 
     * Lee una tarea de la colección por su ID
     PROCEDURE LeerTarea(IdToEvaluated)

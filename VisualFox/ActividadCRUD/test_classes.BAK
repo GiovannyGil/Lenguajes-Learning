@@ -66,11 +66,5 @@ oControlador.ColeccionTareas.Item(4).MostrarDetalles()
 ? ""
 ? ""
 ? "Eliminar Tarea"
-oControlador.EliminarTarea(2)
-? "Validación de existencia de tarea ELIMINADA(1): ", oControlador.ValidarExistenciaTarea(2)
-
-
-*Encapzulacion de error
-PROCEDURE Error(nerror as Integer, cmethod as String, nline as Integer)
-    MESSAGEBOX("Código Error: " + ALLTRIM(STR(nerror)) + Chr(13) + "Metodo: " + cmethod + CHR(13) + "Linea: " + ALLTRIM(STR(nline)), 64, "Visualización de Errores")
-ENDPROC
+oControlador.EliminarTarea(4)
+? "Validación de existencia de tarea ELIMINADA(4): ", oControlador.ValidarExistenciaTarea(2)

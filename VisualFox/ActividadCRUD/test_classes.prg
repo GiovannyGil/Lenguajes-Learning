@@ -66,5 +66,5 @@ oControlador.ColeccionTareas.Item(4).MostrarDetalles()
 ? ""
 ? ""
 ? "Eliminar Tarea"
-oControlador.EliminarTarea(2)
-? "Validación de existencia de tarea ELIMINADA(1): ", oControlador.ValidarExistenciaTarea(2)
+oControlador.EliminarTarea(4)
+? "Validación de existencia de tarea ELIMINADA(4): ", oControlador.ValidarExistenciaTarea(4)
