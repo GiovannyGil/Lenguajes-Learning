@@ -1,0 +1,1 @@
+// sirve para encontrar errores en la aplicacion y así poder solucionarlos
