@@ -1,0 +1,26 @@
+*, ::after, ::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main{
+    display: flex;
+    height: 100vh;
+}
+
+.clip-path{
+    margin: auto;
+    width: 700px;
+    height: 400px;
+    background: linear-gradient(crimson, blue);
+    /* clip-path: circle(50% at center right); */
+    /* clip-path: inset(30px round 30px 80px); */
+    /* clip-path: inset(10% 40%); */
+    /* top right bottom left */
+    /* clip-path: ellipse(40% 50%); */
+    /* clip-path: polygon(0px 100%, 0.67% 6px, 100% 100%); */
+    /* clip-path:  */
+    /* polygon(50% 0, 0 38%,18% 100%, 82% 100%, 100% 38%); */
+    clip-path: url(#recorte);
+}

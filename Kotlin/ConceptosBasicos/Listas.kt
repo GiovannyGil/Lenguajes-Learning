@@ -2,6 +2,7 @@
     LISTAS
 
     (List) las listas son inmutables -> no se pueden modificar despues de su creacion/instanciacion 
+    
     MutableList son un tipo de listas mutables, que se peuden modificar luego de su creacion, NO tienen una longitud definidad, pueden crecer y disminuir
  */
 

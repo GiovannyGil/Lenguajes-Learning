@@ -38,3 +38,9 @@ true
 false
 
  */
+
+
+ // cambio o transformas de tipo
+
+ x.toInt() // pasar a numero enterio
+ y.toString() // pasar a texto

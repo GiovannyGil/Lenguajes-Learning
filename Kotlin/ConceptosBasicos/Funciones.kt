@@ -104,3 +104,8 @@ fun main() {
 fun add(firstNumber: Int, SecondNumber: Int): Int{
     return firstNumber + SecondNumber
 }
+
+// funcioens lambda
+val sum = {x:Int, y:Int -> x + y}
+VAL Result = sum(12, 11)
+println(Result)

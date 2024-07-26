@@ -1,0 +1,104 @@
+:root{
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient1: linear-gradient(135deg, #667eea86 0%, #764ba28e 100%);
+    --url-Img: url(img/img.jpg); /* url image en una variable css */
+    --box-shadow: 6px 6px 10px rgba(0,0,0, .6);
+    --width: 100%;
+    --radius: 8px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    background-image: var(--gradient1), var(--url-Img);
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    background-position: center;
+}
+
+.form{
+    width: 400px;
+    background: white;
+    margin: 70px auto;
+    padding:  30px 20px 40px;
+    text-align: center;
+    border-radius: var(--radius);
+    box-shadow: var(--box-shadow );
+    overflow: hidden;
+}
+
+.input{
+    width: var(--width);
+    padding: 20px 5px;
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid #b39b9b;
+    outline: none;
+}
+
+.input, .form_submit{
+    font-family: inherit;
+}
+.form_title{
+    margin-bottom: 40px;
+    font-size: 2rem;
+
+}
+/* dar una tamaño estandar al textarea, e impedir que se haga mas gradne o pequeño */
+.form_message{
+    max-width: var(--width);
+    min-width: var(--width);
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.form_submit{
+    display: block;
+    width: var(--width);
+    font-size: 18px;
+    background-image: var(--gradient);
+    padding: 15px 30px;
+    border: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.form_submit:hover{
+    background-image: var(--gradient1);
+}
+
+@media screen and (max-width: 750px){
+    body{
+        padding: 80px 0;
+        background-repeat: no-repeat;
+    }
+
+    .form{
+        margin: 20px auto;
+    }
+    
+}
+
+@media screen and (max-width: 500px){
+    body{
+        padding: 40px 0;
+    }
+    .form{
+        width: 90%;
+    }
+
+    .form_title{
+        font-size: 1.5rem;
+    }
+
+    .form_submit{
+        font-size: 16px;
+    }
+}

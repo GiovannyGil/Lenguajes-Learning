@@ -10,6 +10,16 @@
 val numbers: Array<Int> = arrayOf(1, 2, 3, 4, 5)
 println(numbers.joinToString()) // Imprime: 1, 2, 3, 4, 5
 
+
+/**
+más formas de declarar arryas
+arrayof - 
+intarrayof ... -> un array de solo datos enteros
+Array<Int>
+
+Array<String>
+ */
+
 // Acceder a un elemento
 println(numbers[2]) // Imprime: 3
 
