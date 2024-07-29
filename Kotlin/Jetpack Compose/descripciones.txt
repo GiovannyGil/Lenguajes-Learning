@@ -1,0 +1,55 @@
+-- MainActivity -> archivo principal / main de la app
+
+setContent: todo el contenido (enmaquetado de la app) va en este componente
+
+surface: color del background de la app establecido por defecto(blanco) o modificado
+
+@Composable: tranforma/covienrte lo que tenga dentro(una funcion) en un componente, por lo generar es algo visual (botones, card, etc ... parte visual) se muestran dentro del setContent
+todas las funciones deben empezar por letra mayuscula, por estandar y buenas prácticas
+
+las funcines de logica no llevan en @Composable
+
+@Preview(showBackground = true) -> se pone encima de una funcion o metodo, que permite mostrar en tiempo real el diseño de la app si necesidad del simulador, pero esta limitado a solo mostrar, no interacturas
+
+modificadores: 
+modifican o moldean el comporamiento de los componenetes
+- tipos
+    -- posicionamiento/tamaño: width, height
+    -- funcinalidad: pueda ser clickqueablo
+    -- apariencia: background, padding, border
+    -- escucha: onKeyEvent (precion click, tecla, componentes) 
+- declaracion: modifier = Modifier.background(Color.Cyan) -> cambia el color y los elementos más que se quiera o sea necesario
+el orden si importar al poner modificadores
+
+FILAS Y COLUMNAS
+- Columnas: Column() {}
+- Filas: Row() {}
+
+// pueden funcionar como si fuera un foreach
+// genera un scroll donde se utiliza un componente con muchos datos (para ver los todos cuando no se muestran todos en pantalla)
+- LazyRow() {} // scroll horizontal
+- LazyColumn() {} // scroll vertical
+
+
+estilos (temas y colores)
+se cambian o gregan en la ruta iu/theme
+es donde se guardan los archivos editables de estilos
+
+componenetes:
+carpeta en la que se deben guardar los archivos/componenetes para modularizar la app y cumplir con la POO y llamar desde el main
+
+
+modularización
+Se debe manejar un estandar para crear los directorios y metodo
+Home -> ./Homeview
+Home -> ContentHomeView() {}
+
+
+que se siga una secuencia para que se entienda mejor  y llevar un orden
+
+scaffold: sirve para marcar zonas, como boton flotante, cabecera, pie de pagina etc
+
+topbar -> header, para menu de navegacion o header un titulo
+bottombar -> footer, para pie de pagina o footer un titulo
+van dentro de la rquiqueta scaffold
+
