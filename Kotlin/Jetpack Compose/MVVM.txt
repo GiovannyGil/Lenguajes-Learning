@@ -1,0 +1,42 @@
+MVVM -> DEFINICIONES
+
+dividir la app en tres partes o secciones
+
+view: carpetaViews -> es la interface
+no tiene lógica, solo muestra la interfaz y los datos(los lee, no los modifica)
+
+Model: Modelos de datos -> dataclass, se generan las variales/campos de datos (usuarios: nombre, apellidos ...)
+es la representacion de las tablas de la DDBB
+
+ViewModel: clases que tienen los metodos/funciones que manejan la lógica
+class "Nombre": ViewModel() {}
+las variables, metodos, ... creados en la logica (viewmodel) solo puede ser leido desde el view
+
+Repositorio: contiene los metodos necesarios para la base de datos (CRUD), el viewmodel los lee
+
+
+
+ViewModel:
+    Temas:
+        - Retrofit: llamado a APIS
+        - Room: BBDD local
+        - Coroutines: 
+        - Flow: variales reactivas/tiempo real
+        - Etc: 
+
+
+
+Estructura de las carpetas:
+java/
+    /com."nombre-proyecto"/
+        /ui.theme/
+        /viewModel/...
+        /views/...
+        /model/...
+        /repository/...
+        MainActivity.kt
+
+"importar" el viewmodel en el MainActivity.kt
+    val viewModel : "nombre-del-viewModel" by viewModel()
+    --- variable de tipo viewModel -> "nombre-del-viewModel"
+    

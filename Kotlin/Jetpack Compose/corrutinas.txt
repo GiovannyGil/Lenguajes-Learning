@@ -1,0 +1,67 @@
+corrutinas: (Optimización)
+permite ejecutar partes del código en diferentes hilos(procesos)
+
+trabajar por hilos / diferentes hilos
+programacion asincrona
+hacer tareas en segundo plano
+evitar trafico o cuello de botella en llamados a la DDBB
+evitar el bloqueo principal
+
+
+Hilos:
+- se parar las tareas/procesos de forma individual
+- Son procesos que se ejecutan en segundo plano
+
+se trabaja con (corrutinas)
+    Hilos (Dispatcher)
+    - Dispatcher.Main : Proceso de interfaz
+    - Dispatcher.IO : llamado a APIS
+    - Dispatcher.IO : consulta a DDBB
+    - Dispatcher.Default : calculos matematicos / (procesos pesados)
+ 
+Conceptos Claves:
+- corrutineScope: crear corrutinas
+- Dispatchers: elegir el hilo
+- Launch: ejecutar la corrutina
+- Suspend: funciones (antes de las corrutinas) para identificarlas y se puedan elecutar
+
+lo ideal es crear la corrutinas desde los viewmodel
+
+crear corrutina:
+----------------------------------------------------
+fun "NombreFuncion"(){
+    var resultState by mutableStateOf("")
+        private set 
+
+    var isLoading by mutableStateOf(false)
+        private set
+
+    viewModelScope.launch {
+        try{
+            isLoading = true
+            llamarApi()
+        } catch (e:Exception) {
+            println("Error" ${e.message})
+        } finally {
+            isLoading = false
+        }
+    }
+}
+
+// funcion que se usara en el hilo
+private suspend fun llamarApi() {
+    val result = withContext(Dispatchers.IO){
+        // simular espera
+        delay(5000)
+        "Respuesta de la API"
+    }
+    resultState = result
+}
+-------------------------------------------------------
+
+flow: declarar variables en tiempo real
+es mejor el flow que el mutableStateOf() <- se debe recargar manualmente
+es asincrono y en tiempo real
+
+declaracion: 
+private val "_lista": MutableStateFlow<list<"Items">> = MutableStateFlow(emptylist())

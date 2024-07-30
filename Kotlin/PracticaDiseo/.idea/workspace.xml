@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ff091d7c-1d6a-4ee5-ae72-c235e7ca1383" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/migrations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/androidTest/java/com/example/practicadiseo/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/java/com/example/practicadiseo/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/java/com/example/practicadiseo/ui/theme/Color.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/java/com/example/practicadiseo/ui/theme/Theme.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/java/com/example/practicadiseo/ui/theme/Type.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/java/com/example/practicadiseo/views/HomeView.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/app/src/test/java/com/example/practicadiseo/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/gradle/libs.versions.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practicas/PracticaDiseño/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/public/bundle.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/public/bundle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/public/bundle.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/public/bundle.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/public/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/public/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/public/bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/public/bundle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_fondo.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_fondo.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_formulario-gasto.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_formulario-gasto.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_gastos.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_gastos.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_generales.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_generales.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/App_gastos/sass/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/public/bundle.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/public/bundle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/public/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/public/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/public/bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/public/bundle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_btn.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_btn.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_generales.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_generales.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_media.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_media.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_sidebar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/sass/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Peliculas/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/public/bundle.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/public/bundle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_comentarios.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_comentarios.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_generales.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_generales.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_hero.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_hero.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_trabajos.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_trabajos.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_ventana.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/_ventana.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVASCRIPT/Practicas/Portafolio/sass/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Practicas/DescuentosApp/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Practicas/DescuentosApp/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Practicas/DescuentosApp/.idea/migrations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Practicas/DescuentosApp/app/src/main/java/com/example/descuentosapp/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Practicas/DescuentosApp/app/src/main/java/com/example/descuentosapp/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Practicas/DescuentosApp/app/src/main/java/com/example/descuentosapp/views/HomeView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Practicas/DescuentosApp/app/src/main/java/com/example/descuentosapp/views/HomeView.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=45b4ca1f)]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2jyfrQOUZQQXAfULukD2dXJr5vF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Android App.app.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="PracticaDiseño.app.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ff091d7c-1d6a-4ee5-ae72-c235e7ca1383" name="Changes" comment="" />
+      <created>1722364436042</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722364436042</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

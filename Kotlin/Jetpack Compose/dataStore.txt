@@ -1,0 +1,48 @@
+dataStore:
+
+forma más basica de almacenamiento de datos, para usarlos posteriormente
+los registros guardados en el dataStore, se guardan en el telefono.
+
+solo se eliminan desintalando la app
+
+declaracion:
+var email by remember {mutableStateOf("")}
+remembre -> se puede perder o resetar si se gira el dispositivo
+
+var email by rememberSaveable {mutableStateOf("")}
+rememberSaveable -> soporta el giro del dispositivo
+
+es más practico usar su propia clase para el dataStore y no usarlo en los viewModel
+
+
+
+
+el Context -> permite entrar a diferentes recursos del S.O
+private val context: Context
+
+
+variables estaticas:
+
+definir miembros de una clase, que se pueden acceder sin la necesidad de crear una instancia de la clase
+
+en dataStore, para generar las variables
+
+companion object {
+    // preferencias -> androidx
+    private val Context.dataStore: DataStore<Preferences> by prefencesDtaStore("NombreDATO/CAMPO/ETC..")
+    val NOMBRE_EMAIL = stringPreferencesKey("nombre-a-usar")
+}
+
+
+llamar el dato guardado en el dataStore
+val getNombre: Flow<String> = context.dataStore.data
+    .map { preferences ->
+        preferences[NOMBRE_EMAIL] ?: ""
+    }
+
+Guardar
+suspend fun saveEmail(email: String) {
+        context.dataStore.edit { preferences -> 
+        preferences[NOMBRE_EMAIL] = email
+    }
+}
