@@ -1,3 +1,5 @@
 package com.example.practica_todo_crud.model
 
-data class Tareas()
+data class Tareas(
+    val id: String,
+)
