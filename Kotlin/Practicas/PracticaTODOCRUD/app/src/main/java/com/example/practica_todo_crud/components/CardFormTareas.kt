@@ -6,7 +6,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.DarkGray
+import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color.Companion.LightGray
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.Color.Companion.Yellow
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -36,59 +44,55 @@ fun ElegantFormCard(
     ) {
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(top = 10.dp, bottom = 16.dp, start = 16.dp, end = 16.dp,)
         ) {
             Text(
-                text = "Formulario",
+                text = "Nueva Tarea",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
-                    .padding(bottom = 8.dp),
+                    .padding(bottom = 5.dp)
+                    .align(alignment = Alignment.CenterHorizontally),
             )
             OutlinedTextField(
                 value = "",
                 onValueChange = { titleState = it },
                 label = {
-                    Text("Título", color = Color.DarkGray)
+                    Text("Título", color = DarkGray, modifier = Modifier
+                        .background(color = Transparent)
+                    )
                         },
+
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = Color.LightGray, // Fondo blanco para los campos
-                    unfocusedContainerColor = Color.LightGray, // Fondo blanco para los campos
-
-                    disabledContainerColor = Color.White,
-                    focusedBorderColor = Transparent, // Borde azul transparente al enfocarse
-                    unfocusedBorderColor = Transparent, // Borde azul transparente sin enfoque
-
-                    unfocusedLabelColor = Transparent,
-                    focusedLabelColor = Transparent,
-
-                    unfocusedPlaceholderColor = Transparent,
-                    focusedTextColor = Color.White
-                ),
+                    focusedContainerColor = Transparent, // Fondo blanco para los campos
+                    unfocusedContainerColor = Transparent, // Fondo blanco para los campos
+                    focusedBorderColor = Black, // Borde azul transparente al enfocarse
+                    unfocusedBorderColor = DarkGray, // Borde azul transparente sin enfoque
+                    ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = 5.dp)
             )
             OutlinedTextField(
                 value = "",
                 onValueChange = { descState = it },
-                label = { Text("Descripción", color = Color.DarkGray) },
+                label = { Text("Descripción", color = DarkGray) },
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = Color.White, // Fondo blanco para los campos
-                    unfocusedContainerColor = Color.White,
-                    disabledContainerColor = Color.White,
-                    focusedBorderColor = Color.LightGray, // Borde azul celeste al enfocarse
-                    unfocusedBorderColor = Color.LightGray, // Borde azul celeste sin enfoque
+                    focusedContainerColor = Transparent, // Fondo blanco para los campos
+                    unfocusedContainerColor = Transparent, // Fondo blanco para los campos
+                    focusedBorderColor = Black, // Borde azul transparente al enfocarse
+                    unfocusedBorderColor = DarkGray, // Borde azul transparente sin enfoque
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = 5.dp)
+                    .height(150.dp)
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = 5.dp)
             ) {
                 Text(
                     text = "Estado",
@@ -99,10 +103,14 @@ fun ElegantFormCard(
                     checked = estadoState,
                     onCheckedChange = { estadoState = it },
                     colors = SwitchDefaults.colors(
-                        checkedThumbColor = Color.White, // Color del punto cuando está activado
-                        uncheckedThumbColor = Color.DarkGray, // Color del punto cuando está desactivado
+                        checkedThumbColor = White, // Color del punto cuando está activado
                         checkedTrackColor = lightBlue, // Color de fondo del switch activado
-                        uncheckedTrackColor = lightBlue // Color de fondo del switch desactivado
+
+                        uncheckedThumbColor = lightBlue, // Color del punto cuando está desactivado
+                        uncheckedTrackColor = Color.DarkGray, // Color de fondo del switch desactivado
+
+                        checkedBorderColor = Transparent,
+                        uncheckedBorderColor = Transparent,
                     )
                 )
             }

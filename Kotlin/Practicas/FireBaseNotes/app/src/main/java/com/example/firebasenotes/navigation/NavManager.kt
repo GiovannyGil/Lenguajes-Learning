@@ -17,6 +17,7 @@ import com.example.firebasenotes.views.Notes.HomeView
 @Composable
 fun NavManager(loginVM: LoginViewModel, notesVM: NotesViewModel) {
     val navController = rememberNavController()
+
     NavHost(navController = navController, startDestination = "Blank" ){
         composable("Blank"){
             BlankView(navController)
