@@ -13,23 +13,22 @@ import com.example.practica_todo_crud.navigation.NavManager
 import com.example.practica_todo_crud.ui.theme.PracticaTODOCRUDTheme
 import com.example.practica_todo_crud.viewModel.LoginViewModel
 import com.example.practica_todo_crud.viewModel.TareasViewModel
-import com.example.practica_todo_crud.views.HomeView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val loginVM: LoginViewModel by viewModels()
-        val tareasVM: TareasViewModel by viewModels()
+        val loginVM : LoginViewModel by viewModels()
+        val tareasVM : TareasViewModel by viewModels()
 
 
         setContent {
             PracticaTODOCRUDTheme {
-                    //LoginView()
-                    //HomeView()
-                    //NavManager(loginVM, tareasVM)
-                BottomNavExample()
+                //LoginView()
+                //HomeView()
+                NavManager(loginVM, tareasVM)
+                //BottomNavExample()
             }
         }
     }

@@ -71,9 +71,7 @@ fun LoginView(navController: NavController, loginVM: LoginViewModel) {
                 title = "Alerta",
                 message = "Usuario y/o Contraseña incorrecta",
                 confirmText = "Aceptar",
-                onConfirmClick = { loginVM.closeAlert() }) {
-
-            }
+                onConfirmClick = { loginVM.closeAlert() }) {}
         }
     }
 }

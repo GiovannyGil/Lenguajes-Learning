@@ -16,12 +16,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
 class TareasViewModel: ViewModel() {
 
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore
+
+    //private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    //private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private val _tareaData = MutableStateFlow<List<Tareas>>(emptyList())
     val tareaData: StateFlow<List<Tareas>> = _tareaData
@@ -52,8 +56,8 @@ class TareasViewModel: ViewModel() {
                 val documents = mutableListOf<Tareas>()
                 if (querySnapshot != null){
                     for (document in querySnapshot) {
-                        val myDOcument = document.toObject(Tareas::class.java).copy(idTarea = document.id)
-                        documents.add(myDOcument)
+                        val myDocument = document.toObject(Tareas::class.java).copy(idTarea = document.id)
+                        documents.add(myDocument)
                     }
                 }
                 _tareaData.value = documents
@@ -101,7 +105,10 @@ class TareasViewModel: ViewModel() {
                 firestore.collection("Tareas")
                     .add(NewTarea)
                     .addOnSuccessListener {
+                        Log.d("SAVE SUCCESS", "Tarea guardada correctamente: ${it.id}")
                         onSuccess()
+                    } .addOnFailureListener { e ->
+                        Log.d("ERROR SAVE", "Error al guardar ${e.localizedMessage}")
                     }
 
             } catch (e: Exception) {
@@ -132,7 +139,7 @@ class TareasViewModel: ViewModel() {
     }
 
     // funcion para eliminar
-    fun daleteTarea(idTarea: String, onSuccess: () -> Unit) {
+    fun deleteTarea(idTarea: String, onSuccess: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 firestore.collection("Tareas").document(idTarea)

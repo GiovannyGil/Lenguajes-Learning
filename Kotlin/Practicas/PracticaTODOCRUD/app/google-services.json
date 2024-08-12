@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "947577271202",
+    "project_id": "crud-tareas-f70ea",
+    "storage_bucket": "crud-tareas-f70ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947577271202:android:7ac95d3fe8200a8d37f8fb",
+        "android_client_info": {
+          "package_name": "com.example.practica_todo_crud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgX1juB96PKpjIADBzfGHhtnkl4hbmAHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
