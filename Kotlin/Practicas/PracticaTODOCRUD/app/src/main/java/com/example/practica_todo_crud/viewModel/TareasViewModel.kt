@@ -39,6 +39,7 @@ class TareasViewModel: ViewModel() {
         when(text){
             "titulo" -> state = state.copy(titulo = value)
             "desc" -> state = state.copy(desc = value)
+            "estado" -> state = state.copy(estado = value.toBoolean())
         }
     }
 
@@ -75,7 +76,8 @@ class TareasViewModel: ViewModel() {
                     state = state.copy(
                         // elemento a editar
                         titulo = tarea?.titulo ?: "",
-                        desc = tarea?.desc ?: ""
+                        desc = tarea?.desc ?: "",
+                        estado = tarea?.estado ?: false
                     )
                 }
             }

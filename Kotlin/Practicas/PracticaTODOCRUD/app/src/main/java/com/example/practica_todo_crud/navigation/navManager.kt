@@ -11,6 +11,7 @@ import com.example.practica_todo_crud.viewModel.TareasViewModel
 import com.example.practica_todo_crud.views.Login.BlankView
 import com.example.practica_todo_crud.views.Login.TabsView
 import com.example.practica_todo_crud.views.Tareas.AddTarea
+import com.example.practica_todo_crud.views.Tareas.EditTarea
 import com.example.practica_todo_crud.views.Tareas.Tareas
 
 @Composable
@@ -30,10 +31,11 @@ fun NavManager(loginVM: LoginViewModel, tareasVM: TareasViewModel) {
         composable("AddTareas"){
             AddTarea(navController, tareasVM)
         }
-        composable("EditTareas/{idTarea}", arguments = listOf(
+        composable("EditTarea/{idTarea}", arguments = listOf(
             navArgument("idTarea") {type = NavType.StringType}
         )){
-            val idTarea = it.arguments?.getString("idTareas") ?: ""
+            val idTarea = it.arguments?.getString("idTarea") ?: ""
+            EditTarea(navController, tareasVM, idTarea)
         }
     }
 }

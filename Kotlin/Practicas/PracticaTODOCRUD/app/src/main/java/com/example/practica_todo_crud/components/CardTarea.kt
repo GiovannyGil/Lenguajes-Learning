@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 fun CardTarea(
     titulo: String,
     desc: String,
-    estado: Boolean,
+    estado: String,
     onClick:() -> Unit
 ) {
     var showAlert by remember { mutableStateOf(false) }
