@@ -13,6 +13,7 @@ import com.example.firebasenotes.views.Login.TabsView
 import com.example.firebasenotes.views.Notes.AddNoteView
 import com.example.firebasenotes.views.Notes.EditNoteView
 import com.example.firebasenotes.views.Notes.HomeView
+import com.example.firebasenotes.views.Notes.photoView
 
 @Composable
 fun NavManager(loginVM: LoginViewModel, notesVM: NotesViewModel) {
@@ -36,6 +37,12 @@ fun NavManager(loginVM: LoginViewModel, notesVM: NotesViewModel) {
         )){
             val idDoc = it.arguments?.getString("idDoc") ?: ""
             EditNoteView(navController, notesVM, idDoc )
+        }
+        composable("photoView/{idDoc}", arguments = listOf(
+            navArgument("idDoc") {type = NavType.StringType}
+        )){
+            val idDoc = it.arguments?.getString("idDoc") ?: ""
+            photoView(notesVM, idDoc )
         }
     }
 }

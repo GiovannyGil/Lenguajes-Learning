@@ -5,6 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.example.gamesretrofit.data.GamesDataSource
 import com.example.gamesretrofit.model.GameList
 import com.example.gamesretrofit.repository.GamesRepository
 import com.example.gamesretrofit.state.GameState
@@ -29,6 +33,11 @@ class GamesViewModel @Inject constructor(private val repo: GamesRepository) : Vi
         fetchGames()
     }
 
+    // llamar la paginacion (actualizando el cache)
+    val gamesPage = Pager(PagingConfig(pageSize = 3)) {
+        GamesDataSource(repo)
+    }.flow.cachedIn(viewModelScope)
+
     private fun fetchGames(){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
@@ -42,6 +51,21 @@ class GamesViewModel @Inject constructor(private val repo: GamesRepository) : Vi
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 val result = repo.getGameById(id)
+                state = state.copy(
+                    name = result?.name ?: "",
+                    description_raw = result?.description_raw ?: "",
+                    metacritic = result?.metacritic ?: 111,
+                    website = result?.website ?: "sin web",
+                    background_image = result?.background_image ?: "",
+                )
+            }
+        }
+    }
+
+    fun getGameByName(name : String){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                val result = repo.getGameByName(name)
                 state = state.copy(
                     name = result?.name ?: "",
                     description_raw = result?.description_raw ?: "",

@@ -2,6 +2,7 @@ package com.example.gamesretrofit.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
+import androidx.navigation.NavType.Companion.StringType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -18,11 +19,13 @@ fun NavManager(viewModel: GamesViewModel){
         composable("Home"){
             HomeView(viewModel, navController)
         }
-        composable("DetailView/{id}", arguments = listOf(
-            navArgument("id") { type = NavType.IntType }
+        composable("DetailView/{id}/?{name}", arguments = listOf(
+            navArgument("id") { type = NavType.IntType },
+            navArgument("name") { type = StringType }
         )  ){
             val id = it.arguments?.getInt("id") ?: 0
-            DetailView(viewModel, navController, id)
+            val name = it.arguments?.getString("name") ?: ""
+            DetailView(viewModel, navController, id, name)
         }
         composable("SearchGameView"){
             SearchGameView(viewModel, navController)

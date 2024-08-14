@@ -1,0 +1,46 @@
+dependencias: 
+- androidx.compose.material3
+- androidx.compose.material3-window-size-class
+- androidx.constraintlayout:constraintlayout-compose:"versión"
+- 
+
+EN EL MainActivity:
+val windowSizeClass = calculateWindowSizeClass(activity: this)
+
+funcioens:
+fun HomeSizeClass(windowSizeClass: WindowSizeClass) {}
+
+
+TAMAÑOS
+Compact = smartphone en vertical -> tamaño por defecto
+Medium = tablet -> en vertical
+Expanded = smartphone en horizontal -> table horizontal/vertical
+
+se usan con una condicional (if o when)
+
+when(windowSizeClass.widthSizeClass{
+    WindowWidthSizeClass.Expanded -> {}
+    WindowWidthSizeClass.Medium -> {}
+    WindowWidthSizeClass.Compact -> {}
+})
+
+--- <-- Para tener un diseño para cada tamaño se pueden hacer funciones diferentes, que manejen diferentes tamaños y proporciones
+<-- FlowRow:
+    - esto lo que hace es adaptar el contenido de acuert oa l tamaño del dispositivo
+
+<-- parametros:
+    - es pasar parametros a un componente, en los parametros se hace la comparacion del dispositivo y toma la mejor opcion
+    fun MainButton(size: Dp = 200.dp){
+        // código -> modificar en los onClick de acuerdo al dispositivo
+    }
+---
+
+ConstraintLayout
+- referencias:
+crear varias variables
+    val (cardRed, cardBlue, cardGreen, cardCyan, cardYellow) = createRefs() // crear referencia / id
+    Box(modifier = modifier..constrainAs(cardRed)
+        { //"aqui se manejan las referencias de los constrains"
+            bottom.linkTo(parent.bottom) // linkto -> enlazado a
+        }
+    ) ...

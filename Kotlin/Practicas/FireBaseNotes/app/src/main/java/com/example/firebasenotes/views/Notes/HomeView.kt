@@ -60,8 +60,10 @@ fun HomeView(navController: NavController, notesVM: NotesViewModel) {
 
             LazyColumn {
                 items(datos) { item ->
-                    CardNote(title = item.title, note = item.note, date = item.date) {
+                    CardNote(title = item.title, note = item.note, date = item.date, onClick = {
                         navController.navigate("EditNoteView/${item.idDoc}")
+                    }) {
+                        navController.navigate("photoView/${item.idDoc}")
                     }
                 }
             }
