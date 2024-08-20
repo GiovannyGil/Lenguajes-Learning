@@ -42,11 +42,15 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.style.TextMotion
 
 @Composable
 fun HomeView(navController: NavController) {
@@ -64,12 +68,21 @@ fun Contenido(texto: String) {
     // Variable para la animación
     val infiniteTransition = rememberInfiniteTransition(label = texto)
     val offsetX by infiniteTransition.animateFloat(
-        initialValue = 250f, // donde inicia la linea
-        targetValue = 730f, // donde termina la linea
+        initialValue = 100f, // donde inicia la linea
+        targetValue = 900f, // donde termina la linea
         animationSpec = infiniteRepeatable(
             animation = tween(durationMillis = 3000), // tiempo de transision
             repeatMode = RepeatMode.Restart // tipo de "repeticion"
         ), label = texto
+    )
+
+    // animacion del texto
+    val inifiniteTransition = rememberInfiniteTransition(label ="infinite transition")
+    val scale by inifiniteTransition.animateFloat(
+        initialValue = 1f,
+        targetValue = 8f,
+        animationSpec = infiniteRepeatable(tween(1000), RepeatMode.Reverse),
+        label = "scale"
     )
 
     // Composable que centra el contenido
@@ -80,19 +93,25 @@ fun Contenido(texto: String) {
         // Texto centrado
         Text(
             text = texto,
-            fontSize = 50.sp,
+            fontSize = 15.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .align(Alignment.Center)
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                    transformOrigin = TransformOrigin.Center
+                }
+                .align(Alignment.Center),
+            style = LocalTextStyle.current.copy(textMotion = TextMotion.Animated)
         )
 
         // Línea horizontal debajo del texto que se mueve de izquierda a derecha
         Canvas(
             modifier = Modifier
                 .align(Alignment.Center)
-                .offset(y = 35.dp) // Espacio debajo del texto
+                .offset(y = 55.dp) // Espacio debajo del texto
                 .size(400.dp, 2.dp)
         ) {
             drawLine(
