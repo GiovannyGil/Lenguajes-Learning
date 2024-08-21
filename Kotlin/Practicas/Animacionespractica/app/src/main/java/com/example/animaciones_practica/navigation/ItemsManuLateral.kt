@@ -41,5 +41,10 @@ sealed class ItemsManuLateral(
         "Slide",
         "Slide"
     )
+    data object item_7: ItemsManuLateral(
+        R.drawable.search,
+        "Search",
+        "Search"
+    )
 
 }

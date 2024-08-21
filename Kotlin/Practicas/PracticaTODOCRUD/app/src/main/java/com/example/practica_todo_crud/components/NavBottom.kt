@@ -37,6 +37,7 @@ fun BottomNavExample() {
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController, selectedItem: Int, onItemSelected: (Int) -> Unit) {
+    
     NavigationBar {
         NavigationBarItem(
             icon = { Icon(Icons.Filled.ExitToApp, contentDescription = "Login") },

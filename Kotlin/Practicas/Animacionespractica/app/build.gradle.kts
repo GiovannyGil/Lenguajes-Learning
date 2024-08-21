@@ -9,11 +9,10 @@ android {
 
     defaultConfig {
         applicationId = "com.example.animaciones_practica"
-        minSdk = 24
+        minSdk = 25
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -59,6 +58,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -71,4 +71,9 @@ dependencies {
     val nav_version = "2.7.7"
 
     implementation(libs.androidx.navigation.compose)
+
+    // iconos
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.compose.material.core) // o la versión compatible que encuentres
+    implementation ("androidx.wear.compose:compose-foundation:1.3.1")
 }

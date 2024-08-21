@@ -42,6 +42,7 @@ fun MenuLateral(
         ItemsManuLateral.item_4,
         ItemsManuLateral.item_5,
         ItemsManuLateral.item_6,
+        ItemsManuLateral.item_7,
     )
 
     // menu

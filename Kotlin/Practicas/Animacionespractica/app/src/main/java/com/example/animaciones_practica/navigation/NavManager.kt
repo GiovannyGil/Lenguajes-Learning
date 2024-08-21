@@ -9,6 +9,8 @@ import com.example.animaciones_practica.views.CardsView
 import com.example.animaciones_practica.views.FooterView
 import com.example.animaciones_practica.views.HeadView
 import com.example.animaciones_practica.views.HomeView
+import com.example.animaciones_practica.views.SearchBar
+import com.example.animaciones_practica.views.SearchView
 import com.example.animaciones_practica.views.SlideView
 
 @Composable
@@ -34,6 +36,9 @@ fun NavManager() {
         }
         composable("Slide") {
             SlideView(navController)
+        }
+        composable("Search") {
+            SearchView(navController)
         }
     }
 }
