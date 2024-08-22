@@ -1,5 +1,6 @@
 package com.example.animaciones_practica.navigation
 
+import SlideView
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,7 +12,6 @@ import com.example.animaciones_practica.views.HeadView
 import com.example.animaciones_practica.views.HomeView
 import com.example.animaciones_practica.views.SearchBar
 import com.example.animaciones_practica.views.SearchView
-import com.example.animaciones_practica.views.SlideView
 
 @Composable
 fun NavManager() {

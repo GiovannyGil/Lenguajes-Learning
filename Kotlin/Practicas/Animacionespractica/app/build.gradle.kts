@@ -75,5 +75,13 @@ dependencies {
     // iconos
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.compose.material.core) // o la versión compatible que encuentres
-    implementation ("androidx.wear.compose:compose-foundation:1.3.1")
+    implementation (libs.androidx.compose.foundation)
+
+
+    // scrollable / SLIDES
+    implementation("com.google.accompanist:accompanist-pager:0.29.1-alpha")
+
+    //BiometricPrompt -> huellas, biometria
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+
 }
