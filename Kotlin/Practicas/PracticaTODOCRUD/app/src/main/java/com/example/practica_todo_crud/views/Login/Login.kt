@@ -1,8 +1,12 @@
 package com.example.practica_todo_crud.views.Login
 
 import android.annotation.SuppressLint
+import android.view.Gravity
+import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,9 +17,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -30,12 +38,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.practica_todo_crud.R
 import com.example.practica_todo_crud.components.Alert
 import com.example.practica_todo_crud.ui.theme.Pink80
 import com.example.practica_todo_crud.ui.theme.Purple80
@@ -57,7 +68,7 @@ fun LoginView(navController: NavController, LoginVM: LoginViewModel) {
         ElevatedCard(
             modifier = Modifier
                 .width(330.dp)
-                .height(300.dp)
+                .height(360.dp)
                 .shadow(
                     elevation = 3.dp,
                     shape = RoundedCornerShape(8.dp),
@@ -114,8 +125,31 @@ fun LoginView(navController: NavController, LoginVM: LoginViewModel) {
                     modifier = Modifier
                         .padding(start = 30.dp, end = 30.dp)
                 ) {
-                    Text(text = "Entrar")
+                    Text(text = "Ingresar")
                 }
+
+                Row(modifier = Modifier.background(Color.Transparent)) {
+                    val context = LocalContext.current
+                    IconButton(
+                        onClick = {
+
+                        },
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .background(Color.Transparent)
+                            .size(width = 60.dp, height = 60.dp),
+                        colors = IconButtonDefaults.iconButtonColors(
+                            containerColor = Color.DarkGray,
+                        ),
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.huella),
+                            contentDescription = null,
+                            modifier = Modifier.size(width = 50.dp, height = 50.dp)  // Ajusta el tamaño del ícono
+                        )
+                    }
+                }
+
                 if(LoginVM.showAlert) {
                     Alert(
                         title = "Alerta",
