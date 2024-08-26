@@ -51,10 +51,20 @@ import com.example.practica_todo_crud.components.Alert
 import com.example.practica_todo_crud.ui.theme.Pink80
 import com.example.practica_todo_crud.ui.theme.Purple80
 import com.example.practica_todo_crud.viewModel.LoginViewModel
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
+import com.example.practica_todo_crud.helpers.BiometricHelper
+import androidx.fragment.app.FragmentActivity
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginView(navController: NavController, LoginVM: LoginViewModel) {
+
+    // Dentro de tu función composable
+    val context = LocalContext.current
+    val biometricHelper = BiometricHelper(context)
+
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(10.dp),
@@ -129,10 +139,33 @@ fun LoginView(navController: NavController, LoginVM: LoginViewModel) {
                 }
 
                 Row(modifier = Modifier.background(Color.Transparent)) {
-                    val context = LocalContext.current
+                    // todo! iconbutton para logeo con huella
                     IconButton(
                         onClick = {
+                            if (biometricHelper.canAuthenticate()) {
+                                biometricHelper.authenticate(context as FragmentActivity, object : BiometricPrompt.AuthenticationCallback() {
+                                    override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                                        super.onAuthenticationError(errorCode, errString)
+                                        // Manejar error de autenticación
+                                        Toast.makeText(context, "Error de autenticación: $errString", Toast.LENGTH_SHORT).show()
+                                    }
 
+                                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                                        super.onAuthenticationSucceeded(result)
+                                        // Autenticación exitosa, navegar a Home
+                                        navController.navigate("Home")
+                                    }
+
+                                    override fun onAuthenticationFailed() {
+                                        super.onAuthenticationFailed()
+                                        // Manejar autenticación fallida
+                                        Toast.makeText(context, "Autenticación fallida", Toast.LENGTH_SHORT).show()
+                                    }
+                                })
+                            } else {
+                                // Mostrar mensaje para configurar huella digital
+                                Toast.makeText(context, "No se puede autenticar con huella digital", Toast.LENGTH_SHORT).show()
+                            }
                         },
                         modifier = Modifier
                             .padding(10.dp)
