@@ -1,0 +1,12 @@
+{
+  "name": "ejercicios",
+  "version": "1.0.0",
+  "description": "ejercicios",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./basicos/numeroMayorArray.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GiovannyGil",
+  "license": "ISC"
+}
