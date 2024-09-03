@@ -3,14 +3,17 @@
  * 
  */
 
-if (numero > 1) {
-  // Verificar si el número es primo
-  for (let i = 2; i <= Math.sqrt(numero); i++) {
-    if (numero % i === 0) {
-        console.log('es primo')
-      break;
-    } else {
-        console.log('no es primo')
-    }
+// Ingresar un número
+const numero = "hola";
+
+
+if(numero < 0 || numero != typeof(Number)) {
+  console.log('debe ingresar numeros validos');
+  return
+} {
+  if(numero % 2 == 0){
+    console.log(`El número ${numero} no es primo`);
+  } else {
+      console.log(`El número ${numero} es primo`);
   }
 }

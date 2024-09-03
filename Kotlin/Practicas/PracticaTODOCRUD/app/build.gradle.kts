@@ -73,13 +73,13 @@ dependencies {
 
 
     // firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
 
     // huella digital
-    implementation ("androidx.biometric:biometric:1.2.0-alpha05")
+    implementation (libs.androidx.biometric)
 
     // navegation
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation(libs.androidx.navigation.compose)
 }

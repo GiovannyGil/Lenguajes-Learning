@@ -5,12 +5,13 @@
  */
 
 
-let numero =7
+let numero = 28
 
 let sumaDivisores = 0;
 
 // Encontrar y sumar los divisores propios del número
 for (let i = 1; i < numero; i++) {
+  // si el numero, divido i es igual a cero, sumarlo a los divisores
   if (numero % i === 0) {
     sumaDivisores += i;
   }
