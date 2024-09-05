@@ -4,16 +4,12 @@
  */
 
 // Ingresar un número
-const numero = "hola";
+const numero = 7
 
 
-if(numero < 0 || numero != typeof(Number)) {
-  console.log('debe ingresar numeros validos');
-  return
-} {
-  if(numero % 2 == 0){
-    console.log(`El número ${numero} no es primo`);
+
+  if(numero % numero == 0  && numero % 5 != 0){
+    console.log(`El número ${numero} es primo`);
   } else {
-      console.log(`El número ${numero} es primo`);
+      console.log(`El número ${numero} no es primo`);
   }
-}

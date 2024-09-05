@@ -1,32 +1,51 @@
 package com.example.practica_todo_crud.helpers
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import java.util.concurrent.Executor
 import androidx.fragment.app.FragmentActivity
 
+object BiometricHelper {
 
-
-class BiometricHelper(private val context: Context) {
-
-    private val executor: Executor = ContextCompat.getMainExecutor(context)
-    private val biometricManager: BiometricManager = BiometricManager.from(context)
-
-    fun canAuthenticate(): Boolean {
-        return biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS
+    fun canAuthenticateWithBiometrics(context: Context): Boolean {
+        val biometricManager = BiometricManager.from(context)
+        return biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS
     }
 
-    fun authenticate(activity: FragmentActivity, callback: BiometricPrompt.AuthenticationCallback) {
-        val promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Biometric login for my app")
-            .setSubtitle("Log in using your biometric credential")
-            .setNegativeButtonText("Use account password")
-            .build()
+    fun createBiometricPrompt(
+        activity: FragmentActivity,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ): BiometricPrompt {
+        val executor = ContextCompat.getMainExecutor(activity)
 
-        val biometricPrompt = BiometricPrompt(activity, executor, callback)
-        biometricPrompt.authenticate(promptInfo)
+        return BiometricPrompt(activity, executor, object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                super.onAuthenticationSucceeded(result)
+                onSuccess()
+            }
+
+            override fun onAuthenticationFailed() {
+                super.onAuthenticationFailed()
+                onFailure()
+            }
+
+            override fun onAuthenticationError(
+                errorCode: Int,
+                errString: CharSequence
+            ) {
+                super.onAuthenticationError(errorCode, errString)
+                onFailure()
+            }
+        })
+    }
+
+    fun buildPromptInfo(): BiometricPrompt.PromptInfo {
+        return BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Autenticación con huella")
+            .setSubtitle("Coloca tu dedo en el sensor para autenticarte")
+            .setNegativeButtonText("Cancelar")
+            .build()
     }
 }

@@ -17,20 +17,25 @@ fun Alert(
     message: String,
     confirmText: String,
     onConfirmClick: () -> Unit,
-    onDissmissClick: () -> Unit
+    onDismissClick: () -> Unit // Añadido parámetro para el dismiss
 ) {
-    val scroll = rememberScrollState(0)
-
-    AlertDialog(onDismissRequest = { onDissmissClick },
-        title = { Text(text = title)},
-        text = {
-            Text(
-                text = message,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier.verticalScroll(scroll)
-            )
+    AlertDialog(
+        onDismissRequest = onDismissClick, // Se ejecuta cuando la alerta se dismita
+        title = {
+            Text(text = title)
         },
-        confirmButton = { Button(onClick = { onConfirmClick() }) {
-            Text(text = confirmText)
-        } })
+        text = {
+            Text(text = message)
+        },
+        confirmButton = {
+            Button(onClick = onConfirmClick) {
+                Text(text = confirmText)
+            }
+        },
+        dismissButton = {
+            Button(onClick = onDismissClick) {
+                Text(text = "Cancelar")
+            }
+        }
+    )
 }

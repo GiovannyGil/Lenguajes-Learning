@@ -59,22 +59,25 @@ import androidx.fragment.app.FragmentActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginView(navController: NavController, LoginVM: LoginViewModel) {
-
-    // Dentro de tu función composable
+fun LoginView(navController: NavController, loginVM: LoginViewModel) {
+    // Contexto de la actividad
     val context = LocalContext.current
-    val biometricHelper = BiometricHelper(context)
+    val activity = context as FragmentActivity
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(10.dp),
+    // Variables de estado
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
+    // Estructura del layout
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
 
-        var email by remember { mutableStateOf("")}
-        var password by remember { mutableStateOf("")}
-
+        // Tarjeta con el formulario
         ElevatedCard(
             modifier = Modifier
                 .width(330.dp)
@@ -84,117 +87,107 @@ fun LoginView(navController: NavController, LoginVM: LoginViewModel) {
                     shape = RoundedCornerShape(8.dp),
                     clip = true
                 ),
-                shape = RoundedCornerShape(8.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.LightGray,
-                    contentColor = Color.White
-                )
-            ) {
-
-                Column(modifier = Modifier
+            shape = RoundedCornerShape(8.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.LightGray,
+                contentColor = Color.White
+            )
+        ) {
+            Column(
+                modifier = Modifier
                     .fillMaxSize()
                     .padding(10.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                Text(text = "Login", fontSize = 32.sp, color = Purple80, fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(10.dp)
-
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Login",
+                    fontSize = 32.sp,
+                    color = Purple80,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(10.dp)
                 )
-                    OutlinedTextField(
-                        value = email,
-                        label = { Text(text = "email")},
-                        onValueChange = {email = it},
-                        placeholder = { Text("example@gmail.com") },
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 30.dp, end = 30.dp),
-                    )
 
-                OutlinedTextField(value = password,
-                    onValueChange = {password = it},
-                    label = { Text(text = "Password")},
-                    placeholder = { Text(text = "password") },
+                // Campo de correo electrónico
+                OutlinedTextField(
+                    value = email,
+                    label = { Text(text = "Email") },
+                    onValueChange = { email = it },
+                    placeholder = { Text("example@gmail.com") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 30.dp)
+                )
+
+                // Campo de contraseña
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    label = { Text(text = "Password") },
+                    placeholder = { Text("password") },
                     visualTransformation = PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 30.dp, end = 30.dp)
+                        .padding(horizontal = 30.dp)
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-
-                Button(onClick = {
-                    LoginVM.login(email, password){
-                        navController.navigate("Home")
-                    }
-                },
+                // Botón para iniciar sesión
+                Button(
+                    onClick = {
+                        loginVM.login(email, password) {
+                            navController.navigate("Home")
+                        }
+                    },
                     modifier = Modifier
-                        .padding(start = 30.dp, end = 30.dp)
+                        .padding(horizontal = 30.dp)
                 ) {
                     Text(text = "Ingresar")
                 }
 
+                // Botón de autenticación biométrica
                 Row(modifier = Modifier.background(Color.Transparent)) {
-                    // todo! iconbutton para logeo con huella
                     IconButton(
                         onClick = {
-                            if (biometricHelper.canAuthenticate()) {
-                                biometricHelper.authenticate(context as FragmentActivity, object : BiometricPrompt.AuthenticationCallback() {
-                                    override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                                        super.onAuthenticationError(errorCode, errString)
-                                        // Manejar error de autenticación
-                                        Toast.makeText(context, "Error de autenticación: $errString", Toast.LENGTH_SHORT).show()
-                                    }
-
-                                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                                        super.onAuthenticationSucceeded(result)
-                                        // Autenticación exitosa, navegar a Home
-                                        navController.navigate("Home")
-                                    }
-
-                                    override fun onAuthenticationFailed() {
-                                        super.onAuthenticationFailed()
-                                        // Manejar autenticación fallida
-                                        Toast.makeText(context, "Autenticación fallida", Toast.LENGTH_SHORT).show()
-                                    }
-                                })
-                            } else {
-                                // Mostrar mensaje para configurar huella digital
-                                Toast.makeText(context, "No se puede autenticar con huella digital", Toast.LENGTH_SHORT).show()
-                            }
+                            loginVM.loginWithBiometrics(
+                                context = context,
+                                activity = activity,
+                                onSuccess = {
+                                    navController.navigate("Home")
+                                },
+                                onFailure = {
+                                    Toast.makeText(context, "Error de autenticación biométrica", Toast.LENGTH_SHORT).show()
+                                }
+                            )
                         },
                         modifier = Modifier
                             .padding(10.dp)
-                            .background(Color.Transparent)
-                            .size(width = 60.dp, height = 60.dp),
+                            .size(60.dp),
                         colors = IconButtonDefaults.iconButtonColors(
                             containerColor = Color.DarkGray,
-                        ),
+                        )
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.huella),
                             contentDescription = null,
-                            modifier = Modifier.size(width = 50.dp, height = 50.dp)  // Ajusta el tamaño del ícono
+                            modifier = Modifier.size(50.dp)
                         )
                     }
                 }
 
-                if(LoginVM.showAlert) {
+                // Alerta de error
+                if (loginVM.showAlert) {
                     Alert(
                         title = "Alerta",
                         message = "Usuario y/o Contraseña incorrecta",
                         confirmText = "Aceptar",
-                        onConfirmClick = { LoginVM.closeAlert() }) {}
-                    }
-
-
+                        onConfirmClick = { loginVM.closeAlert() }
+                    ) {}
+                }
             }
         }
-
     }
-
 }

@@ -14,19 +14,23 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.math.log
+import android.content.Context
+import androidx.fragment.app.FragmentActivity
+import com.example.practica_todo_crud.helpers.BiometricHelper
 
 class LoginViewModel: ViewModel() {
     private val auth: FirebaseAuth = Firebase.auth
     var showAlert by mutableStateOf(false)
+    var isBiometricEnabled by mutableStateOf(false)
 
-    // funcion de logeo
-    fun login(email: String, password: String, onSucces: () -> Unit){
+    // Función para iniciar sesión con correo y contraseña
+    fun login(email: String, password: String, onSuccess: () -> Unit) {
         viewModelScope.launch {
             try {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
-                        if(task.isSuccessful) {
-                            onSucces()
+                        if (task.isSuccessful) {
+                            onSuccess()
                         } else {
                             Log.d("ERROR EN FIREBASE", "Usuario y Contraseña Incorrectos")
                             showAlert = true
@@ -38,15 +42,15 @@ class LoginViewModel: ViewModel() {
         }
     }
 
-    // fun create -> crear nuevo usuario
-    fun createUsuario(email: String, password: String, nombre: String, onSucces: () -> Unit) {
+    // Función para crear un nuevo usuario
+    fun createUsuario(email: String, password: String, nombre: String, onSuccess: () -> Unit) {
         viewModelScope.launch {
             try {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
-                        if(task.isSuccessful) {
-                            saveUser(nombre) // guardar -> fun
-                            onSucces() // hacer login
+                        if (task.isSuccessful) {
+                            saveUser(nombre)
+                            onSuccess()
                         } else {
                             Log.d("ERROR EN FIREBASE", "Error al crear Usuario")
                             showAlert = true
@@ -58,20 +62,18 @@ class LoginViewModel: ViewModel() {
         }
     }
 
-    // funcion save -> guardr el nuevo usuario
+    // Guardar datos del usuario en Firestore
     private fun saveUser(nombre: String) {
         val id = auth.currentUser?.uid
         val email = auth.currentUser?.email
 
         viewModelScope.launch(Dispatchers.IO) {
-            // obtener los datos
             val userData = Usuario(
-                userId = id.toString(),
-                email = email.toString(),
+                userId = id ?: "",
+                email = email ?: "",
                 nombre = nombre
             )
 
-            // guardar la info del usuario en firebase
             FirebaseFirestore.getInstance().collection("UsuariosTarea")
                 .add(userData)
                 .addOnSuccessListener {
@@ -82,8 +84,29 @@ class LoginViewModel: ViewModel() {
         }
     }
 
+    // Autenticación biométrica
+    fun loginWithBiometrics(
+        context: Context,
+        activity: FragmentActivity,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
+        if (BiometricHelper.canAuthenticateWithBiometrics(context)) {
+            val biometricPrompt = BiometricHelper.createBiometricPrompt(activity, onSuccess, onFailure)
+            val promptInfo = BiometricHelper.buildPromptInfo()
+            biometricPrompt.authenticate(promptInfo)
+        } else {
+            onFailure()
+        }
+    }
+
+    // Cerrar alerta
     fun closeAlert() {
         showAlert = false
     }
 
+    // Activar biometría
+    fun enableBiometrics() {
+        isBiometricEnabled = true
+    }
 }
