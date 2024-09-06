@@ -15,6 +15,24 @@
  * 8 + 5 = 13
  */
 
+const numero = 10
+
+function SecuenciaFibonaci(numero){
+    let a = 0
+    let b = 1
+    let c = 0
+    for(let i = 0; i < numero; i++){
+        console.log(`${b} = ${a} + ${c}`)
+        c = a + b
+        a = b
+        b = c
+    }
+}
+
+SecuenciaFibonaci(numero)
+
+
+
 /** fun(n)
  *    let a = 0, b = 1, temp;
 
@@ -24,36 +42,38 @@
     }
  */
 
-const numero = 10
+/**
+    const numero = 10
 
-function SecuenciaFibonacci(numero){
-    let valor = 0
-    let secuencia = 1
-    let temp
-
-    console.log(`${valor} + ${valor} = ${valor}`);
-
-    if (numero > 0){
-        console.log(`${secuencia} + ${valor} = ${secuencia}`)
+    function SecuenciaFibonacci(numero){
+        let valor = 0
+        let secuencia = 1
+        let temp
+    
+        console.log(`${valor} + ${valor} = ${valor}`);
+    
+        if (numero > 0){
+            console.log(`${secuencia} + ${valor} = ${secuencia}`)
+        }
+    
+        for (let index = 2; index <= numero; index++) {
+            temp = valor + secuencia
+            console.log(`${secuencia} + ${valor} = ${temp}`)
+            valor = secuencia
+            secuencia = temp
+        }
     }
-
-    for (let index = 2; index <= numero; index++) {
-        temp = valor + secuencia
-        console.log(`${secuencia} + ${valor} = ${temp}`)
-        valor = secuencia
-        secuencia = temp
-    }
-}
-
-SecuenciaFibonacci(numero)
-
-// function SecuenciaFibonacci(numero){
-//     let fib = [0, 1]
-//     for (let i = 2; i <= numero; i++) {
-//         fib.push(fib[i - 1] + fib[i - 2])
-//     }
-//     return fib        
-// }
-
-// const mostrar = SecuenciaFibonacci(numero)
-// console.log(mostrar);
+    SecuenciaFibonacci(numero)
+*/
+    
+    
+    // function SecuenciaFibonacci(numero){
+    //     let fib = [0, 1]
+    //     for (let i = 2; i <= numero; i++) {
+    //         fib.push(fib[i - 1] + fib[i - 2])
+    //     }
+    //     return fib        
+    // }
+    
+    // const mostrar = SecuenciaFibonacci(numero)
+    // console.log(mostrar);

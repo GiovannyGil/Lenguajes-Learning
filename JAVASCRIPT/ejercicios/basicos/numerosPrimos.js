@@ -4,12 +4,22 @@
  */
 
 // Ingresar un número
-const numero = 7
+const numero = 15
 
 
+function NumeroPrimo(numero){
+    let contador = 0
+    for(let i = 1; i <= numero; i++){
+        if(numero % i == 0){
+            contador++
+        }
+    }
+    if(contador == 2){
+        console.log(`El número ${numero} es primo`)
+    }else{
+        console.log(`El número ${numero} no es primo`)
+    }
+}
 
-  if(numero % numero == 0  && numero % 5 != 0){
-    console.log(`El número ${numero} es primo`);
-  } else {
-      console.log(`El número ${numero} no es primo`);
-  }
+
+NumeroPrimo(numero)
