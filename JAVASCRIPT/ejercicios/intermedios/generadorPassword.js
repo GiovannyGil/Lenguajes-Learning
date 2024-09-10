@@ -17,6 +17,10 @@ function passwordRandom(minLenght, maxLenght, characters, password){
         randomCharacter = characters.charAt(Math.floor(Math.random() * characters.length))
         password.push(randomCharacter)
     }
+    
+    // convertir password en una cadena
+    password = password.join('')
+        
     console.log(password);
 }
 

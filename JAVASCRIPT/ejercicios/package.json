@@ -4,7 +4,7 @@
   "description": "ejercicios",
   "main": "index.js",
   "scripts": {
-    "start": "node ./intermedios/generadorPassword.js",
+    "start": "node ./basicos/listaPrimos.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "GiovannyGil",
