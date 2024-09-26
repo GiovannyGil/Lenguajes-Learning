@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ECECEC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.equipo__trabajo {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.tarjetas {
+    width: 65%;
+    height: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+    max-width: 1200px;
+    background-color: #D9D9D9;
+    border-radius: 40px;
+    align-items: center;
+}
+
+.tarjeta {
+    background-color: #e8e6e6;
+    border-radius: 40px 40px 15px 15px;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.5);
+    width: 250px;
+    height: 350px;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.imagen-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: -80px auto 10px;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tarjeta__contenido {
+    padding: 10px;
+}
+
+.nombre {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: -20px;
+    margin-bottom: 5px;
+}
+
+.cargo {
+    font-size: 1rem;
+    color: #777;
+    margin-top: -13px;
+    margin-bottom: 30px;
+}
+
+.desc {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 35px;
+
+}
+
+.redes-sociales {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.redes-sociales li {
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.item1 {
+    border-radius: 25px;
+    width: 40px;
+    height: 40px;
+    background-color: #FF00FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.item1:hover {
+    background-color: #FF00CC;
+}
+
+.item2 {
+    background-color: #FF0000;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.item2:hover {
+    background-color: #CC0000;
+}
+
+.item3 {
+    background-color: #00B1F2;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.item3:hover {
+    background-color: #008FCC;
+}
+
+.redes-sociales img {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .tarjetas {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tarjeta {
+        width: 90%;
+    }
+}
