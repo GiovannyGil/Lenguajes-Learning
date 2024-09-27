@@ -41,6 +41,7 @@ body {
     height: 350px;
     text-align: center;
     padding: 20px 10px;
+    transition: transform 0.5s;
 }
 
 .imagen-perfil {
@@ -50,6 +51,7 @@ body {
     margin: -80px auto 10px;
     object-fit: cover;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s;
 }
 
 .tarjeta__contenido {
@@ -100,7 +102,7 @@ body {
     border-radius: 25px;
     width: 40px;
     height: 40px;
-    background-color: #FF00FF;
+    background-color: #FF00CC;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,7 +110,9 @@ body {
 }
 
 .item1:hover {
-    background-color: #FF00CC;
+    background-color: #FF0099;
+    transform: scale(1.05); /* Escala al 110% */
+    transition: transform 0.5s;
 }
 
 .item2 {
@@ -120,6 +124,8 @@ body {
 
 .item2:hover {
     background-color: #CC0000;
+    transform: scale(1.05); /* Escala al 110% */
+    transition: transform 0.5s;
 }
 
 .item3 {
@@ -131,6 +137,8 @@ body {
 
 .item3:hover {
     background-color: #008FCC;
+    transform: scale(1.05); /* Escala al 110% */
+    transition: transform 0.5s;
 }
 
 .redes-sociales img {
@@ -138,13 +146,15 @@ body {
     height: auto;
 }
 
-@media (max-width: 768px) {
-    .tarjetas {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .tarjeta {
-        width: 90%;
-    }
+
+
+.tarjeta:hover{
+    /* transform: rotate(30deg);Gira 30 grados a la derecha */
+    transform: scale(1.05); /* Escala al 110% */
+    transition: transform 0.5s;
+}
+
+.imagen-perfil:hover{
+    transform: rotate(-360deg); /* Gira 30 grados a la izquierda */
+    transition: transform 0.5s;
 }
