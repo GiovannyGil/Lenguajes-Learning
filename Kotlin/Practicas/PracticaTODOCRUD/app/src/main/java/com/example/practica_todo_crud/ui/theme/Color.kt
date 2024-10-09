@@ -12,4 +12,4 @@ val Pink40 = Color(0xFFAD2F58)
 
 
 
-val lightBlue = Color(0xFF08A7F0) // Color azul celeste
+val lightBlue = Color(0xFF242525) // Color azul celeste

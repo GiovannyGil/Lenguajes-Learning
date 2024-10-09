@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.OutlinedTextField
@@ -19,6 +20,7 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -83,6 +85,18 @@ fun RegisterView(navController: NavController, LoginVM: LoginViewModel){
                     value = nombre,
                     label = { Text(text = "nombre")},
                     onValueChange = {nombre = it},
+                    shape = RoundedCornerShape(50),
+                    colors = TextFieldDefaults.colors(
+                        focusedLabelColor = Color.DarkGray,
+                        focusedIndicatorColor = Color.DarkGray,
+                        focusedContainerColor = Color.White,
+                        focusedTextColor = Color.DarkGray,
+                        unfocusedLabelColor = Color.DarkGray,
+                        unfocusedTextColor = Color.DarkGray,
+                        unfocusedIndicatorColor = Color.DarkGray,
+                        unfocusedContainerColor = Color.White,
+                        cursorColor = Color.DarkGray,
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 30.dp, end = 30.dp),
@@ -94,6 +108,18 @@ fun RegisterView(navController: NavController, LoginVM: LoginViewModel){
                     onValueChange = {email = it},
                     placeholder = { Text("example@gmail.com") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    shape = RoundedCornerShape(50),
+                    colors = TextFieldDefaults.colors(
+                        focusedLabelColor = Color.DarkGray,
+                        focusedIndicatorColor = Color.DarkGray,
+                        focusedContainerColor = Color.White,
+                        focusedTextColor = Color.DarkGray,
+                        unfocusedLabelColor = Color.DarkGray,
+                        unfocusedTextColor = Color.DarkGray,
+                        unfocusedIndicatorColor = Color.DarkGray,
+                        unfocusedContainerColor = Color.White,
+                        cursorColor = Color.DarkGray,
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 30.dp, end = 30.dp),
@@ -105,6 +131,18 @@ fun RegisterView(navController: NavController, LoginVM: LoginViewModel){
                     placeholder = { Text(text = "password") },
                     visualTransformation = PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    shape = RoundedCornerShape(50),
+                    colors = TextFieldDefaults.colors(
+                        focusedLabelColor = Color.DarkGray,
+                        focusedIndicatorColor = Color.DarkGray,
+                        focusedContainerColor = Color.White,
+                        focusedTextColor = Color.DarkGray,
+                        unfocusedLabelColor = Color.DarkGray,
+                        unfocusedTextColor = Color.DarkGray,
+                        unfocusedIndicatorColor = Color.DarkGray,
+                        unfocusedContainerColor = Color.White,
+                        cursorColor = Color.DarkGray,
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 30.dp, end = 30.dp)
@@ -116,8 +154,11 @@ fun RegisterView(navController: NavController, LoginVM: LoginViewModel){
                     LoginVM.createUsuario(email, password, nombre){
                         navController.navigate("Home")
                     }
-                },modifier = Modifier
-                        .padding(start = 30.dp, end = 30.dp)
+                },modifier = Modifier.padding(start = 30.dp, end = 30.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.DarkGray,
+                        contentColor = Color.White
+                    )
                 ) {
                     Text(text = "Registrarse")
                 }

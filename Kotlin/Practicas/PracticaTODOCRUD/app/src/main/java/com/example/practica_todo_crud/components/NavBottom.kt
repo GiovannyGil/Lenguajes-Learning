@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -41,7 +42,7 @@ fun BottomNavigationBar(navController: NavHostController, selectedItem: Int, onI
     NavigationBar {
         NavigationBarItem(
             icon = { Icon(Icons.Filled.ExitToApp, contentDescription = "Login") },
-            label = { Text("Login") },
+            label = { Text("Login", color = Color.White) },
             selected = selectedItem == 0,
             onClick = {
                 onItemSelected(0)
@@ -54,7 +55,7 @@ fun BottomNavigationBar(navController: NavHostController, selectedItem: Int, onI
         )
         NavigationBarItem(
             icon = { Icon(Icons.Filled.Person, contentDescription = "Register") },
-            label = { Text("Register") },
+            label = { Text("Register", color = Color.White) },
             selected = selectedItem == 1,
             onClick = {
                 onItemSelected(1)
@@ -71,13 +72,13 @@ fun BottomNavigationBar(navController: NavHostController, selectedItem: Int, onI
 @Composable
 fun LoginScreen() {
     // Aquí puedes agregar la UI del login
-    Text("Login Screen", modifier = Modifier.fillMaxSize())
+    Text("Login Screen", color = Color.White, modifier = Modifier.fillMaxSize())
 }
 
 @Composable
 fun RegisterScreen() {
     // Aquí puedes agregar la UI del registro
-    Text("Register Screen", modifier = Modifier.fillMaxSize())
+    Text("Register Screen", color = Color.White, modifier = Modifier.fillMaxSize())
 }
 
 @Preview(showBackground = true)

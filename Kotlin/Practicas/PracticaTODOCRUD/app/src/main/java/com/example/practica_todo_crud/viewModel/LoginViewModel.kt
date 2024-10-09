@@ -15,24 +15,69 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.math.log
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.FragmentActivity
 import com.example.practica_todo_crud.helpers.BiometricHelper
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
+import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginViewModel: ViewModel() {
     private val auth: FirebaseAuth = Firebase.auth
     var showAlert by mutableStateOf(false)
     var isBiometricEnabled by mutableStateOf(false)
+    var showBiometricRegistrationDialog by mutableStateOf(false)
+    private var alertMessage by mutableStateOf("")
+
+    // Función para obtener las preferencias encriptadas
+    private fun getEncryptedSharedPreferences(context: Context): SharedPreferences {
+        val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        return EncryptedSharedPreferences.create(
+            "biometric_prefs",
+            masterKeyAlias,
+            context,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+    }
+
+    // Guardar credenciales de manera segura
+    private fun saveEncryptedCredentials(context: Context, email: String, password: String, userId: String) {
+        val sharedPreferences = getEncryptedSharedPreferences(context)
+        sharedPreferences.edit().apply {
+            putString("encrypted_email", email)
+            putString("encrypted_password", password) // Guardamos la contraseña de forma segura
+            putString("user_id", userId)
+            putBoolean("biometric_enabled", true)
+            apply()
+        }
+    }
+
+    // Función para verificar si el usuario tiene biometría habilitada
+    fun checkBiometricStatus(context: Context): Boolean {
+        val sharedPreferences = getEncryptedSharedPreferences(context)
+        return sharedPreferences.getBoolean("biometric_enabled", false)
+    }
 
     // Función para iniciar sesión con correo y contraseña
-    fun login(email: String, password: String, onSuccess: () -> Unit) {
+    fun login(email: String, password: String, context: Context, onSuccess: () -> Unit) {
         viewModelScope.launch {
             try {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            onSuccess()
+                            val userId = auth.currentUser?.uid
+                            if (userId != null) {
+                                // Guardar credenciales si el login es exitoso
+                                saveEncryptedCredentials(context, email, password, userId)
+                                if (!checkBiometricStatus(context)) {
+                                    showBiometricRegistrationDialog = true
+                                }
+                                onSuccess()
+                            }
                         } else {
-                            Log.d("ERROR EN FIREBASE", "Usuario y Contraseña Incorrectos")
+                            alertMessage = "Usuario y/o Contraseña incorrecta"
                             showAlert = true
                         }
                     }
@@ -84,6 +129,39 @@ class LoginViewModel: ViewModel() {
         }
     }
 
+
+    // Función para registrar la biometría
+    fun registerBiometric(
+        context: Context,
+        activity: FragmentActivity,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
+        if (!BiometricHelper.canAuthenticateWithBiometrics(context)) {
+            alertMessage = "Este dispositivo no soporta autenticación biométrica"
+            showAlert = true
+            return
+        }
+
+        val biometricPrompt = BiometricHelper.createBiometricPrompt(activity, {
+            // Guardar credenciales al registrar biometría exitosamente
+            auth.currentUser?.let { user ->
+                saveEncryptedCredentials(context, user.email ?: "" ,"defaultPassword",  user.uid)
+                onSuccess()
+            }
+        }, {
+            onFailure()
+        })
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Registrar huella digital")
+            .setSubtitle("Registra tu huella para accesos futuros")
+            .setNegativeButtonText("Cancelar")
+            .build()
+
+        biometricPrompt.authenticate(promptInfo)
+    }
+
     // Autenticación biométrica
     fun loginWithBiometrics(
         context: Context,
@@ -91,13 +169,39 @@ class LoginViewModel: ViewModel() {
         onSuccess: () -> Unit,
         onFailure: () -> Unit
     ) {
-        if (BiometricHelper.canAuthenticateWithBiometrics(context)) {
-            val biometricPrompt = BiometricHelper.createBiometricPrompt(activity, onSuccess, onFailure)
-            val promptInfo = BiometricHelper.buildPromptInfo()
-            biometricPrompt.authenticate(promptInfo)
-        } else {
-            onFailure()
+        if (!checkBiometricStatus(context)) {
+            alertMessage = "Primero debes registrar tu huella digital"
+            showAlert = true
+            return
         }
+
+        val biometricPrompt = BiometricHelper.createBiometricPrompt(activity, {
+            // Recuperar credenciales almacenadas
+            val sharedPreferences = getEncryptedSharedPreferences(context)
+            val email = sharedPreferences.getString("encrypted_email", null)
+            val password = sharedPreferences.getString("encrypted_password", null)
+
+            if (email != null && password != null) {
+                // Re-autenticar con Firebase usando email y password
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            onSuccess()
+                        } else {
+                            onFailure()
+                        }
+                    }
+            } else {
+                alertMessage = "Error al recuperar las credenciales"
+                showAlert = true
+                onFailure()
+            }
+        }, {
+            onFailure()
+        })
+
+        val promptInfo = BiometricHelper.buildPromptInfo()
+        biometricPrompt.authenticate(promptInfo)
     }
 
     // Cerrar alerta
@@ -108,5 +212,9 @@ class LoginViewModel: ViewModel() {
     // Activar biometría
     fun enableBiometrics() {
         isBiometricEnabled = true
+    }
+
+    fun dismissBiometricRegistrationDialog() {
+        showBiometricRegistrationDialog = false
     }
 }
