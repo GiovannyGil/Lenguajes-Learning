@@ -52,6 +52,7 @@ import com.example.practica_todo_crud.ui.theme.Pink80
 import com.example.practica_todo_crud.ui.theme.Purple80
 import com.example.practica_todo_crud.viewModel.LoginViewModel
 import androidx.biometric.BiometricPrompt
+import androidx.compose.material3.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.practica_todo_crud.helpers.BiometricHelper
 import androidx.fragment.app.FragmentActivity
@@ -111,10 +112,22 @@ fun LoginView(navController: NavController, loginVM: LoginViewModel) {
                 // Campo de correo electrónico
                 OutlinedTextField(
                     value = email,
-                    label = { Text(text = "Email") },
+                    label = { Text(text = "Email", color = Color.Gray) },
                     onValueChange = { email = it },
-                    placeholder = { Text("example@gmail.com") },
+                    placeholder = { Text("example@gmail.com", color = Color.Gray) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    shape = RoundedCornerShape(50),
+                    colors = TextFieldDefaults.colors(
+                        focusedLabelColor = Color.DarkGray,
+                        focusedIndicatorColor = Color.DarkGray,
+                        focusedContainerColor = Color.White,
+                        focusedTextColor = Color.DarkGray,
+                        unfocusedLabelColor = Color.DarkGray,
+                        unfocusedTextColor = Color.DarkGray,
+                        unfocusedIndicatorColor = Color.DarkGray,
+                        unfocusedContainerColor = Color.White,
+                        cursorColor = Color.DarkGray,
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 30.dp)
@@ -124,13 +137,25 @@ fun LoginView(navController: NavController, loginVM: LoginViewModel) {
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
-                    label = { Text(text = "Password") },
-                    placeholder = { Text("password") },
+                    label = { Text(text = "Password", color = Color.Gray) },
+                    placeholder = { Text("password", color = Color.Gray) },
                     visualTransformation = PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    shape = RoundedCornerShape(50),
+                    colors = TextFieldDefaults.colors(
+                        focusedLabelColor = Color.DarkGray,
+                        focusedIndicatorColor = Color.DarkGray,
+                        focusedContainerColor = Color.White,
+                        focusedTextColor = Color.DarkGray,
+                        unfocusedLabelColor = Color.DarkGray,
+                        unfocusedTextColor = Color.DarkGray,
+                        unfocusedIndicatorColor = Color.DarkGray,
+                        unfocusedContainerColor = Color.White,
+                        cursorColor = Color.DarkGray,
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 30.dp)
+                        .padding(horizontal = 30.dp),
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -138,14 +163,17 @@ fun LoginView(navController: NavController, loginVM: LoginViewModel) {
                 // Botón para iniciar sesión
                 Button(
                     onClick = {
-                        loginVM.login(email, password) {
+                        loginVM.login(email, password, context) {
                             navController.navigate("Home")
                         }
                     },
-                    modifier = Modifier
-                        .padding(horizontal = 30.dp)
+                    modifier = Modifier.padding(horizontal = 30.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.DarkGray,
+                        contentColor = Color.White
+                    )
                 ) {
-                    Text(text = "Ingresar")
+                    Text(text = "Ingresar", fontSize = 20.sp, color = Color.White)
                 }
 
                 // Botón de autenticación biométrica
@@ -187,7 +215,59 @@ fun LoginView(navController: NavController, loginVM: LoginViewModel) {
                         onConfirmClick = { loginVM.closeAlert() }
                     ) {}
                 }
+
+                if (loginVM.showBiometricRegistrationDialog) {
+                    BiometricRegistrationDialog(
+                        onDismiss = {
+                            loginVM.dismissBiometricRegistrationDialog()
+                        },
+                        onConfirm = {
+                            loginVM.registerBiometric(
+                                context = context,
+                                activity = activity,
+                                onSuccess = {
+                                    Toast.makeText(
+                                        context,
+                                        "Huella registrada exitosamente",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    loginVM.dismissBiometricRegistrationDialog()
+                                },
+                                onFailure = {
+                                    Toast.makeText(
+                                        context,
+                                        "Error al registrar la huella",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    loginVM.dismissBiometricRegistrationDialog()
+                                }
+                            )
+                        }
+                    )
+                }
             }
         }
     }
+}
+
+@Composable
+fun BiometricRegistrationDialog(
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("¿Deseas registrar tu huella digital?") },
+        text = { Text("Esto te permitirá iniciar sesión más rápidamente en el futuro.") },
+        confirmButton = {
+            Button(onClick = onConfirm) {
+                Text("Registrar")
+            }
+        },
+        dismissButton = {
+            Button(onClick = onDismiss) {
+                Text("No, gracias")
+            }
+        }
+    )
 }

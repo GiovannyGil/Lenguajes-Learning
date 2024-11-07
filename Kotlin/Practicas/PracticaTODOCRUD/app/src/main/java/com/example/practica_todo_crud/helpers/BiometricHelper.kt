@@ -1,5 +1,6 @@
 package com.example.practica_todo_crud.helpers
 
+import android.app.KeyguardManager
 import android.content.Context
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
@@ -9,8 +10,8 @@ import androidx.fragment.app.FragmentActivity
 object BiometricHelper {
 
     fun canAuthenticateWithBiometrics(context: Context): Boolean {
-        val biometricManager = BiometricManager.from(context)
-        return biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS
+        val keyguardManager = context.getSystemService(KeyguardManager::class.java)
+        return keyguardManager.isDeviceSecure
     }
 
     fun createBiometricPrompt(
@@ -19,23 +20,14 @@ object BiometricHelper {
         onFailure: () -> Unit
     ): BiometricPrompt {
         val executor = ContextCompat.getMainExecutor(activity)
-
         return BiometricPrompt(activity, executor, object : BiometricPrompt.AuthenticationCallback() {
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                super.onAuthenticationSucceeded(result)
+                super.onAuthenticationSucceeded(result) // Llama a onSuccess si la autenticación es exitosa
                 onSuccess()
             }
 
             override fun onAuthenticationFailed() {
-                super.onAuthenticationFailed()
-                onFailure()
-            }
-
-            override fun onAuthenticationError(
-                errorCode: Int,
-                errString: CharSequence
-            ) {
-                super.onAuthenticationError(errorCode, errString)
+                super.onAuthenticationFailed() //  Llama a onFailure si la autenticación falla
                 onFailure()
             }
         })
@@ -43,8 +35,8 @@ object BiometricHelper {
 
     fun buildPromptInfo(): BiometricPrompt.PromptInfo {
         return BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Autenticación con huella")
-            .setSubtitle("Coloca tu dedo en el sensor para autenticarte")
+            .setTitle("Iniciar sesión")
+            .setSubtitle("Utiliza tu huella para iniciar sesión")
             .setNegativeButtonText("Cancelar")
             .build()
     }

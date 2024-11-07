@@ -79,6 +79,7 @@ dependencies {
 
     // huella digital
     implementation (libs.androidx.biometric)
+    implementation(libs.androidx.security.crypto)
 
     // navegation
     implementation(libs.androidx.navigation.compose)
