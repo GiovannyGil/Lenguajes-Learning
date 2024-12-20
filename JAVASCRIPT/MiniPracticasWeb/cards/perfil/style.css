@@ -1,0 +1,75 @@
+:root{
+    --background: #d8e3fa;
+    --white: #ffffff;
+    --gray: #EAEAEC;
+    --text: #29283F;
+    --primary: #6F3EF6;
+    --primary-darker: #502AB7;
+}
+
+body{
+    background: var(--background);
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    font-size: 16px;
+    padding: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 1.3rem;
+    background: white;
+    cursor: pointer;
+    overflow: hidden;
+    max-width: 20rem, 70vw, 46.25rem;
+    min-width:  2.0rem;
+    min-height: 17.5rem;
+    transition: box-shadow 0.3s;
+}
+
+.card:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.background{
+    flex: 1 1 15rem;
+}
+
+.background img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content{
+    flex: 3 1 22rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 1rem;
+}
+
+.content > h2{
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    margin-bottom: clamp(0.35rem, 2vw, 0.55rem);
+}
+
+.content > p{
+    font-size: clamp(1rem, 1.75vw, 1.1rem);
+    font-weight: 400;
+    margin-bottom: 0.4rem 0;
+}
+
+.content > a{
+    color: var(--primary);
+}
+
+.chips{
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
