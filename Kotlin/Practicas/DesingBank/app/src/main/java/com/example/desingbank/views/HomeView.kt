@@ -71,7 +71,7 @@ fun HeaderHome() {
                         Text(text = "Giovanny Chica", fontWeight = FontWeight.Bold)
                         Text(text = "Bienvenido!", fontSize = 12.sp)
                     }
-                }
+                }   
             },
                 colors = topAppBarColors(
                     containerColor = CustomPrimary,
