@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Sriracha&family=Varela+Round&display=swap');
+
+.text {
+    font-family: "Sriracha", cursive;
+    font-weight: 400;
+    font-style: normal;
+    background: linear-gradient(45deg, #ff0000, #1a53ff, #ea01ff, #fcfc00);
+    background-clip: text;
+    color: transparent;
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0%
+    }
+
+    50% {
+        background-position: 100%
+    }
+
+    100% {
+        background-position: 0%
+    }
+}
