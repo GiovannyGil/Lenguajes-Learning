@@ -1,37 +1,37 @@
 <?php
 
-namespace Modules\Users\Controllers;
+namespace Modules\Tasks\Controllers;
 
-use Modules\Users\Services\User;
+use Modules\Tasks\Services\Tasks;
 
-class UserController {
+class TasksController {
     public function getAll() {
-        $user = new User();
-        return $user->getAllUsers();
+        $tasks = new Tasks();
+        return $tasks->getAllTasks();
     }
 
     public function getbyID($id) {
-        $user = new User();
-        return $user->getUserById($id);
+        $tasks = new Tasks();
+        return $tasks->getTaskById($id);
     }
 
     public function create() {
         $data = json_decode(file_get_contents('php://input'), true);
-        $user = new User();
-        $success = $user->createUser($data);
+        $tasks = new Tasks();
+        $success = $tasks->createTask($data);
         return ['success' => $success];
     }
 
     public function update($id) {
         $data = json_decode(file_get_contents('php://input'), true);
-        $user = new User();
-        $success = $user->updateUser($id, $data);
+        $tasks = new Tasks();
+        $success = $tasks->updateTask($id, $data);
         return ['success' => $success];
     }
     
     public function destroy($id) {
-        $user = new User();
-        $success = $user->deleteUser($id);
+        $tasks = new Tasks();
+        $success = $tasks->deleteTask($id);
         return ['success' => $success];
     }
 }

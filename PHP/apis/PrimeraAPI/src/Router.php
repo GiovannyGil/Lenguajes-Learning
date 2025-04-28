@@ -8,6 +8,10 @@ class Router {
     // Añadir rutas (GET, POST, etc)
     public function add(string $method, string $path, callable|array $handler): void {
         $method = strtoupper($method);
+        $path = rtrim($path, '/'); // <- Normaliza la ruta que agregas
+        if ($path === '') {
+            $path = '/';
+        }
         $this->routes[$method][$path] = $handler;
     }
 
@@ -15,18 +19,19 @@ class Router {
     public function dispatch(): void {
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $uri = rtrim($uri, '/');
+        $uri = rtrim($uri, '/'); // <- Normaliza la ruta que llega
+        if ($uri === '') {
+            $uri = '/';
+        }
 
         if (isset($this->routes[$method][$uri])) {
             $handler = $this->routes[$method][$uri];
 
-            // Si es un array [Clase, método]
             if (is_array($handler)) {
                 [$class, $methodName] = $handler;
                 $controller = new $class();
                 echo json_encode($controller->$methodName());
             } else {
-                // Si es una función anónima
                 echo json_encode($handler());
             }
         } else {
@@ -35,5 +40,3 @@ class Router {
         }
     }
 }
-
-?>
