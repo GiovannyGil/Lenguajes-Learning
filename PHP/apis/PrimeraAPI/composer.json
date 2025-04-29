@@ -1,9 +1,17 @@
 {
+    "name": "Primera-API",
     "autoload": {
-      "psr-4": {
-        "Src\\": "src/",
-        "Modules\\": "src/Modules/"
-      }
-    }
-  }
-  
+        "psr-4": {
+           "Src\\": "src/",
+           "Modules\\": "src/Modules/",
+           "Config\\": "src/Config/"
+        }
+    },
+    "authors": [
+        {
+            "name": "GiovannyGil",
+            "email": "arvey950@gmail.com"
+        }
+    ],
+    "require": {}
+}

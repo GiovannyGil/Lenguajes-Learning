@@ -10,7 +10,7 @@ class Database {
 
     public static function getConnection(): PDO {
         if (self::$instance === null) {
-            $path = __DIR__.'/midatabase.sqilitedb';
+            $path = __DIR__.'/midatabase.sqlite';
             $dsn = "sqlite:$path";
             try {
                 self::$instance = new PDO($dsn);
