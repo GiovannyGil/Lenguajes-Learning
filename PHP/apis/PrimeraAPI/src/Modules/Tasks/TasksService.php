@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Tasks\Services;
+namespace Modules\Tasks;
 
 use Config\Database;
 use PDO;
 
 
-class Tasks {
+class TasksService {
     private PDO $db;
 
     public function __construct() {

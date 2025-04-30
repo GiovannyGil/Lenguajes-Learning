@@ -1,0 +1,25 @@
+Users:
+
+{
+  "nombres": "Arbey",
+  "apellidos": "Chica",
+  "nombre_usuario": "GioGil",
+  "email": "arvey950@gmail.com",
+  "clave": "12345",
+  "edad": 23,
+  "celular": "3043209834",
+  "direccion": "AAAA",
+  "fecha_nacimiento": "03/01/2001",
+  "sexo": "M"
+}
+
+
+
+Tasks :
+
+{
+    "nombre": "",
+    "descripcion":"",
+    "tipo":"",
+    "estado":""
+}

@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Users\Controllers;
+namespace Modules\Users;
 
-use Modules\Users\Services\User;
+use Modules\Users\UserService as User;
 
 class UserController {
     public function getAll() {

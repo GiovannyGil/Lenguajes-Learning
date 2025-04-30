@@ -6,5 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'SqlProgramador13\\PrimeraApi\\' => array($baseDir . '/src'),
+    'Src\\' => array($baseDir . '/src'),
+    'Modules\\' => array($baseDir . '/src/Modules'),
+    'Config\\' => array($baseDir . '/src/Config'),
 );

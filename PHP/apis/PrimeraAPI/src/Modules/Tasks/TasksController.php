@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Tasks\Controllers;
+namespace Modules\Tasks;
 
-use Modules\Tasks\Services\Tasks;
+use Modules\Tasks\TasksService as Tasks;
 
 class TasksController {
     public function getAll() {

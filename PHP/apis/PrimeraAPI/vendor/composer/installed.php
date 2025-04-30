@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'sql.programador13/primera-api',
+        'name' => 'giovannygil/primera-api',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '910c7a759de7bc688d86e754a98a7f177723b5e8',
+        'reference' => 'b9539d9ec2f91d95ddb76810f7c28e67dabeedad',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'sql.programador13/primera-api' => array(
+        'giovannygil/primera-api' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '910c7a759de7bc688d86e754a98a7f177723b5e8',
+            'reference' => 'b9539d9ec2f91d95ddb76810f7c28e67dabeedad',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

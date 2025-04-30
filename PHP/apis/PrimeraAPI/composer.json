@@ -1,10 +1,10 @@
 {
-    "name": "Primera-API",
+    "name": "giovannygil/primera-api",
     "autoload": {
         "psr-4": {
-           "Src\\": "src/",
-           "Modules\\": "src/Modules/",
-           "Config\\": "src/Config/"
+            "Src\\": "src/",
+            "Modules\\": "src/Modules/",
+            "Config\\": "src/Config/"
         }
     },
     "authors": [

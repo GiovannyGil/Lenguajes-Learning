@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Users\Services;
+namespace Modules\Users;
 
 use Config\Database;
 use PDO;
 
-class User {
+class UserService {
     private PDO $db;
 
     public function __construct() {
@@ -24,10 +24,11 @@ class User {
     }
 
     public function createUser(array $data): bool {
-        $stmt = $this->db->prepare("INSERT INTO users (nombres, apellidos, email, clave, edad, celular, direccion, fecha_nacimiento, sexo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $this->db->prepare("INSERT INTO users (nombres, apellidos, nombre_usuario, email, clave, edad, celular, direccion, fecha_nacimiento, sexo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         return $stmt->execute([
             $data['nombres'], 
             $data['apellidos'],
+            $data['nombre_usuario'],
             $data['email'],
             $data['clave'],
             $data['edad'],

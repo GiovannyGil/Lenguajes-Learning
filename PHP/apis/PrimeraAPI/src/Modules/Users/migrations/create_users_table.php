@@ -11,6 +11,7 @@ $sql = "
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombres TEXT(30) NOT NULL,
         apellidos TEXT(30) NOT NULL,
+        nombre_usuario TEXT(30) NOT NULL UNIQUE,
         email TEXT(30) NOT NULL UNIQUE,
         clave TEXT(30) NOT NULL ,
         edad INTEGER(3) NOT NULL,
@@ -21,7 +22,7 @@ $sql = "
         estado INTEGER(1) NOT NULL DEFAULT 1,
         createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
         updatedAt TIMESTAMP DEFAULT NULL,
-        deletedAt TIMESTAMP DEFAULT NULL,
+        deletedAt TIMESTAMP DEFAULT NULL
     )
 ";
 

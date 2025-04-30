@@ -9,14 +9,30 @@ class ComposerStaticInitdc2f657da6a6c874dbc369ebb5d64e89
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
-            'SqlProgramador13\\PrimeraApi\\' => 28,
+            'Src\\' => 4,
+        ),
+        'M' => 
+        array (
+            'Modules\\' => 8,
+        ),
+        'C' => 
+        array (
+            'Config\\' => 7,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'SqlProgramador13\\PrimeraApi\\' => 
+        'Src\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Modules\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Modules',
+        ),
+        'Config\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Config',
         ),
     );
 
