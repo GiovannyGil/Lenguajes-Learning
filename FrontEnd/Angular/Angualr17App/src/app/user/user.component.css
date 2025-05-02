@@ -1,0 +1,16 @@
+section {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 32px;
+    font-size: 24px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /* ponerlo al lado del elemento anterior */
+    float: right;
+    /* arriba */
+    margin-top: -64px;
+}

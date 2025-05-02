@@ -1,0 +1,21 @@
+<section>
+    @if (isLoggedIn) {
+        <p> Welcome, {{ username }}! </p>
+        <img 
+        (click)="greet()"
+        src="https://github.com/GiovannyGil.png" alt="photo" />
+
+        <app-game 
+        (addFavoriteEvent)="getFavorite($event)" 
+        username="{{ username }}"
+        /> <!-- This is a custom component, is of GameComponent and recives the name of favorite game-->
+
+        @if (favGame !== '') {
+            <p> Your favorite game is {{ favGame }} </p>
+        }
+
+    } @else {
+        <p> ¡Please log in! </p>
+        <button (click)="isLoggedIn = true">Login</button>
+    }
+</section>
