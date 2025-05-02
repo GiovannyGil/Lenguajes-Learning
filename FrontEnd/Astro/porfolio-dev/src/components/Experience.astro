@@ -1,0 +1,36 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+
+const EXPRECIENCE = [
+    
+    {
+        date: 'Sep 2023',
+        title: 'Face Recognition',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+    },
+    {
+        date: 'Jul 2023',
+        title: 'Images Classification',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+    },
+    {
+        date: 'Jun 2023',
+        title: 'Food E-commerce',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+    }
+]
+---
+
+
+<ol class="relative border-s border-gray-200 m-3">
+
+    {
+        EXPRECIENCE.map(experience => (
+            <li class="mb-10 ms-4">
+                <ExperienceItem {...experience} />
+            </li>
+        ))
+    }
+
+
+</ol>

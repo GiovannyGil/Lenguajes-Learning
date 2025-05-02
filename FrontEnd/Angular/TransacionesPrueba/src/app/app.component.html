@@ -1,0 +1,30 @@
+
+
+<h1>Transacciones</h1>
+
+<div>
+  <table>
+    <thead>
+      <tr>#</tr>
+      <tr>VehiculoID</tr>
+      <tr>ClienteID</tr>
+      <tr>ConcecionarioID</tr>
+      <tr>Fecha Venta</tr>
+      <tr>Precio Venta</tr>
+    </thead>
+    <tbody>
+      @for (trans of transacionesList; track $index){
+        <tr>
+          <td>{{trans.TransaccionID}}</td>
+          <td>{{trans.VehiculoID}}</td>
+          <td>{{trans.ClienteID}}</td>
+          <td>{{trans.ConcecionarioID}}</td>
+          <td>{{trans.FechaVenta}}</td>
+          <td>{{trans.PrecioVenta}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<router-outlet />

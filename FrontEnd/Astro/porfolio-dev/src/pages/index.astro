@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
+import Linkedin from '../components/icons/Linkedin.astro';
+import Github from '../components/icons/Github.astro';
+import Mail from '../components/icons/Mail.astro';
+import Breifcase from '../components/icons/Briefcase.astro';
+import SocialPill from '../components/SocialPill.astro';
+import Experience from '../components/Experience.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+import Code from '../components/icons/Code.astro';
+import Projects from '../components/Projects.astro';
+---
+
+<Layout title="Porfolio Gio"
+	description='Software and Web Developer'
+>
+	<main class="px-8">
+		<SectionContainer class="py-44 pb-32">
+
+			<img 
+			class="rounded-full size-[150px] mb-6"
+			src="https://avatars.githubusercontent.com/u/102708414?v=4"
+			alt="Gio Photo" 
+			/>
+
+			<h1 class="text-white text-3xl font-bold flex flex-row gap-x-4 pb-10"> 
+				Hi There!! I'm Giovanny 
+				<a href="https://www.linkedin.com/in/giovannyc-gil/" 
+				target="_blank"
+				rel="noopener"
+				class="flex justify-center items-center">
+					<Badge>Avalible to work</Badge>
+				</a>
+			</h1>
+			<h2 class="text-2xl text-wrap max-w-[700px]">
+				1 year of experience in <span class="text-blue-400/90">SOFTWARE and WEB Developer</span>
+				of <span class="text-yellow-200/90">Medellín, Colombia</span>. <span class=" opacity-85">I am a person with a lot of desire to learn and grow in the area of ​​software development, who likes to work as a team and very responsible with my work,  who likes to learn new things every day and I am always willing to help my colleagues.</span>
+			</h2>
+
+			<nav class="flex gap-x-4 mt-8 flex-wrap">
+				<SocialPill href="https://www.linkedin.com/in/giovannyc-gil/">
+					<Linkedin class="size-4 md:size-6" />
+					Linkedin
+				</SocialPill>
+				<SocialPill href="https://github.com/GiovannyGil">
+					<Github class="size-4 md:size-6" />
+					Github
+				</SocialPill>
+				<SocialPill href="mailto:arvey950@gmail.com">
+					<Mail class="size-4 md:size-6" />
+					Arvey950@gmail.com
+				</SocialPill>
+				
+			</nav>
+		</SectionContainer>
+	</main>
+
+	<SectionContainer id="experience">
+		<h2 class="text-3xl font-semibold mb-6 flex gap-x-2 items-center">
+			<Breifcase class="size-7" />
+			Work experience
+		</h2>
+		<Experience />
+	</SectionContainer>
+
+
+	<SectionContainer id="experience">
+		<h2 class="text-3xl font-semibold mb-6 flex gap-x-2 items-center">
+			<Code class="size-7" />
+			Projects
+
+			
+		</h2>
+		<Projects />
+	</SectionContainer>
+</Layout>
