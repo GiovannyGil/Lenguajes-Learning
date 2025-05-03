@@ -1,0 +1,51 @@
+<ion-header>
+  <app-header titulo="Simulador CDAT"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <ion-list class="au-form">
+    <ion-item>
+        <ion-label style="overflow: visible; text-align: center;"><span class="color">Capital Ahorrar: {{detalle.TotalCapital | currency: "USD":true: '1.0-0' }}</span></ion-label>
+  </ion-item>
+<ion-item>
+<ion-icon name="cash" item-left style="color:  rgb(0, 0, 0);"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">Total interés:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{detalle.InteresNetoEntregar | currency: "USD":true: '1.0-0' }}</span></ion-label>
+</ion-item>
+<ion-item>
+<ion-icon name="cash" item-left style="color:  rgb(0, 0, 0);"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">Tasa Efectiva:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{detalle.TasaPeriodica | number}}%</span></ion-label>
+</ion-item>
+<ion-item>
+<ion-icon name="cash" item-left style="color:  rgb(0, 0, 0);"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">Tasa Nominal:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{detalle.TasaInteresNominal | number}}%</span></ion-label>
+</ion-item>
+<ion-item>
+<ion-icon name="cash" item-left style="color:  rgb(0, 0, 0);"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">Tasa Periódica:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{detalle.Tasaperiodica | number}}%</span></ion-label>
+</ion-item>
+<ion-item>
+<ion-icon name="cash" item-left style="color:  rgb(0, 0, 0);"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">Total Capital:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{detalle.TotalCapital  | currency: "USD":true: '1.0-0'}}</span></ion-label>
+</ion-item>
+<ion-item>
+<ion-icon name="cash" item-left style="color: rgb(0, 0, 0);"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">Total Retención:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{detalle.TotalRte  | currency: "USD":true: '1.0-0'}}</span></ion-label>
+</ion-item>
+<ion-item>
+
+</ion-item>
+
+    <ion-button expand="full" shape="round" (click)="Imprimir()">Imprimir</ion-button>
+</ion-list>
+
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>
+

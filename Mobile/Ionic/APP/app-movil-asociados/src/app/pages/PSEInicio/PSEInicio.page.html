@@ -1,0 +1,34 @@
+<ion-header>
+  <app-header titulo=" PAGOS EN LINEA"></app-header>
+</ion-header>
+
+<ion-content class="background">
+
+  <div class="psealinea">
+    <ion-text class="letra" class="color">{{Mensaje}}</ion-text>
+  </div>
+
+  <div class="psealinea">
+    <div class="checkbox">
+      <ion-checkbox [(ngModel)]="confirmarpse"></ion-checkbox>
+    </div>
+
+    <ion-text class="letra" class="color">Acepto haber leído los mensajes informativos</ion-text>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <div class="pseboton">
+      <ion-button id="myBtn" routerLink="/psemodal-historico" expand="full" shape="round">Ver Historial de Transacciones
+      </ion-button>
+    </div>
+    <div class="pseboton">
+      <ion-button expand="full" shape="round" (click)="submit()">Aceptar</ion-button>
+    </div>
+  </div>
+
+
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

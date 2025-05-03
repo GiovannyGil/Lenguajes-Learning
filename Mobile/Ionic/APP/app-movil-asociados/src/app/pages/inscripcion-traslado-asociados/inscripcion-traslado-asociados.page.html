@@ -1,0 +1,67 @@
+<ion-header>
+  <app-header titulo="Inscripción traslado ahorros"></app-header>
+</ion-header>
+
+<ion-content class="background">
+
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Cuenta origen</ion-text>
+        </ion-label>
+        <ion-select placeholder="Seleccione" [(ngModel)]="cuentaOrigenSelect"
+          formControlName="cuentaOrigenSelect" style="max-width: max-content; color: #000000;">
+          <ion-select-option *ngFor="let ahorro of ahorros" [value]="ahorro">{{ahorro.numerocuenta}} - {{ahorro.Nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="cuentaOrigenSelect">
+        <div class="creditoSelected-img" style="padding: 20px;">
+          <ion-text class="color">Nro. Cta: {{cuentaOrigenSelect.numerocuenta}}
+            <br> Nombre linea: {{cuentaOrigenSelect.Nombre}}
+            <br> Saldo: {{cuentaOrigenSelect.saldototal | currency:'USD':true}}
+          </ion-text>
+        </div>
+      </ion-item>
+      <h3 style="text-align: center; color: #000000; font-size: 23px; font-weight: bold;">Cuenta a inscribir:</h3>
+
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Cédula:</ion-text>
+        </ion-label>
+        <ion-input placeholder="Digite la cedula a inscribir" class="color" type="number" [(ngModel)]="cedula"
+        (ionBlur)="cuentastercero(cedula)" formControlName="cedula">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Cuenta destino</ion-text>
+        </ion-label>
+        <ion-select class="color" placeholder="Seleccione" [(ngModel)]="cuentaDestinoSelect"
+          formControlName="cuentaDestinoSelect" style="max-width: max-content;">
+          <ion-select-option *ngFor="let ahorroc of ahorrosCedu" [value]="ahorroc"> {{ahorroc.numerocuenta}} - {{ahorroc.Nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="cuentaDestinoSelect">
+        <div class="creditoSelected-img" style="padding: 20px;">
+          <ion-text class="color">
+            Nombre: {{cuentaDestinoSelect.nombreintegrado}}
+            <br> Nro. Cta: {{cuentaDestinoSelect.numerocuenta}}
+          </ion-text>
+        </div>
+      </ion-item>
+
+      <ion-button expand="full" shape="round" (click)="Confirmar()" [disabled]="myForm.invalid">Inscribir</ion-button>
+      <ion-button expand="full" shape="round" (click)="CuentasInscritas()">Cuentas inscritas</ion-button>
+    </ion-list>
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

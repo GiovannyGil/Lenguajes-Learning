@@ -1,0 +1,38 @@
+<ion-header>
+  <app-header titulo="Transacciones pendientes"></app-header>
+</ion-header>
+
+<ion-content>
+  <div style="text-align: center;">  <img src="assets/imgs/ayuda-0009.png" style="width: 30%;"></div>
+  <div class=" col blue-opa-4">
+
+    <div>
+        <strong>Identificaci&oacute;n pago No: </strong>
+        <span>
+          {{Datos.pago}}
+        </span>
+    </div>
+    <div>
+        <strong>CUS: </strong>
+        {{Datos.estado}}
+    </div>
+    <div>
+        <strong>Fecha transacci&oacute;n: </strong>
+        {{Datos.fechagenero}}
+    </div>
+    <div>
+        <strong>Valor transacci&oacute;n: </strong>
+        {{Datos.total_con_iva}}
+    </div>
+    <br>
+    <p>En este momento presentas un proceso de pago en estado <strong>PENDIENTE</strong> de recibir confirmaci&oacute;n por parte de tu entidad Financiera, te invitamos a esperar unos minutos y volver a consultar m&aacute;s tarde si tu pago fue confirmado de forma exitosa para poder realizar una nueva transacci&oacute;n.</p>
+    <p>Si deseas mayor informaci&oacute;n sobre el estado actual de tu transacci&oacute;n puede comunicarte a nuestra l&iacute;nea de atenci&oacute;n al cliente <strong>+57 1 593 9966</strong> o enviarnos un correo elect&oacute;nico a soporte <strong></strong> y preguntar por el estado de la transacci&oacute;n indic&aacute;ndonos el n&uacute;mero de identificaci&oacute;n pago y CUS mencionados al inicio del mensaje.
+    </p>
+
+</div>
+
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

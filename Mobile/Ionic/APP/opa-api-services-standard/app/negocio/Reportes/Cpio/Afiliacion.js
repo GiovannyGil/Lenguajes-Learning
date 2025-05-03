@@ -1,0 +1,78 @@
+const fs = require('fs');
+const path = require('path');
+const RSVP = require('rsvp');
+const { Report } = require('fluentreports');
+
+function generate(data) {
+  const promise = new RSVP.Promise((resolve, reject) => {
+    const header = (rpt) => {
+      rpt.image('./imagen/Cpio/LogoEntidad.PNG');
+      rpt.newLine(2);
+
+      rpt.print(`Fecha de expedición: ${data['#FECHAACTUAL#']}`,
+        {
+          align: 'left',
+
+        });
+
+      rpt.newLine(4);
+
+      rpt.print('LA COOPERATIVA DE AHORRO Y CRÉDITO PIO XII DE COCORNÁ LTDA', {
+        align: 'center',
+      });
+      rpt.print('CERTIFICA:', {
+        align: 'center',
+      });
+      rpt.newLine(3);
+
+      rpt.print(`Que ${data['#NOMBRE#']}, identificado(a) con ${data['#TIPODOCUMENTO#']} número ${data['#CEDULA#']} de ${data['#CIUDAD#']}, es Asociado (a) de la COOPERATIVA DE AHORRO Y CRÉDITO PIO XII DE COCORNÁ LTDA y se encuentra vinculado desde ${data['#FECHA#']}.`, {
+        align: 'left',
+      });
+
+      rpt.newLine(4);
+      rpt.print('Este certificado se expide por solicitud de el (la) interesado (a)', {
+        align: 'left',
+      });
+
+      rpt.newLine(7);
+
+      rpt.print('________________________________________________');
+      rpt.print('COOPERATIVA DE AHORRO Y CRÉDITO PIO XII DE COCORNÁ');
+      rpt.print(`OFICINA:${data['#NOMREAGENCIA#']}`);
+
+      rpt.newLine(6);
+
+      rpt.print(`Dirección: ${data.direccion},${data['#NOMREAGENCIA#']}`, {
+        align: 'center',
+      });
+      rpt.print(`PBX: ${data.telefono} - Fax: 513 24 21`, {
+        align: 'center',
+      });
+      rpt.print(`E-mail: ${data.email} - Web: www.cooperativapioxii.com.co`, {
+        align: 'center',
+      });
+    };
+
+    // Create a new Report Engine
+    // pipeStream is predefined in this report to make it display in the browser
+    const rpt = new Report(path.join(__dirname, '../../vistas/pdf/myreportAfiliacion.pdf'));
+
+    // Configure the Defaults
+    rpt
+      .margins(55)
+      .header(header)
+      .data(data);
+
+    // Run the Report
+    // displayReport is predefined to make it display in the browser
+    rpt.render((err, reportName) => {
+      if (err) return reject(err);
+      const stream = fs.createReadStream(reportName);
+      return resolve(stream);
+    });
+  });
+
+  return promise;
+}
+
+module.exports = generate;

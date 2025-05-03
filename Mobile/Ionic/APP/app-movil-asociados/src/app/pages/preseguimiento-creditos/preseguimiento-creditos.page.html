@@ -1,0 +1,118 @@
+<ion-header>
+  <app-header titulo="Créditos"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+
+  <div class="producto-about">
+      <div class="row list-item-seguimiento">
+        <div class="col"><strong>Pagaré :</strong> {{credito.Pagare}} </div>
+        <div class="col"><strong>Línea: </strong>{{credito.CodigoLinea}} </div>
+      </div>
+
+      <div class="row list-item-seguimiento">
+        <div class="col"><strong>Destino : </strong> {{credito.CodigoDestino }} </div>
+        <div class="col"><strong>F.Venc.Cuota : </strong> {{credito.Fecha | date:'yyyy-MM-dd'}} </div>
+      </div>
+
+      <div class="row list-item-seguimiento">
+        <div class="col"><strong>Total Deuda: </strong> $ {{credito.SaldoCapital }} </div>
+        <div class="col"><strong>Valor Cuota : </strong>$ {{credito.Anualidad}} </div>
+      </div>
+
+      <div class="row">
+        <div class="col"><strong>Saldo ponerse al día: </strong>$ {{credito.SaldoPonerseDia}} </div>
+      </div>
+  </div>
+
+  <div class="padding">
+      <div>
+          <div class="row list-item-seguimiento">
+              <div class="col blue-opa-2">
+                  <div>Fecha desde:</div>
+              </div>
+              <div class="col blue-opa-2">
+                      <ion-datetime 
+                      class="padding0"
+                      placeholder="Fecha desde" 
+                      displayFormat="DD/MM/YYYY" 
+                      [(ngModel)]="dateFrom"  
+                      (ionChange)="onChangeDate()"></ion-datetime>
+              </div>
+              </div>
+      </div>
+
+      <div>
+          <div class="row list-item-seguimiento">
+              <div class="col blue-opa-2">
+                  <div>Fecha hasta:</div>
+              </div>
+              <div class="col blue-opa-2">
+                      <ion-datetime 
+                      class="padding0"
+                      placeholder="Fecha hasta" 
+                      displayFormat="DD/MM/YYYY" 
+                      [(ngModel)]="dateTo"  
+                      (ionChange)="onChangeDate()"></ion-datetime>
+              </div>
+              </div>
+      </div>
+  </div>
+
+<div>
+  <div class="row">
+      <div class="col blue-opa-2">
+          Fecha
+      </div>
+      <div class="col blue-opa-2">
+          Documento
+      </div>
+      <div class="col blue-opa-2">
+          Valor
+      </div>
+      </div>
+</div>
+  
+      <ul class="list">
+          <li class="item list-item-seguimiento" *ngFor="let producto of seguimientos" (click)="Detalle(producto)" style="border-bottom: groove;">
+              <div class="row list-item-seguimiento">
+                  <div class="col first-col">
+                      <span class="color">{{producto.fechaTrabajo}}</span>
+                  </div>
+                  <div class="col">
+                      <span class="color">{{producto.Documento}}</span>
+                  </div>
+                  <div class="col valor-seguimientos" [ngClass]="{'red-text':producto.ValorTransaccion > 0}">
+                    <span class="color" *ngIf="producto.ValorTransaccion === '0.00'">+ {{producto.ConsignacionTotal}}</span> 
+                    <span class="color" *ngIf="producto.ValorTransaccion !== '0.00'">- {{producto.ValorTransaccion}}</span>
+                      <ion-icon *ngIf="mostrardetalle=='S'" name="arrow-forward" style="color: #dbd2d2; margin-left: 5px;"></ion-icon>   
+                  </div>
+              </div>
+
+              <div class="row list-item-seguimiento">
+
+
+                  <div class="col"></div>
+                  <div class="col"></div>
+                  <div class="col list-item-seguimiento naturaleza-seguimientos">
+                      <span style="font-size:12px;">
+                        <span *ngIf="producto.ValorTransaccion === '0.00'" [ngClass]="{'green-text':producto.ValorTransaccion  === '0.00','red-text':producto.ValorTransaccion !== '0.00'}">Consignación</span> 
+                        <span *ngIf="producto.ValorTransaccion !== '0.00'" [ngClass]="{'green-text':producto.ValorTransaccion  === '0.00','red-text':producto.ValorTransaccion !== '0.00'}">Cargue</span>
+                      </span>
+                  </div>
+              </div>
+          </li>
+      </ul>
+
+      <ion-infinite-scroll threshold="150px" (ionInfinite)="loadMore($event)" *ngIf="!notmoreData">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Cargando...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+      <app-footer></app-footer>
+    </ion-footer>
+

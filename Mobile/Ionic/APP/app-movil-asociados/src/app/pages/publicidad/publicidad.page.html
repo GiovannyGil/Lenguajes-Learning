@@ -1,0 +1,19 @@
+<ion-header>
+  <app-header titulo="Publicidad"></app-header>
+</ion-header>
+
+<ion-content class="background">
+<!-- <creditos-digitales></creditos-digitales> -->
+<div class="slider-container" *ngIf="visualiza=='S'"> 
+  <ion-slides [pager]="true" [options]="slideOpts">
+    <ion-slide *ngFor="let imagen of datos">
+        <div class="content-slider box">
+            <img src="{{imagen.UrlIMAGEN}}">            
+        </div>
+    </ion-slide>
+  </ion-slides>
+</div>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

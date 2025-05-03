@@ -1,0 +1,90 @@
+<ion-header>
+  <app-header titulo="Estado de Cuentas"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <!-- <div class="separador"></div> -->
+  <div *ngIf="ahorros.length">
+    <div class="item item-divider item-divider-input">
+      <ion-text class="item-divider-title" style="text-align: center;">Ahorros</ion-text>
+      <ion-icon name="cash-outline" style="float:right;  margin-right: 5px; zoom: 2.0;"></ion-icon>
+    </div>
+    <div class=" letra">
+   
+      <a *ngFor="let ahorro of ahorros" (click)=SeguimientoAhorros(ahorro) class="color">
+      
+        <ion-row style="border-bottom: groove; padding-top: 5px;">
+          <ion-col>
+            <ion-text style="font-size: 14px;">{{ahorro.NombreLineaAhorros | uppercase }}</ion-text>
+          </ion-col>
+          <ion-text style="float:right; font-size: 17px;">
+            <ion-text>${{ahorro.SaldoTotalCuenta}}</ion-text>
+          </ion-text>
+          <ion-icon name="arrow-forward" style="color: #dbd2d2; margin-left: 5px;"></ion-icon>
+        </ion-row>
+      </a>
+    
+    </div>
+    <div *ngIf="creditos.length">
+      <div class="item item-divider item-divider-input">
+        <ion-text class="item-divider-title" style="text-align: center;">Créditos</ion-text>
+        <ion-icon name="card-outline" style="float:right;  margin-right: 5px; zoom: 2.0;"></ion-icon>
+      </div>
+      <a *ngFor="let credito of creditos" (click)=SeguimientoCreditos(credito) class="color">
+        <ion-row style="border-bottom: groove; padding-top: 5px;">
+          <ion-col>
+            <ion-text style="font-size: 14px;">{{credito.nombredestino | uppercase}}</ion-text>
+          </ion-col>
+          <ion-text style="float:right; font-size: 17px;">
+            <ion-text>${{credito.SaldoCapital}}</ion-text>
+          </ion-text>
+          <ion-icon name="arrow-forward" style="color: #dbd2d2; margin-left: 5px;"></ion-icon>
+        </ion-row>
+      </a>
+    </div>
+    <div *ngIf="novedades.length">
+      <div class="item item-divider item-divider-input">
+        <ion-text class="item-divider-title" style="text-align: center;">Novedades</ion-text>
+        <ion-icon name="clipboard-outline" style="float:right;  margin-right: 5px; zoom: 2.0;"></ion-icon>
+      </div>
+      <a *ngFor="let novedad of novedades" (click)=SeguimientoNovedades(novedad) class="color">
+        <ion-row style="border-bottom: groove; padding-top: 5px;">
+          <ion-col>
+            <ion-text style="font-size: 14px;">{{novedad.NombreNovedad | uppercase}}</ion-text>
+          </ion-col>
+          <ion-text style="float:right; font-size: 17px;" *ngIf="numeroentidad!='0127'">
+            <ion-text>${{novedad.SaldoNovedad}}</ion-text>
+          </ion-text>
+          <ion-text style="float:right; font-size: 17px;" *ngIf="numeroentidad=='0127'">
+            <ion-text>${{novedad.CuotaNovedad}}</ion-text>
+          </ion-text>
+          <ion-icon name="arrow-forward" style="color: #dbd2d2; margin-left: 5px;"></ion-icon>
+        </ion-row>
+      </a>
+    </div>
+
+
+    <div *ngIf="debitos.length">
+      <div class="item item-divider item-divider-input">
+        <ion-text class="item-divider-title" style="text-align: center;">Débitos Automáticos</ion-text>
+        <ion-icon name="card-outline" style="float:right;  margin-right: 5px; zoom: 2.0;"></ion-icon>
+      </div>
+      <a *ngFor="let debito of debitos" (click)=SeguimientoDebitos(debito) class="color">
+        <ion-row style="border-bottom: groove; padding-top: 5px;">
+          <ion-col>
+            <ion-text style="font-size: 15px;">{{debito.NombreLineaADebitar | lowercase}}</ion-text>
+          </ion-col>
+          <ion-text style="float:right; font-size: 17px;">
+            <ion-text>${{debito.ValorADebitar}}</ion-text>
+          </ion-text>
+          <ion-icon name="arrow-forward" style="color: #dbd2d2; margin-left: 5px;"></ion-icon>
+        </ion-row>
+      </a>
+    </div>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

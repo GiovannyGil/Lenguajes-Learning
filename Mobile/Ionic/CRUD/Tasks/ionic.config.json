@@ -1,0 +1,11 @@
+{
+  "name": "Tasks",
+  "integrations": {
+    "capacitor": {
+      "enable": false,
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}

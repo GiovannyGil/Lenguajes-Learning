@@ -1,0 +1,238 @@
+<style>
+  p {
+    font-family: Arial;
+    font-size: 12px;
+  }
+
+  table {
+    font-family: Arial;
+    font-size: 12px;
+  }
+</style>
+
+<img class="n3VNCb" style="width: 200px; margin: 0px auto; display: block;" src="data:image/png;base64,{{logoBase64}}"
+  alt="Logo" data-noaft="1" />
+<br>
+<table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="0">
+  <tbody>
+    <tr>
+      <td style="text-align: center;background-color: #D5D6D6;" colspan="4"><strong>RESUMEN SIMULACIÓN</strong></td>
+    </tr>
+    <tr style="text-align: left;">
+      <td><strong>Línea</strong></td>
+      <td>{{Codlinea}}</td>
+      <td><strong>Destino</strong></td>
+      <td>{{Coddestino}}</td>
+    </tr>
+    <tr style="text-align: left;">
+      <td><strong>Capital</strong></td>
+      <td>{{SaldoCapital}}</td>
+      <td><strong>Periodicidad</strong></td>
+      <td>{{Periodicidad}}</td>
+    </tr>
+    <tr style="text-align: left;">
+      <td><strong>Plazo</strong></td>
+      <td>{{Plazo}}</td>
+      <td><strong>Cuota</strong></td>
+      <td>{{Cuota}}</td>
+    </tr>
+    <tr style="text-align: left;">
+      <td><strong>Tasa</strong></td>
+      <td>{{TasaPeriodica}}</td>
+      <td><strong>Interés Corriente</strong></td>
+      <td>{{TotalInteresCorriente}}</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+<table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="0">
+  <thead>
+    <tr>
+      <td style="text-align: center; background-color: #d5d6d6;" colspan="7"><strong>PROYECCIÓN</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><strong>#</strong></td>
+      <td style="text-align: center;"><strong>Fecha Pago</strong></td>
+      <td style="text-align: center;"><strong>Cuota</strong></td>
+      <td style="text-align: center;"><strong>Abono Cap.</strong></td>
+      <td style="text-align: center;"><strong>Abono Int.</strong></td>
+      <td style="text-align: center;"><strong>Total Cap</strong></td>
+      <td style="text-align: center;"><strong>Total Int</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each planDePagos}}
+      <tr>
+        <td style="text-align: center;">{{NRO}}</td>
+        <td style="text-align: center;">{{FECHAPAGO}}</td>
+        <td style="text-align: right;">{{CUOTA}}</td>
+        <td style="text-align: right;">{{ABONOCAPITAL}}</td>
+        <td style="text-align: right;">{{ABONOINTERES}}</td>
+        <td style="text-align: right;">{{TOTALCAPITAL}}</td>
+        <td style="text-align: right;">{{TOTALINTERES}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+<br />
+
+<!-- <table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="0">
+  <thead>
+    <tr>
+      <td style="text-align: center; background-color: #d5d6d6;" colspan="8"><strong>Nombres Costos</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><strong>Costo 1</strong></td>
+      <td style="text-align: center;"><strong>Costo 2</strong></td>
+      <td style="text-align: center;"><strong>Costo 3</strong></td>
+      <td style="text-align: center;"><strong>Costo 4</strong></td>
+      <td style="text-align: center;"><strong>Costo 5</strong></td>
+      <td style="text-align: center;"><strong>Costo 6</strong></td>
+      <td style="text-align: center;"><strong>Costo 7</strong></td>
+      <td style="text-align: center;"><strong>Costo 8</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        {{#each costosTotales}}
+          <td style="text-align: center;">{{nombre}}</td>
+        {{/each}}
+      </tr>
+  </tbody>
+</table>
+
+<br />
+
+<table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="0">
+  <thead>
+    <tr>
+      <td style="text-align: center; background-color: #d5d6d6;" colspan="9"><strong>Costos Adicionales</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><strong>#</strong></td>
+      <td style="text-align: center;"><strong>Costo 1</strong></td>
+      <td style="text-align: center;"><strong>Costo 2</strong></td>
+      <td style="text-align: center;"><strong>Costo 3</strong></td>
+      <td style="text-align: center;"><strong>Costo 4</strong></td>
+      <td style="text-align: center;"><strong>Costo 5</strong></td>
+      <td style="text-align: center;"><strong>Costo 6</strong></td>
+      <td style="text-align: center;"><strong>Costo 7</strong></td>
+      <td style="text-align: center;"><strong>Costo 8</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each costos}}
+      <tr>
+        <td style="text-align: center;">{{nro}}</td>
+        <td style="text-align: right;">{{Costo1}}</td>
+        <td style="text-align: right;">{{Costo2}}</td>
+        <td style="text-align: right;">{{Costo3}}</td>
+        <td style="text-align: right;">{{Costo4}}</td>
+        <td style="text-align: right;">{{Costo5}}</td>
+        <td style="text-align: right;">{{costo6}}</td>
+        <td style="text-align: right;">{{Costo7}}</td>
+        <td style="text-align: right;">{{costo8}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table> -->
+
+<!-- <table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="1">
+  <tbody>
+    <tr>
+      <td style="text-align: center; background-color: #d5d6d6;" colspan="2"><strong>PROYECCIÓN</strong></td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">
+        <table style="width: 100%;">
+          <thead>
+            <tr>
+              <td><strong>#</strong></td>
+              <td><strong>Fecha Pago</strong></td>
+              <td><strong>Cuota </strong></td>
+              <td><strong>Abono Cap</strong></td>
+              <td><strong>Abono Int</strong></td>
+              <td><strong>Total Cap</strong></td>
+              <td><strong>Total Int</strong></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td> {{TasaPeriodica}} %</td>
+              <td style="text-align: center;"> {{TasaPeriodica}} %</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td style="width: 50%;">
+        <table style="width: 100%;">
+          <tbody>
+            <tr>
+              <td>Intereses generados</td>
+              <td style="text-align: right;"> {{InteresNetoEntregar}} </td>
+              <td style="text-align: right;width: 30px;font-family: 'Courier New', monospace;">(+)</td>
+            </tr>
+            <tr>
+              <td>Retenci&oacute;n en la fuente</td>
+              <td style="text-align: right;"> {{TotalRte}}</td>
+              <td style="text-align: right;width: 30px;font-family: 'Courier New', monospace;">(-)</td>
+            </tr>
+            <tr>
+              <td><strong>Rendimientos financieros</strong></td>
+              <td style="text-align: right; border-top: 1px #d5d6d6 solid;"><strong>{{rendimientosFinancieros}}</strong>
+              </td>
+              <td style="width: 30px; border-top: 1px #d5d6d6 solid;"></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <hr>
+                </hr>
+              </td>
+            </tr>
+            <tr>
+              <td>Valor del ahorro</td>
+              <td style="text-align: right;">{{TotalCapital}}</td>
+              <td style="width: 30px"></td>
+            </tr>
+            <tr>
+              <td>Rendimientos financieros</td>
+              <td style="text-align: right;">{{rendimientosFinancieros}}</td>
+              <td style="text-align: right;width: 30px;font-family: 'Courier New', monospace;">(+)</td>
+            </tr>
+            <tr>
+              <td><strong>Total a entregar</strong></td>
+              <td style="text-align: right; border-top: 1px #d5d6d6 solid;"><strong>{{ValorNetaEntregar}}</strong></td>
+              <td style="width: 30px; border-top: 1px #d5d6d6 solid;"></td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;">
+  <tbody>
+    <tr>
+      <td style="text-align: center; background-color: #d5d6d6;" colspan="5"><strong>PROYECCI&Oacute;N</strong></td>
+    </tr>
+    <tr>
+      <td style="width: 10%; text-align: center;border:1px #d5d6d6 solid;"><strong>NRO.REG</strong></td>
+      <td style="width: 22.5%; text-align: center;border:1px #d5d6d6 solid;"><strong>CAPITAL</strong></td>
+      <td style="width: 22.5%; text-align: center;border:1px #d5d6d6 solid;"><strong>INTER&Eacute;S GANADO</strong></td>
+      <td style="width: 22.5%; text-align: center;border:1px #d5d6d6 solid;"><strong>RETEFUENTE</strong></td>
+      <td style="width: 22.5%; text-align: center;border:1px #d5d6d6 solid;"><strong>INTER&Eacute;S PAGADO</strong> </td>
+    </tr>
+    
+
+    <tr>
+      <td style="text-align: center;border-right:1px #d5d6d6 solid;"><strong>TOTALES</strong></td>
+      <td style="text-align: right;border-top:1px #d5d6d6 solid;"><strong>{{ValorNetaEntregar}}</strong></td>
+      <td style="text-align: right;border-top:1px #d5d6d6 solid;"><strong>{{planDePagosTotales.INTERES_GANADO}}</strong></td>
+      <td style="text-align: right;border-top:1px #d5d6d6 solid;"><strong>{{planDePagosTotales.RETEFUENTE}}</strong></td>
+      <td style="text-align: right;border-top:1px #d5d6d6 solid;"><strong>{{planDePagosTotales.INTERES_PAGADO}}</strong></td>
+    </tr>
+  </tbody>
+</table> -->

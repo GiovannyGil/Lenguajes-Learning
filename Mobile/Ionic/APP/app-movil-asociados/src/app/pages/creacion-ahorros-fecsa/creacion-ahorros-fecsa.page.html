@@ -1,0 +1,59 @@
+<ion-header>
+  <app-header titulo="Creación y/o Modificación Productos"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+  <div>
+  <span>Asociado: {{datoscliente.nombreintegrado | titlecase }}</span>
+</div>
+<div class="separador"></div>
+  <div >
+  <span>  DESCRIPCION PRODUCTO <br>
+  <p>{{descripcion}}</p> 
+ </span>
+ </div>
+
+  <form [formGroup]="myForm" novalidate> 
+    <ion-item>
+      <ion-label style="overflow: visible;"><span>Tipo Solicitud</span></ion-label>
+      <ion-select  placeholder="Seleccione" [(ngModel)]="datoscliente.quehace" (ionChange)="pintardatos(datoscliente.quehace)" formControlName="tipoSolicitudSelected"  style="max-width: max-content; color: #dbd2d2;">
+      <ion-select-option value="A">Apertura</ion-select-option>
+      <ion-select-option value="M">Modificación</ion-select-option>
+      </ion-select>
+    </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;"><span>línea Ahorros:</span></ion-label>
+        <ion-input placeholder="línea" type="text" [(ngModel)]="Linea.Nombre" formControlName="Linea" style="text-align: right;">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;"><span>Número de cuenta:</span></ion-label>
+        <ion-select *ngIf="habilita"  placeholder="Seleccione" [(ngModel)]="datoscliente.numerocuenta" (ionChange)="Datoscuenta(datoscliente.numerocuenta)" formControlName="Cuenta"  style="max-width: max-content; color: #dbd2d2;">
+          <ion-select-option *ngFor="let cuenta of select['cuentas']" [value]="cuenta">{{cuenta.numerocuenta}}</ion-select-option>
+        </ion-select> 
+        <ion-input  *ngIf="deshabilita" placeholder="Cuenta" type="text" [(ngModel)]="datoscliente.numerocuenta" formControlName="Cuenta" style="text-align: right;"></ion-input>
+      </ion-item>
+        <ion-item>
+          <ion-label style="overflow: visible;"><span>Forma Pago</span></ion-label>
+          <ion-select [disabled]="habilita"  placeholder="Seleccione" [(ngModel)]="datoscliente.formapago" formControlName="pagoSelected"  style="max-width: max-content; color: #dbd2d2;">
+          <ion-select-option value="N">Nomina</ion-select-option>
+          <ion-select-option value="T">Taquilla</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label style="overflow: visible;"><span>Valor Mensual de la cuota:</span></ion-label>
+          <ion-input placeholder="Cuota" type="tel" [(ngModel)]="datoscliente.cuota" (ionChange)="convertNumber($event)"  formControlName="Cuota" style="text-align: right;"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="habilitatipo" >
+          <ion-label style="overflow: visible;"><span>Plazo</span></ion-label>
+          <ion-select  placeholder="Seleccione" [(ngModel)]="datoscliente.Plazo" formControlName="plazoSelected"  style="max-width: max-content; color: #dbd2d2;">
+          <ion-select-option value="30">30</ion-select-option>
+          <ion-select-option value="60">60</ion-select-option>
+          <ion-select-option value="90">90</ion-select-option>
+          <ion-select-option value="360">360</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button expand="full" shape="round" (click)="ConfirmarEnvio()" [disabled]="myForm.invalid">Enviar Solicitud</ion-button>
+  </form>
+</ion-content>

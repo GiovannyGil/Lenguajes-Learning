@@ -1,0 +1,61 @@
+<ion-header>
+  <app-header titulo="Traslado ahorros asociados"></app-header>
+</ion-header>
+
+<ion-content class="background">
+
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+
+      <ion-item lines="full" style="margin-top: 30px;">
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Cuenta destino</ion-text>
+        </ion-label>
+        <ion-select placeholder="Seleccione" [(ngModel)]="cuentasMatriculadasSelect" formControlName="cuentasMatriculadasSelect"
+          style="max-width: max-content; color: #000000;" (ionChange)="mostrarDatosTransferencia()">
+          <ion-select-option class="color" *ngFor="let cuentas of cuentasMatriculadas" [value]="cuentas">Cuenta: {{cuentas.cuentaDestino}} - {{cuentas.nombreDestino}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-card *ngIf="cuentasMatriculadasSelect" style="background-color: white; text-align: center; border-radius: 20px;">
+        <ion-card-header>
+          <ion-card-title style="font-weight: bold; color: black;">Datos para transferencia</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <h2 style="font-weight: bold;font-size: 17px;">Datos cuenta destino</h2>
+          <div>
+            <h3>Nombre : {{cuentasMatriculadasSelect.nombreDestino}}</h3>
+            <h3>Numero de cedula: {{cuentasMatriculadasSelect.cedulaDestino}}</h3>
+            <h3>Nro cuenta : {{cuentasMatriculadasSelect.cuentaDestino}} - {{cuentasMatriculadasSelect.nombreCuentaDestino}}</h3>
+          </div>
+        </ion-card-content>
+        <ion-card-content>
+          <h2 style="font-weight: bold;font-size: 17px;">Datos cuenta origen</h2>
+          <div>
+            <h3>Nro cuenta : {{cuentasMatriculadasSelect.cuentaOrigen}} - {{cuentasMatriculadasSelect.nombreCuentaOrigen}}</h3>
+            <h3>Saldo total : {{this.saldoTotalCuenta | currency:'USD':true}}</h3>
+            <h3>Saldo disponible : {{this.valorRetiroDisponible | currency:'USD':true}}</h3>
+          </div>
+        </ion-card-content>
+        <ion-item>
+          <ion-input placeholder="$ Ingrese el valor a transferir" class="color" type="tel" [(ngModel)]="valor"
+            (ionChange)="convertNumber($event)" formControlName="valor">
+          </ion-input>
+        </ion-item>
+      </ion-card>
+
+      <!-- <ion-item>
+        <ion-input placeholder="$ Valor" class="color" type="tel" [(ngModel)]="valor"
+          (ionChange)="convertNumber($event)" formControlName="valor">
+        </ion-input>
+      </ion-item> -->
+
+      <ion-button expand="full" shape="round" (click)="Confirmar()" [disabled]="myForm.invalid">Transferir</ion-button>
+    </ion-list>
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

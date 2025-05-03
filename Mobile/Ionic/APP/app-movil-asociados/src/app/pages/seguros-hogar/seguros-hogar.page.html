@@ -1,0 +1,125 @@
+<ion-header>
+  <app-header titulo="Seguros Hogar"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div *ngIf="habilitacamposePE">
+    <div class="separador"></div>
+  <form> 
+    <ion-list class="au-form">
+      <ion-item>
+        <ion-label style="overflow: visible;"><ion-text>Dirección Hogar:</ion-text></ion-label>
+        <ion-input placeholder="Dirección" type="text" [(ngModel)]="input.Direccion" name="Direccion" style="text-align: end;">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;"><ion-text>Ciudad:</ion-text></ion-label>
+        <ion-input placeholder="Ciudad" type="text" [(ngModel)]="input.Ciudad" name="Ciudad" style="text-align: end;">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;"><ion-text>Doc. Beneficiario:</ion-text></ion-label>
+        <ion-input placeholder="Número" type="text" [(ngModel)]="input.DocumentoBeneficiario" name="DocumentoBeneficiario" style="text-align: end;">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;"><ion-text>Beneficiario:</ion-text></ion-label>
+        <ion-input placeholder="Nombre" type="text" [(ngModel)]="input.NombreBeneficiario" name="NombreBeneficiario" style="text-align: end;">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+      <ion-label style="overflow: visible;"><ion-text>V. Asegurado Todo Riesgo:</ion-text></ion-label>
+      <ion-input placeholder="Valor" type="tel" [(ngModel)]="input.valor3" name="valor" style="text-align: end;">
+      </ion-input>
+      </ion-item>
+    </ion-list>
+  </form>  
+  </div>
+  <ion-item *ngIf="habilitagrid">
+    <ion-label style="overflow: visible;"><ion-text>Código Servicio</ion-text></ion-label>
+    <ion-select  placeholder="Seleccione" [(ngModel)]="input.codigo" name="codigo" (ionChange)="datospoliza(input.codigo)"  style="max-width: max-content; color: #dbd2d2;">
+      <ion-select-option *ngFor="let poliza of select['polizas']" value="{{poliza.codigoservicio}}">{{poliza.codigoservicio}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div *ngIf="habilitagrid">
+    <div class="row" style="font-size: 14px;">
+        <div class="col blue-opa-2 ">
+           Dir. Hogar
+        </div>
+        <div class="col blue-opa-2">
+            Ciudad
+        </div>
+        <div class="col blue-opa-2">
+          Beneficiario
+        </div>
+        <div class="col blue-opa-2">
+          V. Asegurado Edificio
+        </div>
+        <div class="col blue-opa-2">
+          V. Asegurado Contenidos
+        </div>
+        <div class="col blue-opa-2">
+          V. Asegurado Todo Riesgo
+        </div>
+        <div class="col blue-opa-2">
+          V. Prima Mensual
+        </div>
+        <div class="col blue-opa-2">
+          Acciones
+        </div>
+        </div>
+  </div>
+  <ul class="list" style="font-size: 14px;" *ngIf="habilitagrid">
+    <li class="item list-item-seguimiento" *ngFor="let beneficiarios of select['beneficiariopoliza']" style="border-bottom: groove;">
+        <div class="row list-item-seguimiento">
+            <div class="col first-col">
+                <ion-text>{{beneficiarios.referencia1}}</ion-text>
+            </div>
+            <div class="col">
+                <ion-text>{{beneficiarios.referencia2}}</ion-text>
+            </div>
+            <div class="col">
+                <ion-text>{{beneficiarios.nombrebeneficiario}}</ion-text>
+            </div>
+            <div class="col">
+              <ion-text>{{beneficiarios.valor1}}</ion-text>
+          </div>
+            <div class="col">
+              <ion-text>{{beneficiarios.valor2}}</ion-text>
+          </div>
+          <div class="col">
+            <ion-text>{{beneficiarios.valor3}}</ion-text>
+          </div>
+          <div class="col">
+            <ion-text>{{beneficiarios.valor4}}</ion-text>
+          </div>
+          <div class="col">
+            <ion-buttons>
+            <!-- <ion-button  shape="round" (click)="Actualiza(beneficiarios)" style="font-size: 60%;"><ion-text>Actualiza</ion-text>
+           </ion-button> -->
+           <ion-button  shape="round" (click)="Eliminar(beneficiarios)" style="font-size: 80%;"><ion-text>Eliminar</ion-text>
+          </ion-button>
+        </ion-buttons>
+        </div>
+        </div>
+    </li>
+</ul>
+<ion-buttons>
+<div class="row"> 
+  <div class="col">  
+    <ion-button expand="full"  shape="round" (click)="btnNew()"  class="button2"><ion-text *ngIf="!create">Nuevo</ion-text>
+      <ion-text *ngIf="create">Cancelar</ion-text></ion-button>
+  </div>
+  <div class="col">  
+    <ion-button expand="full"  shape="round" (click)="Edit()"  class="button2"><ion-text *ngIf="!edit">Actualizar</ion-text>
+      <ion-text *ngIf="edit">Solicitar</ion-text></ion-button>
+  </div>
+    <div class="col"> 
+      <ion-button expand="full"  shape="round" (click)="del()" [disabled]="!delete"  class="button2"><ion-text>Eliminar</ion-text></ion-button>
+    </div>
+  </div>
+</ion-buttons>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,38 @@
+<ion-header>
+  <app-header titulo="Retiro Ganaservicios"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate> 
+    <ion-list class="au-form">
+      <ion-item>
+          <ion-label style="overflow: visible;" class="color"><ion-text>Cuenta Origen</ion-text></ion-label>
+          <ion-select class="ahorroselected" placeholder="Seleccione" [(ngModel)]="ahorroSelected" formControlName="ahorroSelected"  style="max-width: max-content;">
+            <ion-select-option *ngFor="let ahorro of ahorros" [value]="ahorro">{{ahorro.Tipo}} - {{ahorro.NombreLineaAhorros}} - {{ahorro.NumeroCuenta}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ion-item *ngIf="ahorroSelected" class="ahorroselected">
+        <div class="creditoSelected-img">
+          <ion-text>Nro. Cta: {{ahorroSelected.NumeroCuenta}}
+            <br> Última transacción: {{ahorroSelected.ultimaFechaTransaccion | date }}
+            <br> Saldo: ${{ahorroSelected.SaldoTotal}}
+            <br> Cuota : {{ahorroSelected.ValorCuotaAhorro |  currency:'USD':true }}
+            <br> Saldo minimo en cuenta : {{ahorroSelected.saldominimo |  currency:'USD':true }}
+          </ion-text>
+        </div>
+      </ion-item>
+            
+      <ion-item>
+          <ion-input class="Input-gana" placeholder="$ Valor" type="tel" [(ngModel)]="valor" (ionChange)="convertNumber($event)" formControlName="valor">
+          </ion-input>
+      </ion-item>
+
+      <ion-button expand="full" shape="round" (click)="Confirmar()"  [disabled]="myForm.invalid">Aceptar</ion-button>
+      </ion-list>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>
+

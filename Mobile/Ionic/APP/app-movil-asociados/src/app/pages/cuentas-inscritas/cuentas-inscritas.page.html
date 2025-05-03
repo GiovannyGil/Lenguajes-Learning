@@ -1,0 +1,30 @@
+<ion-header>
+  <app-header titulo="Cuentas inscritas"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div>
+      <ion-card *ngFor="let cu of cuentas" style="background-color: white; text-align: center; border-radius: 20px;">
+        <ion-card-header>
+          <ion-card-title style="font-weight: bold; color: black;">Cuenta inscrita</ion-card-title>
+          <h2 style="font-weight: bold;font-size: 17px;">Datos de la cuenta destino</h2>
+          <ion-card-subtitle>Nombre: {{cu.nombreDestino}}</ion-card-subtitle>
+          <ion-card-subtitle>Cedula: {{cu.cedulaDestino}}</ion-card-subtitle>
+          <ion-card-subtitle>Numero de cuenta: {{cu.cuentaDestino}} - {{cu.nombreCuentaDestino}}</ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <div>
+            <h3 style="font-weight: bold;font-size: 17px;" >Cuenta origen: {{cu.cuentaOrigen}} - {{cu.nombreCuentaOrigen}}</h3>
+          </div>
+        </ion-card-content>
+      
+        <ion-button shape="round" (click)="AlertConfirm(cu.idAsociadosTrasladoAV)" style="display: flex;">Inactivar</ion-button>
+      </ion-card>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

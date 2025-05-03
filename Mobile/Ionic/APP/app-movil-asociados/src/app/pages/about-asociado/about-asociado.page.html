@@ -1,0 +1,80 @@
+<ion-header>
+  <app-header titulo="Datos Asociados"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div style="text-align: center;">
+    <img [src]="logoabout" class="logoentidad" >
+  </div>
+  <!-- <div class=" letra">
+    <ion-text>
+      <span class="color">Nombre: </span>
+      <span class="color">{{asociado.nombreintegrado}}</span>
+      <br>
+      <span  class="color">Dirección: {{asociado.direccion}}</span>
+      <br>
+      <span  class="color">Teléfono: {{asociado.telefono1}}</span>
+      <br>
+      <span  class="color">Celular: {{asociado.celular}}</span>
+      <br>
+      <span  class="color">Email: {{asociado.email}}</span>
+      <br>
+      <span class="color">Fec.Nac: {{asociado.fechanacimiento}}</span>
+      <br>
+      <span class="color">Ciudad: {{asociado.nombreciudad}} </span>
+      <br>
+    </ion-text>
+  </div> -->
+  <ion-item>
+    <ion-icon  class="item__icon" name="person-circle-outline"></ion-icon>
+    <ion-label >
+      <h3 class=" item__label--title">Nombre</h3>
+      <p class="color">{{asociado.nombreintegrado}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon class="item__icon" name="location-outline"></ion-icon>
+    <ion-label >
+      <h3 class=" item__label--title">Dirección</h3>
+      <p class="color">{{asociado.direccion}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon class="item__icon" name="call-outline"></ion-icon>
+    <ion-label >
+      <h3 class=" item__label--title">Teléfono</h3>
+      <p class="color">{{asociado.telefono1 || 0}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon class="item__icon" name="phone-portrait-outline"></ion-icon>
+    <ion-label >
+      <h3 class=" item__label--title">Celular</h3>
+      <p class="color">{{asociado.celular}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon class="item__icon" name="mail-outline"></ion-icon>
+    <ion-label >
+      <h3 class=" item__label--title">Email</h3>
+      <p class="color">{{asociado.email}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon class="item__icon" name="calendar-outline"></ion-icon>
+    <ion-label >
+      <h3 class=" item__label--title">Fec.Nac</h3>
+      <p class="color">{{asociado.fechanacimiento}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon class="item__icon" name="business-outline"></ion-icon>
+    <ion-label >
+      <h3 class=" item__label--title">Ciudad</h3>
+      <p class="color">{{asociado.nombreciudad}}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

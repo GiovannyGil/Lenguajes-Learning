@@ -1,0 +1,48 @@
+<ion-header>
+  <app-header titulo="Créditos"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <ion-list class="au-form">
+    <ion-item>
+        <ion-label style="overflow: visible; text-align: center;"><span  class="color"><ion-icon name="calendar-outline" item-left></ion-icon>&nbsp;{{seguimiento.fechaTrabajo | date:'yyyy-MM-dd' }}</span></ion-label>
+  </ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Valor Transacción:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">$ {{seguimiento.ConsignacionTotal}}</span></ion-label>
+</ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Abono Capital:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">$ {{seguimiento.AbonoCapital}}</span></ion-label>
+</ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Abono Costo:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{seguimiento.AbonoCosto}}</span></ion-label>
+</ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Abono Interés:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color" >$ {{seguimiento['AbonoInterés']}}</span></ion-label>
+</ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Interés Mora:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">$ {{seguimiento['InterésMora']}}</span></ion-label>
+</ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="clipboard-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color" >&nbsp;Documento:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color" >{{seguimiento.Documento}}</span></ion-label>
+</ion-item>
+<ion-item>
+
+</ion-item>
+</ion-list>
+
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,98 @@
+// .content {
+   
+//    background: linear-gradient(180deg, rgba(0, 0, 0, 0.98) 1.48%, rgba(1, 41, 78, 0.68) 12.52%, rgb(0, 9, 14) 89.52%), url('../../../assets/imgs/bg1.png');  
+//    width: 100%;
+
+//      -webkit-background-size: cover;
+//      -moz-background-size: cover;
+//      -o-background-size: cover;
+//      background-size: cover;
+//   }
+
+  
+img {
+  display: block;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
+  // opacity: 0.5;
+  
+  
+  }
+  
+    .letra {
+      text-align: left;
+      font-size: 12px;
+     // color: black;
+    }
+  //   .logoEtidad {
+  //     background-image: url('./assets/imgs/logo.jpg');  
+  //     background-position: center;
+  //     margin: 0 auto;
+  //     background-size: 60px;
+  //     background-repeat: no-repeat;
+  //     padding: 10px;
+  //   }     
+    .left{
+      float: left;  
+    }
+      .right{
+      float: right;  
+    }
+    .card-background-page {
+  
+      ion-card {
+        position: relative;
+        text-align: center;
+      }
+    
+      .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+      }  
+    
+    }
+    button{
+        opacity: 0.6;
+    }
+  
+    span{
+       /* color:#dbd2d2*/
+    }
+  
+    .card{   
+      background: transparent;  
+      margin-top: 10px;
+     
+  }
+  .list-md{
+      background: transparent;
+  }
+  // .footer-md {
+  //     //background: rgba(237, 251, 251, 0.5);
+  //    // background: transparent;   
+  
+  // }
+  
+  .item{
+      background: transparent;
+      //color: #fff;
+  }
+  .item-content {
+      background-color:#ffffff;
+    }
+  .text-input {
+      color: #ffffff
+     
+  }
+  
+  .alert-button .button-inner {
+    //color:#000;
+    }
+   
+    

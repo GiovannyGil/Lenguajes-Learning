@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Números Perfectos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Calculadora de Números Perfectos</h1>
+        <form id="form" class="mt-4">
+            <!-- apartado para el input de ingreso del numero inicial del rango -->
+            <div class="mb-3">
+                <label for="inicio" class="form-label">Inicio del rango:</label>
+                <input type="number" id="inicio" name="inicio" class="form-control" required>
+            </div>
+            <!-- apartado para el input del numero final del rango -->
+            <div class="mb-3">
+                <label for="fin" class="form-label">Fin del rango:</label>
+                <input type="number" id="fin" name="fin" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Calcular</button>
+        </form>
+
+        <!-- apartado para mostrar el resultado final con el array de los números naturales perfectos -->
+        <div id="resultado" class="mt-5"></div>
+    </div>
+
+    <!-- Bootstrap JS (opcional, solo si necesitas funcionalidades de JavaScript de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Handlebars JS -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+
+    <script id="template" type="text/x-handlebars-template">
+        <h2>Números Naturales Perfectos en el Rango</h2>
+        <ul class="list-group">
+            {{#each numerosPerfectos}}
+                <li class="list-group-item">{{this}}</li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script src="./script.js">
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<ion-header>
+  <app-header titulo="Pagos Nomina"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate> 
+    <ion-list class="au-form">
+
+<ion-item>
+    <ion-label style="overflow: visible; color: black;" ><span class="select">Año</span></ion-label>
+    <ion-select  placeholder="Seleccione" [(ngModel)]="input.ano" formControlName="anoSelected" class="seleccionf" style="max-width: max-content;">
+      <ion-select-option *ngFor="let ano of select.ano" value="{{ano.ano}}">{{ano.ano}}</ion-select-option>
+    </ion-select>     
+</ion-item>
+<ion-item>
+  <ion-label style="overflow: visible;"><span class="select">Mes</span></ion-label>
+  <ion-select  placeholder="Seleccione" [(ngModel)]="input.mes" formControlName="mesSelected" class="seleccionf" style="max-width: max-content;">
+    <ion-select-option *ngFor="let mes of meses" value="{{mes}}">{{mes}}</ion-select-option>
+  </ion-select>     
+</ion-item>
+<ion-button expand="full" shape="round" (click)="Ver()">Mostrar</ion-button>
+    </ion-list>
+</form>
+<div>
+  <div class="row" style="font-size: 14px;">
+      <div class="col blue-opa-2">
+          Fecha
+      </div>
+      <div class="col blue-opa-2">
+          Número de cuenta
+      </div>
+      <div class="col blue-opa-2">
+        Concepto
+      </div>
+      <div class="col blue-opa-2">
+          Valor
+      </div>
+  </div>
+</div>
+
+<ul class="list" style="font-size: 14px;">
+  <li class="item list-item-seguimiento" *ngFor="let nomina of resultado" style="border-bottom: groove;">
+      <div class="row list-item-seguimiento">
+          <div class="col first-col">
+              <span class="select">{{nomina.fecha | date:'yyyy-MM-dd'}}</span>
+          </div>
+          <div class="col">
+              <span class="select">{{nomina.numerocuenta}}</span>
+          </div>
+          <div class="col">
+            <span class="select">{{nomina.concepto}}</span>
+          </div>
+          <div class="col valor-seguimientos">
+              <span class="select">$ {{nomina.valor}}</span>
+          </div>
+      </div>
+  </li>
+</ul>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

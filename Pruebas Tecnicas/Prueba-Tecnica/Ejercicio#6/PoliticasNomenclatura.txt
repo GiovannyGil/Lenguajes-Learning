@@ -1,0 +1,44 @@
+Bases de Datos:
+1: Nombres de Bases de Datos:
+- Utilizar nombres descriptivos y significativos para las bases de datos.
+- Evitar caracteres especiales o espacios.
+- Preferir el uso de minúsculas.
+
+2:Nombres de Tablas:
+- Utilizar nombres en singular y descriptivos.
+- Evitar prefijos o sufijos innecesarios.
+
+3: Nombres de Columnas:
+- Utilizar nombres descriptivos y en minúsculas.
+- Evitar abreviaturas excesivas.
+
+Variables:
+1: Nombres de Variables:
+- Utilizar camelCase para nombres de variables en JavaScript y Java.
+- Utilizar snake_case para nombres de variables en Python y Ruby.
+- Ser descriptivo y evitar abreviaturas confusas.
+
+Funciones y Métodos:
+1: Nombres de Funciones/Métodos:
+- Utilizar camelCase para nombres de funciones y métodos.
+- Ser descriptivo sobre la funcionalidad de la función.
+
+Clases:
+1: Nombres de Clases:
+- Utilizar PascalCase para nombres de clases.
+- Ser descriptivo sobre la responsabilidad de la clase.
+
+Git:
+1: Nombres de Branches:
+- Utilizar nombres descriptivos para las ramas.
+- Evitar nombres genéricos como "feature" o "fix".
+
+2: Nombres de Commits:
+- Utilizar mensajes de commit claros y concisos.
+- Incluir una breve descripción de los cambios realizados.
+
+3: Nombres de Tags:
+- Utilizar nombres descriptivos y versiones semánticas para las etiquetas.
+
+4: Estructura del Repositorio:
+- Mantener una estructura organizada con carpetas específicas para diferentes tipos de archivos (por ejemplo, "src" para el código fuente, "docs" para la documentación).

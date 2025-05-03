@@ -1,0 +1,40 @@
+<ion-header>
+  <app-header titulo="Imagen y Frase"></app-header>
+  </ion-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+  
+  <!-- <div class="item">
+
+      <div style="float:left;padding-left:48px;font-size:30px;" (click)="backImage()">
+          <ion-icon name="arrow-back-circle" class="arrow-center imagenyfrase"></ion-icon>
+      </div>
+  
+              <img src="{{input.url}}" style="width: 30%; ">
+
+      <div style="float:right;padding-right:70px;font-size:30px;" (click)="nextImage()">
+          <ion-icon name="arrow-forward-circle" class="arrow-center imagenyfrase"></ion-icon>
+      </div>
+  </div> -->
+
+  <div class="row "> 
+    <div class="col " style="text-align:center"><ion-icon name="arrow-back-circle" class="imagenyfrase" (click)="backImage()"></ion-icon></div>
+    <div class="col " style="text-align:center"> <img src="{{input.url}}"></div>
+    <div class="col " style="text-align:center"> <ion-icon name="arrow-forward-circle" class="imagenyfrase" (click)="nextImage()"></ion-icon></div>
+  </div>
+      <form [formGroup]="myForm" novalidate>
+            <ion-list>
+              <ion-item>
+              <ion-label position="floating" class="color">Escriba su frase de seguridad</ion-label>
+              <ion-input type="text"  class="color" [(ngModel)]="input.Frase" [maxlength]="30" formControlName="Frase"></ion-input>
+            </ion-item>
+            </ion-list>
+      </form>
+
+      <ion-button expand="full" shape="round" (click)="Guardar()" [disabled]="myForm.invalid">Guardar</ion-button>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>
+

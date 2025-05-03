@@ -1,0 +1,43 @@
+<ion-header>
+  <app-header titulo="Novedades"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <ion-list class="au-form">
+    <ion-item>
+        <ion-label style="overflow: visible; text-align: center;"><span class="color" [ngClass]="{'red-background':seguimiento.positivo !== '1','green-background':seguimiento.positivo === '1'}">$ {{seguimiento.naturaleza | lowercase }}</span></ion-label>
+  </ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Valor:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">$ {{seguimiento.valor}}</span></ion-label>
+</ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="clipboard-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Agencia Transacción:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{seguimiento.agenciatransaccion}}</span></ion-label>
+</ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="calendar-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Fecha:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{seguimiento.fechapago}}</span></ion-label>
+</ion-item>
+<ion-item class="detalle-seguimientos">
+<ion-icon name="clipboard-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Documento:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{seguimiento.documento}}</span></ion-label>
+</ion-item>
+<ion-item>
+
+</ion-item>
+    <!-- <button ion-button block icon-left (click)="Imprimir()" color="danger">
+        Imprimir
+    </button> -->
+</ion-list>
+ 
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>
+
+

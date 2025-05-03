@@ -1,0 +1,49 @@
+<ion-header>
+  <app-header titulo="Registro de Usuario"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+      <ion-item>
+        <ion-icon name="person" slot="start" style="color: black !important;"></ion-icon>
+        <ion-label position="floating" style="color: black !important;">Cédula:</ion-label>
+        <ion-input   style="color: black !important;"  type="text" [(ngModel)]="qrData.Cedula" formControlName="Cedula">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="person-add"  style="color: black !important;" slot="start"></ion-icon>
+        <ion-label   style="color: black !important;" position="floating">Usuario:</ion-label>
+        <ion-input   style="color: black !important;" type="text" [(ngModel)]="qrData.Usuario" formControlName="Usuario">
+        </ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon name="key" slot="start" style="color: black !important;" ></ion-icon>
+        <ion-label position="floating"  style="color: black !important;" >Contraseña:</ion-label>
+        <ion-input  style="color: black !important;"  type="text" [(ngModel)]="qrData.Clave1" formControlName="Clave1" style="-webkit-text-security:disc; color: black;">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="key" slot="start" style="color: black !important;" ></ion-icon>
+        <ion-label position="floating"  style="color: black !important;" >Confirme contraseña:</ion-label>
+        <ion-input type="text"   style="color: black !important;" [(ngModel)]="qrData.Clave2" formControlName="Clave2" style="-webkit-text-security:disc; color: black;">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call" slot="start" style="color: black !important;" ></ion-icon>
+        <ion-label position="floating"  style="color: black !important;" > Celular:</ion-label>
+        <ion-input type="number"   style="color: black !important;" [(ngModel)]="qrData.Celular" formControlName="Celular">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+  </form>
+
+  <ion-button expand="full" shape="round" (click)="NuevoUsuario()" [disabled]="myForm.invalid">
+    Registrarse 
+  </ion-button>
+
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+    <app-header titulo="Historial de pagos por PSE"></app-header>
+</ion-header>
+
+
+<ion-content class="background">
+
+    <div class="padding " style="font-size: 62.5%">
+        <div class="row" style="padding-left:0">
+            <div class="col blue-opa-2">
+                Id pago
+            </div>
+            <div class="col blue-opa-2">
+                Fecha
+            </div>
+            <div class="col blue-opa-2">
+                valor
+            </div>
+
+            <div class="col blue-opa-2">
+                Estado
+            </div>
+            <div class="col blue-opa-2">
+                Cus
+            </div>
+
+        </div>
+    </div>
+
+    <div class=" total">
+        <span>
+            <div class="row blue-opa-4PSE" style="font-size: 14px; margin-left: 7px;" *ngFor="let historico of historicos">
+                <span class=" blue-opa-4PSE_span first-col" >
+                    {{historico.id_pago}}
+                </span>
+                <span class=" col blue-opa-4PSE_span ">
+                    {{historico.fechagenero}}
+                </span>
+                <span class=" col blue-opa-4PSE_span ">
+                    {{historico.total_con_iva}}
+                </span>
+                <span class="col blue-opa-4PSE_span ">
+                    {{historico.detalle_estado}}
+                </span>
+                <span class="col blue-opa-4PSE_span ">
+                    {{historico.cus}}
+                </span>
+
+            </div>
+
+        </span>
+    </div>
+
+    <ion-button class="button button-block button-balanced" (click)="loadMore()">Ver Mas...</ion-button>
+
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

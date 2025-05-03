@@ -1,0 +1,5 @@
+Nombre: identico al de la tabla
+extension: .png
+primer valor resolucion: ancha
+primer valor resolucion: alto
+resolucion: 32 pixeles por pulgada

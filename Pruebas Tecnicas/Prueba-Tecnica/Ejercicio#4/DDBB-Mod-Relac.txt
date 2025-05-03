@@ -1,0 +1,38 @@
+TABLE USUARIOS
+- ID: int (PK)
+- NOMBRE: varchar(20)  not null
+- CORREO: varchar(50)  not null
+- CONTRASEÑA: varchar(20)  not null
+- PAIS: varchar(20)
+- ACTIVO: BIT DEFAULT 1 -- 1 para activo, 0 para inactivo
+
+TABLE AUTORES
+- ID: int (PK)
+- ID_USUARIO: int (FK) -> USUARIOS.ID (USUARIOS)
+
+TABLE COLABORADORES
+- ID: int (PK)
+- ID_USUARIO: int (FK) -> USUARIOS.ID (USUARIOS)
+
+TABLE VIDEOS
+- ID: int (PK)
+- TITULO : varchar(20) not null
+- DESCRIPCION: varchar(100)
+- FECHA_PUBLICACION: date
+- ID_AUTOR: int (FK) -> AUTORES.ID (AUTORES)
+- ID_COLABORADOR: int (FK) -> COLABORADORES.ID (COLABORADORES)
+
+TABLE COMENTARIOS
+- ID: int (PK)
+- ID_USUARIO: int (FK) -> USUARIOS.ID (USUARIOS)
+- ID_VIDEO: int (FK) -> VIDEOS.ID (VIDEOS)
+- COMENTARIO: varchar(100) not null
+- PUNTUACION: int Check (PUNTUACION >= 0 AND PUNTUACION <= 5)
+- FECHA: DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+TABLE REWIEWS
+- ID: int (PK)
+- ID_USUARIO: int (FK) -> USUARIOS.ID (USUARIOS)
+- ID_VIDEO: int (FK) -> VIDEOS.ID (VIDEOS)
+- DESCRIPCION: varchar(100) not null
+- PUNTUACION: int Check (PUNTUACION >= 0 AND PUNTUACION <= 5)

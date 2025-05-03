@@ -1,0 +1,62 @@
+<ion-header>
+  <app-header titulo="Seguros Móvil"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div *ngIf="habilitacamposePE">
+    <ion-text style="color: black;">- Si Desea Solicitar un seguro para telefonia móvil <br /> haga click en Aceptar</ion-text><br /><br />
+    <ion-text style="color: black;">- Si Desea Eliminar un seguro para telefonia móvil <br /> haga click en Eliminar</ion-text>
+  </div>
+  <div *ngIf="habilitagrid">
+    <div class="row" style="font-size: 14px;">
+      <div class="col blue-opa-2">
+        Fecha Reposición
+      </div>
+      <div class="col blue-opa-2">
+        Celular Asociado
+      </div>
+      <div class="col blue-opa-2">
+        Plan de Voz
+      </div>
+      <div class="col blue-opa-2">
+        Carjo Fijo Mensual
+      </div>
+    </div>
+  </div>
+  <ul class="list" style="font-size: 14px;" *ngIf="habilitagrid">
+    <li class="item list-item-seguimiento" *ngFor="let beneficiarios of select['beneficiariopoliza']"
+      style="border-bottom: groove;">
+      <div class="row list-item-seguimiento">
+        <div class="col first-col">
+          <ion-text>{{beneficiarios.fecha1}}</ion-text>
+        </div>
+        <div class="col">
+          <ion-text>{{beneficiarios.referencia1}}</ion-text>
+        </div>
+        <div class="col">
+          <ion-text>{{beneficiarios.referencia2}}</ion-text>
+        </div>
+        <div class="col">
+          <ion-text>{{beneficiarios.valor1}}</ion-text>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="row">
+    <div class="col">
+      <ion-button expand="full" shape="round" (click)="btnNew()">
+        <ion-text *ngIf="!create">Nuevo</ion-text>
+        <ion-text *ngIf="create">Solicitar</ion-text>
+      </ion-button>
+    </div>
+    <div class="col">
+      <ion-button expand="full" shape="round" (click)="del()">
+        <ion-text *ngIf="!delete">Cancelar</ion-text>
+        <ion-text *ngIf="delete">Eliminar</ion-text>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

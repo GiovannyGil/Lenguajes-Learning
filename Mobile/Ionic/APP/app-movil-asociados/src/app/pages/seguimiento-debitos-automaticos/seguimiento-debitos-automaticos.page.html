@@ -1,0 +1,38 @@
+<ion-header>
+  <app-header titulo="Débito Automático"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+  <div class="separador"></div>
+  
+  <div class="producto-about">
+      <div class="row list-item-seguimiento ">
+          <div class="col"><strong>Valor :</strong>$ {{DebitoAutom.ValorADebitar}} </div>
+          <div class="col"><strong>Pagaré Destino :</strong> {{DebitoAutom.PagareAPagar}} </div>
+      </div>
+
+      <div class="row list-item-seguimiento ">
+        <div class="col"><strong class="capitalize">Cuenta Débito</strong></div>
+        <!-- <div class="col"><strong>Nro. Cta :</strong> {{DebitoAutom.PagareAPagar}} </div> -->
+    </div>
+
+      <div class="row list-item-seguimiento ">
+          <div class="col"><strong>Nombre : </strong>{{DebitoAutom.NombreLineaADebitar}} </div>
+          <div class="col"> <strong>Número Cuenta : </strong>{{DebitoAutom.CuentaADebitar }}</div>
+      </div>
+
+      <div class="row list-item-seguimiento">
+        <div class="col"><strong>Línea : </strong>{{DebitoAutom.CodigoLineaADebitar}} </div>
+        <div class="col"> <strong>Día Débito : </strong>{{DebitoAutom.DiaDelDebito }}</div>
+    </div>
+
+    <div class="row list-item-seguimiento">
+      <div class="col"><strong>Fecha Vencimiento : </strong>{{DebitoAutom.fechavencimiento | date}} </div>
+  </div>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

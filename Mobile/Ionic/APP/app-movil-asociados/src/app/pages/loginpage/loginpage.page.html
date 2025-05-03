@@ -1,0 +1,72 @@
+<app-header titulo="{{nombrecompania}}"></app-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+
+  <img [src]="logoinicio" class="logoentidad">
+
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form" >
+      <ion-item class="myForm--logininput">
+        <ion-icon  class="color1" name="person" slot="start"></ion-icon>
+        <ion-label class="color" position="floating">Usuario</ion-label>
+        <ion-input class="color" [(ngModel)]="qrData.operador" formControlName="Usuario">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+
+
+  <ion-button expand="full" shape="round" (click)="validar()" [disabled]="myForm.invalid">Ingresar</ion-button>
+
+  <div *ngIf="procesoactivo=='S'">
+    <ion-button expand="full" shape="round" routerLink="/crear-usuario">Crear Usuario</ion-button>
+    <ion-button expand="full" shape="round" routerLink="/recordar-usuario">Recordar Usuario</ion-button>
+  </div>
+
+  <div class="row icon-login" style="text-align: center;">
+    <div class="col">
+      <ion-icon name="call" style="zoom:2.0" routerLink="/contactos"></ion-icon>
+    </div>
+    <div class="col">
+      <ion-icon name="navigate-circle" style="zoom:2.0" routerLink="/ubicacion"></ion-icon>
+    </div>
+    <div class="col">
+      <ion-icon name="briefcase" style="zoom:2.0" routerLink="/portafolio"></ion-icon>
+    </div>
+    <div class="col">
+      <ion-icon name="logo-youtube" style="zoom:2.0" routerLink="/demo"></ion-icon>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col" style="text-align: center;">
+      <ion-text routerLink="/contactos" class="color">Contáctanos</ion-text>
+    </div>
+    <div class="col" style="text-align: center;">
+      <ion-text routerLink="/ubicacion" class="color">Oficinas</ion-text>
+    </div>
+    <div class="col" style="text-align: center;">
+      <ion-text routerLink="/portafolio" class="color">Portafolio</ion-text>
+    </div>
+    <div class="col" style="text-align: center;">
+      <ion-text routerLink="/demo" class="color">Video</ion-text>
+    </div>
+
+
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="new-toolbar-background">
+    <div class="row padding0">
+      <div class="col padding0" style="text-align: center;">
+        <ion-icon name="information-circle" class="icon-footer" (click)="AcercaDe()"></ion-icon>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col padding0" style="text-align: center;"> <span class="" (click)="AcercaDe()">Acerca de</span></div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

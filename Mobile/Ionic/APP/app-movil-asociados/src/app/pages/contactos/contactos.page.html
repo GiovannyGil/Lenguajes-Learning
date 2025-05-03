@@ -1,0 +1,15 @@
+<ion-header>
+<app-header titulo="Contáctanos"></app-header>
+</ion-header>
+<ion-content class="background">
+    <a *ngFor="let contacto of contactos" href="tel:{{contacto.Telefono}}" style="text-decoration: none;" class="color">
+        <ion-row style="border-bottom: groove; font-size: 80.5%">
+            <ion-col><ion-text style="font-size: 14px;" class="color">{{contacto.Descripcion}}</ion-text></ion-col>
+            <ion-text style="float:right; font-size: 14px;" class="color">{{contacto.Telefono}}</ion-text>
+           
+            <button>
+                <ion-icon name="call"></ion-icon>   
+            </button>
+        </ion-row>
+      </a>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-header>
+  <app-header titulo="Ahorros"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+
+  <div class="producto-about">
+      <div class="row list-item-seguimiento">
+          <div class="col"><strong class="capitalize">{{ahorro.NombreLineaAhorros | titlecase}}</strong></div>
+          <div class="col"><strong>Nro. Cta :</strong> {{ahorro.NumeroCuentaAhorros}} </div>
+      </div>
+
+      <div class="row list-item-seguimiento">
+          <div class="col"><strong>Saldo Total: </strong>$ {{ahorro.SaldoTotalCuenta}} </div>
+          <div class="col">
+              <strong>Cuota : </strong> $ {{ahorro.ValorCuotaAhorro }}
+          </div>
+      </div>
+      <!-- FECSA 0127 -->
+    <div class="row list-item-seguimiento" *ngIf="numeroentidad=='0127'">
+        <div class="col"><strong>Int Causado: </strong>$ {{ahorro.InteresCausadoCuenta}} </div>
+        <div class="col">
+            <strong>Int Disponible: </strong> $ {{ahorro.InteresDisponibleCuenta}}
+        </div>
+    </div>
+  </div>
+
+  <div class="padding">
+      <ion-button expand="full" shape="round" (click)="DetalleSeguimientos()">Detalle Seguimientos....</ion-button>
+  </div>
+
+<div>
+  <div class="row">
+      <div class="col blue-opa-2">
+          Fecha
+      </div>
+      <div class="col blue-opa-2">
+          Documento
+      </div>
+      <div class="col blue-opa-2">
+          Valor
+      </div>
+      </div>
+</div>
+   
+      <ul class="list" >
+          <li class="item list-item-seguimiento" *ngFor="let producto of seguimientos | slice:0:3" style="border-bottom: groove;" >
+              <div class="row list-item-seguimiento">
+                  <div class="col first-col">
+                      <span class="color">{{producto.fechaTrabajo | date:'yyyy-MM-dd'}}</span>
+                  </div>
+                  <div class="col">
+                      <span class="color">{{producto.Documento}}</span>
+                  </div>
+                  <div class="col valor-seguimientos">
+                      <span *ngIf="producto.positivo !== '1'" [ngClass]="{'red-text':producto.positivo !== '1'}" class="color">-</span> 
+                      <span *ngIf="producto.positivo === '1'" class="color">+</span> 
+                      <span [ngClass]="{'red-text':producto.positivo !== '1'}" class="color">{{producto.ValorTransaccion}}</span>
+                  </div>
+              </div>
+
+              <div class="row list-item-seguimiento">
+                  <div class="col"></div>
+                  <div class="col"></div>
+                  <div class="col list-item-seguimiento naturaleza-seguimientos">
+                      <span  style="font-size:12px;" [ngClass]="{'green-text':producto.positivo === '1','red-text':producto.positivo !== '1'}">{{producto.Naturaleza | lowercase}}</span>
+                  </div>
+              </div>
+          </li>
+      </ul>
+</ion-content>
+<ion-footer>
+      <app-footer></app-footer>
+    </ion-footer>

@@ -1,0 +1,1 @@
+create file config: creditos-digitales-config.json based in file creditos-digitales-config-example.json 

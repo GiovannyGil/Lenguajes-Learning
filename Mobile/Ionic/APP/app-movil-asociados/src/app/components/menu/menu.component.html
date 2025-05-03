@@ -1,0 +1,110 @@
+<ion-menu side="end" menuId="first" contentId="principal" >
+    <ion-header>
+      <ion-toolbar class="new-toolbar-background">
+        <ion-title>
+
+          <ion-icon name="arrow-back" (click)="CerrarSubmenu()" style="color: white;" *ngIf="botonback"></ion-icon>
+
+        &nbsp;<span class="text-color-white">{{titulomenu}}</span></ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="new-toolbar-background3" >
+  <div [ngSwitch]="seleccionsubmenu"  class="new-toolbar-background3">
+    <div *ngSwitchDefault class="new-toolbar-background3">
+      <ion-list>
+        <ion-menu-toggle>
+        <ion-item [routerLink]="['/estado-cuentas']" *ngIf="permisoestadocuentas">Estado de cuentas</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/pago-creditos']" *ngIf="permisopagocreditos">Pago créditos</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/traslado-ahorros']" *ngIf="permisotrasladoahorro">Traslado ahorros</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/inscripcion-traslado-asociados']" *ngIf="modulo0095 === 'S'">Inscripción traslado ahorros</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/traslado-otros-asociados']" *ngIf="modulo0095 === 'S'">Traslado ahorros asociados</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/retiros-gana']" *ngIf="permisoretirosgana && numeroentidad=='0180'">Retiros ganaservicios</ion-item>
+       </ion-menu-toggle>
+
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/traslado-terceros']" *ngIf="permisotrasladotercero && numeroentidad=='0046'" >Traslado a terceros</ion-item>
+       </ion-menu-toggle>
+
+       <!-- <ion-menu-toggle>
+        <ion-item [routerLink]="['/crear-convenio']">Crear convenios</ion-item>
+       </ion-menu-toggle> -->
+
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/retiros-efecty']" *ngIf="numeroentidad=='0052'">Retiros efecty</ion-item>
+       </ion-menu-toggle>
+
+        <ion-item (click)="AbrirSubmenu('Certificados')" *ngIf="permisocertificados">Certificados ></ion-item>
+
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/simulador-ahorros']" *ngIf="permisosimulacioncdat">Simulador CDAT</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/simulador-creditos']" *ngIf="permisosimulacioncredito">Simulador créditos</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/pagos-nomina']" *ngIf="numeroentidad=='0127'">Pagos nómina</ion-item>
+
+        <ion-menu-toggle *ngIf="!['0048','0050','0193','0015','0180','0419','0052'].includes(numeroentidad)">
+        <ion-item [routerLink]="['/PSEInicio']">PSE</ion-item>
+       </ion-menu-toggle>
+
+       </ion-menu-toggle>
+
+          <ion-item (click)="AbrirSubmenu('Otros')" *ngIf="numeroentidad=='0127'">Otros ></ion-item>
+
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/cambio-clave']" >Cambio de contraseña</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item (click)=SegundaClave() *ngIf="manejasegundaclave=='S'" >Segunda clave</ion-item>
+       </ion-menu-toggle>
+       <ion-menu-toggle>
+        <ion-item [routerLink]="['/imagenyfrase']" >Selección de imagen y frase</ion-item>
+       </ion-menu-toggle>
+        <ion-menu-toggle>
+        <ion-item [routerLink]="['/publicidad']" >Publicidad</ion-item>
+       </ion-menu-toggle>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'Certificados'"  class="new-toolbar-background3">
+      <ion-list >
+        <ion-menu-toggle>
+          <ion-item (click)="PageCertificado('afiliacion')" *ngIf="permisocertificadosafi">Afiliación</ion-item>
+         </ion-menu-toggle>
+         <ion-menu-toggle>
+          <ion-item (click)="PageCertificado('deuda')" *ngIf="permisocertificadosdeu">Deudas</ion-item>
+         </ion-menu-toggle>
+         <ion-menu-toggle>
+          <ion-item (click)="PageCertificado('retencion')" *ngIf="permisocertificadosing">Ingresos y retención</ion-item>
+         </ion-menu-toggle>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'Otros'"  class="new-toolbar-background3">
+      <ion-list >
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['/sedes-vacacionales']" >Sedes vacacionales</ion-item>
+         </ion-menu-toggle>
+         <ion-menu-toggle>
+          <ion-item [routerLink]="['/auxilios']" >Auxilios</ion-item>
+         </ion-menu-toggle>
+         <ion-menu-toggle>
+          <ion-item [routerLink]="['/cursos']" >Cursos</ion-item>
+         </ion-menu-toggle>
+         <ion-menu-toggle>
+          <ion-item [routerLink]="['/seguros']">Seguros</ion-item>
+         </ion-menu-toggle>
+      </ion-list>
+    </div>
+  </div>
+    </ion-content>
+  </ion-menu>

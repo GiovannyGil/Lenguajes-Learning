@@ -1,0 +1,11 @@
+{
+  "name": "API-Rick&Morty",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {
+      "enable": false
+    }
+
+  },
+  "type": "angular"
+}

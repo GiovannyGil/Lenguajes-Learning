@@ -1,0 +1,12 @@
+<ion-header>
+  <app-header titulo="Ubicación"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <a *ngFor="let oficina of oficinas" (click)="ubicacion({data:oficina.Iframemap})" style="text-decoration: none;" class="color"> 
+    <ion-row style="border-bottom: groove; font-size: 80.5%">
+        <ion-col><ion-text>{{oficina.descripcion}}</ion-text></ion-col>
+            <ion-icon name="navigate-circle" style="zoom:2.0" class="icon-login"></ion-icon>
+    </ion-row>
+  </a>
+</ion-content>

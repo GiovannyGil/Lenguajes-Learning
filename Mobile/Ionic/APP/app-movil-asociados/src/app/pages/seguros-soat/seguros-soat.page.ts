@@ -1,0 +1,206 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { ConstantsService } from 'src/app/servicios/constants.service';
+import { NitsService } from 'src/app/servicios/nits.service';
+import * as moment from 'moment';
+
+@Component({
+  selector: 'app-seguros-soat',
+  templateUrl: './seguros-soat.page.html',
+  styleUrls: ['./seguros-soat.page.scss'],
+})
+export class SegurosSoatPage implements OnInit {
+  input: {
+    codigo?: string;
+    fechavencesoat?: string;
+    Placa?: string;
+    Marca?: string;
+  } = {};
+  select = [];
+  delete = true
+  habilitapolizas
+  habilitagrid
+  habilitacamposePE
+  create
+  quees
+  edit
+  tipo
+
+  //cedula = $stateParams.cedula
+  constructor( public authService:AuthService,
+    public Constants: ConstantsService,
+    public NitsServices:NitsService,
+    public router: Router,
+    public alerCtrl:AlertController) {
+      this.tipo=this.router.getCurrentNavigation().extras.queryParams
+     }
+
+  ngOnInit() {
+    this.buscardatos()
+  }
+
+  buscardatos(){
+    var parametter={
+      params:{
+        codigoseguro: this.tipo,
+        cedulasociado: localStorage.getItem("operador")
+      }
+    }
+    this.authService.ApiSendData(this.Constants._APIDatosmodificaseguros, parametter).subscribe(data => {
+      if(data[0].length>0){
+        if(data[0][0].Codigo=="401"){
+          this.NitsServices.mostrarMensajes(data)
+          localStorage.clear()
+          this.NitsServices.LogIn()
+          return
+        }
+      }
+
+      if(data[0][0].Codigo=='000'){
+        this.NitsServices.mostrarMensajes(data)
+        return
+      }
+      this.habilitapolizas = true
+      this.habilitagrid = true
+      this.habilitacamposePE = false
+      this.select['beneficiariopoliza']=[]
+      var empieza = 0
+      var termina = data[0].length
+
+
+      while (empieza >= 0 && empieza < termina) {
+          this.select['beneficiariopoliza'].push(data[0][empieza])
+          empieza++
+      }
+
+        },
+        err => {
+          console.log(err)
+         });
+  }
+
+  btnNew(){
+    //this.select['seguros'] = [];
+    //this.habilitaguia = false
+
+    if (this.create) {
+        this.quees = "guarda"
+
+        if(this.input['fechavencesoat']==undefined || this.input['Placa']==undefined || this.input['Placa']==''
+        || this.input['Marca']==undefined || this.input['Marca']==''){
+          this.NitsServices.AlertMsm('Debe completar todos los campos')
+          return
+        }
+       if(this.input['fechavencesoat']!=undefined){
+        this.input['fechavencesoat']=moment(this.input['fechavencesoat']).format('YYYYMMDD')
+        }
+          var pararegistrar = {
+            params:{
+                quees: this.quees,
+                cedula: localStorage.getItem("operador"),
+                seguro:this.tipo,
+                scope:this.input
+            }
+          }
+
+
+            this.authService.ApiSendData(this.Constants._APIregistrarsolicitudSoat, pararegistrar).subscribe(data => {
+              if(data[0][0].Codigo=="401"){
+                this.NitsServices.mostrarMensajes(data)
+                localStorage.clear()
+                this.NitsServices.LogIn()
+                return
+              }
+              this.NitsServices.mostrarMensajes(data)
+              this.input={}
+
+                },
+                err => {
+                  console.log(err)
+            });
+            this.edit = false
+            this.create = false
+            this.delete = true
+            this.habilitacamposePE = false
+            this.habilitagrid = true
+            this.buscardatos()
+            return true;
+    } else {
+        this.select['beneficiariopoliza'] = []
+        this.create = true
+        this.edit = true
+        this.habilitagrid = false
+        this.delete = false
+        this.habilitacamposePE = true
+    }
+    // this.habilita = false
+  }
+
+
+
+  del(){
+    if (!this.delete) {
+      this.create = false
+      this.delete = true
+      this.habilitacamposePE = false
+      this.habilitagrid = true
+      this.buscardatos()
+      return
+    }
+    this.Confirmar()
+  }
+
+  async Confirmar(){
+    const alert = await this.alerCtrl.create({
+     message: "Se eliminara toda la poliza " +
+      "<br> ¿Está seguro de hacer esta operación?",
+      buttons: [
+        {
+          text: 'CANCELAR',
+          role: 'cancel',
+          handler: data => {
+          }
+        },
+        {
+          text: 'OK',
+          handler: data => {
+          this.paraeliminar()
+          }
+        }
+      ]
+    });
+   await alert.present();
+  }
+
+  paraeliminar(){
+    this.quees = 'eliminatodo'
+    var parameliminar = {
+      params:{
+      scope:{seguro:this.tipo},
+      quees:this.quees,
+      cedula:localStorage.getItem("operador"),
+      seguro:this.tipo
+      }
+    }
+
+    this.authService.ApiSendData(this.Constants._APIregistrarsolicitudSoat, parameliminar).subscribe(data => {
+      if(data[0][0].Codigo=="401"){
+        this.NitsServices.mostrarMensajes(data)
+        localStorage.clear()
+        this.NitsServices.LogIn()
+        return
+      }
+      this.NitsServices.mostrarMensajes(data)
+
+      this.delete = false
+      this.create = false
+      this.edit = false
+      this.habilitagrid = false
+        },
+        err => {
+          console.log(err)
+    });
+  }
+}

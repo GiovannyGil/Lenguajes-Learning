@@ -1,0 +1,37 @@
+<ion-header>
+  <app-header titulo="Portafolio"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div *ngIf="numeroentidad!='0127'" >
+  <a *ngFor="let item of portafolio" style="text-decoration: none;">
+    <ion-row style="border-bottom: groove; font-size: 13px">
+      <ion-avatar style="padding-top: 20px; padding-left: 10px;">
+        <img style="border-radius: 50%; max-width: 40px; max-height: 40px; width: 100%; height: 100%;" src="{{item.Imagen}}">
+      </ion-avatar>
+        <ion-col>
+          <h6><ion-text class="color">{{item.Titulo}}</ion-text></h6>
+          <ion-text class="color">{{item.Descripcion}}</ion-text>
+        </ion-col>
+    </ion-row>
+  </a>
+</div>
+
+<div *ngIf="numeroentidad=='0127'">
+  <div class="separador"></div>
+  <div>
+    <ion-text>En esta opción puedas dar click en la linea que quieres abrir y/o modificar</ion-text>
+  </div>
+  <a *ngFor="let item of portafolio" style="text-decoration: none;" (click)=VerificarIngreso(item)>
+    <ion-row style="border-bottom: groove; font-size: 13px">
+      <ion-avatar style="padding-top: 20px; padding-left: 10px;">
+        <img style="border-radius: 50%; max-width: 40px; max-height: 40px; width: 100%; height: 100%;" src="{{item.Imagen}}">
+      </ion-avatar>
+        <ion-col>
+          <h6 style="color: #dbd2d2;" class="color">{{ item.Titulo}}</h6>
+          <ion-text class="color" >{{item.Descripcion}}</ion-text>
+        </ion-col>
+    </ion-row>
+  </a>
+</div>
+</ion-content>

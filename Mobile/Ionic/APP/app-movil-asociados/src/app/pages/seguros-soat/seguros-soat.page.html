@@ -1,0 +1,79 @@
+<ion-header>
+  <app-header titulo="SOAT"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div *ngIf="habilitacamposePE">
+    <div class="separador"></div>
+  <form> 
+    <ion-list class="au-form">
+      <ion-item>
+        <ion-label style="overflow: visible;"><ion-text>Fecha:</ion-text></ion-label>
+                      <ion-datetime 
+                      class="padding0"
+                      placeholder="Fecha" 
+                      displayFormat="DD/MM/YYYY" 
+                      [(ngModel)]="input.fechavencesoat" name="fecha" style="color:#788085"></ion-datetime>
+      </ion-item>
+      <ion-item>
+      <ion-label style="overflow: visible;"><ion-text>Placa:</ion-text></ion-label>
+      <ion-input placeholder="Placa" type="text" [(ngModel)]="input.Placa" name="placa" style="text-align: end;">
+      </ion-input>
+      </ion-item>
+      <ion-item>
+      <ion-label style="overflow: visible;"><ion-text>Marca:</ion-text></ion-label>
+      <ion-input placeholder="Marca" type="text" [(ngModel)]="input.Marca" name="marca" style="text-align: end;">
+      </ion-input>
+      </ion-item>
+      <!-- <ion-button expand="full" shape="round">Agregar</ion-button> -->
+    </ion-list>
+  </form>  
+  </div>
+  <div *ngIf="habilitagrid">
+    <div class="row" style="font-size: 14px;">
+        <div class="col blue-opa-2">
+            Fecha Vencimiento SOAT
+        </div>
+        <div class="col blue-opa-2">
+            Placa
+        </div>
+        <div class="col blue-opa-2">
+          Marca
+        </div>
+        <div class="col blue-opa-2">
+          Valor Prima
+        </div>
+        </div>
+  </div>
+  <ul class="list" style="font-size: 14px;" *ngIf="habilitagrid">
+    <li class="item list-item-seguimiento" *ngFor="let beneficiarios of select['beneficiariopoliza']" style="border-bottom: groove;">
+        <div class="row list-item-seguimiento">
+            <div class="col first-col">
+                <ion-text>{{beneficiarios.fecha1}}</ion-text>
+            </div>
+            <div class="col">
+                <ion-text>{{beneficiarios.referencia1}}</ion-text>
+            </div>
+            <div class="col">
+                <ion-text>{{beneficiarios.referencia2}}</ion-text>
+            </div>
+            <div class="col">
+              <ion-text>{{beneficiarios.valor1}}</ion-text>
+          </div>
+        </div>
+    </li>
+</ul>
+<div class="row"> 
+  <div class="col">  
+    <ion-button expand="full"  shape="round" (click)="btnNew()"><ion-text *ngIf="!create">Nuevo</ion-text>
+      <ion-text *ngIf="create">Solicitar</ion-text></ion-button>
+  </div>
+    <div class="col"> 
+      <ion-button expand="full"  shape="round" (click)="del()"><ion-text *ngIf="!delete">Cancelar</ion-text>
+        <ion-text *ngIf="delete">Eliminar</ion-text></ion-button>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

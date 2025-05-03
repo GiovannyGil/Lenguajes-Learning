@@ -1,0 +1,29 @@
+<ion-header>
+  <app-header titulo="Cursos"></app-header>
+</ion-header>
+
+<ion-content class="background">
+    <div class="separador"></div>
+<form>
+  <ion-item >
+    <ion-label style="overflow: visible;"><span class="color">Nombre del Curso</span></ion-label>
+    <ion-select  placeholder="Seleccione" [(ngModel)]="input.curso" name="curso" (ionChange)="buscardatos(input.curso)" style="max-width: max-content; color: #000000;">
+      <ion-select-option *ngFor="let curso of select['cursos']" value="{{curso.nombre}}">{{curso.nombre}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</form>
+
+<div *ngFor="let item of archivos">
+  <!-- <h2>{{item.nombreadjunto}}</h2> -->
+  <ion-button shape="round" (click)="downloadFile(item.rutaadjunto)">{{item.nombreadjunto}}</ion-button>
+  <!-- <button class="button disecague" type="submit" ng-click="downloadFile(item.rutaadjunto)" >{{item.nombreadjunto}}</button> -->
+</div>
+
+<div id="campos_dinamicos"></div>
+
+
+<ion-button expand="full" shape="round" (click)="Terminar(input)">Terminar</ion-button>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

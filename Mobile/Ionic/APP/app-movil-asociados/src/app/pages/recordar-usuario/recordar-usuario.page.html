@@ -1,0 +1,28 @@
+<ion-header>
+  <app-header titulo="Recordar Usuario"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+      <ion-item>
+        <ion-icon name="person" slot="start" style="color: black !important;" ></ion-icon>
+        <ion-label position="floating" style="color: black !important;">Cédula:</ion-label>
+        <ion-input type="text"  style="color: black !important;" [(ngModel)]="qrData.Cedula" formControlName="Cedula">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="call" slot="start" style="color: black !important;"></ion-icon>
+        <ion-label position="floating" style="color: black !important;" >Celular:</ion-label>
+        <ion-input type="number"  style="color: black !important;" [(ngModel)]="qrData.Celular" formControlName="Celular">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <ion-button expand="full" shape="round" (click)="RecordarUsuario()" [disabled]="myForm.invalid">
+   Enviar 
+  </ion-button>
+
+</ion-content>

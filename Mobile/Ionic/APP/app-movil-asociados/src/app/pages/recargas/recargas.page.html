@@ -1,0 +1,66 @@
+<ion-header>
+  <app-header titulo="Recargas"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate> 
+    <ion-list class="au-form">
+
+<ion-item>
+    <ion-label style="overflow: visible;"><span>Operador</span></ion-label>
+    <ion-select  placeholder="Seleccione" [(ngModel)]="Operador" (ionChange)="CambiarTexto(Operador)"  formControlName="OperadorSelected"  style="max-width: max-content; color: #dbd2d2;">
+      <ion-select-option value="Claro">Claro </ion-select-option>
+      <ion-select-option value="Movistar">Movistar </ion-select-option>
+      <ion-select-option value="Tigo">Tigo </ion-select-option>
+      <ion-select-option value="Avantel">Avantel </ion-select-option>
+      <ion-select-option value="DirectTv">DirectTv</ion-select-option>
+      <ion-select-option value="Virgin">Virgin </ion-select-option>
+      <ion-select-option value="Exito">Exito </ion-select-option>
+      <ion-select-option value="Flash Mobile">Flash Mobile </ion-select-option>
+    </ion-select>     
+</ion-item>
+<ion-item>
+<ion-label style="overflow: visible;"><span>{{texto}}</span></ion-label>
+<ion-input placeholder="Número" type="number" [(ngModel)]="NumeroCelular" formControlName="NumeroCelular">
+</ion-input>  
+</ion-item>
+<ion-item>
+<ion-label style="overflow: visible;"><span>Valor Recarga:</span></ion-label>
+
+<ion-select  placeholder="Seleccione" [(ngModel)]="typeProduct['ValorRecarga']" formControlName="ValorRecarga"  style="max-width: max-content; color: #dbd2d2;">
+  <ion-select-option value="1000" *ngIf="typeProduct.Operador!=='DirectTv'">1.000</ion-select-option>
+  <ion-select-option value="5000" *ngIf="typeProduct.Operador!=='DirectTv'">5.000 </ion-select-option>
+  <ion-select-option value="10000">10.000 </ion-select-option>
+  <ion-select-option value="15000">15.000 </ion-select-option>
+  <ion-select-option value="20000">20.000</ion-select-option>
+  <ion-select-option value="25000">25.000 </ion-select-option>
+  <ion-select-option value="30000">30.000 </ion-select-option>
+  <ion-select-option value="35000">35.000 </ion-select-option>
+  <ion-select-option value="40000">40.000 </ion-select-option>
+  <ion-select-option value="45000">45.000 </ion-select-option>
+  <ion-select-option value="50000">50.000 </ion-select-option>
+</ion-select>  
+</ion-item>
+<ion-item>
+<ion-label  style="text-align: center; color: #dbd2d2;">Producto a debitar</ion-label>
+</ion-item>
+<ion-item>
+<ion-label style="overflow: visible;"><span>Producto:</span></ion-label>
+<ion-select  placeholder="Seleccione" [(ngModel)]="typeProduct['productoSelected']" (ionChange)="valordisponible(typeProduct['productoSelected'])" formControlName="productoSelected"  style="max-width: max-content; color: #dbd2d2;">
+<ion-select-option *ngFor="let producto of productos" [value]="producto">{{producto.tipoproducto}}</ion-select-option>
+</ion-select>  
+</ion-item>
+
+
+<!-- <ion-button expand="full" shape="round" (click)="Pagar(typeProduct)"> -->
+<ion-button expand="full" shape="round" (click)="ConfirmarPago(typeProduct)" [disabled]="myForm.invalid">
+Pagar
+</ion-button> 
+
+</ion-list>
+</form>
+</ion-content>
+
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,34 @@
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Página no encontrada</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content class="ion-padding new-toolbar-background">
+  <div class="page-not-found ">
+    <h1>404</h1>
+    <div class="logo">
+      <img src="{{logoinicio}}" alt="logo">
+    </div>
+    <p>Lo sentimos, Algo salio mal con el Servicio.</p>
+    <ion-button color="dark" routerLink="/loginpage">Ir a Inicio</ion-button>
+  </div>
+
+
+<!-- traer el logo y estilos desde el componente logico "page-not-found.component.ts" y verlo en esta vista -->
+
+
+  <style>
+    .page-not-found {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .logo {
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+  <link rel="stylesheet" href="{{cssUrl}}">
+</ion-content>  
+
+

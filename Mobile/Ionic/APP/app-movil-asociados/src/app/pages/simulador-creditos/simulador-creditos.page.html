@@ -1,0 +1,106 @@
+<ion-header>
+  <app-header titulo="Simulador de Crédito"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Línea</ion-text>
+        </ion-label>
+        <ion-select placeholder="Seleccione" [(ngModel)]="input.CodLinea" (ionChange)="SearchDestinos(input.CodLinea)"
+          formControlName="CodLineaSelected" style="max-width: max-content; color: #000000;">
+          <ion-select-option *ngFor="let linea of linea" value="{{linea.codlinea}}">{{linea.codlinea}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Destino</ion-text>
+        </ion-label>
+        <ion-select placeholder="Seleccione" [(ngModel)]="input.Coddestino" formControlName="CoddestinoSelected"  (ionChange)="searchPeriodicidad(input.Coddestino)"
+          style="max-width: max-content; color: #000000;">
+          <ion-select-option *ngFor="let destino of destino" value="{{destino.coddestino}}">{{destino.nombredestino}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Periodicidad</ion-text>
+        </ion-label>
+        <ion-select placeholder="Seleccione" [(ngModel)]="input.periodicidad" formControlName="periodicidadSelected"
+          style="max-width: max-content; color: #000000;">
+          <ion-select-option *ngFor="let periodo of periodicidad" value="{{periodo.key}}">
+            {{periodo.value}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Monto a prestar:</ion-text>
+        </ion-label>
+        <ion-input placeholder="$ Capital" type="tel" class="color" [(ngModel)]="input.Capitalprestar"
+          (ionChange)="convertNumber($event)" formControlName="Capitalprestar">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Plazo:</ion-text>
+        </ion-label>
+        <ion-input class="color" placeholder="Plazo" type="number" [(ngModel)]="input.plazo" formControlName="plazo">
+        </ion-input>
+      </ion-item>
+
+      <div class="row">
+        <div class="col">
+          <ion-button expand="full" shape="round" (click)="MuestraExtra()">Añadir Cuota</ion-button>
+        </div>
+        <div class="col">
+          <ion-button expand="full" shape="round" (click)="Limpiar()">Limpiar</ion-button>
+        </div>
+      </div>
+
+      <ion-button expand="full" shape="round" (click)="Simular()" [disabled]="myForm.invalid">Simular</ion-button>
+    </ion-list>
+  </form>
+
+  <form [formGroup]="formCuotasExtra" novalidate *ngIf="muestraextras">
+    <ion-list class="au-form">
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Número cuota:</ion-text>
+        </ion-label>
+        <ion-input placeholder="Número cuota" type="number" [(ngModel)]="cuotaExtra.Numero" formControlName="numcuota"
+          class="color">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Valor extra:</ion-text>
+        </ion-label>
+        <ion-input placeholder="Valor" type="tel" [(ngModel)]="cuotaExtra.Abono"
+          (ionChange)="convertNumberExtra($event)" formControlName="valor" class="color">
+        </ion-input>
+      </ion-item>
+      <ion-button expand="full" shape="round" (click)="AgregarExtra()" [disabled]="formCuotasExtra.invalid">Agregar
+      </ion-button>
+    </ion-list>
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let cuota of input.cuotasExtras">
+      <ion-label style="overflow: visible;">
+        <ion-text class="color">{{cuota.Abono | currency: "USD":true: '1.0-0'}}</ion-text>
+      </ion-label>
+      <ion-label style="overflow: visible;">
+        <ion-text class="color">#{{cuota.Numero}}</ion-text>
+      </ion-label>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,25 @@
+<ion-header>
+  <app-header titulo="Pólizas"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+  <ion-item>
+    <div>
+      <span class="color">Estoy interesado en adquirir una nueva poliza.<br/> 
+            Puedes hacerlo con un Click y uno de nuestros<br/> 
+            asesores te contactara</span>
+    </div>
+</ion-item>
+<div class="separador"></div>
+<a *ngFor="let poliza of seguros" (click)="crearseguros(poliza.tipo)" style="text-decoration: none;"> 
+  <ion-row style="border-bottom: groove; font-size: 80.5%">
+    <ion-icon name="lock-closed" style="zoom:2.0" class="icon-login"></ion-icon>
+      <ion-col><span class="color">{{poliza.nombre}}</span></ion-col>
+    <ion-icon name="arrow-forward-circle" style="zoom:2.0" class="icon-login"></ion-icon>
+  </ion-row>
+</a>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

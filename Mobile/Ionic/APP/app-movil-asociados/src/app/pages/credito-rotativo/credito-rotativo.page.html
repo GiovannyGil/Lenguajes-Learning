@@ -1,0 +1,44 @@
+<ion-header>
+  <app-header titulo="Créditos"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="list-div" *ngFor="let seguimiento of seguimientos">
+    <ion-list class="au-form">
+      <ion-item>
+          <ion-label style="overflow: visible; text-align: center;"><span class="color">Pagaré: &nbsp;<ion-icon name="card-outline" item-left></ion-icon>&nbsp;{{seguimiento.Pagare}}</span></ion-label>
+    </ion-item>
+<ion-item>
+  <ion-icon name="clipboard-outline" item-left style="color: #999;"></ion-icon>
+  <ion-label style="overflow: visible;"><span class="color">&nbsp;Vencimiento Cuota:</span></ion-label>
+  <ion-label style="overflow: visible;"><span class="color">{{seguimiento.FechaVenceCuota}}</span></ion-label>
+</ion-item>
+<ion-item>
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Saldo Capital:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{seguimiento.SaldoCapital}}</span></ion-label>
+</ion-item>
+<ion-item>
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Saldo ponerse al Día:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{seguimiento.SaldoPonerseDia}}</span></ion-label>
+</ion-item>
+<ion-item>
+  <ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+  <ion-label style="overflow: visible;"><span class="color">&nbsp;Cuotas Mora:</span></ion-label>
+  <ion-label style="overflow: visible;"><span class="color"> {{seguimiento.cuotasmora}}</span></ion-label>
+</ion-item>
+<ion-item>
+<ion-icon name="cash-outline" item-left style="color: #999;"></ion-icon>
+<ion-label style="overflow: visible;"><span class="color">&nbsp;Tasa:</span></ion-label>
+<ion-label style="overflow: visible;"><span class="color">{{seguimiento.tasacolocacion}}</span></ion-label>
+</ion-item>
+
+   <ion-button expand="full" shape="round" (click)="DetalleSeguimientos(seguimiento)" style="opacity: inherit; border-color: transparent;
+   --box-shadow: none;">Ver Seguimientos....</ion-button>
+  </ion-list>
+  </div>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,16 @@
+<!-- Generated template for the CreditosDigitalesComponent component -->
+<div>
+  <ion-card *ngIf="mensajePreaprobado != ''" class="contenedor">
+    <ion-card-content>
+      {{mensajePreaprobado}} <br>
+      <button
+        class="boton_loQuiero"
+        ion-button
+        round
+        (click)="iniciarPreview()"
+      >
+        Lo Quiero
+      </button>
+    </ion-card-content>
+  </ion-card>
+</div>

@@ -1,0 +1,86 @@
+<ion-header>
+  <app-header titulo="Retiros efecty"></app-header>
+</ion-header>
+
+<ion-content class="background">
+
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Cuenta origen</ion-text>
+        </ion-label>
+        <ion-select 
+          placeholder="Seleccione" 
+          [(ngModel)]="ahorroSelect"
+          formControlName="ahorroSelect" 
+          style="max-width: max-content; color: #000000;">
+          <ion-select-option *ngFor="let ahorro of ahorros" [value]="ahorro">{{ahorro.Tipo}} - {{ahorro.NombreLineaAhorros}} - {{ahorro.NumeroCuentaAhorros}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="ahorroSelect">
+        <div class="creditoSelected-img" style="padding: 20px;">
+          <ion-text class="color">Nro. Cta: {{ahorroSelect.NumeroCuentaAhorros}}
+            <br> Última transacción: {{ahorroSelect.ultimaFechaTransaccion | date}}
+            <br> Saldo: {{ahorroSelect.SaldoTotalCuenta}}
+          </ion-text>
+        </div>
+      </ion-item>
+
+      <ion-item style="margin: 10px;">
+        <ion-icon name="cash-outline" slot="start" class="color" style="float:right;  margin-right: 5px; zoom: 1.5;"></ion-icon>
+        <ion-label position="floating" class="color">Valor a retirar: </ion-label>
+        <ion-input 
+          (ionChange)="changeFn($event);" 
+          [disabled]="inputDeshabilitado"
+          type="tel" 
+          pattern="\d*" 
+          id="valorRetirar" 
+          placeholder="Digite el valor a retirar" 
+          [(ngModel)]="valorRetiro" 
+          formControlName="valorRetiro" 
+          (click)="showToast()"
+          (ionBlur)="calculoGmf(valorRetiro)"
+          class="color">
+        </ion-input>
+      </ion-item>
+      <ion-item style="margin: 10px;">
+        <ion-icon name="cash-outline" slot="start" class="color" style="float:right;  margin-right: 5px; zoom: 1.5;"></ion-icon>
+        <ion-label position="floating" class="color">Valor comision:</ion-label>
+        <ion-input 
+          type="tel" 
+          id="valorComision" 
+          [(ngModel)]="costotransaccion" 
+          formControlName="costotransaccion" 
+          [disabled]="true"
+          class="color">
+        </ion-input>
+      </ion-item >
+      <div class="total-result">
+
+          <ion-icon name="cash-outline" slot="start" class="color" style="float:right;  margin-right: 5px; zoom: 1.5;"></ion-icon>
+          <!-- <ion-label position="floating" class="color">Total: ${{Total.Valor}}</ion-label> -->
+          <span style="color: #000000;">
+            Total: ${{Total.Valor}}
+          </span>
+          <!-- <ion-input 
+            type="text" 
+            (ionChange)="convertNumber()" 
+            pattern="\d*" 
+            disabled 
+            formControlName="total" 
+            class="color">
+          </ion-input> -->
+
+      </div>
+
+      <ion-button expand="full" shape="round" (click)="Confirmar()" [disabled]="myForm.invalid">Solicitar</ion-button>
+    </ion-list>
+  </form>
+  
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

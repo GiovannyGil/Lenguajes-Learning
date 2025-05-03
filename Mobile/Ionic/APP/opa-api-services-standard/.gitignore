@@ -1,0 +1,12 @@
+node_modules/
+serverOpaApp.exe
+serverOpaApp.jxp
+serverSucursal.exe
+temp/
+.env
+ssl/
+app/negocio/CreditosDigitales/creditos-digitales-config.json
+config.json
+opa-app-movil-backend.exe
+dist/
+.vscode

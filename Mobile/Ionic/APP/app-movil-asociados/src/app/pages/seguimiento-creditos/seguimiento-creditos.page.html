@@ -1,0 +1,86 @@
+<ion-header>
+  <app-header titulo="Créditos"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+
+  <div class="producto-about">
+      <div class="row list-item-seguimiento ">
+          <div class="col"><strong class="capitalize">{{credito.nombredestino }}</strong></div>
+          <div class="col"><strong>Pagaré :</strong> {{credito.Pagare}} </div>
+      </div>
+
+      <div class="row list-item-seguimiento ">
+        <div class="col" *ngIf="credito.esrotativo ==='S'"><strong>Cupo: </strong>{{credito.cupo}} </div>
+        <div class="col" *ngIf="credito.esrotativo ==='S'"><strong>Cupo disponible : </strong>{{credito.disponible }}</div>
+     </div>
+
+      <div class="row list-item-seguimiento ">
+          <div class="col" *ngIf="credito.esrotativo ==='N'"><strong>Línea: </strong>{{credito.CodigoLinea}} </div>
+          <div class="col" *ngIf="credito.esrotativo ==='N'"><strong>Destino : </strong>{{credito.CodigoDestino }}</div>
+      </div>
+
+      <div class="row list-item-seguimiento ">
+        <div class="col"><strong>Saldo ponerse al día: </strong>$ {{credito.SaldoPonerseDia}} </div>
+        <div class="col"><strong>Total Deuda: </strong> $ {{credito.SaldoCapital }} </div>
+    </div>
+
+    <div class="row list-item-seguimiento ">
+      <div class="col"><strong>Valor Cuota : </strong>$ {{credito.Anualidad}} </div>
+      <div *ngIf="credito.esrotativo ==='N'"  class="col"><strong>F.Venc.Cuota : </strong> {{credito.Fecha | date}} </div>
+      <div *ngIf="credito.esrotativo ==='S'"  class="col"><strong>Día Corte : </strong> {{credito.diaCorte}} </div>
+  </div>
+  </div>
+
+  <div class="padding">
+    <ion-button expand="full" shape="round" (click)="DetalleSeguimientos()" *ngIf="credito.esrotativo ==='N'">Detalle Seguimientos....</ion-button>
+    <ion-button expand="full" shape="round" (click)="DetalleSeguimientos()" *ngIf="credito.esrotativo ==='S'">Detalle Rotativo....</ion-button>
+    <ion-button expand="full" shape="round" (click)="planDePagos()">Solicitar plan de pagos</ion-button>
+  </div>
+
+<div>
+  <div class="row">
+      <div class="col blue-opa-2">
+          Fecha
+      </div>
+      <div class="col blue-opa-2">
+          Documento
+      </div>
+      <div class="col blue-opa-2">
+          Valor
+      </div>
+      </div>
+</div>
+   
+      <ul class="list">
+          <li class="item list-item-seguimiento" *ngFor="let producto of seguimientos | slice:0:3" style="border-bottom: groove;">
+              <div class="row list-item-seguimiento">
+                  <div class="col first-col">
+                      <span class="color" >{{producto.fechaTrabajo | date:'yyyy-MM-dd'}}</span>
+                  </div>
+                  <div class="col">
+                      <span class="color">{{producto.Documento}}</span>
+                  </div>
+                  <div class="col valor-seguimientos" [ngClass]="{'red-text':producto.ValorTransaccion > 0}">
+                      <span class="color" *ngIf="producto.ValorTransaccion === '0.00'">+ {{producto.ConsignacionTotal}}</span> 
+                      <span  class="color" *ngIf="producto.ValorTransaccion !== '0.00'">- {{producto.ValorTransaccion}}</span>
+                  </div>
+              </div>
+
+              <div class="row list-item-seguimiento">
+                  <div class="col"></div>
+                  <div class="col"></div>
+                  <div class="col list-item-seguimiento naturaleza-seguimientos">
+                      <span style="font-size:12px;">
+                        <span *ngIf="producto.ValorTransaccion === '0.00'" [ngClass]="{'green-text':producto.ValorTransaccion  === '0.00','red-text':producto.ValorTransaccion !== '0.00'}">Consignación</span> 
+                        <span *ngIf="producto.ValorTransaccion !== '0.00'" [ngClass]="{'green-text':producto.ValorTransaccion  === '0.00','red-text':producto.ValorTransaccion !== '0.00'}">Cargue</span>
+                    </span>
+                  </div>
+              </div>
+          </li>
+      </ul>
+</ion-content>
+<ion-footer>
+      <app-footer></app-footer>
+    </ion-footer>

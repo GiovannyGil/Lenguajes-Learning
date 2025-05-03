@@ -1,0 +1,36 @@
+<style>
+  p {
+    font-family: Arial;
+  }
+  .firma{
+    display: block;
+  }
+  .no-firma{
+    display: none;
+  }
+  .pLogo{
+    text-align: right;
+  }
+  .pLogo-no{
+    text-align: center;
+  }
+</style>
+
+<p class={{[#pLogo#]}} id="pLogo"><img class="n3VNCb" style="width: 200px; height: 200px; " src="data:image/png;base64,{{logoBase64}}" alt="Demo Logos" data-noaft="1" /></p>
+<br/><br/>
+<p style="text-align: center;">{{[#ENTIDAD#]}}</p>
+<p style="text-align: center;">CERTIFICA QUE:</p>
+<br/><br/>
+<p style="text-align: justify;">
+  El (la) Se&ntilde;or(a) <strong>{{[#NOMBRE#]}}</strong>, identificado(a) con el documento {{[#TIPODOCUMENTO#]}} n&uacute;mero <strong>{{[#CEDULA#]}}</strong>, 
+  como deudor, adeuda a {{[#ENTIDAD#]}} la suma de {{[#VALORLETRAS#]}} pesos ($ {{[#VALORDEUDA#]}}), saldo a la fecha por concepto de créditos.
+</p>
+<p style="text-align: justify;">&nbsp;</p>
+<p>Esta constancia se expide a petici&oacute;n del interesado(a) el {{[#FECHAACTUAL#]}}</p>
+<p>&nbsp;</p>
+<br/><br/>
+<p class={{[#firma#]}}><img class="firmaCerti" style="width: 300px; height: 160px; margin-bottom: -40px;" src="data:image/png;base64,{{FirmaCertificado}}" alt="" data-noaft="1" /></p>
+<p>______________________________________________________</p>
+<p>DEPARTAMENTO DE CARTERA</p>
+<p>{{[#ENTIDAD#]}}</p>
+<p>OFICINA: {{[#NOMREAGENCIA#]}}</p>

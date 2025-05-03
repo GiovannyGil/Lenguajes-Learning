@@ -1,0 +1,256 @@
+<ion-header>
+  <app-header titulo="Productos PSE"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <!-- <div class="separador"></div> -->
+  <div *ngIf="ahorros.length">
+    <div class="item item-divider item-divider-input">
+      <span class="item-divider-title" style="text-align: center;">Ahorros</span>
+      <ion-icon name="cash-outline" style="float:right;  margin-right: 5px; zoom: 2.0;"></ion-icon>
+    </div>
+    <a *ngFor="let ahorro of ahorros" class="ahorros">
+      <ion-row style=" border-bottom: groove; border-top: groove; padding-top: 5px;">
+        <div>
+          <ion-col>
+            <strong>
+              <span class="estilo_linea" >{{ahorro.NombreLineaAhorros |
+                lowercase}}
+              </span>
+              </strong>
+            </ion-col>
+        </div>
+      </ion-row>
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span">Nro. Cuenta:</span>
+            <span style="float:right; font-size: 14px;">
+              {{ahorro.NumeroCuentaAhorros}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style="padding-top: 5px; display: none;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span">línea:</span>
+            <span style="float:right; font-size: 14px;">
+              {{ahorro.Linea}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span">Cuota:</span>
+            <span style="float:right; font-size: 14px;">
+              ${{ahorro.ValorCuotaAhorro}}
+            </span>
+        </div>
+      </ion-row>
+
+      
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span">Saldo:</span>
+          <span style="float:right; font-size: 14px;">
+            ${{ahorro.SaldoTotalCuenta}}
+          </span>
+        </div>
+      </ion-row>
+
+      <ion-row style=" padding-top: 5px; padding-bottom: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span">Pagar este producto:</span>
+          <ion-checkbox (ionChange)="llenardatosinput(ahorro.Linea,ahorro.NombreLineaAhorros,'Ahorro',$event,ahorro.Linea, ahorro.NumeroCuentaAhorros)"
+          id="{{ahorro.NombreLineaAhorros}}" [(ngModel)]="ahorro.countComplete">
+        </ion-checkbox>
+      </div>
+    </ion-row>
+
+    <ion-row *ngIf="ahorro.countComplete" style="padding-top: 5px;">
+      <div class="blue-opa-4PSE">
+        <span class="blue-opa-4PSE_span">Valor a pagar:</span>
+          <input class="pse-input" style="width: 40%;" maxLength="8" oninput="this.value = this.value.slice(0, this.maxLength)" type="number" [(ngModel)]="ahorro.valorapagar"
+            id="{{ahorro.Linea}}{{ahorro.NumeroCuentaAhorros}}" [disabled]="isDisabled"
+            (input)="validarvalores('Ahorro',ahorro.NumeroCuentaAhorros,ahorro.Linea, false)"
+            (change)="validarvalores('Ahorro',ahorro.NumeroCuentaAhorros,ahorro.Linea, true)" [ngClass]="{'errorInput': ahorro.menor}"> 
+      </div>
+    </ion-row>
+  </a>
+
+  </div>
+  <div *ngIf="creditos.length">
+    <div class="item item-divider item-divider-input">
+      <span class="item-divider-title" style="text-align: center;">Créditos</span>
+      <ion-icon name="card-outline" style="float:right;  margin-right: 5px; zoom: 2.0;"></ion-icon>
+    </div>
+    <a *ngFor="let credito of creditos" class="creditos">
+      <ion-row style="  border-bottom: groove; border-top: groove; padding-top: 5px;">
+        <div>
+          <ion-col>
+            <span class="estilo_linea" >
+              {{credito.NombreLinea}}
+            </span>
+          </ion-col>
+        </div>
+      </ion-row>
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Pagaré:</span>
+            <span style="float:right; font-size: 14px;">
+              {{credito.Pagare}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Cuota:</span>
+            <span style="float:right; font-size: 14px;">
+              ${{credito.Anualidad}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Saldo:</span>
+            <span style="float:right; font-size: 14px;">
+              ${{credito.SaldoCapital}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style=" padding-top: 5px; padding-bottom: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span">Pagar este producto:</span>
+            <ion-checkbox (ionChange)="llenardatosinput(credito.Pagare,credito.NombreLinea,'Credito',$event,null,null)" [(ngModel)]="credito.countComplete"
+              id="{{credito.NombreLinea}}">
+            </ion-checkbox>
+        </div>
+      </ion-row>
+
+      <ion-row *ngIf="credito.countComplete" style="border-bottom: groove;padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Valor a Pagar:</span>
+            <input  class="pse-input" style="width: 40%;" type="number" maxLength="8" oninput="this.value = this.value.slice(0, this.maxLength)" [(ngModel)]="credito.valorapagar" id="{{credito.Pagare}}" [disabled]="isDisabled" (input)="validarvalores('Credito',credito.Pagare, null,false)" (change)="validarvalores('Credito',credito.Pagare, null, true)" [ngClass]="{'errorInput': credito.menor}">
+        </div>
+      </ion-row>
+
+    </a>
+  </div>
+  <div *ngIf="novedades.length">
+    <div class="item item-divider item-divider-input">
+      <span class="item-divider-title" style="text-align: center;">Novedades</span>
+      <ion-icon name="clipboard-outline" style="float:right;  margin-right: 5px; zoom: 2.0;"></ion-icon>
+    </div>
+    <a *ngFor="let novedad of novedades" class="novedades">
+      <ion-row style="border-bottom: groove;border-top: groove; padding-top: 5px; padding-bottom: 5px;">
+        <div>
+          <ion-col>
+            <span class="estilo_linea">
+              {{novedad.NombreNovedad}}
+            </span>
+          </ion-col>
+        </div>
+      </ion-row>
+
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Nro Novedad:</span>
+            <span style="float:right; font-size: 14px;">
+              {{novedad.NumeroNovedad}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style="padding-top: 5px; display:none">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Codigo Novedad:</span>
+            <span style="float:right; font-size: 14px;">
+              {{novedad.codnovedad}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Cuota:</span>
+            <span style="float:right; font-size: 14px;">
+              ${{novedad.CuotaNovedad}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style="padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Saldo:</span>
+            <span style="float:right; font-size: 14px;">
+              ${{novedad.SaldoNovedad}}
+            </span>
+        </div>
+      </ion-row>
+
+      <ion-row style=" padding-top: 5px; padding-bottom: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span">Pagar este producto:</span>
+            <ion-checkbox (ionChange)="llenardatosinput(novedad.NumeroNovedad,novedad.NombreNovedad,'Novedad',$event,novedad.codnovedad,novedad.CuotaNovedad)"
+              id="{{novedad.NombreNovedad}}" [(ngModel)]="novedad.countComplete">
+            </ion-checkbox>
+        </div>
+      </ion-row>
+      
+      <ion-row *ngIf="novedad.countComplete" style="border-bottom: groove; padding-top: 5px;">
+        <div class="blue-opa-4PSE">
+          <span class="blue-opa-4PSE_span"> Valor a pagar:</span>
+            <input style="width: 40%;" type="number" [(ngModel)]="novedad.valorapagar"
+              id="{{novedad.codnovedad}}" [disabled]="isDisabled" maxLength="8" oninput="this.value = this.value.slice(0, this.maxLength)"
+              (input)="validarvalores('Novedad',novedad.NumeroNovedad,novedad.codnovedad,false)"
+              (change)="validarvalores('Novedad',novedad.NumeroNovedad,novedad.codnovedad,true)" 
+              [ngClass]="{'errorInput': novedad.menor}">
+        </div>
+      </ion-row>
+    </a>
+
+  </div>
+
+  <div class="item item-divider item-divider-input">
+    <span class="item-divider-title" style="text-align: center;">Totales</span>
+    <ion-icon name="clipboard-outline" style="float:right;  margin-right: 5px; zoom: 2.0;"></ion-icon>
+  </div>
+
+  <a class="total">
+
+    <ion-row style="padding-top: 5px;">
+      <div class="blue-opa-4PSE">
+        <span class="blue-opa-4PSE_span"> Costo transacción:</span>
+
+          <span style="float:right; font-size: 14px;">
+            ${{costostran.Valor}}
+          </span>
+
+      </div>
+    </ion-row>
+
+    <ion-row style="padding-top: 5px;">
+      <div class="blue-opa-4PSE">
+        <span class="blue-opa-4PSE_span"> Total a pagar:</span>
+
+          <span style="float:right; font-size: 14px;">
+            ${{Total.Valor}}
+          </span>
+
+      </div>
+    </ion-row>
+  </a>
+
+
+  <div class="pseboton">
+    <ion-button expand="full" shape="round" (click)="submit()">Aceptar</ion-button>
+  </div>
+
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

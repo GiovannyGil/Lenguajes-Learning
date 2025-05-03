@@ -1,0 +1,25 @@
+<ion-header>
+  <app-header titulo="Auxilios"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <a *ngFor="let item1 of auxilios" (click)="Validacion(item1.IdparametroAuxiliosApp)" style="text-decoration: none;">
+    <ion-row style="border-bottom: groove; font-size: 13px">
+      <ion-avatar style="padding-top: 20px; padding-left: 10px;">
+        <img style="border-radius: 50%; max-width: 40px; max-height: 40px; width: 100%; height: 100%;" src="assets/imgs/logos/logo-fecsa.jpg">
+      </ion-avatar>
+        <ion-col>
+          <h6 style="color: #dbd2d2;"><B>{{item1.auxilio}}</B></h6>
+          <span class="color">{{item1.descripcion}}</span>
+          <br>
+          <h6 style="color: #dbd2d2;"><B>REQUISITOS:</B></h6>
+          <div *ngFor="let item of datos">
+          <span *ngIf="item1.IdparametroAuxiliosApp == item.IdparametroAuxiliosApp" class="color">{{item.nombrecampo}}</span>
+        </div>
+        </ion-col>
+    </ion-row>
+  </a>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

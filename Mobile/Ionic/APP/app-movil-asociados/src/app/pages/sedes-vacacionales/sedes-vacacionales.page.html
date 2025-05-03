@@ -1,0 +1,77 @@
+<ion-header>
+  <app-header titulo="Sedes"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="slider-container"> 
+    <ion-slides [pager]="true" (ionSlideDidChange)="armarfechas('',fechassedes)">
+      <ion-slide *ngFor="let sede of datossedes">
+          <div class="content-slider box">
+              <img src="{{sede.imagen}}" style="max-height: 180px">   
+              
+              <p style="text-align: center" class="fraseSeguridad"><b>{{sede.sede}}</b> </p> 
+              <p class="fraseSeguridad">{{sede.descripcion}}</p> 
+
+              <ion-button expand="full" style="margin-bottom: 20px;" shape="round" (click)="armarfechas(sede.idsedesVacacionalesApp,fechassedes)">Ver Reservas Disponibles ></ion-button>
+
+              <div *ngIf="ver">
+                <div class="row">
+                    <div class="col blue-opa-2">
+                        Entrada
+                    </div>
+                    <div class="col blue-opa-2">
+                        Salida
+                    </div>
+                    <div class="col blue-opa-2">
+                        Noches
+                    </div>
+                    <div class="col blue-opa-2">
+                      Valor
+                    </div>
+                   <div class="col blue-opa-2">
+                    Tot. Noches
+                   </div>
+                   <div class="col blue-opa-2">
+                     Reservar 
+                  </div>
+
+                    </div>
+              </div>
+                
+                  <ul class="list" *ngIf="ver">
+                    <li class="item list-item-seguimiento" *ngFor="let Fechas of fechassedesuno" style="border-bottom: groove;">
+                          <div class="row list-item-seguimiento">
+                              <div class="col first-col">
+                                <span>{{Fechas.entrada}}</span>
+                              </div>
+                              <div class="col">
+                                <span>{{Fechas.salida}}</span>
+                              </div>
+                              <div class="col">
+                                <span>{{Fechas.nronoches}}</span>
+                              </div>
+                              <div class="col">
+                                <span>{{Fechas.valornoche}}</span>
+                              </div>
+                              <div class="col">
+                                <span>{{Fechas.totalvalor}}</span>
+                              </div>
+                          <div class="col">
+                            <ion-buttons>
+                              <!-- <ion-button  shape="round" (click)="Actualiza(beneficiarios)" style="font-size: 60%;"><span>Actualiza</span>
+                            </ion-button> -->
+                              <ion-button  shape="round" (click)="Reservar(Fechas.idFechasSedesVacacionalesapp)" style="font-size: 80%;" class="button-reserva"><span>Reservar</span>
+                            </ion-button>
+                            </ion-buttons>
+                          </div>
+                      </div>
+                    </li>
+                   </ul>
+          </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

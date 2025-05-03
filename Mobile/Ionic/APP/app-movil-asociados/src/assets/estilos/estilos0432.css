@@ -1,0 +1,262 @@
+.my-custom-menu {
+    width: 500px;
+  }
+
+.separador {
+    height: 15px; }
+
+.item-divider-title {
+      padding-left: 5px;
+      color: white;
+      font-size: 15px; }
+    
+.item-divider-input {
+        padding: 0;
+        border: 1px solid #82bc00; }
+    
+.item-divider {
+        /*padding-top: 8px;
+          padding-bottom: 8px;*/
+          padding-top: 0px;
+          padding-bottom: 0px;
+          height: 37px;
+          /*min-height: 30px;*/
+          background: #82bc00; }
+    
+.padding{
+  padding: 10px;
+}
+
+.producto-about {
+  background-color: #82bc00 !important;
+  color: white;
+  font-size: 12px; }
+
+
+.blue-opa-2 {
+    background: #6f6f6e    !important;
+    color: white;
+    margin: 3px;
+    border-radius: 3px; }
+
+    .list {
+      position: relative;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: 0;
+      margin-bottom: 20px; }
+
+  .list-item-seguimiento {
+      padding: 0 !important; }
+
+  .valor-seguimientos {
+        text-align: right;
+      }
+  
+  .naturaleza-seguimientos {
+        text-align: right;
+        padding-right:5px; 
+      }
+
+  .red-text {
+      color: red; }
+      
+  .green-text {
+      color: #96C81E   ; }
+      
+  .red-background{
+      background-color: rgb(248, 36, 36); 
+      padding: 3px 8px; 
+      border-radius: 10px;
+      color:white;
+    }
+
+  .green-background{
+    background-color: #96C81E; 
+    padding: 3px 8px; 
+    border-radius: 10px;
+    color:white;
+  }
+
+.list-div{
+  border-width: 1px; 
+  border-style: solid; 
+  border-color: #dbd2d2; 
+  margin: 16px;
+}
+
+.imgConfirmacion{
+  width: 100px;
+  height: 100px;
+
+}
+.fraseSeguridad{
+  color: white;
+}
+.textFaseSeguridad{
+
+  color: white;
+  display: inline-block;
+  margin-top: 15%;
+
+}
+
+.imgfooter{
+  width: 40px; 
+  height: 40px; 
+  padding: 0px;
+}
+
+.padding0{
+  padding: 0px !important;
+}
+
+.card {
+  overflow: hidden;
+  margin: 20px 10px;
+  border-radius: 2px;
+  text-align: center;
+  }
+  .video-container  {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%; }
+
+.slider-container {
+  max-height: auto;
+  max-width: auto; 
+}
+.content-slider {
+height: 80%;
+word-wrap: break-word;
+overflow: hidden;
+font-size: 12px; }
+
+.icon-certificado{
+  color: #999; 
+  zoom:3.0
+}
+
+.icon-footer{
+  text-align: center; 
+  color: #ffffff; 
+  zoom:2.0
+}
+
+.arrow-center {
+  margin: 0;
+  --position: absolute;
+  padding-top: 200px;
+  transform: translate(0, -50%); }
+  
+  .imagenyfrase{
+    color: #82bc00;
+    zoom: 2.5;
+    padding-top: 40%;
+  }
+  
+  /* ultimo codigo agregado en migracion */
+.new-toolbar-background {
+  --background: #6f6f6e;
+}
+
+.button{
+  --background: #82bc00;
+  background-color: transparent;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.button2{
+  --background: #82bc00  !important;
+  background-color: transparent;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.icon-login{
+  color:#82bc00;
+  opacity: 0.5;
+}
+
+.list-md{
+  background: transparent !important;
+}
+
+.item{
+  --background: transparent !important;
+}
+
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h{ 
+  color: #dbd2d2 !important;
+}
+
+.detalle-seguimientos{
+  border-bottom: 1px solid #dedede;
+  margin-left: 24px;
+  margin-right: 24px;
+  --inner-border-width: 0px !important;
+}
+
+.sc-ion-input-md-h{ 
+  color: #dbd2d2;
+}
+
+span{
+  color:#ffffff
+}
+
+.alert-button-inner.sc-ion-alert-md {
+  
+}
+
+.col {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: block;
+  padding: 5px;
+  width: 100%; }
+
+  .row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+    width: 100%; }
+
+  a {
+      color:#dbd2d2
+    }
+/* se trajo de loginpage.scss */
+ion-content.background{
+  /* --background: linear-gradient(180deg, rgba(0, 0, 0, 0.98) 1.48%, rgba(1, 41, 78, 0.68) 12.52%, #00090e 89.52%), url('../../../assets/imgs/bg1.png') no-repeat center center / cover; 
+  width: 100%;
+
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover; */
+  --ion-background-color:#1c333e;
+}
+.swiper-pagination-bullets{
+  bottom:  0px !important;
+  }
+
+  .font-size{
+    font-size: 12px;
+    }
+
+    .alert-radio-label.sc-ion-alert-md{
+      white-space: normal;
+      font-size: 12px;
+    }
+    

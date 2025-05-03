@@ -1,0 +1,21 @@
+{
+    "client_id":"client_id_idp_opa",
+    "client_secret":"client_secret_idp_opa",
+    "company":"0000-000000-000000",
+    "url_cd":"https://creditosdigitales.com/auth",
+    "routes": {
+        "urlHost": "https://creditosdigitales.com.co/api/",
+        "routeGetAmount": "api/Loan/GetAmount",
+        "routeLoanSimulate": "api/Loan/LoanSimulate",
+        "routeGetPaymentSurvey": "api/Survey/GetPaymentSurvey",
+        "routeGetNotificationSurvey": "api/Survey/GetNotificationSurvey",
+        "routeFinishLoanProcess": "api/Loan/FinishLoanProcess",
+        "routeConfirmCustomerIdentity": "api/Campaign/ConfirmCustomerIdentity",
+        "routeValidCustomerIdentity": "api/Campaign/ValidCustomerIdentity",
+        "routeDeclinedLoanProcess": "api/Loan/DeclinedLoanProcess",
+        "routeGetTermsReferences": "api/Company/GetTermsReferences",
+        "routeRequestSignature": "api/Loan/RequestSignature",
+        "routeLoanSignature": "api/Loan/LoanSignature",
+        "token": ""
+    }
+}

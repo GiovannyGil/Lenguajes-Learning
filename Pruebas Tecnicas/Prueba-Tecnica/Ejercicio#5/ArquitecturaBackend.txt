@@ -1,0 +1,81 @@
+Arquitectura del backend
+TECNOLOGIAS: 
+1: Lenguaje de Programación:
+Elegir uno sotenible, con comunidad y escalable para mantener el proyecto en el tiempo.
+para el ejemplo : C#
+
+2: Framework:
+Elegir uno que nos permita desarrollar de forma rapida y escalable.
+que sea seguro, confiable y que cuente con comunidad amplia comunidad de desarrolladores, para posibles errores/bugs.
+para el ejemplo: .Net Core
+
+3: Base de Datos:
+Elegir una base de datos que nos permita almacenar la información de forma segura y escalable.
+para un comercio electronico, se la mejor opcion podría ser una base de datos relacional.
+para el ejemplo: SQL Server
+
+4: ORM:
+Elegir un ORM que nos permita mapear la base de datos con el lenguaje de programación, 
+para poder realizar las consultas de forma mas sencilla y escalable. y que sea rapido para ahorrar tiempó de desarrollo.
+para el ejemplo: Entity Framework Core
+
+5: Autenticación:
+implementar un sistema de autenticación que nos permita validar los usuarios que se conectan a la aplicación.
+que permita mantener la seguridad de la información y que sea escalable.
+para el ejemplo: JWT = Json Web Token
+
+6: API REST:
+diseñar y desarrollar una API REST que nos permita comunicar el frontend con el backend.
+que permita mantener la comucación entre los dos sistemas priorisando la seguridad apoyando la escalabilida con micro servicios.
+para el ejemplo: ASP.NET Core Web API
+
+
+ESTRUCTURA Y/O ORGANIZACIÓN DE ARCHIVOS:
+
+1: Organización:
+Dividir el proyecto por MODULOS y/o ENTIDADES, para mantener un orden y escalabilidad.
+para el ejemplo: USUARIOS - PRODUCTOS - PEDIDOS - ETC.
+
+2: Capas:
+que el proyecto use capaz es una buena opcion para mantener un orden entre los modulos y secciones del proyecto.
+siendo uno muy popular y usado en proyectos de gran escala, el patron MVC (Modelo Vista Controlador).
+
+
+PATRONES DE DISEÑO:
+
+1: Patron MVC:
+Modelo Vista Controlador, es un patron de diseño que nos permite separar la logica de negocio de la interfaz de usuario.
+
+2: Inyección de Dependencias:
+es un patron de diseño que nos permite inyectar las dependencias de una clase en otra, para poder usarlas sin necesidad de instanciarlas.
+de igual manera que permita faciliar las prubeas unitarias y la reducción de acoplamiento entre clases.
+
+3: Repositorio:
+es un patron de diseño que nos permite separar la logica de negocio de la logica de acceso a datos.
+usando el encapsulamiento de las clases para poder acceder a los datos de forma mas sencilla.
+
+SEGURIDAD
+
+1: HTTPS:
+el enrutamiento HTTP permite la conexion entre el frontend y el backend, de forma que garantice la seguridad de la información.
+
+2: Validaciones:
+validar los datos ingresados y la forma en que estos son ingresados para evitar posibles ataques de inyección de codigo y/o "SQL Injection".
+
+3: Autenticación CSRF/XSS:
+permiten obtener seguridad ante posibles ataques CSRF mendiante solicitudes y falsificacion de solicitudes entre sitios.
+
+ESCALABILIDAD
+
+1: Balanceo de cargas:
+es una tecnica que nos permite distribuir la carga de trabajo entre varios servidores, para evitar sobrecargas y caidas del sistema.
+
+2: Escalabilidad Horizontal:
+es una tecnica que nos permite aumentar la capacidad de procesamiento de un sistema, aumentando el numero de servidores,
+para que pueda manejar un aumento en la carga de trabajo al agregar más instancias del servidor.
+
+3 Caché:
+usar un sistema cache para que optimice el rendimiento y tiempo de respuesta del sistema, al almacenar datos que se usan con frecuencia.
+
+4: Microservicios:
+permite dividir el sistema en servicios independientes, que se comunican entre si, para que puedan ser escalables y mantenibles.

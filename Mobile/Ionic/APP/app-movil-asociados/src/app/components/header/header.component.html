@@ -1,0 +1,26 @@
+<ion-toolbar class="new-toolbar-background">
+  <ion-buttons slot="start">
+     <ion-back-button class="back-button" style="--background: transparent;"></ion-back-button>
+  </ion-buttons>
+  <div style="display: flex; align-items: center;">
+    <ion-avatar class="header--avatar" slot="start">
+      <img [src]="logo" class="opacidad-0">
+    </ion-avatar>
+    <h6 style="text-align: center; font-weight: bold; " text-wrap>
+      <span class="text-color-white">{{titulo}}</span> </h6>
+  </div>
+  <ion-buttons slot="end" *ngIf="mostrarbotonMenu=='S'">
+    <ion-button  (click)="abrirMenu()" class="back-button" style="background: transparent;">
+      <ion-icon name="menu" slot="icon-only" >
+
+      </ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-toolbar class ="new-toolbar-background2" *ngIf="mostrarDatos=='S'">
+  <span class="text-color-white font-size">{{NombreAsociado}}<br>
+    Último ingreso: {{UltimoIngreso | date:'yyyy-MM-dd'}}
+ </span>
+</ion-toolbar>
+<link rel="stylesheet" [href]="cssUrl">

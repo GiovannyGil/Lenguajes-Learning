@@ -1,0 +1,28 @@
+<ion-header>
+  <app-header titulo="Segunda Clave"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+      <ion-item>
+        <ion-icon name="key" class="color" slot="start"></ion-icon>
+        <ion-label position="floating">Nueva Contraseña:</ion-label>
+        <ion-input type="password" [(ngModel)]="qrData.Clave1" formControlName="Clave1">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="key" class="color" slot="start"></ion-icon>
+        <ion-label position="floating">Confirme Contraseña:</ion-label>
+        <ion-input type="password" [(ngModel)]="qrData.Clave2" formControlName="Clave2">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <ion-button expand="full" shape="round" (click)="SegundaClave()"  [disabled]="myForm.invalid">Terimnar</ion-button>
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+  </ion-footer>

@@ -1,0 +1,39 @@
+.psealinea{
+
+  text-align: -webkit-center; 
+  margin-top: 30px;
+}
+
+  
+  .pselabel
+  {
+    text-align: center;  
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+      font: inherit;
+      font-size: 130%;
+  }
+  .pseboton{
+    padding: 10%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font: inherit;
+    font-size: 100%;
+    text-align: -webkit-center;
+   
+  }
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .checkbox {
+    position: relative;
+    display: inline-block;
+    padding: 7px 7px;
+    cursor: pointer; }

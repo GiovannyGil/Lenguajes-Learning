@@ -1,0 +1,68 @@
+<ion-header>
+  <app-header titulo="Traslado a Terceros"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Cuenta Origen</ion-text>
+        </ion-label>
+        <ion-select placeholder="Seleccione" [(ngModel)]="ahorroSelected" formControlName="ahorroSelected"
+          style="max-width: max-content; color: #000000;">
+          <ion-select-option *ngFor="let ahorro of ahorros" [value]="ahorro">{{ahorro.Tipo}} -
+            {{ahorro.NombreLineaAhorros}} - {{ahorro.NumeroCuenta}}</ion-select-option>
+        </ion-select>
+
+      </ion-item>
+      <ion-item *ngIf="ahorroSelected" class="color">
+        <ion-text class="color">Nro. Cta: {{ahorroSelected.NumeroCuenta}}
+          <br> Última transacción: {{ahorroSelected.ultimaFechaTransaccion | date }}
+          <br> Saldo: ${{ahorroSelected.SaldoTotal}}
+          <br> Cuota : {{ahorroSelected.ValorCuotaAhorro | currency:'USD':true }}
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Cédula :</ion-text>
+        </ion-label>
+        <ion-input placeholder="Digite cedula" class="color" type="number" [(ngModel)]="cedulaterceroInput"
+          (ionBlur)="cuentastercero(cedulaterceroInput)" formControlName="cedulaterceroInput">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="overflow: visible;">
+          <ion-text class="color">Cuenta Destino</ion-text>
+        </ion-label>
+        <ion-select placeholder="Seleccione" [(ngModel)]="destinoSelected" formControlName="destinoSelected"
+          style="max-width: max-content; color: #000000;">
+          <!-- <ion-option value="">Seleccione</ion-option> -->
+          <ion-select-option *ngFor="let destino of destinoahorros" [value]="destino">{{destino.Tipo}} -
+            {{destino.NombreLineaAhorros}} - {{destino.NumeroCuenta}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="destinoSelected">
+        <ion-text class="color">Nro. Cta: {{destinoSelected.NumeroCuenta}}
+          <br> Última transacción: {{destinoSelected.ultimaFechaTransaccion | date }}
+          <br> Cuota : {{destinoSelected.ValorCuotaAhorro | currency:'USD':true }}
+        </ion-text>
+      </ion-item>
+      <ion-item class="color">
+        <ion-label style="overflow: visible;">
+          <ion-text>Valor:</ion-text>
+        </ion-label>
+        <ion-input placeholder="$ Valor" class="color" type="tel" [(ngModel)]="valor" (ionChange)="convertNumber($event)"
+          formControlName="valor">
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="full" shape="round" (click)="Confirmar()" [disabled]="myForm.invalid">Trasladar</ion-button>
+    </ion-list>
+  </form>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,202 @@
+<style>
+  p {
+    font-family: Arial;
+    font-size: 12px;
+  }
+
+  table {
+    font-family: Arial;
+    font-size: 12px;
+  }
+  .firma{
+    display: block;
+  }
+  .no-firma{
+    display: none;
+  }
+
+  .pLogo{
+    text-align: right;
+  }
+  .pLogo-no{
+    text-align: center;
+  }
+</style>
+<p class={{[#pLogo#]}} id="pLogo"><img class="n3VNCb" style="width: 150px; height: 150px;"
+  src="data:image/png;base64,{{logoBase64}}" alt="Logo" data-noaft="1" /></p>
+
+<p style="text-align: center;">NIT. {{[nit]}}</p>
+<p style="text-align: center;">{{direccion}} Tel {{telefono}}</p>
+<p style="text-align: center;">CERTIFICADO ANUAL DE RETENCIÓN EN LA FUENTE E INFORMACIÓN ADICIONAL</p>
+<br />
+<table style="width: 100%; border-collapse: collapse;" border="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td style="width: 25%;">Oficina:</td>
+      <td style="width: 25%;">{{[#ENTIDAD#]}}</td>
+      <td style="width: 25%;">Tipo de Identificaci&oacute;n:</td>
+      <td style="width: 25%;">{{[tipoidentificacion]}}</td>
+    </tr>
+    <tr>
+      <td style="width: 25%;">Nombre:</td>
+      <td style="width: 25%;">{{[nombre]}}</td>
+      <td style="width: 25%;">No. de Identificaci&oacute;n:</td>
+      <td style="width: 25%;">{{[cedulasociado]}}</td>
+    </tr>
+    <tr>
+      <td style="width: 25%;">Fecha de Expedici&oacute;n:</td>
+      <td style="width: 25%;">{{[fechatrabajo]}}</td>
+      <td style="width: 25%;"></td>
+      <td style="width: 25%;"></td>
+    </tr>
+    <tr>
+      <td style="width: 25%;">A&ntilde;o Gravable:</td>
+      <td style="width: 25%;">{{[año]}}</td>
+      <td style="width: 25%;"></td>
+      <td style="width: 25%;"></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<table style="border-collapse: collapse; width: 100%;" border="0">
+  <tr style="background-color: #D5D6D6;">
+    <td style="width: 50%;"><strong>Producto:</strong></td>
+    <td style="width: 50%; text-align: right;"><strong>Ahorros</strong></td>
+  </tr>
+</table>
+<table style="height: 0px; width: 100%; border-collapse: collapse;" border="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td style="width: 50%;">Ahorros a la Vista</td>
+      <td style="width: 50%;text-align: right">{{saldo_av}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Ahorros Permanentes</td>
+      <td style="width: 50%;text-align: right">{{saldo_ap}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Ahorros Contractuales</td>
+      <td style="width: 50%;text-align: right">{{saldo_ac}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">CDAT</td>
+      <td style="width: 50%;text-align: right">{{saldo_at}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Interes Causado No Pagado</td>
+      <td style="width: 50%;text-align: right">{{intcausahorros}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Saldo a Diciembre 31</td>
+      <td style="width: 50%;text-align: right">{{saldo_31_ahorros}}</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<table style="border-collapse: collapse; width: 100%;" border="0">
+  <tr style="background-color: #D5D6D6;">
+    <td style="width: 50%;"><strong>Producto:</strong></td>
+    <td style="width: 50%; text-align: right;"><strong>Aportes</strong></td>
+  </tr>
+</table>
+<table style="height: 0px; width: 100%; border-collapse: collapse;" border="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td style="width: 50%;">Saldo a Diciembre 31</td>
+      <td style="width: 50%;text-align: right">{{saldo_po}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Revalorización</td>
+      <td style="width: 50%;text-align: right">{{saldo_rev}}</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<table style="border-collapse: collapse; width: 100%;" border="0">
+  <tr style="background-color: #D5D6D6;">
+    <td style="width: 50%;"><strong>Producto:</strong></td>
+    <td style="width: 50%; text-align: right;"><strong>Cartera</strong></td>
+  </tr>
+</table>
+<table style="height: 0px; width: 100%; border-collapse: collapse;" border="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td style="width: 50%;">Saldos de crédito</td>
+      <td style="width: 50%;text-align: right">{{saldo_cr}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Intereses pagados por vivienda</td>
+      <td style="width: 50%;text-align: right">{{interes_viv}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Intereses pagados por otros créditos</td>
+      <td style="width: 50%;text-align: right">{{interes_cr}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Interes causado no pagado por otros creditos</td>
+      <td style="width: 50%;text-align: right">{{intcausacreditos}}</td>
+    </tr>
+    <tr>
+      <td style="width: 100%;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Intereses pagados o abonados en cuenta</td>
+      <td style="width: 50%;text-align: right">{{interes_ah}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Base retención</td>
+      <td style="width: 50%;text-align: right">{{base}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Retención en la fuente</td>
+      <td style="width: 50%;text-align: right">{{retencion}}</td>
+    </tr>
+    <tr>
+      <td style="width: 100%;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;"><strong>Otros ingresos:</strong></td>
+      <td style="width: 50%;text-align: right"></td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Auxilios</td>
+      <td style="width: 50%;text-align: right">{{auxilio}}</td>
+    </tr>
+    <tr>
+      <td style="width: 100%;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Componente inflacionario de los rendimientos financieros</td>
+      <td style="width: 50%;text-align: right">{{componente}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Ingreso no constitutivo de la renta ni ganancia ocasional</td>
+      <td style="width: 50%;text-align: right">{{ingreso}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Cuentas por cobrar </td>
+      <td style="width: 50%;text-align: right">{{porcobrar}}</td>
+    </tr>    <tr>
+      <td style="width: 50%;">Cuentas por pagar</td>
+      <td style="width: 50%;text-align: right">{{porpagar}}</td>
+    </tr>
+    <tr>
+      <td style="width: 100%;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Base GMF</td>
+      <td style="width: 50%;text-align: right">{{base_gmf}}</td>
+    </tr>
+    <tr>
+      <td style="width: 50%;">Valor GMF</td>
+      <td style="width: 50%;text-align: right">{{gmf_aso}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<br/><br/>
+<p class={{[#firma#]}}><img class="firmaCerti" style="width: 300px; height: 160px; margin-left: 50px; margin-bottom: -35px;" src="data:image/png;base64,{{FirmaCertificado}}" alt="" data-noaft="1" /></p>
+<p>Recibe ___________________________________________________ </p>
+<p>Nombre y apellido: {{nombre}}</p>
+<p>Identificación: {{cedulasociado}}</p>
+

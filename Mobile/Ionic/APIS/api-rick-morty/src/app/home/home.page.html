@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      API
+    </ion-title>
+
+  </ion-toolbar>
+  <ion-searchbar (ionChange)="searchCharacters($event)" animated="true" color="dark" placeholder="Buscar por nombre"></ion-searchbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">API</ion-title>
+      
+    </ion-toolbar>
+  </ion-header>
+
+
+  <div id="container" class="containerCL">
+    <!-- adaprtar el ion-card para ver los get de la api establecida en el module.ts -->
+    <ion-card class="tamanho" *ngFor="let character of characters">
+      <ion-card-title>{{ character.name }}</ion-card-title>
+      <img alt="avatar" class="img-border" [src]="character.image" />
+      <ion-card-header>
+        <ion-card-subtitle>Especie: {{ character.species }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        Estado: {{ character.status}}
+      </ion-card-content>
+
+      <ion-button (click)="setOpen(true, character.id)" fill="outline" shape="round" size="default" class="BotonMas">Ver</ion-button>
+
+
+
+      
+      <ion-modal [isOpen]="isModalOpen">
+        <ng-template>
+          
+          <ion-content class="">
+            <ion-card class="card-Info">
+              <ion-button (click)="setOpen(false)" color="danger">X</ion-button>
+              <figure class="figure">
+                <img alt="avatar" class="img-border img-location" [src]="currentCharacter.image" />
+              </figure>
+              <ion-card-header class="encabezado">
+                <ion-card-title class="title">{{ currentCharacter.name }}</ion-card-title>
+                  <ion-card-subtitle>Especie: {{ currentCharacter.species }}</ion-card-subtitle>
+                </ion-card-header>
+                  <ion-card-content class="contenido">
+                    <ion-label class="datos">ID: {{ currentCharacter.id }}</ion-label> <br>
+                    <ion-label class="datos">Ubicacion: {{ currentCharacter.location.name }}</ion-label> <br>
+                    <ion-label class="datos">status: {{ currentCharacter.status }}</ion-label> <br>
+                    <ion-label class="datos">type: {{ currentCharacter.type }}</ion-label> <br>
+                    <ion-label class="datos">origin: {{ currentCharacter.origin.name }}</ion-label>
+                  </ion-card-content>
+            </ion-card>
+            <p>
+            </p>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+      </ion-card>
+      <ion-fab slot="fixed" vertical="bottom" horizontal="center" (click)="loadMoreCharacters()">
+        <ion-fab-button color="success">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+  </div>
+  
+</ion-content>

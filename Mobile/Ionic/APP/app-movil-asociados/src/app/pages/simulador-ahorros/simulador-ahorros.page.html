@@ -1,0 +1,51 @@
+<ion-header>
+  <app-header titulo="Simulador CDAT"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+
+<ion-item>
+    <ion-label style="overflow: visible;"><ion-text class="color">Destinos</ion-text></ion-label>
+    <ion-select  placeholder="Seleccione" class="color" [(ngModel)]="DestinosSelected" (ionChange)="SearchPlazo(DestinosSelected)" formControlName="DestinosSelected"  style="max-width: max-content; color: #000000;">
+      <ion-select-option  *ngFor="let destino of destinos" value="{{destino.codlinea}}">{{destino.nombre}}</ion-select-option>
+    </ion-select>
+</ion-item>
+
+        <ion-item>
+            <ion-label style="overflow: visible;" class="color"><ion-text class="color">Plazo</ion-text></ion-label>
+            <ion-select  placeholder="Seleccione" class="color" [(ngModel)]="PlazoSelected" (ionChange)="SearchPlazoDias(DestinosSelected,PlazoSelected)" formControlName="PlazoSelected" style="max-width: max-content; color: #000000;">
+              <ion-select-option *ngFor="let plazo of plazos" value="{{plazo.Value}}">{{plazo.Value}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+              <ion-label style="overflow: visible;" ><ion-text class="color">Periodo Interés (Días)</ion-text></ion-label>
+              <ion-select  placeholder="Seleccione" class="color"[(ngModel)]="PeriodoDiasSelected" formControlName="PeriodoDiasSelected" style="max-width: max-content; color: #000000;">
+                <ion-select-option *ngFor="let plazodia of plazosdias" value="{{plazodia.Value}}">{{plazodia.Value}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="manejaCapitalizacion()">
+              <ion-label style="overflow: visible;"><ion-text class="color">Capitalización</ion-text></ion-label>
+              <ion-select  placeholder="Seleccione" class="color" [(ngModel)]="CapitalizacionSelected" formControlName="CapitalizacionSelected" style="max-width: max-content; color: #000000;">
+                <ion-select-option value="1">SI</ion-select-option>
+                <ion-select-option value="2">NO</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+        <ion-item>
+            <ion-label style="overflow: visible;"><ion-text class="color">Capital Ahorrar:</ion-text></ion-label>
+            <ion-input placeholder="$ Capital" class="color" type="tel" [(ngModel)]="Valor" (ionChange)="convertNumber($event)" formControlName="Valor">
+            </ion-input>
+        </ion-item>
+
+        <ion-button expand="full" shape="round" (click)="Simular()"  [disabled]="myForm.invalid">Simular</ion-button>
+        <ion-button expand="full" shape="round" (click)="Limpiar()">Limpiar</ion-button>
+    </ion-list>
+</form>
+</ion-content>
+<ion-footer>
+<app-footer></app-footer>
+</ion-footer>

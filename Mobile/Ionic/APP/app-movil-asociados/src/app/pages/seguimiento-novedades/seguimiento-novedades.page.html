@@ -1,0 +1,73 @@
+<ion-header>
+  <app-header titulo="Novedades"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <div class="separador"></div>
+
+  <div class="producto-about">
+      <div class="row list-item-seguimiento ">
+          <div class="col"><strong class="capitalize">{{novedad.NombreNovedad | titlecase}}</strong></div>
+          <div class="col"><strong>Saldo :</strong>$ {{novedad.SaldoNovedad}} </div>
+      </div>
+
+      <div class="row list-item-seguimiento ">
+          <div class="col"><strong>Valor Cuota: </strong>$ {{novedad.CuotaNovedad }} </div>
+          <div class="col"><strong>Cuotas Mora : </strong> {{novedad.NroCuotasMoraNovedad }} </div>
+      </div>
+
+      <div class="row list-item-seguimiento ">
+        <div class="col"><strong>Valor Mora: </strong>$ {{novedad.ValorMoraNovedad }} </div>
+        <div class="col"><strong>Fec.Ult.Pago : </strong> {{novedad.NovedadPagadaHasta | date}} </div>
+    </div>
+  </div>
+
+  <div class="padding">
+  <ion-button expand="full" shape="round" (click)="DetalleSeguimientos()">Detalle Seguimientos....</ion-button>
+  </div>
+
+<div>
+  <div class="row">
+      <div class="col blue-opa-2">
+          Fecha
+      </div>
+      <div class="col blue-opa-2">
+          Documento
+      </div>
+      <div class="col blue-opa-2">
+          Valor
+      </div>
+      </div>
+
+</div>
+
+
+      <ul class="list">
+          <li class="item list-item-seguimiento" *ngFor="let producto of seguimientos | slice:0:3" style="border-bottom: groove;">
+              <div class="row">
+                  <div class="col first-col list-item-seguimiento">
+                      <span class="color">{{producto.fechapago | date:'yyyy-MM-dd'}}</span>
+                  </div>
+                  <div class="col list-item-seguimiento">
+                      <span class="color">{{producto.documento}}</span>
+                  </div>
+                  <div class="col valor-seguimientos list-item-seguimiento">
+                      <span class="color" *ngIf="producto.positivo === '0'" [ngClass]="{'red-text':producto.naturaleza.trim() === '0'}">-</span> 
+                      <span  class="color" [ngClass]="{'red-text':producto.naturaleza.trim() === '0'}">{{producto.valor  | currency: "USD":true: '1.0-0'}}</span>
+                  </div>
+              </div>
+
+              <div class="row list-item-seguimiento">
+                  <div class="col"></div>
+                  <div class="col"></div>
+                  <div class="col list-item-seguimiento naturaleza-seguimientos">
+                      <span style="font-size:12px;" [ngClass]="{'green-text':producto.positivo === '1','red-text':producto.positivo !== '1'}">{{producto.naturaleza | lowercase}}</span>
+                  </div>
+              </div>
+          </li>
+      </ul>
+</ion-content>
+<ion-footer>
+      <app-footer></app-footer>
+    </ion-footer>
+

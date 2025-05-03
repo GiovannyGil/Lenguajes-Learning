@@ -1,0 +1,7 @@
+{
+  "name": "opa-app-movil-frontend",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,158 @@
+<style>
+  p {
+    font-family: Arial;
+    font-size: 12px;
+  }
+
+  table {
+    font-family: Arial;
+    font-size: 12px;
+  }
+</style>
+
+
+<table style="width: 100%;" border="0">
+  <tbody>
+    <tr>
+      <td style="text-align: center;">
+        <img class="n3VNCb" style="width: 100px; margin: 0px auto; display: block;" src="data:image/png;base64,{{logoBase64}}" alt="Logo" data-noaft="1" />
+      </td>
+      <td style="text-align: left;">
+        <table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="0">
+          <tbody>
+            <tr>
+              <td style="text-align: center;background-color: #D5D6D6;" colspan="2"><strong>ESTADO DE CUENTAS</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align: left;"><strong>Nombre</strong></td>
+              <td style="text-align: left;">{{asociado.nombreintegrado}}</td>
+            </tr>
+            <tr>
+              <td style="text-align: left;"><strong>Dirrecion</strong></td>
+              <td style="text-align: left;">{{asociado.direccion}}</td>
+            </tr>
+            <tr>
+              <td style="text-align: left;"><strong>Ciudad</strong></td>
+              <td style="text-align: left;">{{asociado.nombreciudad}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="1">
+  <thead>
+    <tr>
+      <td style="text-align: center; background-color: #d5d6d6;" colspan="7"><strong>APORTES Y AHORROS</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><strong>Nombre</strong></td>
+      <td style="text-align: center;"><strong>Cuenta</strong></td>
+      <td style="text-align: center;"><strong>Apertura</strong></td>
+      <td style="text-align: center;"><strong>Vencimiento</strong></td>
+      <td style="text-align: center;"><strong>Cuota</strong></td>
+      <td style="text-align: center;"><strong>Saldo</strong></td>
+      <td style="text-align: center;"><strong>Interes</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each AHORRO}}
+      <tr>
+        <td style="text-align: left;">{{NombreLineaAhorros}}</td>
+        <td style="text-align: left;">{{NumeroCuentaAhorros}}</td>
+        <td style="text-align: right;">{{FechaAperturaCuenta}}</td>
+        <td style="text-align: right;">{{FechaVenceCuenta}}</td>
+        <td style="text-align: right;">{{ValorCuotaAhorro}}</td>
+        <td style="text-align: right;">{{SaldoTotalCuenta}}</td>
+        <td style="text-align: right;">{{InteresDisponibleCuenta}}</td>
+      </tr>
+    {{/each}}
+
+    <tr>
+      <td style="text-align: right;" colspan="4"><strong>Total</strong></td>
+      <td style="text-align: right;"><strong>{{totalesAhorros.cuota}}</strong></td>
+      <td style="text-align: right;"><strong>{{totalesAhorros.saldo}}</strong></td>
+      <td style="text-align: right;"><strong>{{totalesAhorros.interes}}</strong></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+<table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="1">
+  <thead>
+    <tr>
+      <td style="text-align: center; background-color: #d5d6d6;" colspan="7"><strong>CRÉDITOS</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><strong>Nombre</strong></td>
+      <td style="text-align: center;"><strong>Pagare</strong></td>
+      <td style="text-align: center;"><strong>Apertura</strong></td>
+      <td style="text-align: center;"><strong>Vencimiento</strong></td>
+      <td style="text-align: center;"><strong>Plazo</strong></td>
+      <td style="text-align: center;"><strong>Cuota</strong></td>
+      <td style="text-align: center;"><strong>Saldo</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each CREDIT}}
+      <tr>
+        <td style="text-align: left;">{{nombredestino}}</td>
+        <td style="text-align: left;">{{Pagare}}</td>
+        <td style="text-align: left;">{{Fecha}}</td>
+        <td style="text-align: right;">{{FechaVenceCuota}}</td>
+        <td style="text-align: right;">{{cuotasapagar}}</td>
+        <td style="text-align: right;">{{Anualidad}}</td>
+        <td style="text-align: right;">{{SaldoCapital}}</td>
+      </tr>
+    {{/each}}
+
+    <tr>
+      <td style="text-align: right;" colspan="5"><strong>Total</strong></td>
+      <td style="text-align: right;"><strong>{{totalesCreditos.cuota}}</strong></td>
+      <td style="text-align: right;"><strong>{{totalesCreditos.saldo}}</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<table style="width: 100%; background-color: #ffffff; border:1px #d5d6d6 solid; border-collapse: collapse;" border="1">
+  <thead>
+    <tr>
+      <td style="text-align: center; background-color: #d5d6d6;" colspan="5"><strong>NOVEDADES VARIAS</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><strong>Concepto</strong></td>
+      <td style="text-align: center;"><strong>Cuota</strong></td>
+      <td style="text-align: center;"><strong>Saldo</strong></td>
+      <td style="text-align: center;"><strong>Cuotas Mora</strong></td>
+      <td style="text-align: center;"><strong>Morosidad</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each ESTNOV}}
+      <tr>
+        <td style="text-align: left;">{{NombreNovedad}}</td>
+        <td style="text-align: right;">{{CuotaNovedad}}</td>
+        <td style="text-align: right;">{{SaldoNovedad}}</td>
+        <td style="text-align: right;">{{NroCuotasMoraNovedad}}</td>
+        <td style="text-align: right;">{{ValorMoraNovedad}}</td>
+      </tr>
+    {{/each}}
+
+    <tr>
+      <td style="text-align: right;"><strong>Total</strong></td>
+      <td style="text-align: right;"><strong>{{totalesNovedades.cuota}}</strong></td>
+      <td style="text-align: right;"><strong>{{totalesNovedades.saldo}}</strong></td>
+      <td style="text-align: right;"></td>
+      <td style="text-align: right;"></td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+

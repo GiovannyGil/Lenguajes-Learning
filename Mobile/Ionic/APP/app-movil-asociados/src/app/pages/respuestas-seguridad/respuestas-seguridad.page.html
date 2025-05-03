@@ -1,0 +1,49 @@
+<ion-header>
+  <app-header titulo="Respuestas de Seguridad"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+
+
+<ion-item>
+    <ion-label style="text-align: center; font-weight: bold;" class="color">Primera Pregunta</ion-label>
+</ion-item>
+      <ion-item>
+        <ion-input  type="text" class="color" [(ngModel)]="preguntaselected" formControlName="preguntaselected" [disabled] = "true">
+        </ion-input>
+    </ion-item>
+        <ion-item>
+            <ion-input placeholder=" Respuesta:" class="color" type="text" [(ngModel)]="respuesta" formControlName="respuesta">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label  style="text-align: center; font-weight: bold;" class="color">Segunda Pregunta</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-input  type="text" class="color" [(ngModel)]="preguntaselected1" formControlName="preguntaselected1" [disabled] = "true">
+          </ion-input>
+      </ion-item>
+        <ion-item>
+            <ion-input placeholder=" Respuesta:" class="color" type="text" [(ngModel)]="respuesta1" formControlName="respuesta1">
+            </ion-input>
+        </ion-item>
+
+  <ion-item>
+<ion-label   style="text-align: center; font-weight: bold;" class="color">Tercera Pregunta</ion-label>
+</ion-item>
+<ion-item>
+<ion-input  type="text" class="color" [(ngModel)]="preguntaselected2" formControlName="preguntaselected2" [disabled] = "true">
+</ion-input>
+</ion-item>
+        <ion-item>
+            <ion-input placeholder=" Respuesta:" class="color" type="text" [(ngModel)]="respuesta2" formControlName="respuesta2">
+            </ion-input>
+        </ion-item>
+
+        <ion-button expand="full" shape="round" (click)="Confirmar()" [disabled]="myForm.invalid">Guardar</ion-button>
+    </ion-list>
+</form>
+</ion-content>

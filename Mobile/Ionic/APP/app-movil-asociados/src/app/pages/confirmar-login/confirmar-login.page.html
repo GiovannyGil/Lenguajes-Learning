@@ -1,0 +1,44 @@
+<ion-header>
+  <app-header titulo="Confirme Datos de Seguridad"></app-header>
+</ion-header>
+
+<ion-content class="background">
+  <ion-grid>
+    <ion-row *ngIf="imgyfrase.url">
+      <ion-col >
+        <img src="{{imgyfrase.url}}" class="imgConfirmacion">
+      </ion-col>
+      <ion-col >
+        <ion-text class="textFaseSeguridad" >{{imgyfrase.mensajeinicio}}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <form [formGroup]="myForm" novalidate>
+    <ion-list class="au-form">
+      <ion-item>
+        <ion-label text-wrap><ion-text  class="textFaseSeguridad" >Confirme que esta es su imagen y frase registrada</ion-text ></ion-label>
+        <ion-checkbox [(ngModel)]="check" formControlName="Check" class="list--checkbox"></ion-checkbox>
+      </ion-item> 
+
+      <ion-item *ngIf="isCode==true" class="ion-item-segu">
+        <ion-icon name="barcode" class="colorSegu" slot="start"></ion-icon>
+        <ion-label position="floating" class="textFaseSeguridad">Ingrese código</ion-label>
+        <ion-input type="password"  class="color" [(ngModel)]="CodigoSeguridad" formControlName="CodigoSeguridad">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="ion-item-segu">
+        <ion-icon name="key" class="colorSegu" slot="start"></ion-icon>
+        <ion-label position="floating" style="color: black !important">Confirme contraseña</ion-label>
+        <ion-input type="password" class="color"[(ngModel)]="Clave" formControlName="Clave">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+  </form>
+
+<ion-button expand="full" shape="round" (click)="LogIn()" [disabled]="myForm.invalid">Ingresar</ion-button>
+<ion-button expand="full" shape="round" (click)="RecuperarClave()">¿Olvidaste tu contraseña?</ion-button>
+
+</ion-content>
