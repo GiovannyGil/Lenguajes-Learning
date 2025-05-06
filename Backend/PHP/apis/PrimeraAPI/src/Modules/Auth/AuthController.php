@@ -1,14 +1,15 @@
 <?php
 
-namespace Modules\Auth\Controllers;
+namespace Modules\Auth;
 
-use Modules\Auth\Services\AuthService;
+use Modules\Auth\AuthService;
 
 class AuthController
 {
     private AuthService $authService;
 
-    public function __construct() {
+    public function __construct()
+    {
         try {
             $this->authService = new AuthService();
         } catch (\Throwable $th) {
@@ -20,7 +21,8 @@ class AuthController
         }
     }
 
-    public function register() {
+    public function register()
+    {
         try {
             $data = json_decode(file_get_contents('php://input'), true);
             $success = $this->authService->register($data);
@@ -34,7 +36,8 @@ class AuthController
         }
     }
 
-    public function login() {
+    public function login()
+    {
         try {
             $data = json_decode(file_get_contents('php://input'), true);
             $token = $this->authService->login($data['email'], $data['clave']);
@@ -54,7 +57,8 @@ class AuthController
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         try {
             $this->authService->logout();
             echo json_encode(['success' => true, 'message' => 'Sesión cerrada correctamente']);;

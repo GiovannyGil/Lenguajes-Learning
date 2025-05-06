@@ -1,9 +1,10 @@
 <?php
 
-namespace Modules\Auth\Services;
+namespace Modules\Auth;
 
-use Config\Database;
 use PDO;
+use Config\Database;
+use Firebase\JWT\JWT;
 
 class AuthService {
     private PDO $db;
@@ -24,7 +25,11 @@ class AuthService {
     // Método para registrar un nuevo usuario
     public function register(array $data): bool {
         try {
-            $stmt = $this->db->prepare("INSERT INTO users (nombres, apellidos, nombre_usuario, email, clave, edad, celular, direccion, fecha_nacimiento, sexo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $this->db->prepare("
+                INSERT INTO users (
+                    nombres, apellidos, nombre_usuario, email, clave, edad, celular, direccion, fecha_nacimiento, sexo
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ");
 
             $hashedPassword = password_hash($data['clave'], PASSWORD_BCRYPT);
 
@@ -41,7 +46,6 @@ class AuthService {
                 $data['sexo']
             ]);
         } catch (\Throwable $th) {
-            // Manejo de errores, puedes lanzar una excepción o registrar el error
             http_response_code(500);
             echo json_encode(['error' => 'Error al registrar el usuario.']);
             error_log($th->getMessage());
@@ -50,23 +54,24 @@ class AuthService {
     }
 
     // Método para iniciar sesión
-    public function login(string $email, string $clave): ?string {
+    public function login($email, $clave) {
         try {
-            $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ? AND deletedAt IS NULL");
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
             $stmt->execute([$email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // comprobar si el usuario existe y si la contraseña es correcta
             if ($user && password_verify($clave, $user['clave'])) {
-                // Generar token (simple hash)
-                $token = bin2hex(random_bytes(32));
-                $_SESSION['token'] = $token;
-                $_SESSION['user_id'] = $user['id'];
-                return $token;
+                $payload = [
+                    'sub' => $user['id'],
+                    'email' => $user['email'],
+                    'exp' => time() + (60 * 60) // expira en 1 hora
+                ];
+
+                $jwt = JWT::encode($payload, 'tu_clave_secreta', 'HS256');
+                return $jwt;
             }
 
-            // Si el usuario no existe o la contraseña es incorrecta, devolver null
-            return null;
+            return false;
         } catch (\Throwable $th) {
             // Manejo de errores, puedes lanzar una excepción o registrar el error
             http_response_code(500);

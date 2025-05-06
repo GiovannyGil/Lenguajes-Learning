@@ -1,17 +1,19 @@
 {
     "name": "giovannygil/primera-api",
     "autoload": {
-      "psr-4": {
-        "Src\\": "src/",
-        "Modules\\": "src/Modules/",
-        "Config\\": "src/Config/"
-      }
+        "psr-4": {
+            "Src\\": "src/",
+            "Modules\\": "src/Modules/",
+            "Config\\": "src/Config/"
+        }
     },
     "authors": [
-      {
-        "name": "GiovannyGil",
-        "email": "Arvey950@gmail.com"
-      }
-    ]
-  }
-  
+        {
+            "name": "GiovannyGil",
+            "email": "arvey950@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.11"
+    }
+}

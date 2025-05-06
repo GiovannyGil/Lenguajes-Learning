@@ -2,10 +2,11 @@
 
 namespace Modules\Users;
 
-use Modules\Users\UserServices as User;
+use Modules\Users\UserService as User;
 
 class UserController {
-    public function getAll() {
+    public function getAll()
+    {
         try {
             $user = new User();
             $users = $user->getAllUsers();
@@ -17,7 +18,8 @@ class UserController {
         }
     }
 
-    public function getbyID($id) {
+    public function getbyID($id)
+    {
         try {
             $user = new User();
             $userData = $user->getUserById($id);
@@ -34,7 +36,8 @@ class UserController {
         }
     }
 
-    public function create() {
+    public function create()
+    {
         try {
             $data = json_decode(file_get_contents('php://input'), true);
             $user = new User();
@@ -47,7 +50,8 @@ class UserController {
         }
     }
 
-    public function update($id) {
+    public function update($id)
+    {
         try {
             $data = json_decode(file_get_contents('php://input'), true);
             $user = new User();
@@ -59,8 +63,9 @@ class UserController {
             exit;
         }
     }
-    
-    public function destroy($id) {
+
+    public function destroy($id)
+    {
         try {
             $user = new User();
             $success = $user->deleteUser($id);

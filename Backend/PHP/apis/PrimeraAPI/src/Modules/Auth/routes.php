@@ -1,7 +1,7 @@
 <?php
 
 use Src\Router;
-use Modules\Auth\Controllers\AuthController;
+use Modules\Auth\AuthController;
 
 global $router;
 

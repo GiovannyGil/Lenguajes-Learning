@@ -22,4 +22,3 @@ $router->add('GET', '/api/users/{id}', withAuth([new UserController(), 'getbyID'
 $router->add('POST', '/api/users', withAuth([new UserController(), 'create']));
 $router->add('PATCH', '/api/users/{id}', withAuth([new UserController(), 'update']));
 $router->add('DELETE', '/api/users/{id}', withAuth([new UserController(), 'destroy']));
-?>

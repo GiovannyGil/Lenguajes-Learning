@@ -2,11 +2,13 @@
 
 namespace Src;
 
-class Router {
+class Router
+{
     private array $routes = [];
 
     // Añadir rutas (GET, POST, etc)
-    public function add(string $method, string $path, callable|array $handler): void {
+    public function add(string $method, string $path, callable|array $handler): void
+    {
         try {
             $method = strtoupper($method);
             $path = rtrim($path, '/'); // <- Normaliza la ruta que agregas
@@ -22,7 +24,8 @@ class Router {
     }
 
     // Ejecutar la ruta actual
-    public function dispatch(): void {
+    public function dispatch(): void
+    {
         try {
             $method = $_SERVER['REQUEST_METHOD'];
             $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

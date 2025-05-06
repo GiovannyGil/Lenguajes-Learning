@@ -2,10 +2,12 @@
 
 namespace Modules\Tasks\Controllers;
 
-use Modules\Tasks\TasksServices as Tasks;
+use Modules\Tasks\TasksService as Tasks;
 
-class TasksController {
-    public function getAll() {
+class TasksController
+{
+    public function getAll()
+    {
         try {
             $tasks = new Tasks();
             $allTasks = $tasks->getAllTasks();
@@ -17,7 +19,8 @@ class TasksController {
         }
     }
 
-    public function getbyID($id) {
+    public function getbyID($id)
+    {
         try {
             $tasks = new Tasks();
             return $tasks->getTaskById($id);
@@ -28,7 +31,8 @@ class TasksController {
         }
     }
 
-    public function create() {
+    public function create()
+    {
         try {
             $data = json_decode(file_get_contents('php://input'), true);
             $tasks = new Tasks();
@@ -41,7 +45,8 @@ class TasksController {
         }
     }
 
-    public function update($id) {
+    public function update($id)
+    {
         try {
             $data = json_decode(file_get_contents('php://input'), true);
             $tasks = new Tasks();
@@ -53,8 +58,9 @@ class TasksController {
             exit;
         }
     }
-    
-    public function destroy($id) {
+
+    public function destroy($id)
+    {
         try {
             $tasks = new Tasks();
             $success = $tasks->deleteTask($id);
