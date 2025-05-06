@@ -1,0 +1,16 @@
+COMPOSER: 
+composer --version
+composer init
+
+
+composer dump-autoload
+
+
+composer install
+
+
+PHP:
+
+php migrate.php // migrar la tablas a la base de datos
+
+php -S localhost:8000 // iniciar el servicio
