@@ -1,7 +1,7 @@
 <?php
 
 use Src\Router;
-use Modules\Tasks\Controllers\TasksController;
+use Modules\Tasks\TasksController;
 use Modules\Auth\Middleware\AuthMiddleware;
 
 // Este archivo recibe $router desde el index.php

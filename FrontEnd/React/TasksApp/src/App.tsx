@@ -3,6 +3,10 @@
 // import viteLogo from '/vite.svg'
 import './App.css'
 import AppRouter from './router/AppRouter'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/navbar/Layout";
+import Users from "./Modules/Users/pages/users-list"
+import Tasks from "./Modules/Tasks/pages/tasks-list"
 
 function App() {
   // const [count, setCount] = useState(0)

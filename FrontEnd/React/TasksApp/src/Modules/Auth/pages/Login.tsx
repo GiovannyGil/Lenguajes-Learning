@@ -1,21 +1,31 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/authService";
 import "./Login.css"; // estilo de CSS para el componente
 
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [clave, setClave] = useState("");
+  const [error, setError] = useState("");
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Simula la llamada al backend (reemplaza esto luego por axios)
-    const fakeToken = "jwt.fake.token";
-    login(fakeToken);
-    navigate("/dashboard");
+    try {
+      const data = await loginUser(email, clave);
+      login(data.token);
+      console.log("token", data.token);
+      // Almacenar el token en localStorage
+      localStorage.setItem("token", data.token);
+      navigate("/tasks"); // O donde quieras
+    } catch (err: any) {
+      console.error(err);
+      setError("Usuario o contraseña incorrectos");
+    }
   };
 
   return (
@@ -33,8 +43,8 @@ export default function Login() {
         <input
             type="password"
             placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={clave}
+            onChange={(e) => setClave(e.target.value)}
             required
             className="input "
             />

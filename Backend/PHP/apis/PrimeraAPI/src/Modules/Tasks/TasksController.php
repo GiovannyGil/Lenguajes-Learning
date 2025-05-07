@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Tasks\Controllers;
+namespace Modules\Tasks;
 
 use Modules\Tasks\TasksService as Tasks;
 

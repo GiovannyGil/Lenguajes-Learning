@@ -44,9 +44,11 @@ class AuthController
 
             if ($token) {
                 echo json_encode(['token' => $token]);
+                exit;
             } else {
                 http_response_code(401);
                 echo json_encode(['error' => 'Credenciales inválidas']);
+                exit;
             }
         } catch (\Throwable $th) {
             // Manejo de errores, puedes lanzar una excepción o registrar el error
