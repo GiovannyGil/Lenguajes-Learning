@@ -1,0 +1,298 @@
+import React, { useEffect, useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  Modal,
+  ActivityIndicator,
+  ScrollView,
+  Platform,
+} from 'react-native';
+
+const API_URL = 'https://rickandmortyapi.com/api/character';
+
+type Character = {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  gender: string;
+  image: string;
+  origin?: { name: string };
+};
+
+export default function RickAndMortyApp() {
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [search, setSearch] = useState('');
+  const [status, setStatus] = useState('');
+  const [gender, setGender] = useState('');
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [selected, setSelected] = useState<Character | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const fetchCharacters = async (reset = false) => {
+    if (loading) return;
+    setLoading(true);
+    let url = `${API_URL}/?page=${reset ? 1 : page}`;
+    if (search) url += `&name=${encodeURIComponent(search)}`;
+    if (status) url += `&status=${status}`;
+    if (gender) url += `&gender=${gender}`;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.error) {
+        setCharacters([]);
+        setHasMore(false);
+      } else {
+        setCharacters(reset ? data.results : [...characters, ...data.results]);
+        setHasMore(Boolean(data.info?.next));
+        setPage(reset ? 2 : page + 1);
+      }
+    } catch {
+      setCharacters([]);
+      setHasMore(false);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCharacters(true);
+    // eslint-disable-next-line
+  }, [search, status, gender]);
+
+  const handleLoadMore = () => {
+    if (hasMore && !loading) fetchCharacters();
+  };
+
+  const renderCard = ({ item }: { item: Character }) => (
+    <TouchableOpacity
+      style={styles.card}
+      activeOpacity={0.85}
+      onPress={() => {
+        setSelected(item);
+        setModalVisible(true);
+      }}>
+      <Image source={{ uri: item.image }} style={styles.avatar} />
+      <View style={{ flex: 1 }}>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.info}>{item.species} - {item.status}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  return (
+    <View style={styles.container}>
+      {/* Header */}
+      <Text style={styles.title}>Rick and Morty Explorer</Text>
+      {/* Search & Filters */}
+      <View style={styles.filters}>
+        <TextInput
+          style={styles.input}
+          placeholder="Buscar personaje..."
+          value={search}
+          onChangeText={t => { setSearch(t); setPage(1); }}
+          placeholderTextColor="#aaa"
+        />
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filterRow}>
+          {['', 'alive', 'dead', 'unknown'].map((s) => (
+            <TouchableOpacity
+              key={s}
+              style={[styles.chip, status === s && styles.chipActive]}
+              onPress={() => { setStatus(s); setPage(1); }}>
+              <Text style={[styles.chipText, status === s && styles.chipTextActive]}>{s ? s.charAt(0).toUpperCase() + s.slice(1) : 'Todos'}</Text>
+            </TouchableOpacity>
+          ))}
+          {['', 'male', 'female', 'genderless', 'unknown'].map((g) => (
+            <TouchableOpacity
+              key={g}
+              style={[styles.chip, gender === g && styles.chipActive]}
+              onPress={() => { setGender(g); setPage(1); }}>
+              <Text style={[styles.chipText, gender === g && styles.chipTextActive]}>{g ? g.charAt(0).toUpperCase() + g.slice(1) : 'Cualquier género'}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+      {/* Listado */}
+      {loading && characters.length === 0 ? (
+        <ActivityIndicator size="large" color="#00b5cc" style={{ marginTop: 40 }} />
+      ) : (
+        <FlatList
+          data={characters}
+          renderItem={renderCard}
+          keyExtractor={item => String(item.id)}
+          contentContainerStyle={{ paddingBottom: 120 }}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.2}
+          ListFooterComponent={loading && hasMore ? <ActivityIndicator size="small" color="#00b5cc" /> : null}
+        />
+      )}
+      {/* Modal Detalle */}
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        transparent
+        onRequestClose={() => setModalVisible(false)}>
+        <View style={styles.modalBg}>
+          <View style={styles.modalCard}>
+            {selected && (
+              <>
+                <Image source={{ uri: selected.image }} style={styles.modalImg} />
+                <Text style={styles.modalName}>{selected.name}</Text>
+                <Text style={styles.modalInfo}>Estado: {selected.status}</Text>
+                <Text style={styles.modalInfo}>Especie: {selected.species}</Text>
+                <Text style={styles.modalInfo}>Género: {selected.gender}</Text>
+                <Text style={styles.modalInfo}>Origen: {selected.origin?.name}</Text>
+                <TouchableOpacity style={styles.closeBtn} onPress={() => setModalVisible(false)}>
+                  <Text style={styles.closeBtnText}>Cerrar</Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f7fafd',
+    paddingTop: Platform.OS === 'android' ? 48 : 60,
+    paddingHorizontal: 0,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#00b5cc',
+    alignSelf: 'center',
+    marginBottom: 10,
+    letterSpacing: 1.2,
+  },
+  filters: {
+    marginHorizontal: 16,
+    marginBottom: 10,
+  },
+  input: {
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    fontSize: 16,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    color: '#222',
+  },
+  filterRow: {
+    flexDirection: 'row',
+    marginBottom: 4,
+  },
+  chip: {
+    backgroundColor: '#e0f7fa',
+    borderRadius: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    marginRight: 8,
+    marginBottom: 4,
+  },
+  chipActive: {
+    backgroundColor: '#00b5cc',
+  },
+  chipText: {
+    color: '#00b5cc',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  chipTextActive: {
+    color: '#fff',
+  },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    marginHorizontal: 16,
+    marginBottom: 12,
+    borderRadius: 18,
+    padding: 12,
+    elevation: 2,
+    shadowColor: '#00b5cc33',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+  },
+  avatar: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    marginRight: 14,
+    borderWidth: 2,
+    borderColor: '#00b5cc',
+  },
+  name: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#222',
+    marginBottom: 2,
+  },
+  info: {
+    color: '#00b5cc',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  modalBg: {
+    flex: 1,
+    backgroundColor: '#0008',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalCard: {
+    backgroundColor: '#fff',
+    borderRadius: 24,
+    padding: 24,
+    alignItems: 'center',
+    width: '85%',
+    elevation: 8,
+    shadowColor: '#00b5cc55',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+  },
+  modalImg: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 12,
+    borderWidth: 3,
+    borderColor: '#00b5cc',
+  },
+  modalName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#00b5cc',
+    marginBottom: 6,
+  },
+  modalInfo: {
+    fontSize: 16,
+    color: '#222',
+    marginBottom: 2,
+  },
+  closeBtn: {
+    marginTop: 16,
+    backgroundColor: '#00b5cc',
+    borderRadius: 16,
+    paddingHorizontal: 24,
+    paddingVertical: 8,
+  },
+  closeBtnText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+});
