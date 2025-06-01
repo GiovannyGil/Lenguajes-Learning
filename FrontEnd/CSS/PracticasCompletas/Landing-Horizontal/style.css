@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.principal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.Gio {
+
+}
+
+.GGio {
+    margin: 10px;
+    border-radius: 50%;
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+
+.titulo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.0em;
+    color: blueviolet;
+    font-weight: bold;
+    margin: -10px 0;
+}
+
+.descripcion {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: black;
+    font-weight: bold;
+    margin: 10px 0;;
+}
+
+.lista {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0px;
+}
+
+.redes {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: blueviolet;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 5px;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.red {
+    background-color: blueviolet;
+    padding: 2px 5px;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.red > a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    background-color: gray;
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+
+.opciones {
+    width: 100%;
+    display: flex;
+    background-color: blue;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.secciones {
+    width: 70%;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.opcion {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: lightblue;
+}
+
+
+.items-menu {
+
+}
+
