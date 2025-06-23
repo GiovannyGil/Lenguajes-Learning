@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.espacios {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px;
+
+}
+
+.card1 {
+    width: 250px;
+    height: 210px;
+    border-radius: 30px;
+    background: lightgrey;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* input 1 */
+.cardBlack .inputUno {
+    background-color: #555;
+}
+
+.inputUno{
+    margin: 30;
+    background: none;
+    border: none;
+    outline: none;
+    max-width: 190px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 9999px;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+    color: #000;
+}
+
+/* input 2 */
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.inputDos {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    padding: 18px 16px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+.inputDos::placeholder {
+    color: transparent;
+}
+
+.input:focus::placeholder {
+    color: rgb(131, 128, 128);
+}
+
+.inputDos:focus,
+.inputDos:not(:placeholder-shown) {
+    background-color: #fff;
+    border: 1px solid rgb(91, 107, 255);
+    width: 240px;
+    cursor: none;
+    padding: 18px 16px 18px 45px;
+}
+
+.iconUno {
+    position: absolute;
+    left: 0;
+    height: 45px;
+    width: 45px;
+    background-color: #fff;
+    border-radius: 99px;
+    z-index: -1;
+    fill: rgb(91, 107, 255);
+    border: 1px solid rgb(91, 107, 255);
+}
+
+.inputDos:focus+.iconUno,
+.inputDos:not(:placeholder-shown)+.iconUno {
+    z-index: 0;
+    background-color: transparent;
+    border: none;
+}
+
+
+/* input 3 */
+
+.inputTres {
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: #e8e8e8;
+    box-shadow: 6px 6px 12px #ffffff, -6px -6px 12px #c5c5c5;
+    font-size: medium;
+    font-weight: bold;
+    max-width: 200px;
+}
+
+.inputTres:focus {
+    outline-color: white;
+    place-content: "Enviar mensaje";
+}
+
+
+/* input 4 */
+.input-container2 {
+    display: flex;
+    background: white;
+    border-radius: 1rem;
+    background: linear-gradient(173deg, #23272f 0%, #14161a 100%);
+    box-shadow: 10px 10px 20px #0e1013, -10px -10px 40px #383e4b;
+    padding: 0.3rem;
+    gap: 0.3rem;
+}
+
+.input-container2 .inputCuatro {
+    border-radius: 0.8rem;
+    background: #23272f;
+    box-shadow:
+            inset 5px 5px 10px #0e1013,
+            inset -5px -5px 10px #383e4b,
+            0px 0px 100px rgba(255, 212, 59, 0),
+            0px 0px 100px rgba(255, 102, 0, 0);
+    width: 100%;
+    flex-basis: 100%;
+    padding: 1rem;
+    border: none;
+    border: 1px solid transparent;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-container2 .inputCuatro:focus {
+    border: 4px solid #dfdedd;
+    outline: none;
+    box-shadow:
+            inset 0px 0px 10px #e6ddd980,
+            inset 0px 0px 10px #b4b4b480,
+            0px 0px 100px #b4b4b480,
+            0px 0px 100px #e6ddd980;
+}
+
+@media (max-width: 600px) {
+    .input-container2 {
+        flex-direction: column;
+    }
+
+    .input-container2 .inputCuatro {
+        border-radius: 0.8rem;
+    }
+}
+
+
+
+/* input 5 */
+.height {
+    display: flex;
+    flex-direction: column;
+}
+
+.height label {
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+.height sup {
+    color: red;
+}
+
+.height .inputCinco {
+    border: none;
+    outline: none;
+    border-radius: 100px;
+    padding: 1.2em;
+    background-color: #e1e2e3;
+    box-shadow: onset 2px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: 300ms ease-in-out;
+    position: relative;
+    margin-top: 10px;
+}
+
+.height .inputCinco:focus {
+    background-color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 13px 13px 100px #969696, -13px -13px 100px #ffffff; }

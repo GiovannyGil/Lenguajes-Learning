@@ -26,7 +26,7 @@ body {
     width: 250px;
     height: 210px;
     border-radius: 30px;
-    background: lightgrey;
+    background: #717171;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset,
         rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
     display: flex;
@@ -34,204 +34,1014 @@ body {
     align-items: center;
 }
 
-/* input 1 */
 
-.card1, .inputUno {
-    background-color: #555;
-}
-
-.inputUno{
-    margin: 30;
-    background: none;
-    border: none;
-    outline: none;
-    max-width: 190px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 9999px;
-    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-    color: #000;
-}
-
-
-/* input 2 */
-.container-btn-file {
-    display: flex;
+/* checkbox 1 */
+/* From Uiverse.io by DaniloMGutavo */
+.checkbox-container {
+    display: inline-block;
     position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+
+.custom-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.custom-checkbox:checked~.checkmark {
+    background-color: #2196F3;
+    box-shadow: 0 3px 7px rgba(33, 150, 243, 0.3);
+}
+
+.custom-checkbox:checked~.checkmark:after {
+    display: block;
+}
+
+@keyframes checkAnim {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 10px;
+    }
+}
+
+.custom-checkbox:checked~.checkmark:after {
+    animation: checkAnim 0.2s forwards;
+}
+
+/* checkbox 2 */
+.neon-checkbox {
+    --primary: #00ffaa;
+    --primary-dark: #00cc88;
+    --primary-light: #88ffdd;
+    --size: 30px;
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.neon-checkbox input {
+    display: none;
+}
+
+.neon-checkbox__frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.neon-checkbox__box {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    border: 2px solid var(--primary-dark);
+    transition: all 0.4s ease;
+}
+
+.neon-checkbox__check-container {
+    position: absolute;
+    inset: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.neon-checkbox__check {
+    width: 80%;
+    height: 80%;
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    transform-origin: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neon-checkbox__glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 6px;
+    background: var(--primary);
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(1.2);
+    transition: all 0.4s ease;
+}
+
+.neon-checkbox__borders {
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.neon-checkbox__borders span {
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    background: var(--primary);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.neon-checkbox__borders span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    animation: borderFlow1 2s linear infinite;
+}
+
+.neon-checkbox__borders span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 1px;
+    height: 40px;
+    animation: borderFlow2 2s linear infinite;
+}
+
+.neon-checkbox__borders span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    animation: borderFlow3 2s linear infinite;
+}
+
+.neon-checkbox__borders span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 1px;
+    height: 40px;
+    animation: borderFlow4 2s linear infinite;
+}
+
+.neon-checkbox__particles span {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0 0 6px var(--primary);
+}
+
+.neon-checkbox__rings {
+    position: absolute;
+    inset: -20px;
+    pointer-events: none;
+}
+
+.neon-checkbox__rings .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--primary);
+    opacity: 0;
+    transform: scale(0);
+}
+
+.neon-checkbox__sparks span {
+    position: absolute;
+    width: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary), transparent);
+    opacity: 0;
+}
+
+/* Hover Effects */
+.neon-checkbox:hover .neon-checkbox__box {
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+/* Checked State */
+.neon-checkbox input:checked~.neon-checkbox__frame .neon-checkbox__box {
+    border-color: var(--primary);
+    background: rgba(0, 255, 170, 0.1);
+}
+
+.neon-checkbox input:checked~.neon-checkbox__frame .neon-checkbox__check {
+    stroke-dashoffset: 0;
+    transform: scale(1.1);
+}
+
+.neon-checkbox input:checked~.neon-checkbox__frame .neon-checkbox__glow {
+    opacity: 0.2;
+}
+
+.neon-checkbox input:checked~.neon-checkbox__frame .neon-checkbox__borders span {
+    opacity: 1;
+}
+
+/* Particle Animations */
+.neon-checkbox input:checked~.neon-checkbox__frame .neon-checkbox__particles span {
+    animation: particleExplosion 0.6s ease-out forwards;
+}
+
+.neon-checkbox input:checked~.neon-checkbox__frame .neon-checkbox__rings .ring {
+    animation: ringPulse 0.6s ease-out forwards;
+}
+
+.neon-checkbox input:checked~.neon-checkbox__frame .neon-checkbox__sparks span {
+    animation: sparkFlash 0.6s ease-out forwards;
+}
+
+/* Animations */
+@keyframes borderFlow1 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+@keyframes borderFlow2 {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(200%);
+    }
+}
+
+@keyframes borderFlow3 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+}
+
+@keyframes borderFlow4 {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-200%);
+    }
+}
+
+@keyframes particleExplosion {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(calc(-50% + var(--x, 20px)),
+                calc(-50% + var(--y, 20px))) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes ringPulse {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes sparkFlash {
+    0% {
+        transform: rotate(var(--r, 0deg)) translateX(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(var(--r, 0deg)) translateX(30px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Particle Positions */
+.neon-checkbox__particles span:nth-child(1) {
+    --x: 25px;
+    --y: -25px;
+}
+
+.neon-checkbox__particles span:nth-child(2) {
+    --x: -25px;
+    --y: -25px;
+}
+
+.neon-checkbox__particles span:nth-child(3) {
+    --x: 25px;
+    --y: 25px;
+}
+
+.neon-checkbox__particles span:nth-child(4) {
+    --x: -25px;
+    --y: 25px;
+}
+
+.neon-checkbox__particles span:nth-child(5) {
+    --x: 35px;
+    --y: 0px;
+}
+
+.neon-checkbox__particles span:nth-child(6) {
+    --x: -35px;
+    --y: 0px;
+}
+
+.neon-checkbox__particles span:nth-child(7) {
+    --x: 0px;
+    --y: 35px;
+}
+
+.neon-checkbox__particles span:nth-child(8) {
+    --x: 0px;
+    --y: -35px;
+}
+
+.neon-checkbox__particles span:nth-child(9) {
+    --x: 20px;
+    --y: -30px;
+}
+
+.neon-checkbox__particles span:nth-child(10) {
+    --x: -20px;
+    --y: 30px;
+}
+
+.neon-checkbox__particles span:nth-child(11) {
+    --x: 30px;
+    --y: 20px;
+}
+
+.neon-checkbox__particles span:nth-child(12) {
+    --x: -30px;
+    --y: -20px;
+}
+
+/* Spark Rotations */
+.neon-checkbox__sparks span:nth-child(1) {
+    --r: 0deg;
+    top: 50%;
+    left: 50%;
+}
+
+.neon-checkbox__sparks span:nth-child(2) {
+    --r: 90deg;
+    top: 50%;
+    left: 50%;
+}
+
+.neon-checkbox__sparks span:nth-child(3) {
+    --r: 180deg;
+    top: 50%;
+    left: 50%;
+}
+
+.neon-checkbox__sparks span:nth-child(4) {
+    --r: 270deg;
+    top: 50%;
+    left: 50%;
+}
+
+/* Ring Delays */
+.neon-checkbox__rings .ring:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.neon-checkbox__rings .ring:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.neon-checkbox__rings .ring:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+
+/* checkbox 3 */
+/* From Uiverse.io by 3HugaDa3 */
+.checkbox-wrapper {
+    --checkbox-size: 25px;
+    --checkbox-color: #00ff88;
+    --checkbox-shadow: rgba(0, 255, 136, 0.3);
+    --checkbox-border: rgba(0, 255, 136, 0.7);
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.checkbox-wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-wrapper .checkmark {
+    position: relative;
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    border: 2px solid var(--checkbox-border);
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #307750;
-    color: #fff;
-    border-style: none;
-    padding: 1em 2em;
-    border-radius: 0.5em;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px var(--checkbox-shadow);
     overflow: hidden;
-    z-index: 1;
-    box-shadow: 4px 8px 10px -3px rgba(0, 0, 0, 0.356);
-    transition: all 250ms;
 }
 
-.container-btn-file input[type="file"] {
+.checkbox-wrapper .checkmark::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--checkbox-color), #00ffcc);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: scale(0) rotate(-45deg);
+}
+
+.checkbox-wrapper input:checked~.checkmark::before {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+.checkbox-wrapper .checkmark svg {
+    width: 0;
+    height: 0;
+    color: #1a1a1a;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+}
+
+.checkbox-wrapper input:checked~.checkmark svg {
+    width: 18px;
+    height: 18px;
+    transform: rotate(360deg);
+}
+
+.checkbox-wrapper:hover .checkmark {
+    border-color: var(--checkbox-color);
+    transform: scale(1.1);
+    box-shadow:
+        0 0 20px var(--checkbox-shadow),
+        0 0 40px var(--checkbox-shadow),
+        inset 0 0 10px var(--checkbox-shadow);
+}
+
+.checkbox-wrapper input:checked~.checkmark {
+    animation: pulse 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px var(--checkbox-shadow);
+    }
+
+    50% {
+        transform: scale(0.9);
+        box-shadow:
+            0 0 30px var(--checkbox-shadow),
+            0 0 50px var(--checkbox-shadow);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px var(--checkbox-shadow);
+    }
+}
+
+.checkbox-wrapper .label {
+    margin-left: 15px;
+    font-family: "Segoe UI", sans-serif;
+    color: var(--checkbox-color);
+    font-size: 18px;
+    text-shadow: 0 0 10px var(--checkbox-shadow);
+    opacity: 0.9;
+    transition: all 0.3s;
+}
+
+.checkbox-wrapper:hover .label {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+/* Glowing dots animation */
+.checkbox-wrapper::after,
+.checkbox-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--checkbox-color);
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.checkbox-wrapper::before {
+    left: -10px;
+    top: 50%;
+}
+
+.checkbox-wrapper::after {
+    right: -10px;
+    top: 50%;
+}
+
+.checkbox-wrapper:hover::before {
+    opacity: 1;
+    transform: translateX(-10px);
+    box-shadow: 0 0 10px var(--checkbox-color);
+}
+
+.checkbox-wrapper:hover::after {
+    opacity: 1;
+    transform: translateX(10px);
+    box-shadow: 0 0 10px var(--checkbox-color);
+}
+
+/* checkbox 4 */
+.ui-bookmark {
+    --icon-size: 24px;
+    --icon-secondary-color: rgb(77, 77, 77);
+    --icon-hover-color: rgb(97, 97, 97);
+    --icon-primary-color: gold;
+    --icon-circle-border: 1px solid var(--icon-primary-color);
+    --icon-circle-size: 35px;
+    --icon-anmt-duration: 0.3s;
+}
+
+.ui-bookmark input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.ui-bookmark .bookmark {
+    width: var(--icon-size);
+    height: auto;
+    fill: var(--icon-secondary-color);
+    cursor: pointer;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    -webkit-transform-origin: top;
+    -ms-transform-origin: top;
+    transform-origin: top;
+}
+
+.bookmark::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    -webkit-box-shadow: 0 30px 0 -4px var(--icon-primary-color),
+        30px 0 0 -4px var(--icon-primary-color),
+        0 -30px 0 -4px var(--icon-primary-color),
+        -30px 0 0 -4px var(--icon-primary-color),
+        -22px 22px 0 -4px var(--icon-primary-color),
+        -22px -22px 0 -4px var(--icon-primary-color),
+        22px -22px 0 -4px var(--icon-primary-color),
+        22px 22px 0 -4px var(--icon-primary-color);
+    box-shadow: 0 30px 0 -4px var(--icon-primary-color),
+        30px 0 0 -4px var(--icon-primary-color),
+        0 -30px 0 -4px var(--icon-primary-color),
+        -30px 0 0 -4px var(--icon-primary-color),
+        -22px 22px 0 -4px var(--icon-primary-color),
+        -22px -22px 0 -4px var(--icon-primary-color),
+        22px -22px 0 -4px var(--icon-primary-color),
+        22px 22px 0 -4px var(--icon-primary-color);
+    border-radius: 50%;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+}
+
+.bookmark::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: var(--icon-circle-border);
+    opacity: 0;
+}
+
+/* actions */
+
+.ui-bookmark:hover .bookmark {
+    fill: var(--icon-hover-color);
+}
+
+.ui-bookmark input:checked+.bookmark::after {
+    -webkit-animation: circles var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: circles var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    -webkit-animation-delay: var(--icon-anmt-duration);
+    animation-delay: var(--icon-anmt-duration);
+}
+
+.ui-bookmark input:checked+.bookmark {
+    fill: var(--icon-primary-color);
+    -webkit-animation: bookmark var(--icon-anmt-duration) forwards;
+    animation: bookmark var(--icon-anmt-duration) forwards;
+    -webkit-transition-delay: 0.3s;
+    -o-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.ui-bookmark input:checked+.bookmark::before {
+    -webkit-animation: circle var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: circle var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    -webkit-animation-delay: var(--icon-anmt-duration);
+    animation-delay: var(--icon-anmt-duration);
+}
+
+@-webkit-keyframes bookmark {
+    50% {
+        -webkit-transform: scaleY(0.6);
+        transform: scaleY(0.6);
+    }
+
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+
+@keyframes bookmark {
+    50% {
+        -webkit-transform: scaleY(0.6);
+        transform: scaleY(0.6);
+    }
+
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+
+@-webkit-keyframes circle {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    90% {
+        width: var(--icon-circle-size);
+        height: var(--icon-circle-size);
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes circle {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    90% {
+        width: var(--icon-circle-size);
+        height: var(--icon-circle-size);
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes circles {
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    to {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes circles {
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    to {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        opacity: 0;
+    } 
+}
+
+
+/* checkbox 5 */
+/* From Uiverse.io by catraco */
+.heart-container {
+    --heart-color: rgb(255, 91, 137);
+    position: relative;
+    width: 50px;
+    height: 50px;
+    transition: .3s;
+}
+
+.heart-container .checkbox {
     position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0;
+    z-index: 20;
     cursor: pointer;
 }
 
-.container-btn-file > svg {
-    margin-right: 1em;
-}
-
-.container-btn-file::Before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 0;
-    border-radius: 0.5em;
-    background-color: #469b46;
-    z-index: -1;
-    transition: all 350ms;
-}
-
-.container-btn-file:hover::before {
+.heart-container .svg-container {
     width: 100%;
-}
-
-/* input 3 */
-.container {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    /* padding: 20px; */
-    padding: 0;
-    background: linear-gradient(135deg, #6dd5ed, #2193b0);
-    border-radius: 15px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    align-items: center;
 }
 
-.folder {
-    position: relative;
-    animation: float 2.5s infinite ease-in-out;
-    transition: transform 0.3s ease;
+.heart-container .svg-outline,
+.heart-container .svg-filled {
+    fill: var(--heart-color);
+    position: absolute;
 }
 
-.folder:hover {
-    transform: scale(1.05);
-}
-
-.folder .top {
-    background: linear-gradient(135deg, #ff9a56, #ff6f56);
-    width: 80px;
-    height: 20px;
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 2;
-}
-
-.folder .bottom {
-    background: linear-gradient(135deg, #ffe563, #ffc663);
-    width: 120px;
-    height: 80px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    border-radius: 0 10px 10px 10px;
-    position: relative;
-    top: -10px;
-}
-
-.custom-file-upload {
-    font-size: 1.1em;
-    color: #ffffff;
-    text-align: center;
-    margin-top: 20px;
-    padding: 15px 25px;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background 0.3s ease;
-    display: inline-block;
-    width: 220px;
-}
-
-.custom-file-upload:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-.custom-file-upload input[type="file"] {
+.heart-container .svg-filled {
+    animation: keyframes-svg-filled 1s;
     display: none;
 }
 
-@keyframes float {
+.heart-container .svg-celebrate {
+    position: absolute;
+    animation: keyframes-svg-celebrate .5s;
+    animation-fill-mode: forwards;
+    display: none;
+    stroke: var(--heart-color);
+    fill: var(--heart-color);
+    stroke-width: 2px;
+}
+
+.heart-container .checkbox:checked~.svg-container .svg-filled {
+    display: block
+}
+
+.heart-container .checkbox:checked~.svg-container .svg-celebrate {
+    display: block
+}
+
+@keyframes keyframes-svg-filled {
     0% {
-        transform: translateY(20px);
+        transform: scale(0);
+    }
+
+    25% {
+        transform: scale(1.2);
     }
 
     50% {
-        transform: translateY(-5px);
+        transform: scale(1);
+        filter: brightness(1.5);
+    }
+}
+
+@keyframes keyframes-svg-celebrate {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.5);
     }
 
     100% {
-        transform: translateY(20px);
+        transform: scale(1.4);
+        opacity: 0;
+        display: none;
+    } 
+
+}
+
+
+/* checkbox 6 */
+
+/* From Uiverse.io by SelfMadeSystem */
+.container {
+    cursor: pointer;
+}
+
+.container input {
+    display: none;
+}
+
+.container svg {
+    overflow: visible;
+}
+
+.path {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+}
+
+.container input:checked~svg .path {
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
+}
+
+/* checkbox 7 */
+/* From Uiverse.io by mobinkakei */
+.toggler {
+    width: 72px;
+    margin: 40px auto;
+}
+
+.toggler input {
+    display: none;
+}
+
+.toggler label {
+    display: block;
+    position: relative;
+    width: 72px;
+    height: 36px;
+    border: 1px solid #d6d6d6;
+    border-radius: 36px;
+    background: #e4e8e8;
+    cursor: pointer;
+}
+
+.toggler label::after {
+    display: block;
+    border-radius: 100%;
+    background-color: #d7062a;
+    content: '';
+    animation-name: toggler-size;
+    animation-duration: 0.15s;
+    animation-timing-function: ease-out;
+    animation-direction: forwards;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+
+.toggler label::after,
+.toggler label .toggler-on,
+.toggler label .toggler-off {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 26px;
+    height: 26px;
+    transform: translateY(-50%) translateX(-50%);
+    transition: left 0.15s ease-in-out, background-color 0.2s ease-out, width 0.15s ease-in-out, height 0.15s ease-in-out, opacity 0.15s ease-in-out;
+}
+
+.toggler input:checked+label::after,
+.toggler input:checked+label .toggler-on,
+.toggler input:checked+label .toggler-off {
+    left: 75%;
+}
+
+.toggler input:checked+label::after {
+    background-color: #50ac5d;
+    animation-name: toggler-size2;
+}
+
+.toggler .toggler-on,
+.toggler .toggler-off {
+    opacity: 1;
+    z-index: 2;
+}
+
+.toggler input:checked+label .toggler-off,
+.toggler input:not(:checked)+label .toggler-on {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.toggler .path {
+    fill: none;
+    stroke: #fefefe;
+    stroke-width: 7px;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+}
+
+@keyframes toggler-size {
+
+    0%,
+    100% {
+        width: 26px;
+        height: 26px;
+    }
+
+    50% {
+        width: 20px;
+        height: 20px;
     }
 }
 
+@keyframes toggler-size2 {
 
-/* input 4 */
-.input-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    z-index: 1;
-}
+    0%,
+    100% {
+        width: 26px;
+        height: 26px;
+    }
 
-.inputDos {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    padding: 18px 16px;
-    background-color: transparent;
-    cursor: pointer;
-    transition: all .5s ease-in-out;
-}
-
-.inputDos::placeholder {
-    color: transparent;
-}
-
-.input:focus::placeholder {
-    color: rgb(131, 128, 128);
-}
-
-.inputDos:focus,
-.inputDos:not(:placeholder-shown) {
-    background-color: #fff;
-    border: 1px solid rgb(91, 107, 255);
-    width: 240px;
-    cursor: none;
-    padding: 18px 16px 18px 45px;
-}
-
-.iconUno {
-    position: absolute;
-    left: 0;
-    height: 45px;
-    width: 45px;
-    background-color: #fff;
-    border-radius: 99px;
-    z-index: -1;
-    fill: rgb(91, 107, 255);
-    border: 1px solid rgb(91, 107, 255);
-}
-
-.inputDos:focus+.iconUno,
-.inputDos:not(:placeholder-shown)+.iconUno {
-    z-index: 0;
-    background-color: transparent;
-    border: none;
+    50% {
+        width: 20px;
+        height: 20px;
+    }
 }
