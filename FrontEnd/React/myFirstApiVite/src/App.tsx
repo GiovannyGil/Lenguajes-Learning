@@ -1,32 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Buscar from './components/buscarNombre'
+import ListarPokemons from './components/listaPokemons'
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      {/* <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
+      {
+      /* <div>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
-      </div> */}
-      {/* <h1>Vite + React</h1> */}
+      </div> */
+      }
       <div className="card">
-        {/* <h3>la cuenta es {count}</h3>
-        <button onClick={() => setCount((count) => count + 1)}> + </button>
-        <button onClick={() => setCount((count) => count - 1)}> - </button> */}
-
         {/* buscar pokemon por nombre */}
         <Buscar />
         {/* lista de los pokemoenes en un slide ->  */}
-        
+        <ListarPokemons />
 
         <p>
           Archivo Principal <code>src/App.tsx</code> aquí inicia todo
