@@ -27,7 +27,10 @@ const ListarPokemons: React.FC = () => {
       <div className='contenedor'>
       {pokemons.map((pokemon) => (
         <div key={pokemon.id} className="card-main">
-          <img className='image' src={pokemon.sprites.front_default} alt={pokemon.name}/>
+          {/* <img className='image' src={pokemon.sprites.front_default} alt={pokemon.name}/> */}
+          <picture>
+            <img className='image' src={pokemon.sprites.front_default} alt={pokemon.name} />
+          </picture>
           <div className="card-content">
             <h3 className="nombreP">{pokemon.name}</h3>
             <ol className="habilidades">{pokemon.abilities.map((type: any, index: number) => (
