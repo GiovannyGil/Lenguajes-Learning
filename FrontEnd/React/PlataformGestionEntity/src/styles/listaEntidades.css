@@ -1,0 +1,81 @@
+.main-section {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fefcf7;
+}
+
+.main-section h1 {
+  margin-bottom: 2rem;
+  color: #4b3621;
+}
+
+.table-container {
+  overflow-x: auto;
+  background: #fffaf0;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  color: #4b3621;
+}
+
+.entidades-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.entidades-table th, .entidades-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee5d8;
+}
+
+.entidades-table thead {
+  background-color: #f4e7d4;
+}
+
+.entidades-table th {
+  color: #5c4421;
+  font-weight: bold;
+}
+
+.tipo-chip {
+  background-color: #fce4b9;
+  color: #6b4f1d;
+  padding: 0.3rem 0.6rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  margin-right: 0.4rem;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.estado {
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  text-transform: capitalize;
+}
+
+.estado.activo {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.estado.inactivo {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+@media (max-width: 768px) {
+  .entidades-table {
+    font-size: 0.9rem;
+  }
+
+  .entidades-table th, .entidades-table td {
+    padding: 0.75rem;
+  }
+
+  .main-section h1 {
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,71 @@
+{
+    "entities": [
+        {
+            "id": 1,
+            "name": "Entity One",
+            "description": "This is the first entity.",
+            "state": "active",
+            "type": {
+                "types": [
+                    "type1",
+                    "type2"
+                ]
+            },
+            "antique": "01/06/2010",
+            "typeEntity":"Local",
+            "createdAt": "2023-01-01T12:00:00Z",
+            "updatedAt": "2023-01-02T12:00:00Z",
+            "deletedAt": ""
+        },
+        {
+            "id": 2,
+            "name": "Entity Two",
+            "description": "This is the second entity.",
+            "state": "active",
+            "type": {
+                "types": [
+                    "type1"
+                ]
+            },
+            "antique": "01/06/2010",
+            "typeEntity":"National",
+            "createdAt": "2023-01-03T12:00:00Z",
+            "updatedAt": "2023-01-04T12:00:00Z",
+            "deletedAt": ""
+        },
+        {
+            "id": 3,
+            "name": "Entity Three",
+            "description": "This is the third entity.",
+            "state": "inactive",
+            "type": {
+                "types": [
+                    "type2",
+                    "type3"
+                ]
+            },
+            "antique": "01/06/2010",
+            "typeEntity":"International",
+            "createdAt": "2023-01-05T12:00:00Z",
+            "updatedAt": "2023-01-06T12:00:00Z",
+            "deletedAt": ""
+        },
+        {
+            "id": 4,
+            "name": "Entity Four",
+            "description": "This is the fourth entity.",
+            "state": "active",
+            "type": {
+                "types": [
+                    "type1",
+                    "type3"
+                ]
+            },
+            "antique": "01/06/2010",
+            "typeEntity":"Local",
+            "createdAt": "2023-01-07T12:00:00Z",
+            "updatedAt": "2023-01-08T12:00:00Z",
+            "deletedAt": ""
+        }
+    ]
+}
