@@ -1,721 +1,289 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Plan de Calistenia y Definición</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MeloFit App</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --primary: #4f46e5; /* Indigo 600 */
-        --primary-light: #818cf8;
-        --secondary: #0ea5e9; /* Sky 500 */
-        --background: #f8fafc; /* Slate 50 */
-        --surface: #ffffff;
-        --text-main: #1e293b; /* Slate 800 */
-        --text-secondary: #64748b; /* Slate 500 */
-        --success: #22c55e;
-        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        --radius: 12px;
-      }
+        :root {
+            --primary: #3d5afe; /* Azul eléctrico moderno */
+            --secondary: #8c9eff;
+            --bg: #050505;
+            --surface: #121212;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --safe-area-bottom: 80px;
+        }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: var(--background);
-        color: var(--text-main);
-        line-height: 1.6;
-        padding-bottom: 40px;
-      }
+        body {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-      /* Hero Section */
-      .hero {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        color: white;
-        padding: 60px 20px 80px;
-        text-align: center;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
-        margin-bottom: -40px; /* Overlap with content */
-        box-shadow: var(--shadow-lg);
-      }
+        /* Header Estilo iOS */
+        header {
+            padding: 40px 20px 20px;
+            background: linear-gradient(to bottom, rgba(61, 90, 254, 0.15), transparent);
+        }
 
-      .hero h1 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 10px;
-        letter-spacing: -0.025em;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
+        header h1 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
 
-      .hero .subtitle {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        max-width: 600px;
-        margin: 0 auto;
-        font-weight: 500;
-      }
+        header p {
+            color: var(--text-dim);
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
 
-      /* Main Container */
-      .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 0 20px;
-        position: relative;
-        z-index: 10;
-      }
+        /* Contenedor de la rutina */
+        .app-content {
+            padding: 0 20px var(--safe-area-bottom);
+            flex: 1;
+        }
 
-      /* Info Box (Mentalidad) */
-      .info-box {
-        background: var(--surface);
-        border-radius: var(--radius);
-        padding: 25px;
-        box-shadow: var(--shadow-md);
-        margin-bottom: 30px;
-        border-left: 5px solid var(--primary);
-      }
+        .current-day-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-      .info-box h3 {
-        color: var(--primary);
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 1.25rem;
-      }
+        .current-day-label h2 {
+            font-size: 22px;
+            margin: 0;
+        }
 
-      .info-box ul {
-        list-style: none;
-      }
+        .current-day-label span {
+            background: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-      .info-box ul li {
-        margin-bottom: 12px;
-        padding-left: 24px;
-        position: relative;
-        color: var(--text-secondary);
-      }
+        /* Lista de ejercicios estilo App */
+        .exercise-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
 
-      .info-box ul li::before {
-        content: "•";
-        color: var(--primary);
-        font-weight: bold;
-        position: absolute;
-        left: 8px;
-        font-size: 1.2em;
-      }
+        .exercise-card:active {
+            transform: scale(0.98);
+        }
 
-      /* Tabs Navigation */
-      .tabs-wrapper {
-        background: var(--surface);
-        padding: 8px;
-        border-radius: 16px;
-        box-shadow: var(--shadow-md);
-        margin-bottom: 30px;
-        overflow-x: auto; /* Scroll on mobile */
-        white-space: nowrap;
-        display: flex;
-        scrollbar-width: none; /* Hide scrollbar Firefox */
-      }
-      .tabs-wrapper::-webkit-scrollbar {
-        display: none; /* Hide scrollbar Chrome/Safari */
-      }
+        .exercise-card.completed {
+            border-color: var(--primary);
+            opacity: 0.6;
+        }
 
-      .tab-btn {
-        flex: 1; /* Distribute space evenly */
-        background: transparent;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
-        color: var(--text-secondary);
-        transition: all 0.2s ease;
-        font-size: 0.95rem;
-        min-width: 100px; /* Ensure buttons don't shrink too much */
-        text-align: center;
-      }
+        .exercise-info b {
+            display: block;
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
 
-      .tab-btn:hover {
-        background-color: #f1f5f9;
-        color: var(--text-main);
-      }
+        .exercise-info span {
+            color: var(--text-dim);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-      .tab-btn.active {
-        background-color: var(--primary);
-        color: white;
-        box-shadow: var(--shadow-sm);
-      }
+        /* Botón de Check */
+        .check-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
 
-      /* Day Content */
-      .tab-content {
-        display: none;
-        animation: fadeIn 0.4s ease-out;
-      }
+        .completed .check-circle {
+            background: var(--primary);
+        }
 
-      .tab-content.active {
-        display: block;
-      }
+        .completed .check-circle::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
 
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 25px; /* Padding extra para el notch de abajo */
+            z-index: 100;
+        }
 
-      .day-card {
-        background: var(--surface);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-lg);
-        overflow: hidden;
-        margin-bottom: 30px;
-      }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-      .day-header {
-        background: linear-gradient(to right, #f8fafc, #ffffff);
-        padding: 25px;
-        border-bottom: 1px solid #e2e8f0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
+        .nav-item.active {
+            color: var(--primary);
+        }
 
-      .day-title {
-        color: var(--text-main);
-        font-size: 1.5rem;
-        font-weight: 700;
-      }
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
 
-      .badge {
-        background: #e0e7ff;
-        color: var(--primary);
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .day-body {
-        padding: 25px;
-      }
-
-      /* Sections & Exercises */
-      .section {
-        margin-bottom: 35px;
-      }
-
-      .section h3 {
-        color: var(--text-main);
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #e2e8f0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      
-      .section h3::before {
-        content: '';
-        display: block;
-        width: 6px;
-        height: 24px;
-        background: var(--secondary);
-        border-radius: 4px;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        margin-top: 10px;
-      }
-
-      th {
-        text-align: left;
-        color: var(--text-secondary);
-        font-weight: 600;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        padding: 12px 16px;
-        border-bottom: 2px solid #e2e8f0;
-      }
-
-      td {
-        padding: 16px;
-        border-bottom: 1px solid #f1f5f9;
-        font-size: 0.95rem;
-        color: var(--text-main);
-        vertical-align: top;
-      }
-
-      tr:last-child td {
-        border-bottom: none;
-      }
-
-      tr:hover td {
-        background-color: #f8fafc;
-      }
-
-      .exercise-name {
-        font-weight: 600;
-        color: var(--text-main);
-        width: 40%;
-      }
-
-      .reps-col {
-        color: var(--primary);
-        font-weight: 700;
-        white-space: nowrap;
-      }
-
-      /* Utilities */
-      .notes {
-        background: #ecfeff; /* Cyan 50 */
-        color: #0e7490; /* Cyan 700 */
-        padding: 16px;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        border-left: 4px solid #06b6d4;
-        margin-top: 15px;
-      }
-
-      /* Tips Footer */
-      .tips {
-        background: linear-gradient(to right, #ffffff, #f0fdf4);
-        border: 1px solid #bbf7d0;
-        border-radius: var(--radius);
-        padding: 30px;
-        margin-top: 40px;
-      }
-
-      .tips h3 {
-        color: var(--success);
-        margin-bottom: 20px;
-        font-size: 1.3rem;
-      }
-
-      .tips ul {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        list-style: none;
-      }
-
-      .tips li {
-        margin: 0;
-        padding: 15px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: var(--shadow-sm);
-        border-left: 3px solid var(--success);
-      }
-      
-      .tips li strong {
-        display: block;
-        margin-bottom: 5px;
-        color: #166534;
-      }
-
-      /* Mobile Responsive */
-      @media (max-width: 600px) {
-        .hero { padding: 40px 20px 60px; }
-        .hero h1 { font-size: 1.8rem; }
-        .tab-btn { padding: 10px 15px; font-size: 0.9rem; }
-        .day-header { flex-direction: column; align-items: flex-start; }
-        th, td { padding: 12px 10px; display: block; width: 100%; border: none; }
-        tr { display: block; margin-bottom: 20px; background: #f8fafc; border-radius: 8px; padding: 10px; }
-        thead { display: none; }
-        td { padding: 5px 0; }
-        .exercise-name { font-size: 1.1rem; color: var(--primary); margin-bottom: 5px; width: 100%; }
-        .reps-col { display: inline-block; margin-right: 10px; }
-      }
     </style>
-  </head>
-  <body>
+</head>
+<body>
 
-    <!-- Header Section -->
-    <div class="hero">
-      <h1>🔥 Plan de Recomposición Corporal</h1>
-      <div class="subtitle">
-        Rutina estructurada de Calistenia para ganar músculo y perder grasa abdominal.
-      </div>
-    </div>
+    <header>
+        <h1>Mi Rutina</h1>
+        <p>Potenciado por Gemini • S25 Ultra Edition</p>
+    </header>
 
-    <div class="container">
-      
-      <!-- General Info -->
-      <div class="info-box" style="margin-top: 20px;">
-        <h3>🧠 Mentalidad para este Plan</h3>
-        <ul>
-          <li><strong>Tensión Mecánica:</strong> No hagas los movimientos rápido. Hazlos controlados. <em>Bajar en 2-3 segundos, subir explosivo.</em></li>
-          <li><strong>La verdad sobre la "Panza":</strong> Los abdominales fortalecen el músculo, pero la grasa se va con el <strong>Déficit Calórico</strong>.</li>
-          <li><strong>Sobrecarga Progresiva:</strong> Para avanzar debes: hacer más repeticiones, descansar menos, o mejorar la técnica cada semana.</li>
-        </ul>
-      </div>
-
-      <!-- Tab Navigation -->
-      <nav class="tabs-wrapper">
-        <button class="tab-btn active" onclick="openTab(event, 'lunes')">Lunes</button>
-        <button class="tab-btn" onclick="openTab(event, 'martes')">Martes</button>
-        <button class="tab-btn" onclick="openTab(event, 'miercoles')">Miércoles</button>
-        <button class="tab-btn" onclick="openTab(event, 'jueves')">Jueves</button>
-        <button class="tab-btn" onclick="openTab(event, 'viernes')">Viernes</button>
-      </nav>
-
-      <!-- Content: Lunes -->
-      <div id="lunes" class="tab-content active">
-        <div class="day-card">
-          <div class="day-header">
-            <span class="day-title">Torso Empuje</span>
-            <span class="badge">Fuerza & Hipertrofia</span>
-          </div>
-          <div class="day-body">
-            <div class="section">
-              <h3>Calentamiento (Mecánica) - 5 min</h3>
-              <table>
-                <tr>
-                  <td class="exercise-name">Rotaciones de brazos</td>
-                  <td>1 min (Círculos grandes)</td>
-                </tr>
-                <tr>
-                  <td class="exercise-name">Walkouts</td>
-                  <td>10 reps (Caminar con manos hasta plancha)</td>
-                </tr>
-              </table>
-            </div>
-
-            <div class="section">
-              <h3>Bloque de Fuerza (Descanso 60-90 seg)</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Ejercicio</th>
-                    <th style="width: 120px;">Series x Reps</th>
-                    <th>Técnica</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="exercise-name">Flexiones Clásicas</td>
-                    <td class="reps-col">4 x Fallo - 2</td>
-                    <td>Pecho al suelo, codos a 45°</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Pike Push-ups</td>
-                    <td class="reps-col">3 x 8-12</td>
-                    <td>Cuerpo en V invertida (Hombros)</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Fondos</td>
-                    <td class="reps-col">3 x 12-15</td>
-                    <td>En silla/sofá. Baja lento.</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Flexiones Diamante</td>
-                    <td class="reps-col">3 x Fallo</td>
-                    <td>Manos juntas (Tríceps/Pecho est.)</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="section">
-              <h3>Finisher (Quema Grasa)</h3>
-              <table>
-                <tr>
-                  <td class="exercise-name">Mountain Climbers</td>
-                  <td class="reps-col">3 x 45 seg</td>
-                  <td>Rodillas al pecho ritmo rápido</td>
-                </tr>
-              </table>
-            </div>
-          </div>
+    <main class="app-content">
+        <div class="current-day-label">
+            <h2 id="dayTitle">Lunes</h2>
+            <span id="focusTag">Máquinas</span>
         </div>
-      </div>
 
-      <!-- Content: Martes -->
-      <div id="martes" class="tab-content">
-        <div class="day-card">
-          <div class="day-header">
-            <span class="day-title">Tren Inferior</span>
-            <span class="badge">Potencia de Piernas</span>
-          </div>
-          <div class="day-body">
-            <div class="notes" style="margin: 0 0 25px 0;">
-              <strong>Nota:</strong> Entrenar pierna libera hormonas que ayudan a quemar grasa en todo el cuerpo. No te lo saltes.
+        <div id="exerciseList">
             </div>
-            
-            <div class="section">
-              <h3>Bloque Principal (Descanso 60 seg)</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Ejercicio</th>
-                    <th>Series x Reps</th>
-                    <th>Detalle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="exercise-name">Sentadillas Profundas</td>
-                    <td class="reps-col">4 x 15-20</td>
-                    <td>Baja hasta romper el paralelo (lento)</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Zancadas (Lunges)</td>
-                    <td class="reps-col">3 x 12 c/u</td>
-                    <td>Rodilla de atrás casi toca el suelo</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Bulgarian Split Squat</td>
-                    <td class="reps-col">3 x 8-10 c/u</td>
-                    <td>Pie trasero elevado. ¡Quema garantizada!</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Hip Thrust</td>
-                    <td class="reps-col">4 x 20</td>
-                    <td>Puente de glúteo, aprieta 2 seg arriba</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Elevación de talones</td>
-                    <td class="reps-col">4 x 25</td>
-                    <td>Para gemelos. Hazlo en un escalón.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="updateView('Lunes', this)">
+            <span class="nav-icon">L</span>
+            <span>LUN</span>
         </div>
-      </div>
-
-      <!-- Content: Miercoles -->
-      <div id="miercoles" class="tab-content">
-        <div class="day-card">
-          <div class="day-header">
-            <span class="day-title">Core, Cintura y Cardio</span>
-            <span class="badge">Abdomen Plano</span>
-          </div>
-          <div class="day-body">
-            <div class="section">
-              <h3>Circuito Abdominal (X4 Vueltas, sin descanso)</h3>
-              <table>
-                <tbody>
-                  <tr>
-                    <td class="exercise-name">Plancha (Plank)</td>
-                    <td class="reps-col">45 seg</td>
-                    <td>Cuerpo recto, aprieta abdomen</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Elevación de piernas</td>
-                    <td class="reps-col">15 reps</td>
-                    <td>Baja lento, sin tocar suelo</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Bicicletas</td>
-                    <td class="reps-col">20 reps</td>
-                    <td>Lentas y controladas, gira el tronco</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Toques de talón</td>
-                    <td class="reps-col">30 toques</td>
-                    <td>Para oblicuos</td>
-                  </tr>
-                  <tr style="background:#f0fdf4">
-                    <td class="exercise-name"><strong>DESCANSO</strong></td>
-                    <td class="reps-col">90 seg</td>
-                    <td>Recupérate antes de la siguiente vuelta</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="section">
-              <h3>Especial: Vacío Abdominal</h3>
-              <div class="notes">
-                Reduce el perímetro de la cintura trabajando el músculo transverso.
-                <br><strong>Cómo:</strong> Exhala todo el aire. Mete el ombligo hacia la columna y arriba. Aguanta 10-15s. Repite 5 veces.
-              </div>
-            </div>
-
-            <div class="section">
-              <h3>Cardio LISS</h3>
-              <table>
-                <tr>
-                  <td class="exercise-name">Caminata rápida / Trote</td>
-                  <td class="reps-col">30 mins</td>
-                  <td>Mantén un ritmo constante donde puedas hablar pero te cueste un poco.</td>
-                </tr>
-              </table>
-            </div>
-          </div>
+        <div class="nav-item" onclick="updateView('Martes', this)">
+            <span class="nav-icon">M</span>
+            <span>MAR</span>
         </div>
-      </div>
-
-      <!-- Content: Jueves -->
-      <div id="jueves" class="tab-content">
-        <div class="day-card">
-          <div class="day-header">
-            <span class="day-title">Cadena Posterior</span>
-            <span class="badge">Postura y Espalda</span>
-          </div>
-          <div class="day-body">
-            <div class="notes">
-              Entrenar la espalda sin barra es un reto. Enfócate mucho en sentir cómo se contraen los músculos de la espalda.
-            </div>
-
-            <div class="section">
-              <h3>Rutina de Tracción (Descanso 45-60 seg)</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Ejercicio</th>
-                    <th>Series x Reps</th>
-                    <th>Tip</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="exercise-name">Superman</td>
-                    <td class="reps-col">4 x 15</td>
-                    <td>Levanta pecho y muslos del suelo a la vez</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Remo en puerta</td>
-                    <td class="reps-col">4 x 12-15</td>
-                    <td>Sujétate del marco e impúlsate adelante</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Plancha inversa</td>
-                    <td class="reps-col">3 x 45 seg</td>
-                    <td>Mira al techo, eleva cadera recta</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Pájaros en suelo</td>
-                    <td class="reps-col">3 x 15</td>
-                    <td>Boca abajo, brazos en cruz, levántalos</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Femoral deslizante</td>
-                    <td class="reps-col">3 x 10</td>
-                    <td>Boca arriba, desliza talones (usa calcetines)</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <div class="nav-item" onclick="updateView('Miercoles', this)">
+            <span class="nav-icon">M</span>
+            <span>MIE</span>
         </div>
-      </div>
-
-      <!-- Content: Viernes -->
-      <div id="viernes" class="tab-content">
-        <div class="day-card">
-          <div class="day-header">
-            <span class="day-title">Full Body "Metabólico"</span>
-            <span class="badge">Quema Grasa Total</span>
-          </div>
-          <div class="day-body">
-            <div class="section">
-              <h3>Circuito AMRAP (25 Minutos)</h3>
-              <p style="margin-bottom: 20px; color: var(--text-secondary);">Pon el cronómetro. Haz tantas vueltas como puedas en 25 minutos con buena técnica. Descansa solo para beber agua.</p>
-              
-              <table>
-                <thead>
-                  <tr>
-                    <th>Ejercicio</th>
-                    <th>Repeticiones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="exercise-name">Sentadillas con salto</td>
-                    <td class="reps-col">15</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Flexiones</td>
-                    <td class="reps-col">12</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Zancadas alternas</td>
-                    <td class="reps-col">20 (Total)</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Burpees</td>
-                    <td class="reps-col">8</td>
-                  </tr>
-                  <tr>
-                    <td class="exercise-name">Abdominales</td>
-                    <td class="reps-col">20</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="notes">
-              ¡Dale con todo! Es el último esfuerzo de la semana.
-            </div>
-          </div>
+        <div class="nav-item" onclick="updateView('Jueves', this)">
+            <span class="nav-icon">J</span>
+            <span>JUE</span>
         </div>
-      </div>
-
-      <!-- Tips Footer -->
-      <div class="tips">
-        <h3>🚀 Guía para ver resultados</h3>
-        <ul>
-          <li>
-            <strong>Proteína:</strong> Intenta comer proteína en cada comida (Huevos, pollo, atún, lentejas, yogurt griego) para mantener el músculo.
-          </li>
-          <li>
-            <strong>El mito de los "Rollitos":</strong> Para marcar abs, reduce harinas refinadas y azúcar entre semana. La cocina es el 70% del éxito.
-          </li>
-          <li>
-            <strong>Progresión:</strong> Intenta hacer una repetición más que la semana anterior. Si no mejoras los números, el cuerpo no cambia.
-          </li>
-          <li>
-            <strong>Agua:</strong> Bebe 1 vaso grande de agua antes de cada comida. Ayuda con la saciedad.
-          </li>
-        </ul>
-      </div>
-
-    </div>
+        <div class="nav-item" onclick="updateView('Viernes', this)">
+            <span class="nav-icon">V</span>
+            <span>VIE</span>
+        </div>
+    </nav>
 
     <script>
-      function openTab(evt, dayName) {
-        // Hide all tab content
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-          tabcontent[i].classList.remove("active");
+        const routines = {
+            'Lunes': { focus: 'Superior (Empuje)', ex: [
+                {n: 'Press Pecho Máquina', s: '4 x 12'},
+                {n: 'Jalón Polea Alta', s: '4 x 12'},
+                {n: 'Press Hombro Máquina', s: '3 x 12'},
+                {n: 'Bíceps/Tríceps Polea', s: '3 x 15'},
+                {n: 'Crunch Máquina', s: '3 x 15'}
+            ]},
+            'Martes': { focus: 'Pierna (Cuádriceps)', ex: [
+                {n: 'Prensa 45°', s: '4 x 12'},
+                {n: 'Extensión Cuádriceps', s: '4 x 15'},
+                {n: 'Curl Femoral Sentado', s: '3 x 12'},
+                {n: 'Máquina Glúteo', s: '4 x 12'},
+                {n: 'Prensa Pantorrilla', s: '4 x 20'}
+            ]},
+            'Miercoles': { focus: 'Full Body', ex: [
+                {n: 'Prensa Horizontal', s: '3 x 15'},
+                {n: 'Peck Deck', s: '3 x 12'},
+                {n: 'Remo Bajo Máquina', s: '3 x 12'},
+                {n: 'Elevaciones Polea', s: '3 x 15'},
+                {n: 'Leñador Polea', s: '3 x 15'}
+            ]},
+            'Jueves': { focus: 'Superior (Tracción)', ex: [
+                {n: 'Press Inclinado Smith', s: '4 x 10'},
+                {n: 'Remo Convergente', s: '4 x 12'},
+                {n: 'Face Pulls Polea', s: '3 x 15'},
+                {n: 'Predicador Máquina', s: '3 x 12'},
+                {n: 'Fondos Asistidos', s: '3 x 12'}
+            ]},
+            'Viernes': { focus: 'Pierna (Posterior)', ex: [
+                {n: 'Curl Femoral Acostado', s: '4 x 12'},
+                {n: 'Abducción Máquina', s: '4 x 15'},
+                {n: 'Prensa Unilateral', s: '3 x 12'},
+                {n: 'Hiperextensiones', s: '3 x 15'},
+                {n: 'Costurero Pantorrilla', s: '4 x 15'}
+            ]}
+        };
+
+        function updateView(day, element) {
+            // Animación de botones
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            element.classList.add('active');
+
+            // Actualizar datos
+            document.getElementById('dayTitle').innerText = day;
+            document.getElementById('focusTag').innerText = routines[day].focus;
+
+            const list = document.getElementById('exerciseList');
+            list.innerHTML = '';
+
+            routines[day].ex.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'exercise-card';
+                div.onclick = function() { this.classList.toggle('completed'); };
+                div.innerHTML = `
+                    <div class="exercise-info">
+                        <b>${item.n}</b>
+                        <span>🕒 ${item.s}</span>
+                    </div>
+                    <div class="check-circle"></div>
+                `;
+                list.appendChild(div);
+            });
         }
 
-        // Remove active class from all tab links
-        tablinks = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(dayName).style.display = "block";
-        // Small timeout to allow display:block to apply before adding active class for animation
-        setTimeout(() => {
-           document.getElementById(dayName).classList.add("active"); 
-        }, 10);
-        
-        evt.currentTarget.className += " active";
-      }
+        // Carga inicial
+        updateView('Lunes', document.querySelector('.nav-item'));
     </script>
-  </body>
+</body>
 </html>
