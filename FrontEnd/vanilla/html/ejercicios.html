@@ -7,283 +7,858 @@
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3d5afe; /* Azul eléctrico moderno */
-            --secondary: #8c9eff;
+            --primary: #3d5afe;
             --bg: #050505;
             --surface: #121212;
             --card-bg: rgba(255, 255, 255, 0.05);
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
-            --safe-area-bottom: 80px;
+            --gif-bg: #1e1e1e;
+            --safe-area-bottom: 100px;
         }
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: 'SF Pro Display', 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column;
             min-height: 100vh;
-            overflow-x: hidden;
+            padding-bottom: var(--safe-area-bottom);
         }
 
-        /* Header Estilo iOS */
         header {
-            padding: 40px 20px 20px;
-            background: linear-gradient(to bottom, rgba(61, 90, 254, 0.15), transparent);
+            padding: 50px 20px 20px;
+            background: linear-gradient(to bottom, rgba(61, 90, 254, 0.12), transparent);
         }
 
-        header h1 {
-            font-size: 28px;
-            margin: 0;
-            font-weight: 900;
-            letter-spacing: -1px;
+        header h1 { font-size: 32px; margin: 0; font-weight: 700; letter-spacing: -1.5px; }
+        header p { color: var(--text-dim); margin: 5px 0 0; font-size: 16px; }
+
+        .app-content { padding: 0 15px; }
+
+        .day-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin: 20px 5px;
         }
 
-        header p {
-            color: var(--text-dim);
-            margin: 5px 0 0;
-            font-size: 14px;
+        .day-header h2 { font-size: 24px; margin: 0; font-weight: 700; letter-spacing: -0.5px; }
+
+        .focus-tag {
+            background: rgba(61, 90, 254, 0.15);
+            color: var(--primary);
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 13px; font-weight: 600;
         }
 
-        /* Contenedor de la rutina */
-        .app-content {
-            padding: 0 20px var(--safe-area-bottom);
-            flex: 1;
-        }
-
-        .current-day-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .current-day-label h2 {
-            font-size: 22px;
-            margin: 0;
-        }
-
-        .current-day-label span {
-            background: var(--primary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        /* Lista de ejercicios estilo App */
         .exercise-card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px; margin-bottom: 12px;
+            display: grid; grid-template-columns: 80px 1fr 40px;
+            align-items: center; overflow: hidden;
+            transition: all 0.2s ease; cursor: pointer;
         }
 
-        .exercise-card:active {
-            transform: scale(0.98);
+        .exercise-card:active { transform: scale(0.97); background: rgba(255,255,255,0.08); }
+
+        .gif-container {
+            width: 80px; height: 80px; background-color: var(--gif-bg);
+            display: flex; align-items: center; justify-content: center;
+            border-right: 1px solid rgba(255,255,255,0.06);
         }
 
-        .exercise-card.completed {
-            border-color: var(--primary);
-            opacity: 0.6;
-        }
+        .gif-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px 0 0 20px; }
 
-        .exercise-info b {
-            display: block;
-            font-size: 17px;
-            margin-bottom: 4px;
-        }
+        .exercise-info { padding: 0 15px; }
+        .exercise-info b { display: block; font-size: 16px; margin-bottom: 2px; font-weight: 600; }
+        .exercise-info span { color: var(--text-dim); font-size: 13px; }
 
-        .exercise-info span {
-            color: var(--text-dim);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+        .exercise-card.completed { background: rgba(255,255,255,0.02); border-color: transparent; }
+        .exercise-card.completed .gif-container { filter: grayscale(1) brightness(0.7); opacity: 0.5; }
+        .exercise-card.completed .exercise-info { opacity: 0.5; }
 
-        /* Botón de Check */
+        .check-area { display: flex; justify-content: center; padding-right: 15px; }
         .check-circle {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
+            width: 24px; height: 24px; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.2); transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .completed .check-circle {
-            background: var(--primary);
-        }
+        .completed .check-circle { background: #4caf50; border-color: #4caf50; }
+        .completed .check-circle::after { content: '✓'; color: #fff; font-size: 14px; font-weight: bold; }
 
-        .completed .check-circle::after {
-            content: '✓';
-            color: white;
-            font-weight: bold;
-        }
-
-        /* Bottom Navigation Bar */
         .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 0 25px; /* Padding extra para el notch de abajo */
-            z-index: 100;
+            position: fixed; bottom: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: grid; grid-template-columns: repeat(8, 1fr);
+            padding: 12px 0 30px; z-index: 100;
         }
 
         .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
+            display: flex; flex-direction: column;
+            align-items: center; color: var(--text-dim);
+            font-size: 9px; font-weight: 600; cursor: pointer;
         }
 
-        .nav-item.active {
+        .nav-item.active { color: var(--primary); }
+        .nav-icon { font-size: 16px; margin-bottom: 4px; font-weight: 700; }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: flex-end; /* Bottom sheet on mobile */
+            z-index: 1000; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-content {
+            background: #18181b; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            width: 100%; max-width: 400px; padding: 24px;
+            transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; flex-direction: column; gap: 20px;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+        }
+
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+        .modal-header h3 { margin: 0; font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+        .close-modal { 
+            background: rgba(255,255,255,0.1); border: none; color: #fff; 
+            width: 32px; height: 32px; border-radius: 50%; font-size: 20px; 
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            transition: background 0.2s; flex-shrink: 0;
+        }
+        .close-modal:active { background: rgba(255,255,255,0.2); }
+
+        .modal-gif-container {
+            width: 100%; height: 220px; background: var(--gif-bg);
+            border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-gif-container img { width: 100%; height: 100%; object-fit: contain; }
+
+        .modal-details { background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; }
+        .modal-series { font-size: 15px; font-weight: 600; margin: 0 0 8px 0; color: var(--primary); }
+        .modal-series span { color: #fff; font-weight: 700; }
+        .modal-desc { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+        .modal-btn {
+            background: var(--primary); border: none; color: #fff;
+            padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700;
+            cursor: pointer; transition: transform 0.2s, filter 0.2s;
+            width: 100%;
+        }
+        .modal-btn:active { transform: scale(0.98); filter: brightness(1.2); }
+
+        @media (min-width: 600px) {
+            .modal-overlay { align-items: center; }
+            .modal-content { border-radius: 24px; }
+        }
+
+        /* Home Metrics Styles */
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 24px 20px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .metric-card h3 { margin-top: 0; font-size: 20px; margin-bottom: 8px; font-weight: 700; color: #fff; }
+        .metric-card p { color: var(--text-dim); font-size: 15px; margin-bottom: 20px; line-height: 1.4; }
+
+        .small-btn {
+            background: rgba(61, 90, 254, 0.15);
             color: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+        .small-btn:active {
+            transform: scale(0.96);
+            background: rgba(61, 90, 254, 0.25);
         }
 
-        .nav-icon {
-            font-size: 20px;
-            margin-bottom: 4px;
+        .home-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin: 10px 5px 20px;
+        }
+        .home-header h2 { font-size: 26px; margin: 0; font-weight: 800; }
+        
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block; margin-bottom: 6px; color: var(--text-dim); font-size: 14px;
+        }
+        .form-group input {
+            width: 100%; padding: 14px; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05); color: #fff; font-size: 16px;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none; border-color: var(--primary);
+        }
+        .form-group select {
+            width: 100%; padding: 14px; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat right 14px center;
+            background-size: 16px;
+            color: #fff; font-size: 16px;
+            appearance: none; -webkit-appearance: none;
+        }
+        .form-group select option {
+            background-color: #18181b;
+            color: #ffffff;
         }
 
+        .metric-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;
+        }
+        .metric-box {
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 16px; text-align: center;
+        }
+        .metric-box span { color: var(--text-dim); font-size: 13px; margin-bottom: 6px; display: block; }
+        .metric-box strong { font-size: 22px; color: #fff; }
+
+        /* Timeline Styles */
+        .timeline-wrapper {
+            width: 100%; overflow-x: auto; padding-bottom: 5px;
+            scroll-behavior: smooth;
+        }
+        .timeline-wrapper::-webkit-scrollbar { display: none; }
+        .timeline-wrapper { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .timeline-container {
+            display: flex; justify-content: flex-start; align-items: flex-start;
+            position: relative; padding-top: 5px; min-width: 100%;
+            width: max-content;
+        }
+        .timeline-line {
+            position: absolute; top: 16px; left: 22px; right: 22px; height: 3px;
+            background: rgba(255,255,255,0.08); border-radius: 4px; z-index: 1;
+        }
+        .timeline-dot-wrapper {
+            display: flex; flex-direction: column; align-items: center; z-index: 3;
+            width: 45px; flex-shrink: 0;
+        }
+        .timeline-dot {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: #18181b; border: 3px solid rgba(255,255,255,0.15);
+            margin-bottom: 6px; transition: all 0.3s;
+        }
+        .timeline-dot.active {
+            border-color: var(--primary); background: var(--primary);
+            box-shadow: 0 0 12px rgba(61,90,254,0.6);
+        }
+        .timeline-date {
+            font-size: 11px; color: var(--text-dim); font-weight: 700; text-transform: uppercase;
+        }
+        .timeline-day-num {
+            font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 2px;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Mi Rutina</h1>
-        <p>Potenciado por Gemini • S25 Ultra Edition</p>
     </header>
 
     <main class="app-content">
-        <div class="current-day-label">
-            <h2 id="dayTitle">Lunes</h2>
-            <span id="focusTag">Máquinas</span>
+        <!-- VISTA HOME -->
+        <div id="homeView" style="display: none;">
+            <div class="home-header">
+                <h2>Resumen</h2>
+            </div>
+            
+            <div id="imcSection">
+                <!-- Se llenará mediante JS -->
+            </div>
+            
+            <div class="metric-card" id="timelineSection" style="padding: 24px 15px; margin-top: 24px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+                    <h3 style="margin:0; font-size:18px;">Línea de Actividad</h3>
+                    <div style="background:rgba(255,152,0,0.15); color:#ff9800; padding:6px 14px; border-radius:20px; font-weight:800; font-size:14px; display:flex; align-items:center; gap:5px;">
+                        🔥 Racha: <span id="streakCount">0</span>
+                    </div>
+                </div>
+                <div id="timelineContainer">
+                    <!-- Se llenará mediante JS -->
+                </div>
+            </div>
         </div>
 
-        <div id="exerciseList">
+        <!-- VISTA RUTINA -->
+        <div id="routineView" style="display: none;">
+            <div class="day-header">
+                <h2 id="dayTitle">Lunes</h2>
+                <span class="focus-tag" id="focusTag">Cargando...</span>
             </div>
+            <div id="exerciseList"></div>
+            <div style="padding: 10px 0 40px;">
+                <button id="completeBtn" class="small-btn" onclick="completeTodayRoutine()" style="max-width: none; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); opacity: 0.6; pointer-events: none; transition: all 0.3s; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">✔️ Completar Rutina de Hoy</button>
+            </div>
+        </div>
     </main>
 
+    <!-- Modal -->
+    <div id="exerciseModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div class="check-area" id="modalCheckArea" onclick="toggleModalCheck()" style="padding: 0; cursor: pointer;">
+                        <div class="check-circle" id="modalCheckCircle"></div>
+                    </div>
+                    <h3 id="modalTitle">Nombre Ejercicio</h3>
+                </div>
+                <button class="close-modal" aria-label="Cerrar modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-gif-container">
+                    <img id="modalGif" src="" alt="Ejercicio" loading="lazy">
+                </div>
+                <div class="modal-details">
+                    <p class="modal-series">🕒 Series: <span id="modalSeriesVal"></span></p>
+                    <p class="modal-desc">Concéntrate en la técnica y mantén un ritmo controlado. Respira adecuadamente durante todo el movimiento.</p>
+                </div>
+            </div>
+            <button class="modal-btn" onclick="closeModal()">Entendido</button>
+        </div>
+    </div>
+
+    <!-- Modal Datos Corporales -->
+    <div id="dataModal" class="modal-overlay">
+        <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h3 style="color:#fff; margin:0; font-size:20px;">Tus Datos</h3>
+                <button class="close-modal" aria-label="Cerrar modal" onclick="closeDataModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="dataGoal">Meta / Objetivo</label>
+                    <select id="dataGoal">
+                        <option value="Perder grasa">Perder grasa</option>
+                        <option value="Mantener peso">Mantener peso</option>
+                        <option value="Aumentar masa muscular">Aumentar masa muscular</option>
+                        <option value="Mejorar resistencia">Mejorar resistencia</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div class="form-group">
+                        <label for="dataWeight">Peso (kg)</label>
+                        <input type="number" id="dataWeight" placeholder="Ej. 70" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataHeight">Altura (cm)</label>
+                        <input type="number" id="dataHeight" placeholder="Ej. 175">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div class="form-group">
+                        <label for="dataFat">Grasa Corp. (%)</label>
+                        <input type="number" id="dataFat" placeholder="Ej. 15" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataWater">Agua (%)</label>
+                        <input type="number" id="dataWater" placeholder="Ej. 55" step="0.1">
+                    </div>
+                </div>
+                <!-- Extra metrics -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div class="form-group">
+                        <label for="dataMuscle">M. Muscular (%)</label>
+                        <input type="number" id="dataMuscle" placeholder="Ej. 40" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataVisceral">G. Visceral</label>
+                        <input type="number" id="dataVisceral" placeholder="Ej. 5" step="0.1">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div class="form-group">
+                        <label for="dataFreeFatMass">M. sin Grasa (kg)</label>
+                        <input type="number" id="dataFreeFatMass" placeholder="Ej. 60" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataBmr">Metabolismo Basal</label>
+                        <input type="number" id="dataBmr" placeholder="kcal Ej. 1800">
+                    </div>
+                </div>
+            </div>
+            <button class="modal-btn" onclick="calculateAndSaveData()">Guardar Datos</button>
+        </div>
+    </div>
+
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="updateView('Lunes', this)">
-            <span class="nav-icon">L</span>
-            <span>LUN</span>
-        </div>
-        <div class="nav-item" onclick="updateView('Martes', this)">
-            <span class="nav-icon">M</span>
-            <span>MAR</span>
-        </div>
-        <div class="nav-item" onclick="updateView('Miercoles', this)">
-            <span class="nav-icon">M</span>
-            <span>MIE</span>
-        </div>
-        <div class="nav-item" onclick="updateView('Jueves', this)">
-            <span class="nav-icon">J</span>
-            <span>JUE</span>
-        </div>
-        <div class="nav-item" onclick="updateView('Viernes', this)">
-            <span class="nav-icon">V</span>
-            <span>VIE</span>
-        </div>
+        <div class="nav-item active" onclick="showHome(this)"><span class="nav-icon">🏠</span>INI</div>
+        <div class="nav-item" onclick="updateView('Lunes', this)"><span class="nav-icon">L</span>LUN</div>
+        <div class="nav-item" onclick="updateView('Martes', this)"><span class="nav-icon">M</span>MAR</div>
+        <div class="nav-item" onclick="updateView('Miercoles', this)"><span class="nav-icon">M</span>MIE</div>
+        <div class="nav-item" onclick="updateView('Jueves', this)"><span class="nav-icon">J</span>JUE</div>
+        <div class="nav-item" onclick="updateView('Viernes', this)"><span class="nav-icon">V</span>VIE</div>
+        <div class="nav-item" onclick="updateView('Sabado', this)"><span class="nav-icon">S</span>SAB</div>
+        <div class="nav-item" onclick="updateView('Domingo', this)"><span class="nav-icon">D</span>DOM</div>
     </nav>
 
     <script>
         const routines = {
             'Lunes': { focus: 'Superior (Empuje)', ex: [
-                {n: 'Press Pecho Máquina', s: '4 x 12'},
-                {n: 'Jalón Polea Alta', s: '4 x 12'},
-                {n: 'Press Hombro Máquina', s: '3 x 12'},
-                {n: 'Bíceps/Tríceps Polea', s: '3 x 15'},
-                {n: 'Crunch Máquina', s: '3 x 15'}
+                {n: 'Press Pecho Máquina', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Chest-Press.gif'},
+                {n: 'Jalón Polea Alta', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif'},
+                {n: 'Press Hombro Máquina', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif'},
+                {n: 'Bíceps Polea (Barra)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/cable-curl.gif'},
+                {n: 'Tríceps Polea (Cuerda)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif'},
+                {n: 'Peck Deck Fly', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Pec-Deck-Fly.gif'},
+                {n: 'Remo Sentado Máquina', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Row-Machine.gif'},
+                {n: 'Crunch Polea (Máquina)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Kneeling-Cable-Crunch.gif'}
             ]},
             'Martes': { focus: 'Pierna (Cuádriceps)', ex: [
-                {n: 'Prensa 45°', s: '4 x 12'},
-                {n: 'Extensión Cuádriceps', s: '4 x 15'},
-                {n: 'Curl Femoral Sentado', s: '3 x 12'},
-                {n: 'Máquina Glúteo', s: '4 x 12'},
-                {n: 'Prensa Pantorrilla', s: '4 x 20'}
+                {n: 'Prensa 45°', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif'},
+                {n: 'Extensión Cuádriceps', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif'},
+                {n: 'Curl Femoral Sentado', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif'},
+                {n: 'Máquina Glúteo', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Glute-Kickback-Machine.gif'},
+                {n: 'Prensa Pantorrilla', s: '4 x 20', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Leg-Press-Calf-Raise.gif'},
+                {n: 'Abducción Máquina', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/HiP-ABDUCTION-MACHINE.gif'},
+                {n: 'Aducción Polea', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Cable-Hip-Adduction.gif'},
+                {n: 'Sentadilla Hack (o Smith)', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2024/10/smith-machine-squat.gif'}
             ]},
-            'Miercoles': { focus: 'Full Body', ex: [
-                {n: 'Prensa Horizontal', s: '3 x 15'},
-                {n: 'Peck Deck', s: '3 x 12'},
-                {n: 'Remo Bajo Máquina', s: '3 x 12'},
-                {n: 'Elevaciones Polea', s: '3 x 15'},
-                {n: 'Leñador Polea', s: '3 x 15'}
+            'Miercoles': { focus: 'Cuerpo Completo (Full Body)', ex: [
+                {n: 'Prensa (Piernas)', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Lever-Horizontal-Leg-Press.gif'},
+                {n: 'Patada Máquina (Glúteos)', s: '4 x 15/lado', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Glute-Kickback-Machine.gif'},
+                {n: 'Press Pecho (Pecho)', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Chest-Press.gif'},
+                {n: 'Remo Sentado (Espalda)', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Cable-Row.gif'},
+                {n: 'Elev. Laterales (Hombros)', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/07/one-arm-Cable-Lateral-Raise.gif'},
+                {n: 'Curl Bíceps (Brazos)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif'},
+                {n: 'Tríceps Polea (Brazos)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif'},
+                {n: 'Crunch Polea (Máquina)', s: '3 x 20', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Kneeling-Cable-Crunch.gif'}
             ]},
             'Jueves': { focus: 'Superior (Tracción)', ex: [
-                {n: 'Press Inclinado Smith', s: '4 x 10'},
-                {n: 'Remo Convergente', s: '4 x 12'},
-                {n: 'Face Pulls Polea', s: '3 x 15'},
-                {n: 'Predicador Máquina', s: '3 x 12'},
-                {n: 'Fondos Asistidos', s: '3 x 12'}
+                {n: 'Remo Convergente', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Row-Machine.gif'},
+                {n: 'Jalón Neutro Máquina', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif'},
+                {n: 'Face Pulls Polea', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Face-Pull.gif'},
+                {n: 'Predicador Máquina', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Preacher-Curl.gif'},
+                {n: 'Fondos Asistidos', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Assisted-Chest-Dip.gif'},
+                {n: 'Press Hombro Máquina', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif'},
+                {n: 'Pull Over Polea', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Cable-Straight-Arm-Pulldown.gif'},
+                {n: 'Plancha Abdominal', s: '3 x 1 min', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/plank.gif'}
             ]},
             'Viernes': { focus: 'Pierna (Posterior)', ex: [
-                {n: 'Curl Femoral Acostado', s: '4 x 12'},
-                {n: 'Abducción Máquina', s: '4 x 15'},
-                {n: 'Prensa Unilateral', s: '3 x 12'},
-                {n: 'Hiperextensiones', s: '3 x 15'},
-                {n: 'Costurero Pantorrilla', s: '4 x 15'}
+                {n: 'Curl Femoral Sentado', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif'},
+                {n: 'Peso Muerto Barra', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Deadlift.gif'},
+                {n: 'Abducción Máquina', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/HiP-ABDUCTION-MACHINE.gif'},
+                {n: 'Prensa Unilateral', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif'},
+                {n: 'Hiperextensiones', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/hyperextension.gif'},
+                {n: 'Costurero Pantorrilla', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Leg-Press-Calf-Raise.gif'},
+                {n: 'Sentadilla Libre', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2024/10/smith-machine-squat.gif'},
+                {n: 'Patada Glúteo Máquina', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Glute-Kickback-Machine.gif'}
+            ]},
+            'Sabado': { focus: 'Brazos y Detalles', ex: [
+                {n: 'Curl Biceps Alterno', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif'},
+                {n: 'Tríceps Copa Manc.', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Triceps-Extension.gif'},
+                {n: 'Curl Predicador Máquina', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Preacher-Curl.gif'},
+                {n: 'Tríceps Polea Cuerda', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif'},
+                {n: 'Vuelos Laterales', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif'},
+                {n: 'Face Pulls (Hombro post)', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Face-Pull.gif'},
+                {n: 'Encogimiento Hombros', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Shrug.gif'},
+                {n: 'Rueda Abdominal', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Ab-Wheel-Rollout.gif'}
+            ]},
+            'Domingo': { focus: 'Full Body (Sólo Máquinas)', ex: [
+                {n: 'Prensa 45° (Piernas)', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif'},
+                {n: 'Curl Femoral Sentado', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif'},
+                {n: 'Press Pecho Máquina', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Chest-Press.gif'},
+                {n: 'Jalón Polea Alta (Espalda)', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif'},
+                {n: 'Press Hombro Máquina', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif'},
+                {n: 'Bíceps Polea Barra', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/cable-curl.gif'},
+                {n: 'Tríceps Polea Cuerda', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif'},
+                {n: 'Crunch Abdominal Polea', s: '4 x 20', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Kneeling-Cable-Crunch.gif'}
             ]}
         };
 
-        function updateView(day, element) {
-            // Animación de botones
+        function showHome(element) {
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            element.classList.add('active');
+            if(element) element.classList.add('active');
+            
+            document.getElementById('routineView').style.display = 'none';
+            document.getElementById('homeView').style.display = 'block';
+            
+            renderDataSection();
+            renderTimeline();
+        }
 
-            // Actualizar datos
+        function getLocalDateStr(dateObj) {
+            const y = dateObj.getFullYear();
+            const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const d = String(dateObj.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
+        function completeTodayRoutine() {
+            const todayStr = getLocalDateStr(new Date());
+            const data = JSON.parse(localStorage.getItem('meloFitInt_history') || '[]');
+            if(!data.includes(todayStr)) {
+                data.push(todayStr);
+                localStorage.setItem('meloFitInt_history', JSON.stringify(data));
+                alert('¡Felicidades! Rutina registrada. Continúa así para aumentar tu racha 🔥.');
+            } else {
+                alert('Ya has registrado tu rutina de hoy. ¡Descansa y prepárate para mañana!');
+            }
+        }
+
+        function renderTimeline() {
+            const historyData = JSON.parse(localStorage.getItem('meloFitInt_history') || '[]');
+            const historySet = new Set(historyData);
+            
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            const todayStr = getLocalDateStr(today);
+            const yesterdayStr = getLocalDateStr(new Date(today.getTime() - 86400000));
+            
+            let streak = 0;
+            if (historySet.has(todayStr)) {
+                let tempStreak = 1;
+                let checkDate = new Date(today.getTime() - 86400000);
+                while(historySet.has(getLocalDateStr(checkDate))) {
+                    tempStreak++;
+                    checkDate.setDate(checkDate.getDate() - 1);
+                }
+                streak = tempStreak;
+            } else if (historySet.has(yesterdayStr)) {
+                let tempStreak = 1;
+                let checkDate = new Date(today.getTime() - (2 * 86400000));
+                while(historySet.has(getLocalDateStr(checkDate))) {
+                    tempStreak++;
+                    checkDate.setDate(checkDate.getDate() - 1);
+                }
+                streak = tempStreak;
+            }
+            
+            const streakCountEl = document.getElementById('streakCount');
+            if(streakCountEl) streakCountEl.innerText = streak;
+            
+            // Determine start date
+            let startDate = new Date(today);
+            if (historyData.length > 0) {
+                const sortedHistory = [...historyData].sort();
+                const firstDateStr = sortedHistory[0];
+                const parts = firstDateStr.split('-');
+                if(parts.length === 3) {
+                    startDate = new Date(parts[0], parts[1]-1, parts[2]);
+                }
+            }
+            
+            // Si la fecha de inicio es menor a 7 días atrás, forzamos mínimo 7 días.
+            // Asi la línea nunca se ve vacía al inicio.
+            const diffTime = today.getTime() - startDate.getTime();
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            let daysToShow = diffDays + 1; // inclusive
+            if (daysToShow < 7) {
+                daysToShow = 7;
+                startDate = new Date(today.getTime() - (6 * 86400000));
+            }
+            
+            let dotsHtml = '';
+            for(let i = 0; i < daysToShow; i++) {
+                const d = new Date(startDate.getTime() + (i * 86400000));
+                const dStr = getLocalDateStr(d);
+                const isActive = historySet.has(dStr);
+                
+                const dayNames = ['D','L','M','M','J','V','S'];
+                let dayLabel = dayNames[d.getDay()];
+                const isToday = (dStr === todayStr);
+                
+                dotsHtml += `
+                    <div class="timeline-dot-wrapper">
+                        <div class="timeline-dot ${isActive ? 'active' : ''}"></div>
+                        <div class="timeline-date" style="${isToday ? 'color: var(--primary);' : ''}">${isToday ? 'HOY' : dayLabel}</div>
+                        ${!isToday ? `<div class="timeline-day-num">${d.getDate()}</div>` : ''}
+                    </div>
+                `;
+            }
+            
+            const container = document.getElementById('timelineContainer');
+            if(container) {
+                container.innerHTML = `
+                    <div class="timeline-wrapper" id="timelineScroll">
+                        <div class="timeline-container">
+                            <div class="timeline-line"></div>
+                            ${dotsHtml}
+                        </div>
+                    </div>
+                `;
+                
+                // Auto-scroll to the end (Hoy) so it's always focused on the latest days
+                setTimeout(() => {
+                    const scrollWrapper = document.getElementById('timelineScroll');
+                    if(scrollWrapper) {
+                        scrollWrapper.scrollLeft = scrollWrapper.scrollWidth;
+                    }
+                }, 50);
+            }
+        }
+
+        function renderDataSection() {
+            const savedData = localStorage.getItem('meloFitInt_userData') || localStorage.getItem('meloFitInt_imc');
+            const section = document.getElementById('imcSection');
+            
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                let cat = '';
+                let color = '';
+                const imc = data.imc || (data.weight / Math.pow(data.height/100, 2)).toFixed(1);
+                
+                if(imc < 18.5) { cat = 'Bajo peso'; color = '#ffeb3b'; }
+                else if(imc < 24.9) { cat = 'Normal'; color = '#4caf50'; }
+                else if(imc < 29.9) { cat = 'Sobrepeso'; color = '#ff9800'; }
+                else { cat = 'Obesidad'; color = '#f44336'; }
+                
+                const goal = data.goal || 'No definido';
+                const fat = data.fat ? data.fat + '%' : '--';
+                const water = data.water ? data.water + '%' : '--';
+                
+                section.innerHTML = `
+                    <div class="metric-card" style="margin-bottom: 20px;">
+                        <h3 style="margin-bottom:0; color:var(--text-dim); font-size:16px;">Meta Actual</h3>
+                        <div style="font-size: 22px; font-weight: 700; color: #fff; margin: 8px 0;">${goal}</div>
+                    </div>
+                    
+                    <div class="metric-grid">
+                        <div class="metric-box">
+                            <span>Peso</span>
+                            <strong>${data.weight} kg</strong>
+                        </div>
+                        <div class="metric-box">
+                            <span>IMC</span>
+                            <strong style="color: ${color};">${imc}</strong>
+                            <div style="font-size:11px; color:${color}; margin-top:2px;">${cat}</div>
+                        </div>
+                        <div class="metric-box">
+                            <span>Grasa Corp.</span>
+                            <strong>${data.fat ? data.fat + '%' : '--'}</strong>
+                        </div>
+                        <div class="metric-box">
+                            <span>Agua</span>
+                            <strong>${data.water ? data.water + '%' : '--'}</strong>
+                        </div>
+                        <div class="metric-box">
+                            <span>M. Muscular</span>
+                            <strong>${data.muscle ? data.muscle + '%' : '--'}</strong>
+                        </div>
+                        <div class="metric-box">
+                            <span>G. Visceral</span>
+                            <strong>${data.visceral ? data.visceral : '--'}</strong>
+                        </div>
+                        <div class="metric-box">
+                            <span>M. sin Grasa</span>
+                            <strong>${data.freeFatMass ? data.freeFatMass + ' kg' : '--'}</strong>
+                        </div>
+                        <div class="metric-box">
+                            <span>Metabolismo</span>
+                            <strong>${data.bmr ? data.bmr + ' kcal' : '--'}</strong>
+                        </div>
+                    </div>
+                    
+                    <button class="small-btn" onclick="openDataModal()">Actualizar Datos</button>
+                `;
+            } else {
+                section.innerHTML = `
+                    <div class="metric-card">
+                        <h3>Tus Datos Corporales</h3>
+                        <p>No tienes datos registrados. Ingresa tu objetivo, peso, altura y otras métricas para llevar un buen seguimiento.</p>
+                        <button class="small-btn" onclick="openDataModal()">Ingresar Datos</button>
+                    </div>
+                `;
+            }
+        }
+
+        function openDataModal() {
+            document.getElementById('dataModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            const savedData = localStorage.getItem('meloFitInt_userData') || localStorage.getItem('meloFitInt_imc');
+            if(savedData) {
+                const data = JSON.parse(savedData);
+                document.getElementById('dataGoal').value = data.goal || 'Perder grasa';
+                document.getElementById('dataWeight').value = data.weight || '';
+                document.getElementById('dataHeight').value = data.height || '';
+                document.getElementById('dataFat').value = data.fat || '';
+                document.getElementById('dataWater').value = data.water || '';
+                document.getElementById('dataMuscle').value = data.muscle || '';
+                document.getElementById('dataVisceral').value = data.visceral || '';
+                document.getElementById('dataFreeFatMass').value = data.freeFatMass || '';
+                document.getElementById('dataBmr').value = data.bmr || '';
+            } else {
+                document.getElementById('dataWeight').value = '';
+                document.getElementById('dataHeight').value = '';
+                document.getElementById('dataFat').value = '';
+                document.getElementById('dataWater').value = '';
+                document.getElementById('dataMuscle').value = '';
+                document.getElementById('dataVisceral').value = '';
+                document.getElementById('dataFreeFatMass').value = '';
+                document.getElementById('dataBmr').value = '';
+            }
+        }
+
+        function closeDataModal() {
+            document.getElementById('dataModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function calculateAndSaveData() {
+            const goal = document.getElementById('dataGoal').value;
+            const w = parseFloat(document.getElementById('dataWeight').value);
+            const h = parseFloat(document.getElementById('dataHeight').value);
+            const fat = parseFloat(document.getElementById('dataFat').value) || null;
+            const water = parseFloat(document.getElementById('dataWater').value) || null;
+            const muscle = parseFloat(document.getElementById('dataMuscle').value) || null;
+            const visceral = parseFloat(document.getElementById('dataVisceral').value) || null;
+            const freeFatMass = parseFloat(document.getElementById('dataFreeFatMass').value) || null;
+            const bmr = parseFloat(document.getElementById('dataBmr').value) || null;
+            
+            if(!w || !h || w <= 0 || h <= 0) {
+                alert("Por favor ingresa valores válidos para peso y altura.");
+                return;
+            }
+            
+            const hMetros = h / 100;
+            const imc = (w / (hMetros * hMetros)).toFixed(1);
+            
+            localStorage.setItem('meloFitInt_userData', JSON.stringify({
+                goal: goal,
+                weight: w,
+                height: h,
+                fat: fat,
+                water: water,
+                muscle: muscle,
+                visceral: visceral,
+                freeFatMass: freeFatMass,
+                bmr: bmr,
+                imc: imc
+            }));
+            
+            closeDataModal();
+            renderDataSection();
+        }
+
+        function checkRoutineCompletion() {
+            const btn = document.getElementById('completeBtn');
+            if(!btn) return;
+            
+            const total = document.querySelectorAll('#exerciseList .exercise-card').length;
+            const completed = document.querySelectorAll('#exerciseList .exercise-card.completed').length;
+            
+            if(total > 0 && total === completed) {
+                btn.style.background = '#4caf50';
+                btn.style.color = '#fff';
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            } else {
+                btn.style.background = 'rgba(255,255,255,0.1)';
+                btn.style.color = 'rgba(255,255,255,0.4)';
+                btn.style.opacity = '0.6';
+                btn.style.pointerEvents = 'none';
+            }
+        }
+
+        function updateView(day, element) {
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            if(element) element.classList.add('active');
+            
+            document.getElementById('homeView').style.display = 'none';
+            document.getElementById('routineView').style.display = 'block';
+
             document.getElementById('dayTitle').innerText = day;
             document.getElementById('focusTag').innerText = routines[day].focus;
-
             const list = document.getElementById('exerciseList');
             list.innerHTML = '';
-
+            
             routines[day].ex.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'exercise-card';
-                div.onclick = function() { this.classList.toggle('completed'); };
+                const fallbackImg = `https://ui-avatars.com/api/?name=${encodeURIComponent(item.n)}&background=1e1e1e&color=3d5afe&size=80&bold=true`;
+                
                 div.innerHTML = `
-                    <div class="exercise-info">
-                        <b>${item.n}</b>
-                        <span>🕒 ${item.s}</span>
-                    </div>
-                    <div class="check-circle"></div>
+                    <div class="gif-container"><img src="${item.gif}" onerror="this.onerror=null;this.src='${fallbackImg}';" alt="${item.n}" loading="lazy"></div>
+                    <div class="exercise-info"><b>${item.n}</b><span>🕒 ${item.s}</span></div>
+                    <div class="check-area"><div class="check-circle"></div></div>
                 `;
+                div.addEventListener('click', function(e) {
+                    if (e.target.closest('.check-area')) {
+                        this.classList.toggle('completed');
+                        checkRoutineCompletion();
+                    } else {
+                        openModal(item, this);
+                    }
+                });
                 list.appendChild(div);
             });
+            checkRoutineCompletion();
+        }
+        let currentCardElement = null;
+
+        function openModal(item, cardElement) {
+            currentCardElement = cardElement;
+            document.getElementById('modalTitle').innerText = item.n;
+            const fallbackImg = `https://ui-avatars.com/api/?name=${encodeURIComponent(item.n)}&background=1e1e1e&color=3d5afe&size=300&bold=true`;
+            const img = document.getElementById('modalGif');
+            img.onerror = function() { this.onerror=null; this.src=fallbackImg; };
+            img.src = item.gif;
+            document.getElementById('modalSeriesVal').innerText = item.s;
+            
+            // Sync check state
+            if (cardElement.classList.contains('completed')) {
+                document.getElementById('modalCheckArea').classList.add('completed');
+            } else {
+                document.getElementById('modalCheckArea').classList.remove('completed');
+            }
+
+            document.getElementById('exerciseModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        // Carga inicial
-        updateView('Lunes', document.querySelector('.nav-item'));
+        function toggleModalCheck() {
+            if (currentCardElement) {
+                currentCardElement.classList.toggle('completed');
+                document.getElementById('modalCheckArea').classList.toggle('completed');
+                checkRoutineCompletion();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('exerciseModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Cierra los modales si se hace clic fuera del contenido
+        document.getElementById('exerciseModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        document.getElementById('dataModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDataModal();
+        });
+
+        // Initialize Home view by default
+        showHome(document.querySelector('.nav-item'));
     </script>
 </body>
 </html>
