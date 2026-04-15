@@ -1,0 +1,14 @@
+CMake Warning in D:/Codes/Lenguajes-Learning/Mobile/React-Native/FitnessApp/Mobile/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:
+  The object file directory
+
+    D:/Codes/Lenguajes-Learning/Mobile/React-Native/FitnessApp/Mobile/android/app/.cxx/Debug/4s2e3m4v/arm64-v8a/safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/./
+
+  has 188 characters.  The maximum full path to an object file is 250
+  characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+
+    D_/Codes/Lenguajes-Learning/Mobile/React-Native/FitnessApp/Mobile/node_modules/react-native-safe-area-context/common/cpp/react/renderer/components/safeareacontext/RNCSafeAreaViewShadowNode.cpp.o
+
+  cannot be safely placed under this directory.  The build may not work
+  correctly.
+
+

@@ -1,0 +1,2 @@
+D:\Codes\Lenguajes-Learning\Mobile\React-Native\FitnessApp\Mobile\node_modules\react-native-safe-area-context\android\src\main\jni\CMakeLists.txt
+D:\Codes\Lenguajes-Learning\Mobile\React-Native\FitnessApp\Mobile\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup\CMakeLists.txt
