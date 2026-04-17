@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Finanzas | Premium Dashboard</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Mis Finanzas</h1>
+        <p>Control de Ingresos, Egresos y Ahorro Automático</p>
+    </header>
+
+    <main class="dashboard">
+        <!-- Quincena 1 (Día 15) -->
+        <section class="card" id="card-q1">
+            <div class="card-header">
+                <h2><i class="fa-solid fa-calendar-day"></i> 1ra Quincena</h2>
+                <span class="badge">Día 15</span>
+            </div>
+            
+            <div class="input-group">
+                <label>Ingresos Fijos</label>
+                <input type="number" id="income-q1" placeholder="Ej: 2000000" oninput="updateCalculations()">
+            </div>
+
+            <div class="input-group">
+                <label>Gastos</label>
+                <div id="expenses-q1" class="expenses-list">
+                    <!-- Dinámico -->
+                </div>
+                <button class="btn btn-add" onclick="addExpense('q1')">
+                    <i class="fa-solid fa-plus"></i> Agregar Gasto
+                </button>
+            </div>
+
+            <div class="footer-stats">
+                <div class="input-group">
+                    <label>Sobrante (Ahorro Potencial)</label>
+                    <input type="text" id="leftover-q1" disabled value="$ 0">
+                </div>
+            </div>
+        </section>
+
+        <!-- Quincena 2 (Día 30) -->
+        <section class="card" id="card-q2">
+            <div class="card-header">
+                <h2><i class="fa-solid fa-calendar-days"></i> 2da Quincena</h2>
+                <span class="badge">Día 30</span>
+            </div>
+            
+            <div class="input-group">
+                <label>Ingresos Fijos</label>
+                <input type="number" id="income-q2" placeholder="Ej: 2000000" oninput="updateCalculations()">
+            </div>
+
+            <div class="input-group">
+                <label>Gastos</label>
+                <div id="expenses-q2" class="expenses-list">
+                    <!-- Dinámico -->
+                </div>
+                <button class="btn btn-add" onclick="addExpense('q2')">
+                    <i class="fa-solid fa-plus"></i> Agregar Gasto
+                </button>
+            </div>
+
+            <div class="footer-stats">
+                <div class="input-group">
+                    <label>Sobrante (Ahorro Potencial)</label>
+                    <input type="text" id="leftover-q2" disabled value="$ 0">
+                </div>
+            </div>
+        </section>
+
+        <!-- Ahorro y Cortes -->
+        <section class="card" id="card-savings">
+            <div class="card-header">
+                <h2><i class="fa-solid fa-piggy-bank"></i> Fondo de Ahorro</h2>
+                <span class="badge" id="savings-total-badge">$ 0</span>
+            </div>
+
+            <div class="input-group">
+                <label>Total Ahorrado</label>
+                <input type="text" id="total-savings" disabled value="$ 0">
+            </div>
+
+            <div class="input-group">
+                <label>Historial / Imprevistos</label>
+                <div id="savings-history" class="expenses-list">
+                    <!-- Dinámico -->
+                </div>
+                <button class="btn btn-add" onclick="addManualWithdrawal()">
+                    <i class="fa-solid fa-minus"></i> Registrar Imprevisto
+                </button>
+            </div>
+
+            <div class="footer-stats" style="border-top: none;">
+                <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; font-style: italic;">
+                    Nota: Los cortes se realizan los días 29 (Q1) y 14 (Q2)
+                </p>
+                <p id="system-date" style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: var(--primary);">
+                    Fecha actual del sistema: ...
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- App Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
