@@ -20,7 +20,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <View style={styles.container}>
           <Text h1 style={styles.title}>Fitness App</Text>
-          <Text style={styles.subtitle}>¡Bienvenido a tu entrenamiento!</Text>
+          <Text style={styles.subtitle}>¡Entrenamiento personalizado!</Text>
           
           <Button
             title="Empezar"
