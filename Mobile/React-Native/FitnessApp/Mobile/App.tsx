@@ -1,64 +1,27 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import { ThemeProvider, createTheme, Button, Text } from '@rneui/themed';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ThemeProvider, createTheme } from '@rneui/themed';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import AppNavigator from './src/navegation/AppNavigator';
+import { AppProvider } from './src/context/AppContext';
 
 const theme = createTheme({
   lightColors: {
-    primary: '#007AFF',
-  },
-  darkColors: {
-    primary: '#007AFF',
+    primary: '#4ADE80',
   },
   mode: 'light',
 });
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <View style={styles.container}>
-          <Text h1 style={styles.title}>Fitness App</Text>
-          <Text style={styles.subtitle}>¡Entrenamiento personalizado!</Text>
-          
-          <Button
-            title="Empezar"
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            raised
-          />
-          
-          <StatusBar style="auto" />
-        </View>
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AppProvider>
+        <SafeAreaProvider>
+          <ThemeProvider theme={theme}>
+            <AppNavigator />
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </AppProvider>
+    </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    marginBottom: 10,
-    color: '#333',
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#666',
-    marginBottom: 30,
-  },
-  buttonContainer: {
-    width: '80%',
-    marginVertical: 10,
-  },
-  button: {
-    borderRadius: 25,
-    height: 50,
-  },
-});
