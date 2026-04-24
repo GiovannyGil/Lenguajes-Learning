@@ -27,9 +27,9 @@ const WelcomeView: React.FC = () => {
             <Text style={styles.highlight}>Personalizada</Text>
           </Text>
           
-          <Text style={styles.subtitle}>
+          {/* <Text style={styles.subtitle}>
             Entrenamiento inteligente para resultados reales
-          </Text>
+          </Text> */}
 
           <TouchableOpacity 
             style={styles.button} 
