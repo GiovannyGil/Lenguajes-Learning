@@ -22,21 +22,22 @@ const WelcomeView: React.FC = () => {
 
       <SafeAreaView style={styles.content}>
         <View style={styles.card}>
-          <Text style={styles.title}>
-            Rutina{"\n"}
-            <Text style={styles.highlight}>Personalizada</Text>
-          </Text>
-          
-          {/* <Text style={styles.subtitle}>
-            Entrenamiento inteligente para resultados reales
-          </Text> */}
+
+<TouchableOpacity 
+            style={styles.button} 
+            onPress={() => {}}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.buttonText}>EconomiaApp</Text>
+            <Ionicons name="arrow-forward" size={24} color={COLORS.white} />
+          </TouchableOpacity>
 
           <TouchableOpacity 
             style={styles.button} 
             onPress={handleGetStarted}
             activeOpacity={0.8}
           >
-            <Text style={styles.buttonText}>Empezar</Text>
+            <Text style={styles.buttonText}>FitnessApp</Text>
             <Ionicons name="arrow-forward" size={24} color={COLORS.white} />
           </TouchableOpacity>
         </View>
