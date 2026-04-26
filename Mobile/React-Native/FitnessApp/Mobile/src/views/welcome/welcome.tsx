@@ -28,7 +28,7 @@ const WelcomeView: React.FC = () => {
             onPress={() => {}}
             activeOpacity={0.8}
           >
-            <Text style={styles.buttonText}>EconomiaApp</Text>
+            <Text style={styles.buttonText}>EconomiApp</Text>
             <Ionicons name="arrow-forward" size={24} color={COLORS.white} />
           </TouchableOpacity>
 
