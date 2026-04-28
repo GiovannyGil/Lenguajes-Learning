@@ -236,6 +236,18 @@ input:disabled {
     color: white;
 }
 
+.actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.actions-grid .btn-add:hover {
+    background: var(--text-main);
+    color: var(--bg-dark) !important;
+    border-style: solid;
+}
+
 .btn-edit {
     background: rgba(99, 102, 241, 0.1);
     color: var(--primary);

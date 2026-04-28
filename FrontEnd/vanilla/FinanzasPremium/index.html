@@ -101,9 +101,14 @@
                 <div id="savings-history" class="expenses-list">
                     <!-- Dinámico -->
                 </div>
-                <button class="btn btn-add" onclick="addManualWithdrawal()">
-                    <i class="fa-solid fa-minus"></i> Registrar Imprevisto
-                </button>
+                <div class="actions-grid">
+                    <button class="btn btn-add" onclick="addManualDeposit()" style="color: var(--accent); border-color: var(--accent);">
+                        <i class="fa-solid fa-plus"></i> Agregar Ahorro
+                    </button>
+                    <button class="btn btn-add" onclick="addManualWithdrawal()" style="color: var(--secondary); border-color: var(--secondary);">
+                        <i class="fa-solid fa-minus"></i> Registrar Imprevisto
+                    </button>
+                </div>
             </div>
 
             <div class="footer-stats" style="border-top: none;">

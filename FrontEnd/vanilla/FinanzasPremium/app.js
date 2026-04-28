@@ -131,23 +131,71 @@ async function editExpense(q, id) {
     const exp = state[q].expenses.find(e => e.id === id);
     if (!exp) return;
 
+    let currentAmount = exp.amount;
+
     const { value: formValues } = await Swal.fire({
         title: 'Editar Gasto',
         background: '#1e293b',
         color: '#f8fafc',
-        html:
-            `<input id="swal-input1" class="swal2-input" value="${exp.desc}" style="background: #0f172a; color: white; border: 1px solid var(--glass-border)">` +
-            `<input id="swal-input2" type="number" class="swal2-input" value="${exp.amount}" style="background: #0f172a; color: white; border: 1px solid var(--glass-border)">`,
+        html: `
+            <div style="display: flex; flex-direction: column; gap: 15px; text-align: left;">
+                <div class="input-group">
+                    <label style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 5px;">Descripción</label>
+                    <input id="swal-input1" class="swal2-input" value="${exp.desc}" style="margin: 0; width: 100%; background: #0f172a; color: white; border: 1px solid var(--glass-border); border-radius: 12px;">
+                </div>
+                
+                <div class="input-group">
+                    <label style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 5px;">Monto Actual</label>
+                    <div style="position: relative;">
+                        <input id="swal-amount-display" class="swal2-input" value="${currentAmount}" disabled style="margin: 0; width: 100%; background: rgba(15, 23, 42, 0.8); color: var(--accent); border: 2px dashed var(--accent); text-align: center; font-weight: 800; font-size: 1.8rem; border-radius: 16px; height: 70px;">
+                        <span style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 1.2rem; opacity: 0.5;">$</span>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; border: 1px solid var(--glass-border); margin-top: 5px;">
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Ajustar Monto</p>
+                    <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center;">
+                        <input id="swal-adj-input" type="number" class="swal2-input" placeholder="0" style="margin: 0; width: 100%; background: #0f172a; color: white; border: 1px solid var(--glass-border); border-radius: 12px; height: 45px;">
+                        <button id="btn-sub" type="button" class="btn" style="background: rgba(239, 68, 68, 0.15); color: var(--danger); width: 45px; height: 45px; border-radius: 12px; border: 1px solid var(--danger); cursor: pointer;"><i class="fa-solid fa-minus"></i></button>
+                        <button id="btn-add" type="button" class="btn" style="background: rgba(16, 185, 129, 0.15); color: var(--accent); width: 45px; height: 45px; border-radius: 12px; border: 1px solid var(--accent); cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        `,
+        didOpen: () => {
+            const display = document.getElementById('swal-amount-display');
+            const adjInput = document.getElementById('swal-adj-input');
+            const btnAdd = document.getElementById('btn-add');
+            const btnSub = document.getElementById('btn-sub');
+
+            btnAdd.onclick = () => {
+                const val = parseFloat(adjInput.value) || 0;
+                if(val === 0) return;
+                currentAmount += val;
+                display.value = currentAmount;
+                adjInput.value = '';
+                adjInput.focus();
+            };
+
+            btnSub.onclick = () => {
+                const val = parseFloat(adjInput.value) || 0;
+                if(val === 0) return;
+                currentAmount -= val;
+                display.value = Math.max(0, currentAmount);
+                currentAmount = Math.max(0, currentAmount);
+                adjInput.value = '';
+                adjInput.focus();
+            };
+        },
         focusConfirm: false,
         confirmButtonText: 'Guardar cambios',
         confirmButtonColor: 'var(--primary)',
         preConfirm: () => {
             const desc = document.getElementById('swal-input1').value;
-            const amount = document.getElementById('swal-input2').value;
-            if (!desc || !amount) {
-                Swal.showValidationMessage('Por favor llena ambos campos');
+            if (!desc) {
+                Swal.showValidationMessage('Por favor llena la descripción');
             }
-            return { desc: desc, amount: parseFloat(amount) };
+            return { desc: desc, amount: currentAmount };
         }
     });
 
@@ -187,6 +235,52 @@ async function removeExpense(q, id) {
         state[q].expenses = state[q].expenses.filter(e => e.id !== id);
         renderExpenses(q);
         updateCalculations();
+    }
+}
+
+async function addManualDeposit() {
+    const { value: formValues } = await Swal.fire({
+        title: 'Agregar Ahorro',
+        background: '#1e293b',
+        color: '#f8fafc',
+        html:
+            '<input id="swal-input1" class="swal2-input" placeholder="Descripción (Ej: Ahorro guardado)" style="background: #0f172a; color: white; border: 1px solid var(--glass-border)">' +
+            '<input id="swal-input2" type="number" class="swal2-input" placeholder="Monto" style="background: #0f172a; color: white; border: 1px solid var(--glass-border)">',
+        focusConfirm: false,
+        confirmButtonText: 'Depositar',
+        confirmButtonColor: 'var(--accent)',
+        preConfirm: () => {
+            const desc = document.getElementById('swal-input1').value;
+            const amount = document.getElementById('swal-input2').value;
+            if (!desc || !amount) {
+                Swal.showValidationMessage('Campos requeridos');
+            }
+            return { desc: desc, amount: parseFloat(amount) };
+        }
+    });
+
+    if (formValues) {
+        state.savings.history.unshift({
+            id: Date.now(),
+            desc: formValues.desc,
+            amount: formValues.amount,
+            date: new Date().toLocaleDateString(),
+            type: 'income'
+        });
+        
+        state.savings.total += formValues.amount;
+        renderSavings();
+        saveState();
+        Swal.fire({
+            icon: 'success',
+            title: 'Ahorro agregado',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            background: '#1e293b',
+            color: '#f8fafc'
+        });
     }
 }
 
