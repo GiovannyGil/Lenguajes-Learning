@@ -23,7 +23,7 @@ const WelcomeView: React.FC = () => {
       <SafeAreaView style={styles.content}>
         <View style={styles.card}>
 
-<TouchableOpacity 
+          <TouchableOpacity 
             style={styles.button} 
             onPress={() => {}}
             activeOpacity={0.8}
@@ -31,6 +31,8 @@ const WelcomeView: React.FC = () => {
             <Text style={styles.buttonText}>EconomiApp</Text>
             <Ionicons name="arrow-forward" size={24} color={COLORS.white} />
           </TouchableOpacity>
+
+          
 
           <TouchableOpacity 
             style={styles.button} 

@@ -36,6 +36,7 @@ export const styles = StyleSheet.create({
     borderRadius: 45,
     paddingVertical: 50,
     paddingHorizontal: 25,
+    gap: 25,
     width: '90%',
     maxWidth: 360,
     alignItems: 'center',
