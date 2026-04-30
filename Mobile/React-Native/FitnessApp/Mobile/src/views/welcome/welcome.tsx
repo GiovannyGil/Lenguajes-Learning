@@ -32,8 +32,6 @@ const WelcomeView: React.FC = () => {
             <Ionicons name="arrow-forward" size={24} color={COLORS.white} />
           </TouchableOpacity>
 
-          
-
           <TouchableOpacity 
             style={styles.button} 
             onPress={handleGetStarted}
