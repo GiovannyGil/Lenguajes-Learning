@@ -3,7 +3,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Welcome: undefined;
-  Home: undefined;
+  FitnessApp: undefined;
+  EconomyApp: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Welcome'>;
@@ -12,7 +13,7 @@ export const useWelcomeLogic = () => {
   const navigation = useNavigation<NavigationProp>();
 
   const handleGetStarted = () => {
-    navigation.navigate('Home');
+    navigation.navigate('FitnessApp');
   };
 
   return {

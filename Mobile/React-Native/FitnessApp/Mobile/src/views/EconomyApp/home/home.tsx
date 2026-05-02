@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const HomeView: React.FC = () => {
+const EconomyApp: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeView;
+export default EconomyApp;
