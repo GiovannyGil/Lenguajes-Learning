@@ -6,7 +6,7 @@ import { useWelcomeLogic } from './welcome.logic';
 import { Ionicons } from '@expo/vector-icons';
 
 const WelcomeView: React.FC = () => {
-  const { handleGetStarted } = useWelcomeLogic();
+  const { handleGetStartedFitnessApp, handleGetStartedEconomyApp, handleGetStartedEventsApp } = useWelcomeLogic();
 
   return (
     <View style={styles.container}>
@@ -25,7 +25,7 @@ const WelcomeView: React.FC = () => {
 
           <TouchableOpacity 
             style={styles.button} 
-            onPress={() => {}}
+            onPress={handleGetStartedEconomyApp}
             activeOpacity={0.8}
           >
             <Text style={styles.buttonText}>EconomiApp</Text>
@@ -34,7 +34,7 @@ const WelcomeView: React.FC = () => {
 
           <TouchableOpacity 
             style={styles.button} 
-            onPress={handleGetStarted}
+            onPress={handleGetStartedFitnessApp}
             activeOpacity={0.8}
           >
             <Text style={styles.buttonText}>FitnessApp</Text>
