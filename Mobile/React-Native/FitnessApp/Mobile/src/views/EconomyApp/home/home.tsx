@@ -6,7 +6,7 @@ const EconomyApp: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>¡Bienvenido al Dashboard!</Text>
+        <Text style={styles.title}>¡Bienvenido a EconomyApp!</Text>
         <Text style={styles.subtitle}>Aquí verás tus rutinas del día.</Text>
       </View>
     </SafeAreaView>
