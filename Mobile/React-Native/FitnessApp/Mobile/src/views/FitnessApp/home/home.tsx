@@ -7,7 +7,7 @@ const FitnessApp: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>¡Bienvenido al Fitness App!</Text>
-        <Text style={styles.subtitle}>Aquí verás tus rutinas del día.</Text>
+        <Text style={styles.subtitle}>Aquí verás las rutinas de entrenamiento personalizados.</Text>
       </View>
     </SafeAreaView>
   );
