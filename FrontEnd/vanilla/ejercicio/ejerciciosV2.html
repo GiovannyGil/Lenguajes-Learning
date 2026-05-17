@@ -413,10 +413,10 @@
         <div class="nav-item active" onclick="showHome(this)"><span class="nav-icon">🏠</span>INI</div>
         <div class="nav-item" onclick="updateView('Lunes', this)"><span class="nav-icon">L</span>LUN</div>
         <div class="nav-item" onclick="updateView('Martes', this)"><span class="nav-icon">M</span>MAR</div>
-        <div class="nav-item" onclick="updateView('Miercoles', this)"><span class="nav-icon">M</span>MIE</div>
+        <div class="nav-item" onclick="updateView('Miércoles', this)"><span class="nav-icon">M</span>MIE</div>
         <div class="nav-item" onclick="updateView('Jueves', this)"><span class="nav-icon">J</span>JUE</div>
         <div class="nav-item" onclick="updateView('Viernes', this)"><span class="nav-icon">V</span>VIE</div>
-        <div class="nav-item" onclick="updateView('Sabado', this)"><span class="nav-icon">S</span>SAB</div>
+        <div class="nav-item" onclick="updateView('Sábado', this)"><span class="nav-icon">S</span>SAB</div>
         <div class="nav-item" onclick="updateView('Domingo', this)"><span class="nav-icon">D</span>DOM</div>
     </nav>
 
@@ -425,11 +425,11 @@
 const routines = {
     'Lunes': { focus: 'Brazos y Antebrazos', ex: [
         {n: 'Tríceps Copa Mancuerna', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Triceps-Extension.gif'},
-        {n: 'Curl Bíceps c/Mancuernas Inclinado', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Incline-Dumbbell-Curl.gif'},
+        {n: 'Curl Bíceps c/Mancuernas Inclinado', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Incline-Dumbbell-Curl.gif'},
         {n: 'Tríceps Polea Alta (Cuerda)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif'},
         {n: 'Curl Predicador en Máquina', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Preacher-Curl.gif'},
-        {n: 'Fondos Asistidos (Enfoque Tríceps)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Assisted-Triceps-Dip.gif'},
-        {n: 'Curl Inverso con Barra (Antebrazo)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/09/Reverse-Barbell-Curl.gif'}
+        {n: 'Fondos Asistidos (Enfoque Tríceps)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2022/11/Asisted-Triceps-Dips.gif'},
+        {n: 'Curl Inverso con Barra (Antebrazo)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Reverse-Curl.gif'}
     ]},
     'Martes': { focus: 'Pecho y Abdomen', ex: [
         {n: 'Press Plano con Mancuernas', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Press.gif'},
@@ -439,24 +439,24 @@ const routines = {
         {n: 'Elevación Piernas (Silla Romana)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Captains-Chair-Leg-Raise.gif'},
         {n: 'Plancha Abdominal', s: '3 x 1 min', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/plank.gif'}
     ]},
-    'Miercoles': { focus: 'Hombros, Trapecio y Pantorrilla', ex: [
+    'Miércoles': { focus: 'Hombros, Trapecio y Pantorrilla', ex: [
         {n: 'Press de Hombro con Mancuernas', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif'},
         {n: 'Vuelos Laterales con Mancuerna', s: '4 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif'},
         {n: 'Face Pulls en Polea', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Face-Pull.gif'},
         {n: 'Encogimiento de Hombros c/Mancuernas', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Shrug.gif'},
         {n: 'Prensa para Pantorrilla', s: '4 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Leg-Press-Calf-Raise.gif'},
-        {n: 'Pantorrilla Sentado (Costurero)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Seated-Calf-Raise.gif'}
+        {n: 'Pantorrilla Sentado (Costurero)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Seated-Calf-Raise.gif'}
     ]},
     'Jueves': { focus: 'Espalda Completa', ex: [
         {n: 'Jalón Polea Alta (Agarre Abierto)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif'},
         {n: 'Remo Unilateral con Mancuerna', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif'},
-        {n: 'Jalón al Pecho Agarre Neutro', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Close-Grip-Lat-Pulldown.gif'},
+        {n: 'Jalón al Pecho Agarre Neutro', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Close-Grip-Lat-Pulldown.gif'},
         {n: 'Remo Sentado en Polea (o Máquina)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Cable-Row.gif'},
         {n: 'Pull Over con Brazos Rectos en Polea', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/05/Cable-Straight-Arm-Pulldown.gif'},
         {n: 'Hiperextensiones Lumbares', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/hyperextension.gif'}
     ]},
     'Viernes': { focus: 'Piernas (Completo)', ex: [
-        {n: 'Sentadilla Libre con Barra', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Squat.gif'},
+        {n: 'Sentadilla Libre con Barra', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/BARBELL-SQUAT.gif'},
         {n: 'Prensa a 45 Grados', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif'},
         {n: 'Extensión de Cuádriceps en Máquina', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif'},
         {n: 'Curl Femoral Sentado', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif'},
@@ -464,22 +464,22 @@ const routines = {
         {n: 'Abducción de Cadera en Máquina', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/HiP-ABDUCTION-MACHINE.gif'}
     ]},
     'Sábado': { focus: 'Cuerpo Completo (Patrones Libres)', ex: [
-        {n: 'Sentadilla con Mancuerna Goblet (Piernas)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Goblet-Squat.gif'},
-        {n: 'Peso Muerto Rumano c/Mancuerna (Posterior)', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Deadlift.gif'},
+        {n: 'Sentadilla con Mancuerna Goblet (Piernas)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2023/01/Dumbbell-Goblet-Squat.gif'},
+        {n: 'Peso Muerto Rumano c/Mancuerna (Posterior)', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Romanian-Deadlift.gif'},
         {n: 'Press Plano con Mancuernas (Pecho)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Press.gif'},
-        {n: 'Remo con Mancuernas Inclinado (Espalda)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/11/Incline-Dumbbell-Row.gif'},
+        {n: 'Remo con Mancuernas Inclinado (Espalda)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/45-Degree-Incline-Row.gif'},
         {n: 'Press Militar c/Mancuernas (Hombros)', s: '3 x 10', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif'},
         {n: 'Curl de Bíceps Alterno c/Mancuerna', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif'},
         {n: 'Rueda Abdominal (Core)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Ab-Wheel-Rollout.gif'}
     ]},
     'Domingo': { focus: 'Cuerpo Completo (Máquinas y Aislamiento)', ex: [
-        {n: 'Sentadilla Hack o Prensa Horizontal (Piernas)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2022/03/Hack-Squat.gif'},
-        {n: 'Curl Femoral Tumbado o Sentado (Posterior)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Curl.gif'},
+        {n: 'Sentadilla Hack o Prensa Horizontal (Piernas)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Sled-Hack-Squat.gif'},
+        {n: 'Curl Femoral Tumbado o Sentado (Posterior)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Curl.gif'},
         {n: 'Press de Pecho en Máquina Convergente', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Chest-Press.gif'},
         {n: 'Jalón en Polea Alta al Pecho (Espalda)', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif'},
         {n: 'Vuelos Laterales en Polea Baja (Hombros)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/07/one-arm-Cable-Lateral-Raise.gif'},
         {n: 'Tríceps en Polea con Barra Recta', s: '3 x 12', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif'},
-        {n: 'Elevación de Piernas Colgado (Core)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/02/Hanging-Leg-Raise.gif'}
+        {n: 'Elevación de Piernas Colgado (Core)', s: '3 x 15', gif: 'https://fitnessprogramer.com/wp-content/uploads/2021/08/Hanging-Leg-Raises.gif'}
     ]}
 };
 
