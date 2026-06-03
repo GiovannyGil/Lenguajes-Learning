@@ -1,65 +1,88 @@
-*{
-    box-sizing: 0;
+* {
+    box-sizing: border-box; /* Corregido: el valor correcto es border-box, no 0 */
     padding: 0;
     margin: 0;
 }
 
+body, html {
+    height: 100%;
+}
+
 .cuerpo {
     background-color: rgb(3, 122, 87);
-    padding: 15px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
 }
 
-
-input {
-    padding: 10px;
-    margin: 10px;
-    border: 5px;
-    border-color: #000;
-    border-radius: 15px;
+.titulo-General {
+    text-align: center;
+    color: white;
+    padding: 20px 0 10px 0;
+    font-family: sans-serif;
 }
 
+/* El truco de las 4 partes está aquí */
 .contenedor-principal {
-    display: flex;
-    flex-direction: column;
-    /* align-items: space-between; */
-    background-color: rgb(3, 122, 87);
-    padding: 55px;
-    margin: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas iguales */
+    grid-template-rows: repeat(2, 1fr);    /* Crea 2 filas iguales */
+    flex-grow: 1; /* Hace que el contenedor ocupe el resto del espacio disponible */
+    gap: 15px;    /* Espacio de separación entre cada cuadro */
+    padding: 20px;
 }
 
+/* Estilos comunes para los 4 contenedores */
+.contenedor-suma, 
+.contenedor-resta, 
+.contenedor-multiplicacion, 
+.contenedor-division {
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+/* Removí los anchos (width) y altos (height) fijos para que Grid controle el tamaño */
 .contenedor-suma {
     background-color: #f3e307;
-    width: 200px;
-    height: 200px;
-    padding: 30px;
-    margin: 30px;
-    border: 2px solid #000;
-    border-radius: 5px;
 }
 
 .contenedor-resta {
     background-color: #07ebf3;
-    padding: 30px;
-    margin: 30px;
-    border: 2px solid #000;
-    border-radius: 5px;
 }
 
 .contenedor-multiplicacion {
     background-color: #f30727;
-    padding: 30px;
-    margin: 30px;
-    border: 2px solid #000;
-    border-radius: 5px;
+    color: white; /* Para mejorar contraste con el fondo rojo */
 }
 
 .contenedor-division {
     background-color: #1707f3;
-    padding: 30px;
-    margin: 30px;
-    border: 2px solid #000;
-    border-radius: 5px;
+    color: white; /* Para mejorar contraste con el fondo azul */
+}
+
+/* Estilos para que los formularios se vean limpios dentro de cada cuadrante */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 250px;
+    margin-top: 10px;
+}
+
+.label {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+input {
+    padding: 8px;
+    margin: 5px 0;
+    border: 2px solid #000; /* Corregido: border necesita un estilo como 'solid' */
+    border-radius: 8px;
 }
