@@ -1,9 +1,12 @@
+# General
 .vscode
 node_modules
-
-rest
-
 dist
-
 *.log
 
+# Android build outputs and temporary files
+**/android/build/
+**/android/.gradle/
+**/android/app/build/
+**/android/app/build/outputs/
+**/android/app/build/intermediates/

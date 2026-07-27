@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "safeareacontext_autolinked_build",
+		"source" : "D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/node_modules/react-native-safe-area-context/android/src/main/jni"
+	}
+}

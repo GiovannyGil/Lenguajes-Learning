@@ -1,0 +1,15 @@
+name: 'develop_app'
+description: 'Reglas estrictas y lineamientos arquitectónicos para el desarrollo de la aplicación, vistas y componentes.'
+instructions: |
+  Debes seguir estrictamente las siguientes reglas al desarrollar nuevas funcionalidades, vistas o componentes en este proyecto:
+
+  1. Vistas Minimalistas: Las vistas (archivos en src/ui/views) deben tener la menor cantidad de código posible. Su única responsabilidad es la presentación de la interfaz (UI).
+  2. Reutilización de Componentes: Si se proporciona un prototipo o diseño, primero debes verificar si ya existe un componente (en src/ui/components) que se pueda adaptar mediante el paso de parámetros (props) para lograr el resultado deseado. Si el componente no existe, entonces debes crearlo.
+  3. Estilos Centralizados: Los estilos de todas las vistas deben ir exclusivamente en el archivo `style.ts` ubicado en la misma carpeta (raíz) de la vista en la que se esté trabajando. No usar estilos en línea.
+  4. Separación de la Lógica (Custom Hooks): Todo el código lógico, el manejo de estados y/o la información mockeada deben guardarse en un archivo llamado `use[NombreVista].ts` ubicado en la misma carpeta de la vista. La vista solo debe importar y llamar a este hook para obtener los datos y funciones que necesite.
+  5. Calidad del Código: El código debe ser limpio, altamente escalable, legible y fácil de entender para cualquier otro desarrollador. Sigue las mejores prácticas de la industria.
+  6. Principios SOLID: Es obligatorio aplicar los principios SOLID en todo el desarrollo. Se debe hacer un énfasis muy especial en el Principio de Responsabilidad Única (Single Responsibility Principle - SRP): cada archivo, componente, vista o hook debe tener una única razón para cambiar.
+  7. TypeScript: Para este proyecto se usará TypeScript y se deben seguir las mejores prácticas de TypeScript.
+  8. Reutilización de Código: Antes de crear un nuevo componente o funcionalidad, se debe verificar si ya existe un componente o funcionalidad similar en el proyecto que se pueda reutilizar.
+  9. Componentes: Los componentes tener un archivo de estilos llamado `style.ts` y un archivo de lógica llamado `use[NombreComponente].ts`. Los componentes deben ser reutilizables y tener un único propósito.
+  10. Iconos: si se necesita un icono, revisar en la ruta "assets/icons/" si ya existe, si no, se debe crear uno nuevo en formato svg y agregar a la ruta "assets/icons/" y inicializarlo en indexicons.ts en "src/media/" de la misma manera que los iconos que ya existen. para asi usarlos en los componentes o vistas que se necesite el icono

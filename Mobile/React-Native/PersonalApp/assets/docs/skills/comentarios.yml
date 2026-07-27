@@ -1,0 +1,49 @@
+# ==============================================================================
+# ANTIGRAVITY SKILL CONFIGURATION
+# Focus: Strict Code Commenting Rules (TypeScript / React Native)
+# File: comment_rules_skill.yml
+# ==============================================================================
+
+skill:
+  name: 'Strict Comment Formatter'
+  description: 'Define las reglas exclusivas para formatear comentarios en línea y documentación de funciones en TypeScript y React Native.'
+
+  # Directrices de comportamiento para el motor de IA
+  system_instructions: |
+    Tu única tarea es procesar texto o código y generar exclusivamente comentarios bajo las siguientes dos estructuras fijas. No debes agregar código adicional, explicaciones ni lógica.
+
+  # Reglas estrictas de formato
+  rules:
+    inline_comments:
+      formato: "Breves, concisos, usando '//' al inicio."
+      regla_gramatical: 'Iniciar obligatoriamente con un verbo en infinitivo (ar, er, ir).'
+      ejemplo: '// verificar que el campo de la clave no tenga espacios'
+
+    function_documentation:
+      formato: "Bloque de documentación encerrado estrictamente entre '/**' y '*/'."
+      plantilla_obligatoria: |
+        /**
+         * funcion : "[nombre_de_la_funcion]"
+         * parametros: [detallar parámetros]
+         * funcionalidad : [descripción de la acción principal en infinitivo]
+         * retorna: [lo que retorna o 'no retorna nada']
+         */
+
+  # Casos de uso de referencia para el modelo
+  examples:
+    - caso_comentario_en_linea:
+        entrada: 'Revisa si el input del password tiene espacios vacíos'
+        salida: '// verificar que el campo de la clave no tenga espacios'
+
+    - caso_documentacion_funcion:
+        entrada: |
+          const handleLogin = (email: string): void => {
+            // lógica
+          };
+        salida: |
+          /**
+           * funcion : "handleLogin"
+           * parametros: email (string)
+           * funcionalidad : validar el formato de inicio de sesión del usuario
+           * retorna: no retorna nada
+           */

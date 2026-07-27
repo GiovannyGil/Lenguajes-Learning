@@ -1,0 +1,18 @@
+# ninja log v5
+3	39	0	D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/x86/CMakeFiles/cmake.verify_globs	dabe5506e1620501
+66	3572	8062814823853106	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/4f4520bf7eb6981083b276737dcac5d7/components/safeareacontext/States.cpp.o	f2cc71c77f532661
+43	4045	8062814828537595	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/e17e3748d30fb1f43105c1783908b922/safeareacontext/EventEmitters.cpp.o	2b03f11eec68c3d
+79	4796	8062814836022416	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/1e6ec07e2f5b73a61c94ad341de92f50/jni/safeareacontext-generated.cpp.o	ea410cd3a992b7e5
+1	5479	8062814842815347	CMakeFiles/appmodules.dir/OnLoad.cpp.o	e881d31a625a0f6c
+8	6113	8062814849220975	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/f4103b6af66ed83391b4dfe1b64f42f0/safeareacontext/RNCSafeAreaViewState.cpp.o	479465dcb032fcb9
+54	6379	8062814851900679	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/e17e3748d30fb1f43105c1783908b922/safeareacontext/ShadowNodes.cpp.o	ebb999e2cc26b2ee
+25	6666	8062814854693895	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/4f4520bf7eb6981083b276737dcac5d7/components/safeareacontext/Props.cpp.o	fbafde66e9f32f8c
+34	7353	8062814861525231	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/e17e3748d30fb1f43105c1783908b922/safeareacontext/ComponentDescriptors.cpp.o	169174b2cfc60b29
+16	8353	8062814871590079	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/806f0a90d1027634d91e965cf3fe117c/RNCSafeAreaViewShadowNode.cpp.o	7e98215b74fdcd06
+90	8475	8062814872688430	CMakeFiles/appmodules.dir/d2ac5fb24eaf29afcf92f4b6c7715232/PersonalApp/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	d5dc1d1f303ec201
+8354	8501	8062814873152417	D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/build/intermediates/cxx/Debug/365k5b93/obj/x86/libreact_codegen_safeareacontext.so	c346fc3c9b45c434
+8502	8624	8062814874447530	D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/build/intermediates/cxx/Debug/365k5b93/obj/x86/libappmodules.so	b984e8712478f983
+2	67	0	D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/x86/CMakeFiles/cmake.verify_globs	dabe5506e1620501
+3	51	0	D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/x86/CMakeFiles/cmake.verify_globs	dabe5506e1620501
+6	240	0	D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/x86/CMakeFiles/cmake.verify_globs	dabe5506e1620501
+4	31	0	D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/x86/CMakeFiles/cmake.verify_globs	dabe5506e1620501

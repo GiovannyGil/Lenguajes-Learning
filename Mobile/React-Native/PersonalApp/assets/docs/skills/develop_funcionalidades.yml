@@ -1,0 +1,9 @@
+name: 'implementacion funcionalidades'
+description: 'Reglas estrictas y lineamientos para la implementación de funcionalidades globales.'
+instructions: |
+  Debes seguir estrictamente las siguientes reglas al desarrollar nuevas funcionalidades, vistas o componentes en este proyecto:
+
+  1. Código limpio: se debe tener un código altamente escalable, legible y fácil de entender para cualquier otro desarrollador. Sigue las mejores prácticas de la industria y no hacer código verboso.
+  2. TypeScript: Para este proyecto se usará TypeScript y se deben seguir las mejores prácticas de TypeScript.
+  3. Reutilización de Código: Antes de crear un nuevo componente o funcionalidad, se debe verificar si ya existe un componente o funcionalidad similar en el proyecto que se pueda reutilizar.
+  

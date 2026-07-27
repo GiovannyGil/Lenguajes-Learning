@@ -1,0 +1,4 @@
+D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
+D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
+D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
+D:/code/Lenguajes-Learning/Mobile/React-Native/PersonalApp/android/app/.cxx/Debug/365k5b93/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir
